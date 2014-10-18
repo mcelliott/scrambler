@@ -14,4 +14,13 @@
       = render 'layouts/navigation'
     %main{:role => "main"}
       = render 'layouts/messages'
-      = yield
+      %div.main
+        = yield
+        #modal.reveal-modal.medium{ data: { reveal: true } }
+          %a.close-reveal-modal ×
+          .modal-content
+
+
+      %div.loading
+        %i.fa.fa-refresh.fa-spin
+        Loading...

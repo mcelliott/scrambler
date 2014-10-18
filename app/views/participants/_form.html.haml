@@ -1,0 +1,10 @@
+= simple_form_for(@participant) do |f|
+  = f.error_notification
+
+  .form-inputs
+    -#= f.input :name, label: false, placeholder: 'Participant Name'
+    = f.input :flyer_id, as: :select, collection: Flyer.all, label_method: :name, value_method: :id, label: false, input_html: { class: 'select2' }
+    = f.input :skill_id, as: :select, collection: Skill.all, label_method: :name, value_method: :id, label: false, input_html: { class: 'select2' }
+    = f.hidden_field :event_id, label: false, value: @participant.event.id
+  .form-actions
+    = f.button :submit, class: 'right button-xs'

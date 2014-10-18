@@ -89,4 +89,72 @@ section {
   @extend .button;
   @extend .radius;
   @extend .tiny;
+  color: white !important;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+textarea, select {
+  width: 300px;
+}
+
+.add-button {
+  background-color: #aaa;
+  border-color: #aaa;
+  color: white;
+  transition: background-color 300ms ease-out;
+  -webkit-transition: background-color 300ms ease-out;
+
+  &:hover {
+    background-color: lighten(#aaa, 10%);
+    border-color: #000;
+    color: #000;
+  }
+}
+
+.button-xs:focus {
+  background-color: #aaa;
+  border-color: #aaa;
+  color: white;
+}
+
+.main {
+  margin-top: 50px;
+}
+
+.heading {
+  margin-bottom: 30px;
+}
+
+.empty-list {
+  margin-top: 20px;
+  border-top: 1px solid #aaa;
+  padding-top: 10px;
+}
+
+.event-participants ul {
+  margin-left: 0;
+  list-style-type: none;
+}
+
+.new-participant {
+  margin-bottom: 15px;
+}
+
+.participant-list {
+  margin-top: 10px;
+}
+
+.list-item {
+  padding: 5px;
+  margin-bottom: 5px;
+  background-color: darken(#eee, 10%);
+}
+
+.select2 {
+  width: 100%;
+  margin-bottom: 5px !important;
 }

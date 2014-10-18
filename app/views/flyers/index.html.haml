@@ -1,0 +1,21 @@
+%h2.text-center Flyers
+
+.large-8.small-centered.columns
+  - if @flyers.present?
+    %table{ style: 'width: 100%;'}
+      %tr
+        %th Name
+        %th Hours
+        %th
+        %th.pull-right= link_to fa_icon('plus', text: 'New flyer'), new_flyer_path, class: 'button-xs add-button', remote: true
+
+      - @flyers.each do |flyer|
+        %tr
+          %td= link_to flyer.name, flyer
+          %td= flyer.hours
+          %td= link_to 'Edit', edit_flyer_path(flyer)
+          %td= link_to 'Destroy', flyer, method: :delete, data: { confirm: 'Are you sure?' }
+  - else
+    .empty-list.text-center{ style: 'width: 100%' }
+      = fa_icon('frown-o', text: 'No flyers')
+

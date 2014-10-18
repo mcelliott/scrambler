@@ -1,0 +1,14 @@
+//$('.modal-content').html('<%#= j(render template: "participants/new.html.haml") %>')
+//$('#modal').foundation('reveal', 'open')
+
+$('.new-participant').html('<%= j(render "participants/form") %>');
+$('.new-participant-button').hide();
+$("select#participant_flyer_id").select2({
+  placeholder: "Select Flyer",
+  dropdownAutoWidth: true
+});
+
+$("select#participant_skill_id").select2({
+  placeholder: "Select Category",
+  dropdownAutoWidth: true
+});

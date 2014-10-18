@@ -1,0 +1,31 @@
+= link_to fa_icon('edit', text: 'Edit Event'), edit_event_path(@event), class: 'button-xs pull-right'
+%h2.heading.text-center= "#{@event.location} - #{@event.event_date}"
+
+.large-12.columns
+  .large-3.columns
+    .event-participants
+      %h4 Participants
+      .new-participant
+        = link_to fa_icon('plus', text: 'New Participant'), new_participant_path(event_id: @event.id), class: "button-xs new-participant-button", remote: true
+      .participant-list
+        %ul
+          - @event.participants.each do |participant|
+            %li.list-item= participant.flyer.name
+
+  .large-8.columns
+    .small-block-grid-2
+      %h4 Teams
+      %ul
+        - @event.teams.each do |team|
+          %li
+            .panel
+              %button.add-flyer.pull-right.button-xs.add-button{ data: { team_id: team.id, event_id: @event.id } }= fa_icon('plus', text: 'Add Flyer')
+              %h4
+                = team.name
+                = link_to fa_icon('remove', text: "", right: true), team, method: :delete, data: { confirm: 'Are you sure?' }
+              %ul
+                - team.participants.each do |p|
+                  %li
+                    = p.name
+
+

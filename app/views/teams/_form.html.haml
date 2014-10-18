@@ -1,0 +1,9 @@
+= simple_form_for(@team) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name, label: false, placeholder: 'Team Name'
+    = f.hidden_field :event_id
+
+  .form-actions
+    = f.button :submit, class: 'button-xs'

@@ -1,0 +1,9 @@
+= simple_form_for(@event) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :location, placeholder: 'Location', label: false
+    = f.input :event_date, as: :string, label: false, placeholder: 'Event Date', input_html: { class: 'datepicker' }
+
+  .form-actions
+    = f.button :submit, class: 'right button-xs'

@@ -1,0 +1,3 @@
+module Skill
+
+end

@@ -1,0 +1,3 @@
+$('.modal-content').html('<%= j(render template: "events/new.html.haml") %>')
+$('#modal').foundation('reveal', 'open')
+$("input.datepicker").datepicker({ dateFormat: "dd/mm/yy", firstDay: "1", changeMonth: true, changeYear: true })
