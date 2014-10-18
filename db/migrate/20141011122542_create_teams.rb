@@ -3,7 +3,7 @@ class CreateTeams < ActiveRecord::Migration
     create_table :teams do |t|
       t.integer :event_id
       t.string :name
-
+      t.integer :user
       t.timestamps
     end
   end

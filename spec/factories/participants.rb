@@ -4,6 +4,6 @@ FactoryGirl.define do
   factory :participant do
     name "MyString"
     hours "9.99"
-    skill_id 1
+    category_id 1
   end
 end

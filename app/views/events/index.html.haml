@@ -1,5 +1,5 @@
+= link_to fa_icon('plus', text: 'New Event'), new_event_path, class: 'button-xs add-button pull-right', remote: true
 %h2.text-center Events
-
 .large-8.small-centered.columns
   - if @events.present?
     %table{ style: 'width: 100%;'}
@@ -7,16 +7,14 @@
         %th Event date
         %th Location
         %th
-        %th.pull-right= link_to fa_icon('plus', text: 'New Event'), new_event_path, class: 'button-xs add-button', remote: true
+        %th
 
       - @events.each do |event|
         %tr
           %td= event.event_date
           %td= link_to event.location, event
-          %td= link_to 'Edit', edit_event_path(event)
-          %td= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
+          %td= link_to fa_icon('edit', text: 'Edit'), edit_event_path(event)
+          %td= link_to fa_icon('remove', text: 'Delete'), event, method: :delete, data: { confirm: 'Are you sure?' }
   - else
     .empty-list.text-center{ style: 'width: 100%' }
       = fa_icon('frown-o', text: 'No Events')
-
-=link_to fa_icon('plus', text: 'New Event'), new_event_path, class: "button-xs pull-left", remote: true

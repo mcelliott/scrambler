@@ -1,0 +1,4 @@
+= simple_form_for(@category) do |f|
+  = f.error_notification
+  = f.input :name, label: false, placeholder: 'Category Name'
+  = f.button :submit, class: 'button-xs radius'

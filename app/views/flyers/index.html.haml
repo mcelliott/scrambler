@@ -1,3 +1,4 @@
+= link_to fa_icon('plus', text: 'New flyer'), new_flyer_path, class: 'button-xs add-button pull-right', remote: true
 %h2.text-center Flyers
 
 .large-8.small-centered.columns
@@ -7,15 +8,14 @@
         %th Name
         %th Hours
         %th
-        %th.pull-right= link_to fa_icon('plus', text: 'New flyer'), new_flyer_path, class: 'button-xs add-button', remote: true
+        %th
 
       - @flyers.each do |flyer|
         %tr
           %td= link_to flyer.name, flyer
           %td= flyer.hours
-          %td= link_to 'Edit', edit_flyer_path(flyer)
-          %td= link_to 'Destroy', flyer, method: :delete, data: { confirm: 'Are you sure?' }
+          %td= link_to fa_icon('edit', text: 'Edit'), edit_flyer_path(flyer)
+          %td= link_to fa_icon('remove', text: 'Delete'), flyer, method: :delete, data: { confirm: 'Are you sure?' }
   - else
     .empty-list.text-center{ style: 'width: 100%' }
       = fa_icon('frown-o', text: 'No flyers')
-

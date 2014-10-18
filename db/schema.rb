@@ -11,14 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018071843) do
+ActiveRecord::Schema.define(version: 20141018113718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.integer  "user"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", force: true do |t|
     t.date     "event_date"
     t.string   "location"
+    t.integer  "user"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -26,21 +34,16 @@ ActiveRecord::Schema.define(version: 20141018071843) do
   create_table "flyers", force: true do |t|
     t.decimal  "hours"
     t.string   "name"
+    t.integer  "user"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "participants", force: true do |t|
     t.integer  "flyer_id"
-    t.integer  "skill_id"
+    t.integer  "category_id"
     t.integer  "team_id"
     t.integer  "event_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "skills", force: true do |t|
-    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -48,6 +51,7 @@ ActiveRecord::Schema.define(version: 20141018071843) do
   create_table "teams", force: true do |t|
     t.integer  "event_id"
     t.string   "name"
+    t.integer  "user"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

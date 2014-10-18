@@ -32,7 +32,9 @@ class ParticipantsController < ApplicationController
       if @participant.save
         format.html { redirect_to @participant.event, notice: 'Participant was successfully created.' }
         format.json { render :show, status: :created, location: @participant }
+        format.js
       else
+        format.js
         format.html { render :new }
         format.json { render json: @participant.errors, status: :unprocessable_entity }
       end
@@ -76,6 +78,6 @@ class ParticipantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def participant_params
-      params.require(:participant).permit(:flyer_id, :skill_id, :event_id)
+      params.require(:participant).permit(:flyer_id, :category_id, :event_id)
     end
 end

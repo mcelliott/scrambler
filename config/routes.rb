@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :flyers
+  resources :categories
 
-  resources :skills
+  resources :flyers
 
   resources :teams
 

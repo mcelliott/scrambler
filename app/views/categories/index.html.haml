@@ -1,0 +1,19 @@
+= link_to fa_icon('plus', text: 'New category'), new_category_path, class: 'button-xs add-button pull-right', remote: true
+%h2.text-center categories
+.large-8.small-centered.columns
+  - if @categories.present?
+    %table{ style: 'width: 100%;'}
+      %tr
+        %th Name
+        %th
+        %th
+
+      - @categories.each do |category|
+        %tr
+          %td= category.name
+          %td= link_to fa_icon('edit', text: 'Edit'), edit_category_path(category)
+          %td= link_to fa_icon('remove', text: 'Delete'), category, method: :delete, data: { confirm: 'Are you sure?' }
+  - else
+    .empty-list.text-center{ style: 'width: 100%' }
+      = fa_icon('frown-o', text: 'No categories')
+
