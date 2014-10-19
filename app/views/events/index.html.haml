@@ -13,12 +13,11 @@
 
       - @events.each do |event|
         %tr
-          %td= link_to event.name
+          %td= link_to event.name, event
           %td= event.event_date
-          %td= link_to event.location, event
-          %td= link_to event.team_size
+          %td= event.location
+          %td= event.team_size
           %td.text-center= link_to fa_icon('edit', text: ''), edit_event_path(event)
           %td.text-center= link_to fa_icon('remove', text: ''), event, method: :delete, data: { confirm: 'Are you sure?' }
   - else
-    .empty-list.text-center{ style: 'width: 100%' }
-      = fa_icon('frown-o', text: 'No Events')
+    .empty-list.text-center= fa_icon('frown-o', text: 'No Events')

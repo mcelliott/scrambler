@@ -24,7 +24,7 @@ class FlyersController < ApplicationController
   # POST /flyers
   # POST /flyers.json
   def create
-    @flyer = Flyer.new(flyer_params)
+    @flyer = current_user.flyers.build(flyer_params)
 
     respond_to do |format|
       if @flyer.save

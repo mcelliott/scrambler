@@ -25,7 +25,7 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(event_params)
+    @event = current_user.events.build(event_params)
 
     respond_to do |format|
       if @event.save
@@ -65,7 +65,7 @@ class EventsController < ApplicationController
   def generate
     @event = Event.find params[:event_id]
     @event.teams.delete_all
-    @event.participants.each do |participant|
+    @event.participants.shuffle.each do |participant|
       participant.team = new_event_team
       participant.save!
     end

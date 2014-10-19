@@ -1,4 +1,4 @@
-= link_to fa_icon('edit', text: 'Edit Event'), edit_event_path(@event), class: 'button-xs pull-right'
+= link_to fa_icon('edit', text: 'Edit Event'), edit_event_path(@event), class: 'button-xs pull-right', remote: true
 %h2.heading.text-center= "#{@event.name} - #{@event.event_date}"
 
 .large-12.columns
@@ -23,6 +23,7 @@
   .large-7.columns
     .event-teams
       .pull-right= button_to 'Generate Teams', { action: 'generate', event_id: @event.id }, { class: 'button-xs radius', id: 'generate-teams', remote: true }
+      .pull-right#show-teams= link_to 'Show Teams', event_teams_path(event_id: @event.id), class: 'button-xs radius'
       %h4 Teams
       .new-teams
         %div.generating-teams
@@ -33,5 +34,6 @@
         - if @event.teams.present?
           = render 'teams'
         - else
-          .empty-list.text-center= fa_icon('frown-o', text: 'No Participants')
+          .panel
+            .empty-list.text-center= fa_icon('frown-o', text: 'No Participants')
 

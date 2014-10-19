@@ -27,7 +27,7 @@ class ParticipantsController < ApplicationController
   # POST /participants.json
   def create
     @participant = Participant.new(participant_params)
-
+    @participant.number = Participant.count + 1
     respond_to do |format|
       if @participant.save
         format.html { redirect_to @participant.event, notice: 'Participant was successfully created.' }

@@ -2,11 +2,9 @@ Rails.application.routes.draw do
   resources :categories
 
   resources :flyers
-
-  resources :teams
-
   resources :events do
     post :generate
+    resources :teams
   end
 
   resources :participants

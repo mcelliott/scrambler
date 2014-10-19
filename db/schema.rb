@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20141018113718) do
     t.integer  "team_id"
     t.integer  "event_id"
     t.integer  "user_id"
+    t.integer  "number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

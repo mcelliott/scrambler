@@ -6,6 +6,7 @@ class CreateParticipants < ActiveRecord::Migration
       t.integer :team_id
       t.integer :event_id
       t.integer :user_id
+      t.integer :number
       t.timestamps
     end
   end
