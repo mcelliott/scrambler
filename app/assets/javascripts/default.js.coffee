@@ -7,3 +7,9 @@ $ ->
   $("select#participant_flyer_id").select2
     placeholder: "Select Flyer"
     dropdownAutoWidth : true
+
+  $(document).on "click", "#generate-teams", (e) ->
+    e.preventDefault()
+    $(@).hide()
+    $('div.generating-teams').show()
+    $(@).parents('form').submit()

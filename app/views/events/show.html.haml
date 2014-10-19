@@ -1,31 +1,37 @@
 = link_to fa_icon('edit', text: 'Edit Event'), edit_event_path(@event), class: 'button-xs pull-right'
-%h2.heading.text-center= "#{@event.location} - #{@event.event_date}"
+%h2.heading.text-center= "#{@event.name} - #{@event.event_date}"
 
 .large-12.columns
-  .large-3.columns
+  .large-5.columns
     .event-participants
+      .pull-right= link_to fa_icon('plus', text: 'New Participant'), new_participant_path(event_id: @event.id), class: "button-xs new-participant-button", remote: true
       %h4 Participants
       .new-participant
-        = link_to fa_icon('plus', text: 'New Participant'), new_participant_path(event_id: @event.id), class: "button-xs new-participant-button", remote: true
       .participant-list
-        %ul
-          - @event.participants.each do |participant|
-            %li.list-item= participant.flyer.name
+        .panel
+          - if @event.participants.present?
+            - @event.participants.each_with_index do |participant, index|
+              .row.flyer-list-item
+                .large-12.columns
+                  .large-1.columns.text-left= "#{index + 1}."
+                  .large-4.columns= participant.flyer.name
+                  .large-3.columns= "#{participant.flyer.hours.ceil} hrs"
+                  .large-4.columns= participant.category.name
+          - else
+            .empty-list.text-center= fa_icon('frown-o', text: 'No Participants')
 
-  .large-8.columns
-    .small-block-grid-2
+  .large-7.columns
+    .event-teams
+      .pull-right= button_to 'Generate Teams', { action: 'generate', event_id: @event.id }, { class: 'button-xs radius', id: 'generate-teams', remote: true }
       %h4 Teams
-      %ul
-        - @event.teams.each do |team|
-          %li
-            .panel
-              %button.add-flyer.pull-right.button-xs.add-button{ data: { team_id: team.id, event_id: @event.id } }= fa_icon('plus', text: 'Add Flyer')
-              %h4
-                = team.name
-                = link_to fa_icon('remove', text: "", right: true), team, method: :delete, data: { confirm: 'Are you sure?' }
-              %ul
-                - team.participants.each do |p|
-                  %li
-                    = p.name
+      .new-teams
+        %div.generating-teams
+          %i.fa.fa-refresh.fa-spin
+          Generating Teams
 
+      .teams-list
+        - if @event.teams.present?
+          = render 'teams'
+        - else
+          .empty-list.text-center= fa_icon('frown-o', text: 'No Participants')
 

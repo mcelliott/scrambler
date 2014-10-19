@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   resources :teams
 
-  resources :events
+  resources :events do
+    post :generate
+  end
 
   resources :participants
 

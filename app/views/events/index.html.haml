@@ -4,17 +4,21 @@
   - if @events.present?
     %table{ style: 'width: 100%;'}
       %tr
+        %th Name
         %th Event date
         %th Location
+        %th Team Size
         %th
         %th
 
       - @events.each do |event|
         %tr
+          %td= link_to event.name
           %td= event.event_date
           %td= link_to event.location, event
-          %td= link_to fa_icon('edit', text: 'Edit'), edit_event_path(event)
-          %td= link_to fa_icon('remove', text: 'Delete'), event, method: :delete, data: { confirm: 'Are you sure?' }
+          %td= link_to event.team_size
+          %td.text-center= link_to fa_icon('edit', text: ''), edit_event_path(event)
+          %td.text-center= link_to fa_icon('remove', text: ''), event, method: :delete, data: { confirm: 'Are you sure?' }
   - else
     .empty-list.text-center{ style: 'width: 100%' }
       = fa_icon('frown-o', text: 'No Events')

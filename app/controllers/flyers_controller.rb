@@ -28,7 +28,7 @@ class FlyersController < ApplicationController
 
     respond_to do |format|
       if @flyer.save
-        format.html { redirect_to @flyer, notice: 'Flyer was successfully created.' }
+        format.html { redirect_to flyers_path, notice: 'Flyer was successfully created.' }
         format.json { render :show, status: :created, location: @flyer }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class FlyersController < ApplicationController
   def update
     respond_to do |format|
       if @flyer.update(flyer_params)
-        format.html { redirect_to @flyer, notice: 'Flyer was successfully updated.' }
+        format.html { redirect_to flyers_path, notice: 'Flyer was successfully updated.' }
         format.json { render :show, status: :ok, location: @flyer }
       else
         format.html { render :edit }

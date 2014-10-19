@@ -62,14 +62,33 @@ class EventsController < ApplicationController
     end
   end
 
+  def generate
+    @event = Event.find params[:event_id]
+    @event.teams.delete_all
+    @event.participants.each do |participant|
+      participant.team = new_event_team
+      participant.save!
+    end
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
+
+  def new_event_team
+    return @team if @team && space_available?
+    @team = @event.teams.create(name: "Team #{@event.teams.count + 1}")
+  end
+
+  def space_available?
+    @team.participants.count < @event.team_size
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:event_date, :location)
+      params.require(:event).permit(:event_date, :location, :name, :team_size)
     end
 end

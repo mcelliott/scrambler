@@ -7,3 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email
+
+['Matt', 'Giedre', 'Barb', 'Mark', 'Mike'].each do |flyer|
+  Flyer.create(name: flyer, hours: 50, user: user)
+end
+
+['Head Up', 'Head Down', 'Belly'].each do |category|
+  Category.create(name: category, user: user)
+end

@@ -87,9 +87,9 @@ section {
 }
 .button-xs {
   @extend .button;
-  @extend .radius;
   @extend .tiny;
   color: white !important;
+  border-radius: 3px !important;
 }
 
 input[type="text"],
@@ -133,16 +133,13 @@ textarea, select {
   margin-top: 20px;
   border-top: 1px solid #aaa;
   padding-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
-.event-participants ul {
+ul {
   margin-left: 0;
   list-style-type: none;
-}
-
-.new-participant {
-  margin-bottom: 15px;
-  display: block;
 }
 
 .list-item {
@@ -151,7 +148,18 @@ textarea, select {
   background-color: darken(#eee, 10%);
 }
 
+.flyer-list-item {
+  padding: 5px 0;
+  margin-bottom: 5px;
+  background-color: darken(#eee, 10%);
+}
+
 .select2 {
   width: 100%;
+  margin-bottom: 5px !important;
+}
+
+.participant-select2 {
+  width: 50%;
   margin-bottom: 5px !important;
 }

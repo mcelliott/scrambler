@@ -1,6 +1,7 @@
 = simple_form_for(@participant) do |f|
   = f.error_notification
-  = f.input :flyer_id, as: :select, collection: Flyer.all, label_method: :name, value_method: :id, label: false, input_html: { class: 'select2' }
-  = f.input :category_id, as: :select, collection: Category.all, label_method: :name, value_method: :id, label: false, input_html: { class: 'select2' }
+  = f.input :flyer_id, as: :select, collection: Flyer.all, label_method: :name, value_method: :id, label: false, input_html: { class: 'participant-select2' }
+  = f.input :category_id, as: :select, collection: Category.all, label_method: :name, value_method: :id, label: false, input_html: { class: 'participant-select2' }
   = f.hidden_field :event_id, label: false, value: @participant.event.id
-  = f.button :submit, class: 'button-xs radius'
+  = f.button :submit, 'Create', class: 'button-xs radius'
+  %button#hide-participant.button-xs.radius Cancel

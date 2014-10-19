@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20141018113718) do
     t.date     "event_date"
     t.string   "location"
     t.integer  "user"
+    t.string   "name"
+    t.integer  "team_size"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -44,6 +46,7 @@ ActiveRecord::Schema.define(version: 20141018113718) do
     t.integer  "category_id"
     t.integer  "team_id"
     t.integer  "event_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
