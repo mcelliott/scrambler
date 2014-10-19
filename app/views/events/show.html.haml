@@ -10,13 +10,14 @@
       .participant-list
         .panel
           - if @event.participants.present?
-            - @event.participants.each_with_index do |participant, index|
+            - @event.participants.each_with_index do |p, index|
               .row.flyer-list-item
                 .large-12.columns
                   .large-1.columns.text-left= "#{index + 1}."
-                  .large-4.columns= participant.flyer.name
-                  .large-3.columns= "#{participant.flyer.hours.ceil} hrs"
-                  .large-4.columns= participant.category.name
+                  .large-4.columns= p.flyer.name
+                  .large-3.columns= "#{p.flyer.hours.ceil} hrs"
+                  .large-3.columns= p.category.name
+                  .large-1.columns= link_to fa_icon('remove', text: ''), p, method: :delete, data: { confirm: 'Are you sure?' }
           - else
             .empty-list.text-center= fa_icon('frown-o', text: 'No Participants')
 

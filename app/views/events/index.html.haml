@@ -13,7 +13,7 @@
 
       - @events.each do |event|
         %tr
-          %td= link_to event.name, event
+          %td= link_to fa_icon('link', text: event.name, right: true), event
           %td= event.event_date
           %td= event.location
           %td= event.team_size

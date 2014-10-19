@@ -26,7 +26,7 @@ class ParticipantsController < ApplicationController
   # POST /participants
   # POST /participants.json
   def create
-    @participant = Participant.new(participant_params)
+    @participant = current_user.participants.new(participant_params)
     @participant.number = Participant.count + 1
     respond_to do |format|
       if @participant.save
@@ -60,7 +60,7 @@ class ParticipantsController < ApplicationController
   def destroy
     @participant.destroy
     respond_to do |format|
-      format.html { redirect_to participants_url, notice: 'Participant was successfully destroyed.' }
+      format.html { redirect_to event_path(@participant.event), notice: 'Participant was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

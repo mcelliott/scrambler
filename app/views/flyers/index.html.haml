@@ -12,7 +12,7 @@
 
       - @flyers.each do |flyer|
         %tr
-          %td= link_to flyer.name, flyer
+          %td= flyer.name
           %td= flyer.hours
           %td.text-center= link_to fa_icon('edit', text: ''), edit_flyer_path(flyer)
           %td.text-center= link_to fa_icon('remove', text: ''), flyer, method: :delete, data: { confirm: 'Are you sure?' }
