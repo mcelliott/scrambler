@@ -14,8 +14,8 @@
         %tr
           %td= flyer.name
           %td= flyer.hours
-          %td.text-center= link_to fa_icon('edit', text: ''), edit_flyer_path(flyer)
-          %td.text-center= link_to fa_icon('remove', text: ''), flyer, method: :delete, data: { confirm: 'Are you sure?' }
+          %td.text-center= link_to fa_icon('edit', text: ''), edit_flyer_path(flyer), class: 'icon'
+          %td.text-center= link_to fa_icon('trash', text: ''), flyer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
   - else
     .empty-list.text-center{ style: 'width: 100%' }
       = fa_icon('frown-o', text: 'No flyers')

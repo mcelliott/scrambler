@@ -11,8 +11,8 @@
       - @categories.each do |category|
         %tr
           %td= category.name
-          %td.text-center= link_to fa_icon('edit', text: ''), edit_category_path(category)
-          %td.text-center= link_to fa_icon('remove', text: ''), category, method: :delete, data: { confirm: 'Are you sure?' }
+          %td.text-center= link_to fa_icon('edit', text: ''), edit_category_path(category), class: 'icon'
+          %td.text-center= link_to fa_icon('trash', text: ''), category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
   - else
     .empty-list.text-center{ style: 'width: 100%' }
       = fa_icon('frown-o', text: 'No categories')

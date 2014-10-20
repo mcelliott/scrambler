@@ -1,0 +1,2 @@
+module Teams::ParticipantHelper
+end

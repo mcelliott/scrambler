@@ -19,6 +19,7 @@ gem 'simple_form'
 gem 'upmin-admin'
 gem 'font-awesome-rails'
 gem 'select2-rails'
+gem 'cancancan'
 
 group :development do
   gem 'better_errors'

@@ -2,19 +2,9 @@
 %h2.heading.text-center= "#{@event.name} Teams"
 - @teams.group_by{ |p| p.category.name }.each_with_index do |(category_name, teams), index|
   - if index > 0
-    .large-12.columns.underline
+    .large-12.columns.team-category
+      = render partial: 'teams', locals: { teams: teams, category_name: category_name}
   - else
     .large-12.columns
+      = render partial: 'teams', locals: { teams: teams, category_name: category_name}
 
-  - teams.each do |team|
-    .large-3.columns
-      %h4.text-center
-        = "#{team.name} - #{category_name}"
-    .large-9.columns
-      - team.participants.each_with_index do |p, index|
-        .row.list-item
-          .large-12.columns
-            .large-1.columns= "#{p.number}."
-            .large-3.columns= p.flyer.name
-            .large-3.columns= "#{p.flyer.hours} hrs"
-            .large-4.columns= p.category.name

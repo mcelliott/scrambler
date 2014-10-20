@@ -1,0 +1,8 @@
+- @event.participants.each_with_index do |p, index|
+  .row.flyer-list-item
+    .large-12.columns
+      .large-1.columns.text-left= "#{index + 1}."
+      .large-3.columns= p.flyer.name
+      .large-2.columns= "#{p.flyer.hours.ceil} h"
+      .large-4.columns= p.category.name
+      .large-1.columns= link_to fa_icon('trash', text: ''), p, method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'

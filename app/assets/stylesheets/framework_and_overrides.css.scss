@@ -180,3 +180,37 @@ ul {
 .odd {
   background-color: lighten(#000, 10%);
 }
+
+.team-category {
+  margin-top: 40px;
+}
+
+.team-section {
+  margin-top: 10px;
+}
+
+@mixin tiny-button {
+  padding-top: 0.3rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.3rem;
+  padding-left: 0.5rem;
+  font-size: 0.6875rem;
+}
+
+.delete-button {
+  @include tiny-button;
+  @extend .alert;
+}
+
+.add-button {
+  @include tiny-button;
+}
+
+.icon {
+  padding: 0 5px;
+
+  &:hover {
+    background-color: lighten(#aaa, 10%);
+    color: lighten(#000, 10%);
+  }
+}

@@ -10,21 +10,14 @@
       .participant-list
         .panel
           - if @event.participants.present?
-            - @event.participants.each_with_index do |p, index|
-              .row.flyer-list-item
-                .large-12.columns
-                  .large-1.columns.text-left= "#{index + 1}."
-                  .large-4.columns= p.flyer.name
-                  .large-3.columns= "#{p.flyer.hours.ceil} hrs"
-                  .large-3.columns= p.category.name
-                  .large-1.columns= link_to fa_icon('remove', text: ''), p, method: :delete, data: { confirm: 'Are you sure?' }
+            = render 'participants'
           - else
             .empty-list.text-center= fa_icon('frown-o', text: 'No Participants')
 
   .large-7.columns
     .event-teams
       .pull-right= button_to 'Generate Teams', { action: 'generate', event_id: @event.id }, { class: 'button-xs radius', id: 'generate-teams', remote: true }
-      .pull-right#show-teams= link_to 'Show Teams', event_teams_path(event_id: @event.id), class: 'button-xs radius'
+      .pull-right#show-teams= link_to fa_icon('table', text: 'Show Teams'), event_teams_path(event_id: @event.id), class: 'button-xs radius'
       %h4 Teams
       .new-teams
         %div.generating-teams
