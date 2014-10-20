@@ -3,7 +3,7 @@ class CreateFlyers < ActiveRecord::Migration
     create_table :flyers do |t|
       t.decimal :hours
       t.string :name
-      t.integer :user
+      t.integer :user_id
       t.timestamps
     end
   end

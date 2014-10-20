@@ -8,10 +8,10 @@
 user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email
 
-['Matt', 'Giedre', 'Barb', 'Mark', 'Mike'].each do |flyer|
-  Flyer.create(name: flyer, hours: 50, user: user)
+['Matt', 'Giedre', 'Barb', 'Mark', 'Mike', 'Holly'].each do |flyer|
+  user.flyers.create(name: flyer, hours: 50)
 end
 
 ['Head Up', 'Head Down', 'Belly'].each do |category|
-  Category.create(name: category, user: user)
+  user.categories.create(name: category)
 end

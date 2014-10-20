@@ -10,4 +10,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  has_many :participants
+  has_many :events
+  has_many :flyers
+  has_many :categories
 end

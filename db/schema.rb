@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20141018113718) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
-    t.integer  "user"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20141018113718) do
   create_table "events", force: true do |t|
     t.date     "event_date"
     t.string   "location"
-    t.integer  "user"
+    t.integer  "user_id"
     t.string   "name"
     t.integer  "team_size"
     t.datetime "created_at"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20141018113718) do
   create_table "flyers", force: true do |t|
     t.decimal  "hours"
     t.string   "name"
-    t.integer  "user"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -55,7 +55,8 @@ ActiveRecord::Schema.define(version: 20141018113718) do
   create_table "teams", force: true do |t|
     t.integer  "event_id"
     t.string   "name"
-    t.integer  "user"
+    t.integer  "user_id"
+    t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

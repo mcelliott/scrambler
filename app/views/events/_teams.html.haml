@@ -3,6 +3,8 @@
     %li
       .panel
         = link_to fa_icon('remove', text: ""), event_team_path(team, event_id: @event.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'pull-right'
+        .pull-left
+          %b= team.category.name
         %h4.text-center
           = team.name
         - team.participants.each_with_index do |p, index|
