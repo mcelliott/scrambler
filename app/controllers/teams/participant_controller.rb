@@ -1,4 +1,6 @@
 class Teams::ParticipantController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     current_event
     current_team
