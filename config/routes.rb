@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :participants
 
-  mount Upmin::Engine => '/admin'
+  # mount Upmin::Engine => '/admin'
   root to: 'visitors#index'
   devise_for :users
 end
