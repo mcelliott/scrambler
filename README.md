@@ -37,9 +37,6 @@ Documentation and Support
 Issues
 -------------
 
-Similar Projects
-----------------
-
 Contributing
 ------------
 
