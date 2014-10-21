@@ -1,20 +1,18 @@
 Rails.application.routes.draw do
-  namespace :teams do
-    get 'participant/new'
-    post 'participant/create'
-  end
+  post    '/teams/:team_id/participant',    controller: 'teams/participant', action: :create,  as: 'teams_participant'
+  get     '/teams/participant/new',             controller: 'teams/participant', action: :new,     as: 'new_teams_participant'
+  delete  '/teams/:team_id/participant/:id',    controller: 'teams/participant', action: :destroy, as: 'destroy_teams_participant'
 
-  resources :categories
+  resources :categories, only: [:index, :new, :create, :destroy]
+  resources :flyers, only: [:index, :new, :create, :destroy]
 
-  resources :flyers
   resources :events do
     post :generate
-    resources :teams
+    resources :teams, only: [:index, :destroy]
+    resources :participants, only: [:new, :create, :destroy]
   end
 
-  resources :participants
-
-  mount Upmin::Engine => '/admin'
+  # mount Upmin::Engine => '/admin'
   root to: 'visitors#index'
   devise_for :users
 end

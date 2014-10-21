@@ -1,0 +1,7 @@
+<% unless @team.errors.present? %>
+  $('#modal').foundation('reveal', 'close')
+  $('li.<%= "team_#{@team.id}" %>').html('<%= j(render partial: "teams/team", locals: { team: @team }) %>')
+<% else %>
+  $('.modal-content').html('<%= j(render template: "teams/participant/new.html.haml") %>')
+  $('#modal').foundation('reveal', 'open')
+<% end %>

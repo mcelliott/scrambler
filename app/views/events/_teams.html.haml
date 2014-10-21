@@ -1,18 +1,4 @@
 %ul
   - @event.teams.each do |team|
-    %li
-      .panel
-        .row
-          = link_to fa_icon('trash', text: ""), event_team_path(team, event_id: @event.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'pull-right delete-button button-xs'
-          %b.pull-left= team.category.name
-        %h4.text-center
-          = team.name
-        - team.participants.each_with_index do |p, index|
-          .row.flyer-list-item
-            .large-12.columns
-              .large-4.columns= p.flyer.name
-              .large-4.columns= p.category.name
-              .large-3.columns= "#{p.flyer.hours.ceil} hrs"
-              .large-1.columns.text-right= link_to fa_icon('trash', text: ""), p, method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
-        .row
-          = link_to fa_icon('plus', text: ""), teams_participant_new_path(team_id: team.id, event_id: @event.id), class: "button-xs add-button new-team-participant-#{team.id}", remote: true
+    %li{ class: "team_#{team.id}" }
+      = render partial: 'teams/team', locals: { team: team }

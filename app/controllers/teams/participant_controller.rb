@@ -1,4 +1,5 @@
 class Teams::ParticipantController < ApplicationController
+  load_and_authorize_resource
   before_action :authenticate_user!
 
   def new
@@ -8,16 +9,22 @@ class Teams::ParticipantController < ApplicationController
   end
 
   def create
-    team = Team.find params[:participant][:team_id]
-    participant = team.participants.build(participant_params)
+    current_participant.team = current_team
     respond_to do |format|
-      if team.save
-        format.html { redirect_to participant.event, notice: 'Participant was successfully added.' }
-        format.js
+      if current_participant.save
+        format.html { redirect_to event_path(current_participant.event), notice: 'Participant was successfully added.' }
       else
-        format.js
-        format.html { render :new }
+        format.html { redirect_to event_path(current_participant.event), notice: 'Failed to add participant' }
       end
+    end
+  end
+
+  def destroy
+    participant = current_team.participants.find params[:id]
+    participant.team = nil
+    participant.save
+    respond_to do |format|
+      format.html { redirect_to event_path(current_participant.event), notice: 'Participant was successfully destroyed.' }
     end
   end
 
@@ -28,11 +35,15 @@ class Teams::ParticipantController < ApplicationController
   end
 
   def current_team
-    @team ||= Team.find params[:team_id]
+    @team ||= current_user.teams.find params[:team_id]
+  end
+
+  def current_participant
+    current_user.participants.find_by flyer_id: participant_params[:flyer_id]
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def participant_params
-    params.require(:participant).permit(:flyer_id, :category_id, :team_id, :event_id)
+    params.require(:participant).permit(:flyer_id, :category_id)
   end
 end

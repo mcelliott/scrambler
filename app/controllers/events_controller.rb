@@ -76,7 +76,7 @@ class EventsController < ApplicationController
   def new_event_team(p)
     category_id = p.category.id
     return @team[category_id] if @team && @team[category_id] && space_available?(category_id)
-    (@team ||= {})[category_id] = @event.teams.create(name: "Team #{@event.teams.count + 1}", category: p.category)
+    (@team ||= {})[category_id] = @event.teams.create(name: "Team #{@event.teams.count + 1}", category: p.category, user: current_user)
   end
 
   def space_available?(category_id)

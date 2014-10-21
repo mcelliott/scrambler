@@ -8,18 +8,9 @@ class CategoriesController < ApplicationController
     @categories = current_user.categories
   end
 
-  # GET /categories/1
-  # GET /categories/1.json
-  def show
-  end
-
   # GET /categories/new
   def new
     @category = Category.new
-  end
-
-  # GET /categories/1/edit
-  def edit
   end
 
   # POST /categories
@@ -38,20 +29,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /categories/1
-  # PATCH/PUT /categories/1.json
-  def update
-    respond_to do |format|
-      if @category.update(category_params)
-        format.html { redirect_to @category, notice: 'Category was successfully updated.' }
-        format.json { render :show, status: :ok, location: @category }
-      else
-        format.html { render :edit }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
@@ -64,8 +41,8 @@ class CategoriesController < ApplicationController
 
   private
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def category_params
-      params.require(:category).permit(:name)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def category_params
+    params.require(:category).permit(:name)
+  end
 end

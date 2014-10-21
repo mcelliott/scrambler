@@ -4,7 +4,7 @@
 .large-12.columns
   .large-5.columns
     .event-participants
-      .pull-right= link_to fa_icon('plus', text: 'New Participant'), new_participant_path(event_id: @event.id), class: "button-xs new-participant-button", remote: true
+      .pull-right= link_to fa_icon('plus', text: 'New Participant'), new_event_participant_path(event_id: @event.id), class: "button-xs new-participant-button", remote: true
       %h4 Participants
       .new-participant
       .participant-list

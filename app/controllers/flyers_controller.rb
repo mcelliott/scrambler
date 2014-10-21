@@ -8,18 +8,9 @@ class FlyersController < ApplicationController
     @flyers = current_user.flyers
   end
 
-  # GET /flyers/1
-  # GET /flyers/1.json
-  def show
-  end
-
   # GET /flyers/new
   def new
     @flyer = Flyer.new
-  end
-
-  # GET /flyers/1/edit
-  def edit
   end
 
   # POST /flyers
@@ -33,20 +24,6 @@ class FlyersController < ApplicationController
         format.json { render :show, status: :created, location: @flyer }
       else
         format.html { render :new }
-        format.json { render json: @flyer.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /flyers/1
-  # PATCH/PUT /flyers/1.json
-  def update
-    respond_to do |format|
-      if @flyer.update(flyer_params)
-        format.html { redirect_to flyers_path, notice: 'Flyer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @flyer }
-      else
-        format.html { render :edit }
         format.json { render json: @flyer.errors, status: :unprocessable_entity }
       end
     end
