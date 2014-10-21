@@ -1,9 +1,8 @@
 .panel
   .row
     = link_to fa_icon('trash', text: ""), event_team_path(team, event_id: @event.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'pull-right delete-button button-xs'
-    %b.pull-left= team.category.name
+    %b.pull-left= "#{team.name} - #{team.category.name}"
   %h4.text-center
-    = team.name
   - team.participants.each_with_index do |p, index|
     .row.flyer-list-item
       .large-12.columns
