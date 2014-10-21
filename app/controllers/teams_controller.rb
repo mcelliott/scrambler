@@ -5,7 +5,7 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
-    @event = Event.find params[:event_id]
+    @event = current_user.events.find params[:event_id]
     @teams = @event.teams
   end
 
