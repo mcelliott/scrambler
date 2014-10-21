@@ -12,5 +12,5 @@
             - else
               = fa_icon('ban', text: "")
           .large-3.columns= p.flyer.name
-          .large-3.columns= "#{p.flyer.hours} hrs"
+          .large-3.columns= "#{p.flyer.hours.ceil} hrs"
           .large-4.columns= p.category.name
