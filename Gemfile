@@ -20,6 +20,7 @@ gem 'upmin-admin'
 gem 'font-awesome-rails'
 gem 'select2-rails'
 gem 'cancancan'
+gem 'exception_notification'
 
 group :development do
   gem 'better_errors'
@@ -36,6 +37,7 @@ group :development do
   gem 'rb-inotify', :require=>false
   gem 'spring'
   gem 'byebug'
+  gem 'letter_opener'
 end
 group :development, :test do
   gem 'factory_girl_rails'
