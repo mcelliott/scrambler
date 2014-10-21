@@ -5,7 +5,7 @@ class FlyersController < ApplicationController
   # GET /flyers
   # GET /flyers.json
   def index
-    @flyers = Flyer.all
+    @flyers = current_user.flyers
   end
 
   # GET /flyers/1
