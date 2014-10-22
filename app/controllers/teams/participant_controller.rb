@@ -1,17 +1,21 @@
 class Teams::ParticipantController < ApplicationController
-  load_and_authorize_resource
+  authorize_resource
   before_action :authenticate_user!
 
   def new
     current_event
     current_team
-    @participant = Participant.new
+    @team_participant = TeamParticipant.new
   end
 
   def create
-    current_participant.team = current_team
+    @participant = current_user.team_participants.build(team: current_team,
+                                                        event: current_event,
+                                                        participant: current_participant,
+                                                        placeholder: participant_params[:placeholder])
+
     respond_to do |format|
-      if current_participant.save
+      if @participant.save
         format.html { redirect_to event_path(current_participant.event), notice: 'Participant was successfully added.' }
       else
         format.html { redirect_to event_path(current_participant.event), notice: 'Failed to add participant' }
@@ -20,15 +24,18 @@ class Teams::ParticipantController < ApplicationController
   end
 
   def destroy
-    participant = current_team.participants.find params[:id]
-    participant.team = nil
-    participant.save
+    team_participant = current_team.team_participants.find params[:id]
+    team_participant.destroy
     respond_to do |format|
-      format.html { redirect_to event_path(current_participant.event), notice: 'Participant was successfully destroyed.' }
+      format.html { redirect_to event_path(team_participant.event), notice: 'Participant was successfully destroyed.' }
     end
   end
 
   private
+
+  def next_participant
+    current_event.participants.count + 1
+  end
 
   def current_event
     @event ||= Event.find params[:event_id]
@@ -39,11 +46,11 @@ class Teams::ParticipantController < ApplicationController
   end
 
   def current_participant
-    current_user.participants.find_by flyer_id: participant_params[:flyer_id]
+    current_user.participants.find participant_params[:id]
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def participant_params
-    params.require(:participant).permit(:flyer_id, :category_id)
+    params.require(:team_participant).permit(:id, :category_id, :placeholder)
   end
 end

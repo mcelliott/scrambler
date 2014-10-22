@@ -1,5 +1,9 @@
-= simple_form_for(@participant, url: teams_participant_path(team_id: @team.id, event_id: @event.id)) do |f|
+= simple_form_for(@team_participant, url: teams_participant_path(team_id: @team.id, event_id: @event.id)) do |f|
   = f.error_notification
-  = f.input :flyer_id, as: :select, collection: @event.participants.map(&:flyer), label_method: :name, value_method: :id, label: false, input_html: { class: 'participant-select2' }
-  = f.input :category_id, as: :select, collection: current_user.categories, label_method: :name, value_method: :id, label: false, input_html: { class: 'participant-select2' }
+  = f.input :id, as: :select, collection: @event.participants.map{ |p| [participant_form_label(p), p.id] }, label: false, input_html: { class: 'participant-select2' }
+  .custom-checkbox
+    = f.input :placeholder, as: :boolean
   = f.button :submit, 'Create', class: 'button-xs radius'
+  %button#random-participant.button-xs.radius Randomize
+
+-#@event.participants.map{ |p| p.spare_participant ?

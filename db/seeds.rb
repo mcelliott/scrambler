@@ -18,7 +18,6 @@ end
 
 event = Event.create(name: 'Freefly', location: 'ifly', event_date: 1.month.from_now, team_size: 2, user: user )
 
-
 Flyer.all.each_with_index do |flyer, index|
   p = event.participants.build(user: user, flyer: flyer, category: Category.first, number: index+1)
   p.save!

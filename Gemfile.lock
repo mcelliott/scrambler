@@ -242,6 +242,8 @@ GEM
       rubyzip (~> 1.0)
       websocket (~> 1.0)
     sexp_processor (4.4.3)
+    sextant (0.2.4)
+      rails (>= 3.2)
     simple_form (3.0.2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -324,6 +326,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   select2-rails
   selenium-webdriver
+  sextant
   simple_form
   spring
   turbolinks

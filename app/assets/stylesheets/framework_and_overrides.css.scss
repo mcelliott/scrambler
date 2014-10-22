@@ -101,6 +101,10 @@ textarea, select {
   width: 300px;
 }
 
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
 .add-button {
   background-color: #aaa;
   border-color: #aaa;
@@ -225,4 +229,12 @@ ul {
 
 .reg-msg {
   margin-right: 5px;
+}
+
+#random-participant {
+  background-color: #aaa;
+  &:hover {
+    background-color: lighten(#aaa, 10%);
+    color: lighten(#000, 10%);
+  }
 }

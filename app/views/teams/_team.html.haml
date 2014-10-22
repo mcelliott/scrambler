@@ -3,12 +3,15 @@
     = link_to fa_icon('trash', text: ""), event_team_path(team, event_id: @event.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'pull-right delete-button button-xs'
     %b.pull-left= "#{team.name} - #{team.category.name}"
   %h4.text-center
-  - team.participants.each_with_index do |p, index|
+  - team.team_participants.each_with_index do |p, index|
     .row.flyer-list-item
       .large-12.columns
-        .large-4.columns= p.flyer.name
-        .large-4.columns= p.category.name
-        .large-3.columns= "#{p.flyer.hours.ceil} hrs"
+        - if p.placeholder
+          .large-4.columns= fa_icon('exclamation-triangle', text: p.participant.flyer.name)
+        - else
+          .large-4.columns= p.participant.flyer.name
+        .large-4.columns= p.participant.category.name
+        .large-3.columns= "#{p.participant.flyer.hours.ceil} hrs"
         .large-1.columns.text-right= link_to fa_icon('trash', text: ""), destroy_teams_participant_path(team_id: team.id, id: p), method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
   .row
     = link_to fa_icon('plus', text: ""), new_teams_participant_path(team_id: team.id, event_id: @event.id), class: "button-xs add-button new-team-participant-#{team.id}", remote: true

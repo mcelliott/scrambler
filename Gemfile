@@ -38,6 +38,7 @@ group :development do
   gem 'spring'
   gem 'byebug'
   gem 'letter_opener'
+  gem 'sextant'
 end
 group :development, :test do
   gem 'factory_girl_rails'

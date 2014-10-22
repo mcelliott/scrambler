@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   get     '/teams/participant/new',             controller: 'teams/participant', action: :new,     as: 'new_teams_participant'
   delete  '/teams/:team_id/participant/:id',    controller: 'teams/participant', action: :destroy, as: 'destroy_teams_participant'
 
-  resources :categories, only: [:index, :new, :create, :destroy]
-  resources :flyers, only: [:index, :new, :create, :destroy]
+  resources :categories, only: [:index, :new, :edit, :create, :destroy]
+  resources :flyers, only: [:index, :new, :edit, :create, :destroy]
 
   resources :events do
     post :generate
