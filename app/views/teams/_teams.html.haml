@@ -3,14 +3,15 @@
     %h4.text-center
       = "#{team.name} - #{category_name}"
   .large-9.columns.team-section
-    - team.participants.each_with_index do |p, index|
+    - team.team_participants.each_with_index do |p, index|
       .row.list-item
         .large-12.columns
           .large-1.columns
-            - if p.number
-              = "#{p.number}."
+            = p.participant.number
+          .large-3.columns
+            - if p.placeholder
+              = fa_icon('exclamation-triangle', text: p.participant.flyer.name)
             - else
-              = fa_icon('ban', text: "")
-          .large-3.columns= p.flyer.name
-          .large-3.columns= "#{p.flyer.hours.ceil} hrs"
-          .large-4.columns= p.category.name
+              = p.participant.flyer.name
+          .large-3.columns= "#{p.participant.flyer.hours.ceil} hrs"
+          .large-4.columns= p.participant.category.name

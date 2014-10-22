@@ -1,38 +1,56 @@
 class Teams::ParticipantController < ApplicationController
+  authorize_resource
   before_action :authenticate_user!
 
   def new
     current_event
     current_team
-    @participant = Participant.new
+    @team_participant = TeamParticipant.new
   end
 
   def create
-    team = Team.find params[:participant][:team_id]
-    participant = team.participants.build(participant_params)
+    @participant = current_user.team_participants.build(team: current_team,
+                                                        event: current_event,
+                                                        participant: current_participant,
+                                                        placeholder: participant_params[:placeholder])
+
     respond_to do |format|
-      if team.save
-        format.html { redirect_to participant.event, notice: 'Participant was successfully added.' }
-        format.js
+      if @participant.save
+        format.html { redirect_to event_path(current_participant.event), notice: 'Participant was successfully added.' }
       else
-        format.js
-        format.html { render :new }
+        format.html { redirect_to event_path(current_participant.event), notice: 'Failed to add participant' }
       end
     end
   end
 
+  def destroy
+    team_participant = current_team.team_participants.find params[:id]
+    team_participant.destroy
+    respond_to do |format|
+      format.html { redirect_to event_path(team_participant.event), notice: 'Participant was successfully destroyed.' }
+    end
+  end
+
   private
+
+  def next_participant
+    current_event.participants.count + 1
+  end
 
   def current_event
     @event ||= Event.find params[:event_id]
   end
 
   def current_team
-    @team ||= Team.find params[:team_id]
+    @team ||= current_user.teams.find params[:team_id]
+  end
+
+  def current_participant
+    current_user.participants.find participant_params[:id]
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def participant_params
-    params.require(:participant).permit(:flyer_id, :category_id, :team_id, :event_id)
+    params.require(:team_participant).permit(:id, :category_id, :placeholder)
   end
 end

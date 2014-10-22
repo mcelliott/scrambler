@@ -12,7 +12,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :participants
+  has_many :team_participants
   has_many :events
   has_many :flyers
   has_many :categories
+  has_many :teams
 end

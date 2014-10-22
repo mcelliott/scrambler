@@ -1,5 +1,5 @@
 class Team < ActiveRecord::Base
-  has_many :participants
+  has_many :team_participants
   belongs_to :event
 
   belongs_to :user

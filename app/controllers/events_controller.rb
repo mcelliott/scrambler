@@ -66,8 +66,10 @@ class EventsController < ApplicationController
     @event = Event.find params[:event_id]
     @event.teams.delete_all
     @event.participants.shuffle.each do |participant|
-      participant.team = new_event_team(participant)
-      participant.save!
+      TeamParticipant.create!(user: current_user,
+                              team: new_event_team(participant),
+                              event: @event,
+                              participant: participant)
     end
   end
 
@@ -76,11 +78,11 @@ class EventsController < ApplicationController
   def new_event_team(p)
     category_id = p.category.id
     return @team[category_id] if @team && @team[category_id] && space_available?(category_id)
-    (@team ||= {})[category_id] = @event.teams.create(name: "Team #{@event.teams.count + 1}", category: p.category)
+    (@team ||= {})[category_id] = @event.teams.create(name: "Team #{@event.teams.count + 1}", category: p.category, user: current_user)
   end
 
   def space_available?(category_id)
-    @team[category_id].participants.count < @event.team_size
+    @team[category_id].team_participants.count < @event.team_size
   end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -4,4 +4,4 @@
       .large-1.columns.text-left= "#{index + 1}."
       .large-5.columns= p.flyer.name
       .large-5.columns= p.category.name
-      .large-1.columns= link_to fa_icon('trash', text: ''), p, method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
+      .large-1.columns= link_to fa_icon('trash', text: ''), event_participant_path(p, event_id: @event.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
