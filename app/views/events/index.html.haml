@@ -17,7 +17,7 @@
           %td= event.event_date
           %td= event.location
           %td= event.team_size
-          %td.text-center= link_to fa_icon('edit', text: ''), edit_event_path(event), class: 'icon'
+          %td.text-center= link_to fa_icon('edit', text: ''), edit_event_path(event), class: 'icon', remote: true
           %td.text-center= link_to fa_icon('trash', text: ''), event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
   - else
     .empty-list.text-center= fa_icon('frown-o', text: 'No Events')
