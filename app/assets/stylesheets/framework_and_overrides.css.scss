@@ -238,3 +238,12 @@ ul {
     color: lighten(#000, 10%);
   }
 }
+
+table.index tr:nth-of-type(even) {
+  background: #ddd !important;
+}
+
+table.index {
+  width: 100%;
+  border-collapse: collapse;
+}

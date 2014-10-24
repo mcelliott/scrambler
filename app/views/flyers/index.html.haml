@@ -3,7 +3,7 @@
 
 .large-8.small-centered.columns
   - if @flyers.present?
-    %table{ style: 'width: 100%;'}
+    %table.index
       %tr
         %th Name
         %th Hours
@@ -17,5 +17,5 @@
           %td.text-center= link_to fa_icon('edit', text: ''), edit_flyer_path(flyer), class: 'icon', remote: true
           %td.text-center= link_to fa_icon('trash', text: ''), flyer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
   - else
-    .empty-list.text-center{ style: 'width: 100%' }
+    .empty-list.text-center
       = fa_icon('frown-o', text: 'No flyers')
