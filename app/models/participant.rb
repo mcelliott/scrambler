@@ -7,7 +7,9 @@ class Participant < ActiveRecord::Base
 
   delegate :name, to: :flyer
 
-  validates :flyer, presence: true
-  validates :event, presence: true
+  validates :flyer,    presence: true
+  validates :event,    presence: true
+  validates :category, presence: true
+  validates :user,     presence: true
 
 end
