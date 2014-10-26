@@ -1,7 +1,6 @@
 - @event.participants.each_with_index do |p, index|
   .row.flyer-list-item
     .large-12.columns
-      .large-1.columns.text-left= "#{index + 1}."
-      .large-5.columns= p.flyer.name
-      .large-5.columns= p.category.name
-      .large-1.columns= link_to fa_icon('trash', text: ''), event_participant_path(p, event_id: @event.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
+      .small-6.columns.participant-name= "#{index + 1}. #{p.flyer.name}"
+      .small-5.columns= p.category.name
+      .small-1.columns= link_to fa_icon('trash', text: ''), event_participant_path(p, event_id: @event.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'

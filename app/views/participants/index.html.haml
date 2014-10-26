@@ -11,7 +11,7 @@
 
   - @participants.each do |participant|
     %tr
-      %td= participant.name
+      %td= participant.flyer.name
       %td= participant.hours
       %td= participant.category.name
       %td= link_to 'Show', participant
