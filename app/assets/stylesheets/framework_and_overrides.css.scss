@@ -238,3 +238,15 @@ ul {
     color: lighten(#000, 10%);
   }
 }
+
+.tabs dd > a {
+  padding: .5em 1.5em .5em 1.5em;
+  font-size: .7525em;
+}
+
+
+.bordered {
+  border: 1px solid red;
+}
+
+.participant-name { padding-left: 0; }

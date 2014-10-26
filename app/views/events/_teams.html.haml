@@ -1,4 +1,17 @@
-%ul
-  - @event.teams.each do |team|
-    %li{ class: "team_#{team.id}" }
-      = render partial: 'teams/team', locals: { team: team }
+%dl.tabs{ data: { tab: true } }
+  - @event.rounds.each_with_index do |r, index|
+    - if index == 0
+      %dd.active
+        %a{ href: "#panel#{r.round_number}"}= "Round #{r.round_number}"
+    - else
+      %dd
+        %a{ href: "#panel#{r.round_number}"}= "Round #{r.round_number}"
+
+.tabs-content
+  - @event.rounds.each_with_index do |r, index|
+    - if index == 0
+      .content.active{ id: "panel#{r.round_number}" }
+        = render partial: 'team', locals: { round: r }
+    - else
+      .content{ id: "panel#{r.round_number}" }
+        = render partial: 'team', locals: { round: r }

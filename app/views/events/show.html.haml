@@ -25,9 +25,4 @@
           Generating Teams
 
       .teams-list
-        - if @event.teams.present?
-          = render 'teams'
-        - else
-          .panel
-            .empty-list.text-center= fa_icon('frown-o', text: 'No Participants')
-
+        = render 'events/teams'

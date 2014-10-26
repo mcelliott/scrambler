@@ -11,10 +11,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :participants
-  has_many :team_participants
-  has_many :events
-  has_many :flyers
-  has_many :categories
-  has_many :teams
+  has_many :participants, dependent: :destroy
+  has_many :team_participants, dependent: :destroy
+  has_many :events, dependent: :destroy
+  has_many :flyers, dependent: :destroy
+  has_many :categories, dependent: :destroy
+  has_many :teams, dependent: :destroy
 end

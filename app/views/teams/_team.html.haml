@@ -7,11 +7,11 @@
     .row.flyer-list-item
       .large-12.columns
         - if p.placeholder
-          .large-4.columns= fa_icon('exclamation-triangle', text: p.participant.flyer.name)
+          .small-4.columns= fa_icon('exclamation-triangle', text: p.participant.flyer.name)
         - else
-          .large-4.columns= p.participant.flyer.name
-        .large-4.columns= p.participant.category.name
-        .large-3.columns= "#{p.participant.flyer.hours.ceil} hrs"
-        .large-1.columns.text-right= link_to fa_icon('trash', text: ""), destroy_teams_participant_path(team_id: team.id, id: p), method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
+          .small-4.columns= p.participant.flyer.name
+        .small-4.columns= p.participant.category.name
+        .small-3.columns= "#{p.participant.flyer.hours.ceil} hrs"
+        .small-1.columns.text-right= link_to fa_icon('trash', text: ""), destroy_teams_participant_path(team_id: team.id, id: p), method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
   .row
     = link_to fa_icon('plus', text: ""), new_teams_participant_path(team_id: team.id, event_id: @event.id), class: "button-xs add-button new-team-participant-#{team.id}", remote: true

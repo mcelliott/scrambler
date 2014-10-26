@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
-  has_many :participants
-  has_many :teams
+  has_many :participants, dependent: :destroy
+  has_many :rounds, dependent: :destroy
 
   belongs_to :user
 
@@ -9,7 +9,7 @@ class Event < ActiveRecord::Base
   validates :user,       presence: true
   validates :name,       presence: true, length: { maximum: 50 }
   validates :team_size,  presence: true, numericality: true
-  validates :rounds,     presence: true, numericality: true
+  validates :num_rounds,     presence: true, numericality: true
 
   validates_numericality_of :team_size, greater_than_or_equal_to: 2
   validates_numericality_of :team_size, greater_than: 0

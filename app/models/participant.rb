@@ -5,7 +5,7 @@ class Participant < ActiveRecord::Base
   belongs_to :event
   belongs_to :user
 
-  delegate :name, to: :flyer
+  # delegate :name, to: :flyer
 
   validates :flyer,    presence: true
   validates :event,    presence: true
