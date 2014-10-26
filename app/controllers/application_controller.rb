@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   # 500 Internal Server Error
   def render_500
     respond_to do |type|
-      type.html { render template: 'shared/500', layout: 'errors', status: :not_found }
+      type.html { render template: 'shared/500.html', layout: 'errors', status: :not_found }
       type.all  { render nothing: true, status: :internal_server_error }
     end
   end
@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
 # 404 Not Found
   def render_404
     respond_to do |type|
-      type.html { render template: 'shared/404', layout: 'errors', status: :not_found }
+      type.html { render template: 'shared/404.html', layout: 'errors', status: :not_found }
       type.all  { render nothing: true, status: :not_found }
     end
   end
@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
 # 401 Unauthorized
   def render_401
     respond_to do |type|
-      type.html { render template: 'shared/401', layout: 'errors', status: :unauthorized }
+      type.html { render template: 'shared/401.html', layout: 'errors', status: :unauthorized }
       type.all  { render nothing: true, status: :unauthorized }
     end
   end
