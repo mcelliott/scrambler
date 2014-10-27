@@ -2,7 +2,7 @@
 %h2.text-center Categories
 .large-8.small-centered.columns
   - if @categories.present?
-    %table{ style: 'width: 100%;'}
+    %table.index
       %tr
         %th Name
         %th
@@ -14,7 +14,7 @@
           %td.text-center= link_to fa_icon('edit', text: ''), edit_category_path(category), class: 'icon', remote: true
           %td.text-center= link_to fa_icon('trash', text: ''), category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
   - else
-    .empty-list.text-center{ style: 'width: 100%' }
+    .empty-list.text-center
       = fa_icon('frown-o', text: 'No categories')
 
 -#.pull-left#category-help= fa_icon('info-circle', text: 'Help')

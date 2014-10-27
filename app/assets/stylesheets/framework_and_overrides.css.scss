@@ -239,6 +239,15 @@ ul {
   }
 }
 
+table.index tr:nth-of-type(even) {
+  background: #ddd !important;
+}
+
+table.index {
+  width: 100%;
+  border-collapse: collapse;
+}
+
 .tabs dd > a {
   padding: .5em 1.5em .5em 1.5em;
   font-size: .7525em;
