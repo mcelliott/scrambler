@@ -1,5 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe Participant, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Participant do
+  it { should respond_to :flyer_name  }
+  it { should respond_to :user        }
+  it { should respond_to :category    }
+  it { should respond_to :flyer       }
+  it { should respond_to :event       }
 end

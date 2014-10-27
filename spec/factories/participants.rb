@@ -2,8 +2,10 @@
 
 FactoryGirl.define do
   factory :participant do
-    name "MyString"
-    hours "9.99"
-    category_id 1
+    flyer
+    category
+    event
+    number 10
+    user
   end
 end

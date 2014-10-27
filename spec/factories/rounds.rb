@@ -2,5 +2,8 @@
 
 FactoryGirl.define do
   factory :round do
+    user
+    event
+    sequence(:round_number) { |n| n }
   end
 end

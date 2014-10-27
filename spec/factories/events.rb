@@ -7,5 +7,6 @@ FactoryGirl.define do
     num_rounds 3
     sequence(:name) { |n| "Name #{n}" }
     team_size 2
+    user
   end
 end
