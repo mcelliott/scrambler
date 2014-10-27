@@ -2,6 +2,7 @@ Scrambler
 ================
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+[ ![Codeship Status for mcelliott/scrambler](https://www.codeship.io/projects/3d69d300-4004-0132-dbbb-6a4ec2b95bb3/status)](https://www.codeship.io/projects/43726)
 
 Create an event, flyers, cateories, and generate teams of any size. Specifically this app was written for freefly scrambles events at ifly. The need to add participants to an event and quickly (re)generate teams, add participants to teams manually, display teams in a table.
 
