@@ -6,12 +6,12 @@
     - team.team_participants.each_with_index do |p, index|
       .row.list-item
         .large-12.columns
-          .large-1.columns
+          .small-1.columns
             = p.participant.number
-          .large-3.columns
+          .small-3.columns
             - if p.placeholder
               = fa_icon('exclamation-triangle', text: p.participant.flyer.name)
             - else
               = p.participant.flyer.name
-          .large-3.columns= "#{p.participant.flyer.hours.ceil} hrs"
-          .large-4.columns= p.participant.category.name
+          .small-3.columns= "#{p.participant.flyer.hours.ceil} hrs"
+          .small-4.columns= p.participant.category.name
