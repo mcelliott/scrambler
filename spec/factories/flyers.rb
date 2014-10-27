@@ -2,5 +2,8 @@
 
 FactoryGirl.define do
   factory :flyer do
+    sequence(:name) { |n| "Flyer #{n}" }
+    hours 50
+    user
   end
 end

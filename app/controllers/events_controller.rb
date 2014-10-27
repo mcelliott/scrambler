@@ -65,35 +65,11 @@ class EventsController < ApplicationController
   def generate
     @event = Event.find params[:event_id]
     @event.rounds.delete_all
-    @event.num_rounds.times do |num_round|
-      round = Round.create!(event: @event, user: current_user, round_number: num_round + 1)
-      if round.present?
-        @event.participants.shuffle.each do |participant|
-          TeamParticipant.create!(user: current_user,
-                                  team: new_event_team(participant, round),
-                                  event: @event,
-                                  participant: participant)
-        end
-      end
-    end
+    TeamService.new(@event).create_team_participants
     @event.reload
   end
 
   private
-
-  def new_event_team(p, round)
-    category_id = p.category.id
-    return @team[category_id] if @team && @team[category_id] && space_available?(category_id)
-    (@team ||= {})[category_id] = round.teams.create(name: "Team #{round.teams.count + 1}",
-                                                     category: p.category,
-                                                     user: current_user,
-                                                     round: round,
-                                                     event: @event)
-  end
-
-  def space_available?(category_id)
-    @team[category_id].team_participants.count < @event.team_size
-  end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
