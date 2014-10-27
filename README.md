@@ -1,8 +1,10 @@
-Scrambler
+Skydive Scrambler
 ================
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 [ ![Codeship Status for mcelliott/scrambler](https://www.codeship.io/projects/3d69d300-4004-0132-dbbb-6a4ec2b95bb3/status)](https://www.codeship.io/projects/43726)
+[![Code Climate](https://codeclimate.com/github/mcelliott/skydivescrambler/badges/gpa.svg)](https://codeclimate.com/github/mcelliott/skydivescrambler)
+[![Test Coverage](https://codeclimate.com/github/mcelliott/skydivescrambler/badges/coverage.svg)](https://codeclimate.com/github/mcelliott/skydivescrambler)
 
 Create an event, flyers, cateories, and generate teams of any size. Specifically this app was written for freefly scrambles events at ifly. The need to add participants to an event and quickly (re)generate teams, add participants to teams manually, display teams in a table.
 
