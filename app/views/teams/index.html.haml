@@ -1,32 +1,33 @@
 .pull-right= link_to "Go to Event", @event, class: 'button-xs'
 %h2.heading.text-center= "#{@event.name} Teams"
 
-%dl.tabs{ data: { tab: true } }
-  - @event.rounds.each_with_index do |r, index|
-    - if index == 0
-      %dd.active
-        %a{ href: "#panel#{r.round_number}"}= "Round #{r.round_number}"
-    - else
-      %dd
-        %a{ href: "#panel#{r.round_number}"}= "Round #{r.round_number}"
+.small-12.columns
+  %dl.tabs{ data: { tab: true } }
+    - @event.rounds.each_with_index do |r, index|
+      - if index == 0
+        %dd.active
+          %a{ href: "#panel#{r.round_number}"}= "Round #{r.round_number}"
+      - else
+        %dd
+          %a{ href: "#panel#{r.round_number}"}= "Round #{r.round_number}"
 
-.tabs-content
-  - @event.rounds.each_with_index do |round, i|
-    - if i == 0
-      .content.active{ id: "panel#{round.round_number}" }
-        - round.teams.group_by{ |p| p.category.name }.each_with_index do |(category_name, teams), index|
-          - if index > 0
-            .large-12.columns.team-category
-              = render partial: 'teams', locals: { teams: teams, category_name: category_name}
-          - else
-            .large-12.columns
-              = render partial: 'teams', locals: { teams: teams, category_name: category_name}
-    - else
-      .content{ id: "panel#{round.round_number}" }
-        - round.teams.group_by{ |p| p.category.name }.each_with_index do |(category_name, teams), index|
-          - if index > 0
-            .large-12.columns.team-category
-              = render partial: 'teams', locals: { teams: teams, category_name: category_name}
-          - else
-            .large-12.columns
-              = render partial: 'teams', locals: { teams: teams, category_name: category_name}
+  .tabs-content
+    - @event.rounds.each_with_index do |round, i|
+      - if i == 0
+        .content.active{ id: "panel#{round.round_number}" }
+          - round.teams.group_by{ |p| p.category.name }.each_with_index do |(category_name, teams), index|
+            - if index > 0
+              .large-12.columns.team-category
+                = render partial: 'teams', locals: { teams: teams, category_name: category_name}
+            - else
+              .large-12.columns
+                = render partial: 'teams', locals: { teams: teams, category_name: category_name}
+      - else
+        .content{ id: "panel#{round.round_number}" }
+          - round.teams.group_by{ |p| p.category.name }.each_with_index do |(category_name, teams), index|
+            - if index > 0
+              .large-12.columns.team-category
+                = render partial: 'teams', locals: { teams: teams, category_name: category_name}
+            - else
+              .large-12.columns
+                = render partial: 'teams', locals: { teams: teams, category_name: category_name}
