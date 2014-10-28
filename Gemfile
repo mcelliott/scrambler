@@ -44,6 +44,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'rspec-rails'
+  gem 'simplecov'
 end
 group :production do
   gem 'puma'
@@ -54,4 +55,5 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'codeclimate-test-reporter', require: nil
 end

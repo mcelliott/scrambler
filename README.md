@@ -24,8 +24,6 @@ This application requires:
 - Rails 4.1.6
 
 
-Credits
--------
 
 License
 -------
