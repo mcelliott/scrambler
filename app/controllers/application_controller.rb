@@ -34,28 +34,28 @@ class ApplicationController < ActionController::Base
   # 500 Internal Server Error
   def render_500
     respond_to do |type|
-      type.html { render template: 'shared/500.html', layout: 'errors', status: :not_found }
+      type.html { render template: 'public/500.html', layout: 'errors', status: :not_found }
       type.all  { render nothing: true, status: :internal_server_error }
     end
   end
 
-# 404 Not Found
+  # 404 Not Found
   def render_404
     respond_to do |type|
-      type.html { render template: 'shared/404.html', layout: 'errors', status: :not_found }
+      type.html { render template: 'public/404.html', layout: 'errors', status: :not_found }
       type.all  { render nothing: true, status: :not_found }
     end
   end
 
-# 401 Unauthorized
+  # 401 Unauthorized
   def render_401
     respond_to do |type|
-      type.html { render template: 'shared/401.html', layout: 'errors', status: :unauthorized }
+      type.html { render template: 'public/401.html', layout: 'errors', status: :unauthorized }
       type.all  { render nothing: true, status: :unauthorized }
     end
   end
 
-# 400 Bad Request
+  # 400 Bad Request
   def render_400
     respond_to do |type|
       type.all  { render nothing: true, status: :bad_request }
