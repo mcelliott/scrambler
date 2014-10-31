@@ -11,4 +11,6 @@ class Participant < ActiveRecord::Base
   validates :event,    presence: true
   validates :category, presence: true
   validates :user,     presence: true
+
+  scope :category_type, ->(category) { where(category: category) }
 end
