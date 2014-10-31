@@ -8,11 +8,11 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => exception.message
   end
 
-  rescue_from ActiveRecord::RecordNotFound do
-    render_404
-  end
+  # rescue_from ActiveRecord::RecordNotFound do
+  #   render_404
+  # end
 
-  rescue_from StandardError, with: :render_500 unless Rails.env.development?
+  # rescue_from StandardError, with: :render_500 unless Rails.env.development?
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:account_update) do |u|
