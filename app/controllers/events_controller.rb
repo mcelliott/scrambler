@@ -43,7 +43,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to events_path, notice: 'Event was successfully updated.' }
+        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
@@ -63,7 +63,7 @@ class EventsController < ApplicationController
   end
 
   def generate
-    @event = Event.find params[:event_id]
+    @event = Event.includes(:rounds, :participants).find params[:event_id]
     @event.rounds.delete_all
     TeamService.new(@event).create_team_participants
     @event.reload

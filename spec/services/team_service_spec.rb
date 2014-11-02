@@ -4,18 +4,19 @@ describe TeamService do
 
   let(:event)            { create(:event) }
   let(:team_service)     { TeamService.new(event) }
-  let(:num_participants) { 2 }
+  let(:num_participants) { 6 }
+  let(:category)         { create(:category, user: event.user) }
 
   before do
     num_participants.times do
-      create(:participant, event: event)
+      create(:participant, event: event, category: category, user: event.user)
     end
   end
 
   context 'create_team_participants' do
     let(:num_team_participants) { event.num_rounds * num_participants }
     it 'should create team participants' do
-      expect{ team_service.create_team_participants }.to change{ TeamParticipant.count }.by(num_team_participants)
+      expect{ team_service.create_team_participants }.to change{ TeamParticipant.count }.by(num_team_participants - 2)
     end
 
     context '2 team participants' do
@@ -27,7 +28,7 @@ describe TeamService do
 
       it 'should create two teams' do
         event_rounds_first = event.rounds.first
-        expect(event_rounds_first.teams.size).to eq 2
+        expect(event_rounds_first.teams.size).to eq 3
       end
 
       it 'should create teams with two participants' do

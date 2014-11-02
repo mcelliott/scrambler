@@ -5,7 +5,7 @@ FactoryGirl.define do
     flyer
     category
     event
-    number 10
+    sequence(:number) { |n| n }
     user
   end
 end
