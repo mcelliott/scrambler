@@ -18,11 +18,11 @@
     .event-teams
       .pull-right= button_to 'Generate Teams', { action: 'generate', event_id: @event.id }, { class: 'button-xs radius', id: 'generate-teams', remote: true }
       .pull-right#show-teams= link_to fa_icon('table', text: 'Show Teams'), event_teams_path(event_id: @event.id), class: 'button-xs radius'
-      %h4 Teams
-      .new-teams
-        %div.generating-teams
-          %i.fa.fa-refresh.fa-spin
-          Generating Teams
+      %h4.pull-left Teams
+    .new-teams.large-12.columns
+      %div.generating-teams
+        %i.fa.fa-refresh.fa-spin
+        Generating Teams
 
-      .teams-list
-        = render 'events/teams'
+    .teams-list
+      = render 'events/teams'

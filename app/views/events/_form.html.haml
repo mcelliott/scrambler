@@ -1,8 +1,8 @@
-= simple_form_for(@event) do |f|
+= simple_form_for @event do |f|
   = f.error_notification
-  = f.input :name, placeholder: 'Name', label: false
-  = f.input :location, placeholder: 'Location', label: false
-  = f.input :event_date, as: :string, label: false, placeholder: 'Event Date', input_html: { class: 'datepicker' }
-  = f.input :team_size, placeholder: 'Team Size', label: false
-  = f.input :num_rounds, placeholder: 'Number of Rounds', label: false
+  = f.input :name
+  = f.input :location
+  = f.input :event_date, as: :string, input_html: { class: 'datepicker' }, label: 'Event Date'
+  = f.input :team_size, label: 'Team Size'
+  = f.input :num_rounds, label: 'Number of Rounds'
   = f.button :submit, class: 'button-xs radius'
