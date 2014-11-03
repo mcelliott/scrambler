@@ -3,15 +3,15 @@
     = link_to fa_icon('trash', text: ""), event_team_path(team, event_id: @event.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'pull-right delete-button button-xs'
     %b.pull-left= "Round #{team.round.round_number} - #{team.name} - #{team.category.name}"
   %h4.text-center
-  - team.team_participants.each_with_index do |p, index|
+  - team.team_participants.includes(:participant).each_with_index do |tp, index|
     .row.flyer-list-item
       .large-12.columns
-        - if p.placeholder
-          .small-4.columns= fa_icon('exclamation-triangle', text: p.participant.flyer.name)
+        - if tp.placeholder
+          .small-4.columns= fa_icon('exclamation-triangle', text: tp.participant.flyer.name)
         - else
-          .small-4.columns= p.participant.flyer.name
-        .small-4.columns= p.participant.category.name
-        .small-3.columns= "#{p.participant.flyer.hours.ceil} hrs"
-        .small-1.columns.text-right= link_to fa_icon('trash', text: ""), destroy_teams_participant_path(team_id: team.id, id: p), method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
+          .small-4.columns= tp.participant.flyer.name
+        .small-4.columns= tp.participant.category.name
+        .small-3.columns= "#{tp.participant.flyer.hours.ceil} hrs"
+        .small-1.columns.text-right= link_to fa_icon('trash', text: ""), destroy_teams_participant_path(team_id: team.id, id: tp), method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
   .row
     = link_to fa_icon('plus', text: ""), new_teams_participant_path(team_id: team.id, event_id: @event.id), class: "button-xs add-button new-team-participant-#{team.id}", remote: true

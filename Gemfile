@@ -39,6 +39,7 @@ group :development do
   gem 'byebug'
   gem 'letter_opener'
   gem 'sextant'
+  gem "bullet"
 end
 group :development, :test do
   gem 'factory_girl_rails'

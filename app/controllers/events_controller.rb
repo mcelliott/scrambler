@@ -11,6 +11,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    @event = Event.includes(:participants, :rounds).find params[:id]
   end
 
   # GET /events/new
@@ -63,7 +64,7 @@ class EventsController < ApplicationController
   end
 
   def generate
-    @event = Event.includes(:rounds, :participants).find params[:event_id]
+    @event = Event.includes(:rounds).find params[:event_id]
     @event.rounds.delete_all
     TeamService.new(@event).create_team_participants
     @event.reload

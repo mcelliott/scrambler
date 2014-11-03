@@ -1,4 +1,4 @@
-- @event.participants.each_with_index do |p, index|
+- @event.participants.includes(:category, :flyer).each_with_index do |p, index|
   .row.flyer-list-item
     .large-12.columns
       .small-6.columns.participant-name= "#{index + 1}. #{p.flyer.name}"
