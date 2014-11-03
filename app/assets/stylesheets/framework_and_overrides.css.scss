@@ -1,6 +1,14 @@
 // import the CSS framework
 @import "foundation";
 
+html,
+body {
+  margin:0;
+  padding:0;
+  background-color: #eee !important;
+  font-family: "Merriweather", "Open Sans", "Helvetica Neue", Helvetica, Arial, "Nimbus L", sans-serif !important;
+}
+
 // override for the 'Home' navigation link
 .top-bar .name {
   font-size: rem-calc(13);
@@ -127,6 +135,7 @@ input[type="checkbox"] {
 
 .main {
   margin-top: 30px;
+  height:100%;
 }
 
 .heading {
@@ -239,13 +248,13 @@ ul {
   }
 }
 
-table.index tr:nth-of-type(even) {
-  background: #ddd !important;
-}
-
 table.index {
   width: 100%;
   border-collapse: collapse;
+}
+
+table.index tr {
+  border-bottom: 1px solid #ddd;
 }
 
 .tabs dd > a {
