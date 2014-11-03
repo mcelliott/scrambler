@@ -2,6 +2,7 @@ class TeamService
   def initialize(event)
     @team  = {}
     @event = event
+    @unique_participants = {}
   end
 
   def create_team_participants
@@ -51,7 +52,7 @@ class TeamService
         (team << p) unless @team_participant_list.flatten.include?(p)
       end
       i += 1
-      break if team.present?
+      break if team.present? || i >= unique_participants_teams(category).size
     end
     team
   end
@@ -82,7 +83,7 @@ class TeamService
 
 
   def unique_participants_teams(category)
-    @unique_participants ||= product_of_participants(category).delete_if { |pl| pl.uniq.size <  @event.team_size }.map { |p| p.sort }.uniq
+    @unique_participants[category] ||= product_of_participants(category).delete_if { |pl| pl.uniq.size <  @event.team_size }.map { |p| p.sort }.uniq
   end
 
   def product_of_participants(category)
