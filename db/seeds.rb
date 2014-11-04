@@ -24,7 +24,7 @@ Flyer.all.each_with_index do |flyer, index|
   p.save!
 end
 
-flyers = ['John', 'James', 'Kim', 'Bill', 'Sally', 'Millie', 'Amber']
+flyers = ['Tim', 'Yana', 'Rampage', 'Tali', 'Sally', 'Millie', 'Amber']
 flyers.each do |flyer|
   user.flyers.create!(name: flyer, hours: 10, user: user)
 end

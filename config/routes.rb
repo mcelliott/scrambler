@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  resources :settings, only: [:index, :update]
+
   post    '/teams/:team_id/participant',    controller: 'teams/participant', action: :create,  as: 'teams_participant'
   get     '/teams/participant/new',             controller: 'teams/participant', action: :new,     as: 'new_teams_participant'
   delete  '/teams/:team_id/participant/:id',    controller: 'teams/participant', action: :destroy, as: 'destroy_teams_participant'

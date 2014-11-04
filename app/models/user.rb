@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  enum role: [:user, :vip, :admin]
+  enum role: [:user, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
   def set_default_role
@@ -17,4 +17,6 @@ class User < ActiveRecord::Base
   has_many :flyers, dependent: :destroy
   has_many :categories, dependent: :destroy
   has_many :teams, dependent: :destroy
+
+  has_settings :current
 end

@@ -1,6 +1,5 @@
 class CategoriesController < ApplicationController
-  load_and_authorize_resource
-  before_action :authenticate_user!
+  load_and_authorize_resource except: [:new]
 
   # GET /categories
   # GET /categories.json

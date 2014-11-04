@@ -21,6 +21,8 @@ gem 'font-awesome-rails'
 gem 'select2-rails'
 gem 'cancancan'
 gem 'exception_notification'
+gem 'ledermann-rails-settings'
+gem 'hirb'
 
 group :development do
   gem 'better_errors'
@@ -39,7 +41,7 @@ group :development do
   gem 'byebug'
   gem 'letter_opener'
   gem 'sextant'
-  gem "bullet"
+  gem 'bullet'
 end
 group :development, :test do
   gem 'factory_girl_rails'
