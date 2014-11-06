@@ -1,4 +1,5 @@
 class FlyersController < ApplicationController
+  before_action :authenticate_user!
   load_and_authorize_resource except: [:new]
 
   # GET /flyers
