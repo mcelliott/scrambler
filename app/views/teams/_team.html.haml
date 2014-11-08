@@ -7,7 +7,9 @@
     .row.flyer-list-item
       .large-12.columns
         - if tp.placeholder
-          .small-4.columns= fa_icon('exclamation-triangle', text: tp.participant.flyer.name)
+          .small-4.columns
+            %span{ data: { tooltip: true }, aria: { haspopup: true }, class: 'has-tip', title: placeholder_text }
+              = fa_icon('exclamation-triangle', text: tp.participant.flyer.name)
         - else
           .small-4.columns= tp.participant.flyer.name
         .small-4.columns= tp.participant.category.name

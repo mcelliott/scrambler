@@ -10,7 +10,8 @@
             = p.participant.number
           .small-3.columns
             - if p.placeholder
-              = fa_icon('exclamation-triangle', text: p.participant.flyer.name)
+              %span{ data: { tooltip: true }, aria: { haspopup: true }, class: 'has-tip', title: placeholder_text }
+                = fa_icon('exclamation-triangle', text: p.participant.flyer.name)
             - else
               = p.participant.flyer.name
           .small-3.columns= "#{p.participant.flyer.hours.ceil} hrs"

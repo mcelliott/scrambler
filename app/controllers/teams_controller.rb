@@ -1,11 +1,11 @@
 class TeamsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :index
   load_and_authorize_resource
 
   # GET /teams
   # GET /teams.json
   def index
-    @event = current_user.events.find params[:event_id]
+    @event = Event.find params[:event_id]
   end
 
   # DELETE /teams/1

@@ -1,5 +1,7 @@
-.pull-right= link_to "Go to Event", @event, class: 'button-xs'
-%h2.heading.text-center= "#{@event.name} Teams"
+- if can?(:update, @event)
+  .pull-right= link_to "Go to Event", @event, class: 'button-xs'
+  .pull-left= link_to fa_icon('send', text: 'Send'), nil, class: 'button-xs'
+%h2.heading.text-center= "#{@event.name} Teams - #{@event.event_date}"
 
 .small-12.columns
   %dl.tabs{ data: { tab: true, options: 'deep_linking:true' } }

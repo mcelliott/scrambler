@@ -21,10 +21,8 @@ class FlyersController < ApplicationController
     respond_to do |format|
       if @flyer.save
         format.html { redirect_to flyers_path, notice: 'Flyer was successfully created.' }
-        format.json { render :show, status: :created, location: @flyer }
       else
         format.html { render :new }
-        format.json { render json: @flyer.errors, status: :unprocessable_entity }
       end
     end
   end

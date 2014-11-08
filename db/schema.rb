@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141103121437) do
+ActiveRecord::Schema.define(version: 20141107030825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -32,6 +33,7 @@ ActiveRecord::Schema.define(version: 20141103121437) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "num_rounds"
+    t.uuid     "uuid",       default: "uuid_generate_v4()"
   end
 
   create_table "flyers", force: true do |t|
