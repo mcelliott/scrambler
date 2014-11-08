@@ -1,4 +1,4 @@
-= simple_form_for(@flyer) do |f|
+= simple_form_for @flyer, remote: true do |f|
   = f.error_notification
   = f.input :name, placeholder: 'Name', label: false
   = f.input :hours, label: false, placeholder: 'Number of Tunnel Hours'

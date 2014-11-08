@@ -3,23 +3,19 @@
 .large-8.small-centered.columns
   - if @events.present?
     %table.index
-      %tr
-        %th Name
-        %th Event date
-        %th Location
-        %th Team Size
-        %th Rounds
-        %th
-        %th
-
-      - @events.each do |event|
+      %thead
         %tr
-          %td= link_to fa_icon('link', text: event.name, right: true), event
-          %td= event.event_date
-          %td= event.location
-          %td= event.team_size
-          %td= event.num_rounds
-          %td.text-center= link_to fa_icon('edit', text: ''), edit_event_path(event), class: 'icon', remote: true
-          %td.text-center= link_to fa_icon('trash', text: ''), event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
+          %th Name
+          %th Event date
+          %th Location
+          %th Team Size
+          %th Rounds
+          %th
+          %th
+
+      %tbody#events
+        - @events.each do |event|
+          %tr{ id: "event-#{event.id}" }
+            = render event
   - else
     .empty-list.text-center= fa_icon('frown-o', text: 'No Events')

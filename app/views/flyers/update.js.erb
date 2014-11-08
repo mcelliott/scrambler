@@ -1,0 +1,8 @@
+<% unless @flyer.errors.present? %>
+  $('#modal').foundation('reveal', 'close');
+  $('tr#flyer-<%= @flyer.id %>').html('<%= j(render @flyer) %>');
+  flash_row('tr#flyer-<%= @flyer.id %>');
+<% else %>
+  $('.modal-content').html('<%= j(render template: "flyers/new.html.haml") %>');
+  $('#modal').foundation('reveal', 'open');
+<% end %>

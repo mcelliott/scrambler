@@ -1,0 +1,8 @@
+<% unless @event.errors.present? %>
+  $('#modal').foundation('reveal', 'close');
+  $('tbody#events').prepend('<tr id="event-<%= @event.id %>"><%= j(render @event) %></tr>');
+  flash_row('tr#event-<%= @event.id %>');
+<% else %>
+  $('.modal-content').html('<%= j(render template: 'events/new.html.haml') %>');
+  $('#modal').foundation('reveal', 'open');
+<% end %>

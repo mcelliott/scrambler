@@ -1,0 +1,5 @@
+%td= flyer.name
+%td= flyer.email
+%td= flyer.hours
+%td.text-center= link_to fa_icon('edit', text: ''), edit_flyer_path(flyer), class: 'icon', remote: true
+%td.text-center= link_to fa_icon('trash', text: ''), flyer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
