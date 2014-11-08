@@ -6,4 +6,5 @@ class Flyer < ActiveRecord::Base
   validates :hours, presence: true, numericality: true
 
   validates_numericality_of :hours, greater_than_or_equal_to: 0
+  validates :email, email: true
 end

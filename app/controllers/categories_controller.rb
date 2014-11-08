@@ -1,11 +1,11 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource except: [:new]
+  load_and_authorize_resource except: [:new, :create]
 
   # GET /categories
   # GET /categories.json
   def index
-    @categories = current_user.categories
+    @categories = current_user.categories.order(name: :asc)
   end
 
   # GET /categories/new
@@ -23,6 +23,18 @@ class CategoriesController < ApplicationController
         format.html { redirect_to categories_path, notice: 'Category was successfully created.' }
       else
         format.html { render :new }
+      end
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @category.update(category_params)
+        format.html { redirect_to categories_path, notice: 'Category was successfully updated.' }
+        format.js
+      else
+        format.html { render :edit }
+        format.js
       end
     end
   end

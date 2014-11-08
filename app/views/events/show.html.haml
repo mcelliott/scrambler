@@ -1,4 +1,5 @@
-= link_to fa_icon('edit', text: 'Edit Event'), edit_event_path(@event), class: 'button-xs pull-right', remote: true
+.pull-right= link_to fa_icon('edit', text: 'Edit Event'), edit_event_path(@event), class: 'button-xs', remote: true
+.pull-left#expenses= link_to fa_icon('money', text: 'Expenses'), nil, class: 'button-xs', remote: true
 %h2.heading.text-center= "#{@event.name} - #{@event.event_date}"
 
 .large-12.columns
