@@ -4,6 +4,7 @@
 .large-8.small-centered.columns
   - if @flyers.present?
     %table.index
+<<<<<<< HEAD
       %tr
         %th Name
         %th Email
@@ -18,6 +19,19 @@
           %td= flyer.hours
           %td.text-center= link_to fa_icon('edit', text: ''), edit_flyer_path(flyer), class: 'icon', remote: true
           %td.text-center= link_to fa_icon('trash', text: ''), flyer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
+=======
+      %thead
+        %tr
+          %th Name
+          %th Email
+          %th Hours
+          %th
+          %th
+      %tbody#flyers
+        - @flyers.each do |flyer|
+          %tr{ id: "flyer-#{flyer.id}" }
+            = render flyer
+>>>>>>> develop
   - else
     .empty-list.text-center
       = fa_icon('frown-o', text: 'No flyers')

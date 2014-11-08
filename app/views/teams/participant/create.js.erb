@@ -1,7 +1,8 @@
 <% unless @team.errors.present? %>
-  $('#modal').foundation('reveal', 'close')
-  $('li.<%= "team_#{@team.id}" %>').html('<%= j(render partial: "teams/team", locals: { team: @team }) %>')
+  $('#modal').foundation('reveal', 'close');
+  $('li.<%= "team_#{@team.id}" %>').html('<%= j(render partial: "teams/team", locals: { team: @team }) %>');
+  flash_row('li.<%= "team_#{@team.id}" %>');
 <% else %>
-  $('.modal-content').html('<%= j(render template: "teams/participant/new.html.haml") %>')
-  $('#modal').foundation('reveal', 'open')
+  $('.modal-content').html('<%= j(render template: "teams/participant/new.html.haml") %>');
+  $('#modal').foundation('reveal', 'open');
 <% end %>

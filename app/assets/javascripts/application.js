@@ -21,3 +21,11 @@
 $(function() {
   $(document).foundation();
 });
+
+window.SCRAMBLER = {};
+
+function flash_row(id) {
+  setTimeout(function () {
+    $(id).effect("highlight", {}, 3000);
+  }, 500);
+}

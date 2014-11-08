@@ -1,11 +1,12 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource except: [:new, :generate]
+  respond_to :html, :js
 
   # GET /events
   # GET /events.json
   def index
-    @events = current_user.events
+    @events = current_user.events.order(event_date: :asc)
   end
 
   # GET /events/1
@@ -27,30 +28,13 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = current_user.events.build(event_params)
-
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to events_path, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
+    flash[:notice] = 'Event was successfully created.' if @event.save
   end
 
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event }
-      else
-        format.html { render :edit }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
+    flash[:notice] = 'Event was successfully updated.' if @event.update(event_params)
   end
 
   # DELETE /events/1
