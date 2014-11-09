@@ -3,16 +3,15 @@
 .large-8.small-centered.columns
   - if @categories.present?
     %table.index
-      %tr
-        %th Name
-        %th
-        %th
-
-      - @categories.each do |category|
+      %thead
         %tr
-          %td= category.name
-          %td.text-center= link_to fa_icon('edit', text: ''), edit_category_path(category), class: 'icon', remote: true
-          %td.text-center= link_to fa_icon('trash', text: ''), category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
+          %th Name
+          %th
+          %th
+      %tbody#categories
+        - @categories.each do |category|
+          %tr{ id: "category-#{category.id}" }
+            = render category
   - else
     .empty-list.text-center
       = fa_icon('frown-o', text: 'No categories')
