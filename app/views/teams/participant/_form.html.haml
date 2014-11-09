@@ -1,9 +1,7 @@
-= simple_form_for(@team_participant, url: teams_participant_path(team_id: @team.id, event_id: @event.id)) do |f|
+= simple_form_for @team_participant, url: teams_participant_path(team_id: @team.id, event_id: @event.id), remote: true do |f|
   = f.error_notification
   = f.input :id, as: :select, collection: @event.participants.map{ |p| [participant_form_label(p), p.id] }, label: false, input_html: { class: 'participant-select2' }
   .custom-checkbox
     = f.input :placeholder, as: :boolean
   = f.button :submit, 'Create', class: 'button-xs radius'
-  %button#random-participant.button-xs.radius Randomize
-
--#@event.participants.map{ |p| p.spare_participant ?
+  %button#random-participant.button-xs.radius= fa_icon('random', text: 'Randomize')

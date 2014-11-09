@@ -10,6 +10,6 @@ $ ->
 
   $(document).on "click", "#generate-teams", (e) ->
     e.preventDefault()
-    $(@).hide()
+    $(@).attr('disabled', true)
     $('div.generating-teams').show()
     $(@).parents('form').submit()

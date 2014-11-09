@@ -1,6 +1,2 @@
 - @event.participants.includes(:category, :flyer).each_with_index do |p, index|
-  .row.flyer-list-item
-    .large-12.columns
-      .small-6.columns.participant-name= "#{index + 1}. #{p.flyer.name}"
-      .small-5.columns= p.category.name
-      .small-1.columns= link_to fa_icon('trash', text: ''), event_participant_path(p, event_id: @event.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
+  = render partial: 'participants/participant', locals: { p: p, index: index }

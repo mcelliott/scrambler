@@ -13,15 +13,7 @@ class ParticipantsController < ApplicationController
   def create
     @participant = current_user.participants.build(participant_params)
     @participant.number = current_event.participants.count + 1
-    respond_to do |format|
-      if @participant.save
-        format.html { redirect_to @participant.event, notice: 'Participant was successfully created.' }
-        format.js
-      else
-        format.js
-        format.html { render :new }
-      end
-    end
+    flash[:notice] = 'Participant was successfully created.' if @participant.save
   end
 
   # DELETE /participants/1

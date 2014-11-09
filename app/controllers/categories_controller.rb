@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
+  respond_to :html, :js
 
   # GET /categories
   # GET /categories.json

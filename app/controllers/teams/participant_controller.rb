@@ -1,6 +1,7 @@
 class Teams::ParticipantController < ApplicationController
   authorize_resource
   before_action :authenticate_user!
+  respond_to :html, :js
 
   def new
     current_event
@@ -9,18 +10,12 @@ class Teams::ParticipantController < ApplicationController
   end
 
   def create
-    @participant = current_user.team_participants.build(team: current_team,
+    @team_participant = current_user.team_participants.build(team: current_team,
                                                         event: current_event,
                                                         participant: current_participant,
                                                         placeholder: participant_params[:placeholder])
 
-    respond_to do |format|
-      if @participant.save
-        format.html { redirect_to event_path(current_participant.event), notice: 'Participant was successfully added.' }
-      else
-        format.html { redirect_to event_path(current_participant.event), notice: 'Failed to add participant' }
-      end
-    end
+    flash[:notice] = 'Participant was successfully added.' if @team_participant.save
   end
 
   def destroy

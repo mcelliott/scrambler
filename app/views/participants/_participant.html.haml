@@ -1,0 +1,5 @@
+.row.flyer-list-item{ id: "participant-#{p.id}" }
+  .large-12.columns
+    .small-6.columns.participant-name= "#{p.number}. #{p.flyer.name}"
+    .small-5.columns= p.category.name
+    .small-1.columns= link_to fa_icon('trash', text: ''), event_participant_path(p, event_id: p.event.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'

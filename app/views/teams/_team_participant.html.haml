@@ -1,0 +1,11 @@
+.row.flyer-list-item
+  .large-12.columns
+    .small-4.columns
+      - if team_participant.placeholder
+        %span{ data: { tooltip: true }, aria: { haspopup: true }, class: 'has-tip', title: placeholder_text }
+          = fa_icon('exclamation-triangle', text: team_participant.participant.flyer.name)
+      - else
+        = team_participant.participant.flyer.name
+    .small-4.columns= team_participant.participant.category.name
+    .small-3.columns= "#{team_participant.participant.flyer.hours.ceil} hrs"
+    .small-1.columns.text-right= link_to fa_icon('trash', text: ""), destroy_teams_participant_path(team_id: team_participant.team.id, id: team_participant), method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
