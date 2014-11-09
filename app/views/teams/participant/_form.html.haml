@@ -2,6 +2,6 @@
   = f.error_notification
   = f.input :id, as: :select, collection: @event.participants.map{ |p| [participant_form_label(p), p.id] }, label: false, input_html: { class: 'participant-select2' }
   .custom-checkbox
-    = f.input :placeholder, as: :boolean
+    = f.input :placeholder, as: :boolean, label: 'Unscored'
   = f.button :submit, 'Create', class: 'button-xs radius'
   %button#random-participant.button-xs.radius= fa_icon('random', text: 'Randomize')
