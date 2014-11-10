@@ -1,20 +1,23 @@
 = link_to fa_icon('plus', text: 'New flyer'), new_flyer_path, class: 'button-xs add-button pull-right', remote: true
 %h2.text-center Flyers
 
-.large-8.small-centered.columns
-  - if @flyers.present?
-    %table.index
-      %thead
-        %tr
-          %th Name
-          %th Email
-          %th Hours
-          %th
-          %th
-      %tbody#flyers
-        - @flyers.each do |flyer|
-          %tr{ id: "flyer-#{flyer.id}" }
-            = render flyer
-  - else
-    .empty-list.text-center
-      = fa_icon('frown-o', text: 'No flyers')
+.row
+  .large-9.small-centered.columns
+    = render partial: 'shared/search', locals: { filters: flyer_filters, path: flyers_path }
+
+  .large-9.small-centered.columns
+    - if @flyers.present?
+      %table.index
+        %thead
+          %tr
+            %th Name
+            %th Email
+            %th Hours
+            %th
+            %th
+        %tbody#flyers
+          = render 'flyers'
+      #pages= paginate @flyers
+    - else
+      .empty-list.text-center
+        = fa_icon('frown-o', text: 'No flyers')

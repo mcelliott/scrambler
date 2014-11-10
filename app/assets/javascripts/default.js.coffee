@@ -1,5 +1,6 @@
 $ ->
   $("input.datepicker").datepicker({ dateFormat: "dd/mm/yy", firstDay: "1", changeMonth: true, changeYear: true })
+
   $("select#participant_category_id").select2
     placeholder: "Select Categories"
     dropdownAutoWidth : true

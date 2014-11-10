@@ -1,0 +1,2 @@
+$('tbody#events').html('<%= j(render "events") %>');
+$('#pages').html('<%= j(paginate @events) -%>');

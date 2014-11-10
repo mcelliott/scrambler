@@ -3,26 +3,20 @@ class FlyersController < ApplicationController
   load_and_authorize_resource
   respond_to :html, :js
 
-  # GET /flyers
-  # GET /flyers.json
   def index
-    @flyers = current_user.flyers.order(name: :asc)
+    @q = current_user.flyers.order(name: :asc).search(params[:q])
+    @flyers = @q.result.page(params[:page])
   end
 
-  # GET /flyers/new
   def new
     @flyer = Flyer.new
   end
 
-  # POST /flyers
-  # POST /flyers.json
   def create
     @flyer = current_user.flyers.build(flyer_params)
     flash[:notice] = 'Flyer was successfully created.' if @flyer.save
   end
 
-  # DELETE /flyers/1
-  # DELETE /flyers/1.json
   def destroy
     @flyer.destroy
     respond_to do |format|

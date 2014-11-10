@@ -1,0 +1,2 @@
+$('tbody#flyers').html('<%= j(render "flyers") %>');
+$('#pages').html('<%= j(paginate @flyers) -%>');
