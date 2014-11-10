@@ -1,21 +1,25 @@
 = link_to fa_icon('plus', text: 'New Event'), new_event_path, class: 'button-xs add-button pull-right', remote: true
 %h2.text-center Events
-.large-8.small-centered.columns
-  - if @events.present?
-    %table.index
-      %thead
-        %tr
-          %th Name
-          %th Event date
-          %th Location
-          %th Team Size
-          %th Rounds
-          %th
-          %th
 
-      %tbody#events
-        - @events.each do |event|
-          %tr{ id: "event-#{event.id}" }
-            = render event
-  - else
-    .empty-list.text-center= fa_icon('frown-o', text: 'No Events')
+.row
+  .large-9.small-centered.columns
+    = render partial: 'shared/search', locals: { filters: event_filters, path: events_path }
+
+  .large-9.small-centered.columns
+    - if @events.present?
+      %table.index
+        %thead
+          %tr
+            %th Name
+            %th Event date
+            %th Location
+            %th Team Size
+            %th Rounds
+            %th
+            %th
+
+        %tbody#events
+          = render 'events'
+      #pages= paginate @events
+    - else
+      .empty-list.text-center= fa_icon('frown-o', text: 'No Events')

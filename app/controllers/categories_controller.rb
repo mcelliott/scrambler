@@ -6,7 +6,8 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = current_user.categories.order(name: :asc)
+    @q = current_user.categories.order(name: :asc).search(params[:q])
+    @categories = @q.result.page(params[:page])
   end
 
   # GET /categories/new

@@ -103,8 +103,7 @@ section {
 input[type="text"],
 input[type="password"],
 input[type="email"],
-input[type="number"],
-input[type="search"],
+input[type="number"]
 textarea, select {
   width: 300px;
 }
@@ -274,4 +273,18 @@ table.index tr {
 
 div, dd a {
   outline: none !important;
+}
+
+.btn-clear {
+  background: white;
+  @extend .button;
+  border: 1px solid #aaa !important;
+}
+
+.search-btn {
+  padding: 0 10px 0 10px !important;
+}
+
+.button-group li {
+  padding: 0 5px 0 5px !important;
 }

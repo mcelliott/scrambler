@@ -24,6 +24,8 @@ gem 'exception_notification'
 gem 'ledermann-rails-settings'
 gem 'hirb'
 gem 'email_validator'
+gem 'ransack'
+gem 'kaminari'
 
 group :development do
   gem 'better_errors'

@@ -1,0 +1,14 @@
+.panel{ style: 'padding-bottom: 0;' }
+  .row.collapse
+    = search_form_for @q, url: path, remote: true do |f|
+      - filters.each do |filter|
+        .div{ class: "#{filter[:width]} columns" }
+          = f.search_field filter[:field], placeholder: filter[:placeholder], class: filter[:class]
+      .small-4.columns
+        .button-bar
+          %ul.button-group
+            %li= f.submit 'Search', class: 'postfix button search-btn'
+            %li= link_to 'Clear', nil, class: 'postfix btn-clear search-btn'
+
+:coffeescript
+  $("input.datepicker").datepicker({ dateFormat: "dd/mm/yy", firstDay: "1", changeMonth: true, changeYear: true })

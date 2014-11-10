@@ -12,6 +12,7 @@
         - @categories.each do |category|
           %tr{ id: "category-#{category.id}" }
             = render category
+    #pages= paginate @categories
   - else
     .empty-list.text-center
       = fa_icon('frown-o', text: 'No categories')

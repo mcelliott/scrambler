@@ -3,42 +3,31 @@ class EventsController < ApplicationController
   load_and_authorize_resource except: [:new, :generate]
   respond_to :html, :js
 
-  # GET /events
-  # GET /events.json
   def index
-    @events = current_user.events.order(event_date: :asc)
+    @q = current_user.events.order(event_date: :desc).search(params[:q])
+    @events = @q.result.page(params[:page])
   end
 
-  # GET /events/1
-  # GET /events/1.json
   def show
     @event = Event.includes(:participants, :rounds).find params[:id]
   end
 
-  # GET /events/new
   def new
     @event = Event.new
   end
 
-  # GET /events/1/edit
   def edit
   end
 
-  # POST /events
-  # POST /events.json
   def create
     @event = current_user.events.build(event_params)
     flash[:notice] = 'Event was successfully created.' if @event.save
   end
 
-  # PATCH/PUT /events/1
-  # PATCH/PUT /events/1.json
   def update
     flash[:notice] = 'Event was successfully updated.' if @event.update(event_params)
   end
 
-  # DELETE /events/1
-  # DELETE /events/1.json
   def destroy
     @event.destroy
     respond_to do |format|
