@@ -288,3 +288,14 @@ div, dd a {
 .button-group li {
   padding: 0 5px 0 5px !important;
 }
+
+.info {
+  display: inline-block;
+  padding-left:  10px;
+  padding-right: 10px;
+  border: none;
+
+  &:hover {
+    border: none;
+  }
+}

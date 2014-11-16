@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :flyer_imports, only: [:create, :new]
   resources :settings, only: [:index, :update]
 
   post    '/teams/:team_id/participant',    controller: 'teams/participant', action: :create,  as: 'teams_participant'

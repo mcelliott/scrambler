@@ -26,6 +26,9 @@ gem 'hirb'
 gem 'email_validator'
 gem 'ransack'
 gem 'kaminari'
+gem 'aasm'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 
 group :development do
   gem 'better_errors'

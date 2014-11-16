@@ -1,0 +1,14 @@
+%h2 Upload Flyers
+Your CSV file must have the following format, with headers.
+.panel
+  name,email,hours
+  %br
+  John Doe,jdoe@example.com,10
+  %br
+  Mike Smith,msmith@example.com,20
+
+= simple_form_for :flyers_import, url: flyer_imports_path do |f|
+  = f.error_notification
+  = f.input :file, as: :file, label: 'CSV File'
+  .form-actions
+    = f.button :submit, 'Upload', class: 'button-xs radius'
