@@ -1,5 +1,4 @@
 class Participant < ActiveRecord::Base
-
   belongs_to :category
   belongs_to :flyer
   belongs_to :event

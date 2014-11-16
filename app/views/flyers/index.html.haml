@@ -1,10 +1,10 @@
 .pull-right
-  .info{ data: { tooltip: true }, aria: { haspopup: true }, class: 'has-tip tip-left', title: create_flyer_text }= fa_icon('info', text: '')
+  .info{ data: { tooltip: true }, aria: { haspopup: true }, class: 'has-tip tip-left', title: create_flyer_text }= fa_icon('info-circle', text: '')
   = link_to fa_icon('plus', text: 'New flyer'), new_flyer_path, class: 'button-xs add-button', remote: true
 
 .pull-left
   = link_to fa_icon('plus', text: 'Upload flyers'), new_flyer_import_path, class: 'button-xs add-button', remote: true
-  .info{ data: { tooltip: true }, aria: { haspopup: true }, class: 'has-tip tip-right', title: bulk_flyers_upload_text }= fa_icon('info', text: '')
+  .info{ data: { tooltip: true }, aria: { haspopup: true }, class: 'has-tip tip-right', title: bulk_flyers_upload_text }= fa_icon('info-circle', text: '')
 
 %h2.text-center Flyers
 

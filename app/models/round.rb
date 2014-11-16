@@ -2,6 +2,7 @@ class Round < ActiveRecord::Base
   belongs_to :user
   belongs_to :event
   has_many   :teams, dependent: :destroy
+  has_many   :event_scores, dependent: :destroy
 
   validates :event, presence: true
   validates :user,  presence: true

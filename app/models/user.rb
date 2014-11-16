@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :flyers, dependent: :destroy
   has_many :categories, dependent: :destroy
   has_many :teams, dependent: :destroy
+  has_many :event_scores, dependent: :destroy
 
   has_settings :current
 end

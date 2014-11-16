@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
   has_many :participants, dependent: :destroy
   has_many :rounds, dependent: :destroy
+  has_many :events, dependent: :destroy
 
   belongs_to :user
 

@@ -15,4 +15,5 @@
             - else
               = p.participant.flyer.name
           .small-3.columns= "#{p.participant.flyer.hours.ceil} hrs"
-          .small-4.columns= p.participant.category.name
+          .small-3.columns= p.participant.category.name
+          .small-2.columns= team_participant_score(p)

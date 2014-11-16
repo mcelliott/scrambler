@@ -4,9 +4,10 @@ class TeamParticipant < ActiveRecord::Base
   belongs_to :participant
   belongs_to :user
 
+  has_one :event_score, dependent: :destroy
+
   validates :participant, presence: true
   validates :event,       presence: true
   validates :team,        presence: true
   validates :user,        presence: true
-
 end

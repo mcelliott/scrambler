@@ -2,8 +2,10 @@
 
 FactoryGirl.define do
   factory :team do
-    participant_id 1
-    event_id 1
-    team_name "MyString"
+    name 'MyString'
+    event
+    user
+    round
+    category
   end
 end

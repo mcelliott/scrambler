@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :event_scores, only: [:update]
   resources :flyer_imports, only: [:create, :new]
   resources :settings, only: [:index, :update]
 
