@@ -1,35 +1,17 @@
 - if can?(:update, @event)
-  .pull-right= link_to "Go to Event", @event, class: 'button-xs'
-  .pull-left= link_to fa_icon('send', text: 'Send'), nil, class: 'button-xs'
+  .pull-right= go_to_event_link(@event)
+  .pull-left= send_link(@event)
 %h2.heading.text-center= "#{@event.name} Teams - #{@event.event_date}"
 
 .small-12.columns
   %dl.tabs{ data: { tab: true, options: 'deep_linking:true' } }
     - @event.rounds.each_with_index do |r, index|
-      - if index == 0
-        %dd.active
-          %a{ href: "#panel#{r.round_number}"}= "Round #{r.round_number}"
-      - else
-        %dd
-          %a{ href: "#panel#{r.round_number}"}= "Round #{r.round_number}"
+      = active_tab(index) do
+        %a{ href: "#panel#{r.round_number}"}= "Round #{r.round_number}"
 
   .tabs-content
     - @event.rounds.each_with_index do |round, i|
-      - if i == 0
-        .content.active{ id: "panel#{round.round_number}" }
-          - round.teams.group_by{ |p| p.category.name }.each_with_index do |(category_name, teams), index|
-            - if index > 0
-              .large-12.columns.team-category
-                = render partial: 'teams', locals: { teams: teams, category_name: category_name}
-            - else
-              .large-12.columns
-                = render partial: 'teams', locals: { teams: teams, category_name: category_name}
-      - else
-        .content{ id: "panel#{round.round_number}" }
-          - round.teams.group_by{ |p| p.category.name }.each_with_index do |(category_name, teams), index|
-            - if index > 0
-              .large-12.columns.team-category
-                = render partial: 'teams', locals: { teams: teams, category_name: category_name}
-            - else
-              .large-12.columns
-                = render partial: 'teams', locals: { teams: teams, category_name: category_name}
+      = active_content(i, "panel#{round.round_number}") do
+        - round.teams.group_by{ |p| p.category.name }.each_with_index do |(category_name, teams), index|
+          = team_category(index) do
+            = render partial: 'teams', locals: { teams: teams, category_name: category_name }

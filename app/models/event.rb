@@ -1,7 +1,6 @@
 class Event < ActiveRecord::Base
   has_many :participants, dependent: :destroy
   has_many :rounds, dependent: :destroy
-  has_many :events, dependent: :destroy
 
   belongs_to :user
 
@@ -13,5 +12,4 @@ class Event < ActiveRecord::Base
   validates :num_rounds,     presence: true, numericality: true
 
   validates_numericality_of :team_size, greater_than_or_equal_to: 2
-  validates_numericality_of :team_size, greater_than: 0
 end

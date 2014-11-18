@@ -3,17 +3,24 @@
     %h4.text-center
       = "#{team.name} - #{category_name}"
   .large-9.columns.team-section
-    - team.team_participants.each_with_index do |p, index|
+    - team.team_participants.each_with_index do |tp, index|
       .row.list-item
         .large-12.columns
-          .small-1.columns
-            = p.participant.number
           .small-3.columns
-            - if p.placeholder
+            = "#{tp.participant.number}. "
+            - if tp.placeholder
               %span{ data: { tooltip: true }, aria: { haspopup: true }, class: 'has-tip', title: placeholder_text }
-                = fa_icon('exclamation-triangle', text: p.participant.flyer.name)
+                = fa_icon('exclamation-triangle', text: tp.participant.flyer.name)
             - else
-              = p.participant.flyer.name
-          .small-3.columns= "#{p.participant.flyer.hours.ceil} hrs"
-          .small-3.columns= p.participant.category.name
-          .small-2.columns= team_participant_score(p)
+              = tp.participant.flyer.name
+          .small-2.columns= "#{tp.participant.flyer.hours.ceil} hrs"
+          .small-3.columns= tp.participant.category.name
+          .small-2.columns
+            = form_for tp.event_score, url: event_score_path(tp), remote: true, class: 'score-form' do |f|
+              = f.text_field :score, value: tp.event_score.score, class: "event-score round-score-#{tp.id}"
+              = f.hidden_field :event_id, value: team.event.id
+              = f.hidden_field :round_id, value: team.round.id
+              = f.hidden_field :team_participant_id, value: tp.id
+          .small-2.columns
+            %span{ class: "event-total event-total-#{tp.participant.id}" }
+              = tp.event_total

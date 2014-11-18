@@ -1,17 +1,9 @@
 %dl.tabs{ data: { tab: true, options: 'deep_linking:true' } }
-  - @event.rounds.each_with_index do |r, index|
-    - if index == 0
-      %dd.active
-        %a{ href: "#panel#{r.round_number}"}= "Round #{r.round_number}"
-    - else
-      %dd
-        %a{ href: "#panel#{r.round_number}"}= "Round #{r.round_number}"
+  - @event_presenter.rounds.each_with_index do |r, index|
+    = active_tab(index) do
+      %a{ href: "#panel#{r.round_number}"}= "Round #{r.round_number}"
 
 .tabs-content
   - @event.rounds.includes(:teams).each_with_index do |r, index|
-    - if index == 0
-      .content.active{ id: "panel#{r.round_number}" }
-        = render partial: 'team', locals: { round: r }
-    - else
-      .content{ id: "panel#{r.round_number}" }
-        = render partial: 'team', locals: { round: r }
+    = active_content(index, "panel#{r.round_number}") do
+      = render partial: 'team', locals: { round: r }

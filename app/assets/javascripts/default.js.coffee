@@ -14,3 +14,6 @@ $ ->
     $(@).attr('disabled', true)
     $('div.generating-teams').show()
     $(@).parents('form').submit()
+
+  $(document).on "change", "input.event-score", (e) ->
+    ($ @).parent().submit()

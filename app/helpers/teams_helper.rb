@@ -3,7 +3,7 @@ module TeamsHelper
     "Placeholder, score doesn't count"
   end
 
-  def team_participant_score(p)
-    p.event_score || 0
+  def team_participant_score(tp)
+    "#{tp.event_score.score}"
   end
 end

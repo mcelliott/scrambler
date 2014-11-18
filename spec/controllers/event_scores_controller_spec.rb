@@ -15,11 +15,17 @@ describe EventScoresController do
   end
 
   describe '#update' do
-    let(:event_score) { create(:event_score, event: event, round: round, team_participant: team_participant, user: user, score: 0) }
+    let(:event_score) { create(:event_score,
+                               event: event,
+                               round: round,
+                               participant: participant,
+                               team_participant: team_participant,
+                               user: user,
+                               score: 0) }
     let(:params) do
       {
         id: event_score.id,
-        event_scores: {
+        event_score: {
           event_id: event.id,
           team_participant_id: team_participant.id,
           round_id: round.id,

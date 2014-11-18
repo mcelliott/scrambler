@@ -18,9 +18,13 @@ class TeamService
   private
 
   def create_category_teams(category, round)
-    number_of_teams(category).times do |n|
-      unique_participants_teams(category).each do |team|
-        create_and_populate_team(category, round, team) unless has_flown?(team)
+    number_of_teams(category).times do
+      upt = unique_participants_teams(category).shuffle
+      upt.each do |team|
+        unless has_flown?(team)
+          create_and_populate_team(category, round, team)
+          upt.delete(team)
+        end
       end
     end
 
@@ -67,10 +71,23 @@ class TeamService
 
   def create_participant(participant_id, round)
     participant = @event.participants.find participant_id
-    TeamParticipant.create!(user: @event.user,
-                            team: round.teams.last,
-                            event: @event,
-                            participant: participant) if participant.present?
+    if participant.present?
+      tp = TeamParticipant.create!(user: @event.user,
+                                   team: round.teams.last,
+                                   event: @event,
+                                   participant: participant)
+      create_event_score(tp, round)
+      tp
+    end
+  end
+
+  def create_event_score(team_participant, round)
+    EventScore.create!(user: @event.user,
+                       team_participant: team_participant,
+                       round: round,
+                       event: @event,
+                       participant: team_participant.participant,
+                       score: 0)
   end
 
   def team_number(round)
@@ -81,14 +98,15 @@ class TeamService
     (@event.participants.where(category: category).count / @event.team_size.to_f).ceil
   end
 
-
   def unique_participants_teams(category)
-    @unique_participants[category] ||= product_of_participants(category).delete_if { |pl| pl.uniq.size <  @event.team_size }.map { |p| p.sort }.uniq
+    @unique_participants[category] ||= product_of_participants(category).delete_if do |pl|
+      pl.uniq.size <  @event.team_size
+    end.map { |p| p.sort }.uniq
+
   end
 
   def product_of_participants(category)
     ids = @event.participants.category_type(category).shuffle.map(&:id)
     ids.product(ids)
   end
-
 end

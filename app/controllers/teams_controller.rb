@@ -6,6 +6,7 @@ class TeamsController < ApplicationController
   # GET /teams.json
   def index
     @event = Event.find params[:event_id]
+    @presenter = TeamParticipantPresenter.new(@event)
   end
 
   # DELETE /teams/1

@@ -1,6 +1,6 @@
 class EventScoresController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_event_score
+  before_action :set_event_score, :set_team_participant
 
   respond_to :html, :js
 
@@ -14,7 +14,11 @@ class EventScoresController < ApplicationController
     @event_score = EventScore.find_by event_score_params.delete_if { |key, value| key == 'score' }
   end
 
+  def set_team_participant
+    @team_participant = TeamParticipant.find event_score_params[:team_participant_id]
+  end
+
   def event_score_params
-    params.require(:event_scores).permit(:event_id, :team_participant_id, :round_id, :score)
+    params.require(:event_score).permit(:event_id, :team_participant_id, :round_id, :score)
   end
 end

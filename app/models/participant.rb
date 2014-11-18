@@ -6,10 +6,10 @@ class Participant < ActiveRecord::Base
 
   delegate :name, to: :flyer, prefix: true
 
-  validates :flyer,    presence: true
-  validates :event,    presence: true
-  validates :category, presence: true
-  validates :user,     presence: true
+  validates :flyer_id,    presence: true
+  validates :event_id,    presence: true
+  validates :category_id, presence: true
+  validates :user_id,     presence: true
 
   scope :category_type, ->(category) { where(category: category) }
 end
