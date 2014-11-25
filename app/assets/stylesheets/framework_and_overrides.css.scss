@@ -101,10 +101,10 @@ section {
 }
 
 form {
-  input[type="text"],
-  input[type="password"],
-  input[type="email"],
-  input[type="number"],
+//  input[type="text"],
+//  input[type="password"],
+//  input[type="email"],
+//  input[type="number"],
   textarea, select {
     width: 300px;
   }
@@ -330,3 +330,10 @@ input.event-score:focus {
 .event-total {
   font-weight: 500;
 }
+
+//@media screen and (max-width: 640px) {
+//  table {
+//    overflow-x: auto;
+//    display: block;
+//  }
+//}

@@ -5,6 +5,6 @@ module ApplicationHelper
   end
 
   def flyer_filters
-    [{ field: :name_or_email_cont, placeholder: 'Search Name or Email', width: 'small-5' }]
+    [{ field: :name_or_email_cont, placeholder: 'Search Name or Email', width: 'small-8' }]
   end
 end

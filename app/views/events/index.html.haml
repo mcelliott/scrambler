@@ -2,12 +2,12 @@
 %h2.text-center Events
 
 .row
-  .large-9.small-centered.columns
+  .large-10.small-centered.columns
     = render partial: 'shared/search', locals: { filters: event_filters, path: events_path }
 
-  .large-9.small-centered.columns
+  .large-10.small-centered.columns
     - if @events.present?
-      %table.index
+      %table.index.responsive
         %thead
           %tr
             %th Name

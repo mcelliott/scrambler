@@ -1,20 +1,22 @@
 = link_to fa_icon('plus', text: 'New category'), new_category_path, class: 'button-xs add-button pull-right', remote: true
 %h2.text-center Categories
-.large-8.small-centered.columns
-  - if @categories.present?
-    %table.index
-      %thead
-        %tr
-          %th Name
-          %th
-          %th
-      %tbody#categories
-        - @categories.each do |category|
-          %tr{ id: "category-#{category.id}" }
-            = render category
-    #pages= paginate @categories
-  - else
-    .empty-list.text-center
-      = fa_icon('frown-o', text: 'No categories')
 
--#.pull-left#category-help= fa_icon('info-circle', text: 'Help')
+.row
+  .large-10.small-centered.columns
+    - if @categories.present?
+      %table.index.responsive
+        %thead
+          %tr
+            %th Name
+            %th
+            %th
+        %tbody#categories
+          - @categories.each do |category|
+            %tr{ id: "category-#{category.id}" }
+              = render category
+      #pages= paginate @categories
+    - else
+      .empty-list.text-center
+        = fa_icon('frown-o', text: 'No categories')
+
+  -#.pull-left#category-help= fa_icon('info-circle', text: 'Help')

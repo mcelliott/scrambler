@@ -9,12 +9,12 @@
 %h2.text-center Flyers
 
 .row
-  .large-9.small-centered.columns
+  .small-10.small-centered.columns
     = render partial: 'shared/search', locals: { filters: flyer_filters, path: flyers_path }
 
-  .large-9.small-centered.columns
+  .small-10.small-centered.columns
     - if @flyers.present?
-      %table.index
+      %table.index.responsive
         %thead
           %tr
             %th Name

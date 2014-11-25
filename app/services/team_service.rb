@@ -26,6 +26,7 @@ class TeamService
           upt.delete(team)
         end
       end
+
     end
 
     unless round.teams.size == number_of_teams(category)
