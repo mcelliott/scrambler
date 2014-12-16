@@ -19,5 +19,7 @@ class User < ActiveRecord::Base
   has_many :teams, dependent: :destroy
   has_many :event_scores, dependent: :destroy
 
+  validates :name, presence: true
+
   has_settings :current
 end
