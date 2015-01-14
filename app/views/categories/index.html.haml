@@ -1,8 +1,8 @@
-= link_to fa_icon('plus', text: 'New category'), new_category_path, class: 'button-xs add-button pull-right', remote: true
+= link_to fa_icon('plus', text: 'New category'), new_category_path, class: 'button-xs pull-right', remote: true
 %h2.text-center Categories
 
 .row
-  .large-10.small-centered.columns
+  .large-10.columns.small-centered
     - if @categories.present?
       %table.index.responsive
         %thead
@@ -16,7 +16,4 @@
               = render category
       #pages= paginate @categories
     - else
-      .empty-list.text-center
-        = fa_icon('frown-o', text: 'No categories')
-
-  -#.pull-left#category-help= fa_icon('info-circle', text: 'Help')
+      .empty-list.text-center= fa_icon('frown-o', text: 'No categories')

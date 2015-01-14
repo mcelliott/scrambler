@@ -1,17 +1,22 @@
-- if can?(:update, @event)
-  .pull-right= go_to_event_link(@event)
-  .pull-left= send_link(@event)
-%h2.heading.text-center= "#{@event.name} Teams - #{@event.event_date}"
+.large-12.columns
+  .large-12.columns
+    .large-2.columns.text-left
+      = send_link(@event) if can?(:update, @event)
+    .large-8.columns.text-center
+      %h2.heading.text-center= "#{@event.name} Teams - #{@event.event_date}"
+    .large-2.columns.text-right
+      = go_to_event_link(@event) if can?(:update, @event)
 
-.small-12.columns
-  %dl.tabs{ data: { tab: true, options: 'deep_linking:true' } }
-    - @event.rounds.each_with_index do |r, index|
-      = active_tab(index) do
-        %a{ href: "#panel#{r.round_number}"}= "Round #{r.round_number}"
+    .small-12.columns
+      .panel.radius
+        %dl.tabs{ data: { tab: true, options: 'deep_linking:true' } }
+          - @event.rounds.each_with_index do |r, index|
+            = active_tab(index) do
+              %a{ href: "#panel#{r.round_number}"}= "Round #{r.round_number}"
 
-  .tabs-content
-    - @event.rounds.each_with_index do |round, i|
-      = active_content(i, "panel#{round.round_number}") do
-        - round.teams.group_by{ |p| p.category.name }.each_with_index do |(category_name, teams), index|
-          = team_category(index) do
-            = render partial: 'teams', locals: { teams: teams, category_name: category_name }
+        .tabs-content
+          - @event.rounds.each_with_index do |round, i|
+            = active_content(i, "panel#{round.round_number}") do
+              - round.teams.group_by{ |p| p.category.name }.each_with_index do |(category_name, teams), index|
+                = team_category(index) do
+                  = render partial: 'teams', locals: { teams: teams, category_name: category_name }

@@ -1,7 +1,7 @@
 .authform
   = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: 'form'}) do |f|
     %h3 Sign in
-    = devise_error_messages!
+    = f.error_notification
     .row.collapse
       .small-2.large-2.columns
         %span.prefix

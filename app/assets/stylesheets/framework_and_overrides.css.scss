@@ -1,6 +1,25 @@
 // import the CSS framework
 @import "foundation";
 
+$border-color: #d4d4d4;
+$scambler-green: #91c600;
+
+@mixin tiny-button {
+  padding-top: 0.3rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.3rem;
+  padding-left: 0.5rem;
+  font-size: 0.6875rem;
+}
+
+@mixin custom-button {
+  @extend .radius;
+  border: 1px solid #d4d4d4;
+  color: #444 !important;
+  border-radius: 3px !important;
+  background-color: #eee !important;
+}
+
 html,
 body {
   margin:0;
@@ -93,18 +112,34 @@ section {
   font-size: rem-calc(16);
   color: white;
 }
+
 .button-xs {
   @extend .button;
   @extend .tiny;
-  color: white !important;
-  border-radius: 3px !important;
+  @include custom-button;
+}
+
+.button-xs:focus {
+  background-color: #aaa;
+  border-color: #aaa;
+  color: white;
+}
+
+.button-xs:hover {
+  border: 1px solid darken($border-color, 10%);
+  background-color: $border-color !important;
+}
+
+.delete-button {
+  @include tiny-button;
+}
+
+.add-button {
+  @include custom-button;
+  @include tiny-button;
 }
 
 form {
-//  input[type="text"],
-//  input[type="password"],
-//  input[type="email"],
-//  input[type="number"],
   textarea, select {
     width: 300px;
   }
@@ -112,26 +147,6 @@ form {
   input[type="checkbox"] {
     margin-right: 5px;
   }
-}
-
-.add-button {
-  background-color: #aaa;
-  border-color: #aaa;
-  color: white;
-  transition: background-color 300ms ease-out;
-  -webkit-transition: background-color 300ms ease-out;
-
-  &:hover {
-    background-color: lighten(#aaa, 10%);
-    border-color: #000;
-    color: #000;
-  }
-}
-
-.button-xs:focus {
-  background-color: #aaa;
-  border-color: #aaa;
-  color: white;
 }
 
 .main {
@@ -203,23 +218,6 @@ ul {
   margin-top: 10px;
 }
 
-@mixin tiny-button {
-  padding-top: 0.3rem;
-  padding-right: 0.5rem;
-  padding-bottom: 0.3rem;
-  padding-left: 0.5rem;
-  font-size: 0.6875rem;
-}
-
-.delete-button {
-  @include tiny-button;
-  @extend .alert;
-}
-
-.add-button {
-  @include tiny-button;
-}
-
 .icon {
   padding: 0 5px;
 
@@ -277,14 +275,15 @@ div, dd a {
   outline: none !important;
 }
 
-.btn-clear {
-  background: white;
-  @extend .button;
-  border: 1px solid #aaa !important;
-}
-
 .search-btn {
   padding: 0 10px 0 10px !important;
+  border: 1px solid $border-color !important;
+  @include custom-button;
+}
+
+.search-btn:hover {
+  border: 1px solid darken($border-color, 10%) !important;
+  background-color: $border-color !important;
 }
 
 .button-group li {
@@ -331,9 +330,12 @@ input.event-score:focus {
   font-weight: 500;
 }
 
-//@media screen and (max-width: 640px) {
-//  table {
-//    overflow-x: auto;
-//    display: block;
-//  }
-//}
+.main-logo {
+  margin-top: 50px;
+}
+
+.team-item {
+  padding-top: 10px;
+  border-bottom: 1px solid $border-color;
+  background-color: #fff !important;
+}

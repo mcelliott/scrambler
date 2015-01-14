@@ -1,4 +1,4 @@
-= link_to fa_icon('plus', text: 'New Event'), new_event_path, class: 'button-xs add-button pull-right', remote: true
+= link_to fa_icon('plus', text: 'New Event'), new_event_path, class: 'button-xs pull-right', remote: true
 %h2.text-center Events
 
 .row
@@ -18,8 +18,7 @@
             %th
             %th
 
-        %tbody#events
-          = render 'events'
+        %tbody#events= render 'events'
       #pages= paginate @events
     - else
       .empty-list.text-center= fa_icon('frown-o', text: 'No Events')

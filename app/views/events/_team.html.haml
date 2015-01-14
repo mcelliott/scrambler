@@ -3,7 +3,7 @@
     .small-12.columns
       %ul
         - round.teams.each do |team|
-          %li{ class: "team_#{team.id}" }
+          %li{ class: "team_#{team.id} team-item" }
             = render partial: 'teams/team', locals: { team: team }
   - else
     .panel
