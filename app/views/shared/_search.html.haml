@@ -3,7 +3,7 @@
     = search_form_for @q, url: path, remote: true do |f|
       - filters.each do |filter|
         .div{ class: "#{filter[:width]} columns" }
-          = f.search_field filter[:field], placeholder: filter[:placeholder], class: filter[:class]
+          = f.search_field filter[:field], placeholder: 'Search Name or Location', class: filter[:class]
       .small-4.columns
         .button-bar
           %ul.button-group

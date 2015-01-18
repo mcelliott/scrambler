@@ -27,6 +27,10 @@ class EventsController < ApplicationController
 
   def update
     flash[:notice] = 'Event was successfully updated.' if @event.update(event_params)
+    respond_to do |format|
+      format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+      format.js
+    end
   end
 
   def destroy
@@ -39,7 +43,7 @@ class EventsController < ApplicationController
 
   def generate
     @event = Event.includes(:rounds, :participants).find params[:event_id]
-    @event.rounds.delete_all
+    @event.rounds.destroy_all
     TeamService.new(@event).create_team_participants
     @event_presenter = EventPresenter.new(@event.reload)
   end

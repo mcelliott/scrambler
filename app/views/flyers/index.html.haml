@@ -1,14 +1,18 @@
-.pull-right
-  = link_to fa_icon('plus', text: 'New flyer'), new_flyer_path, class: 'button-xs', remote: true
-  = link_to fa_icon('plus', text: 'Upload flyers'), new_flyer_import_path, class: 'button-xs', remote: true
-
 %h2.text-center Flyers
 
 .row
-  .small-10.small-centered.columns
-    = render partial: 'shared/search', locals: { filters: flyer_filters, path: flyers_path }
+  .small-12.small-centered.columns
+    .panel{ style: 'padding-bottom: 0;' }
+      .row.collapse
+        .right
+          = link_to fa_icon('plus', text: 'New flyer'), new_flyer_path, class: 'button-xs', remote: true
+          = link_to fa_icon('plus', text: 'Upload flyers'), new_flyer_import_path, class: 'button-xs', remote: true
 
-  .small-10.small-centered.columns
+        = search_form_for @q, url: flyers_path, remote: true do |f|
+          = f.search_field :name_or_email_cont, placeholder: 'Search Name or Location', class: 'small-3 columns'
+          = f.submit 'Search', class: 'button-xs search-btn'
+
+  .small-12.small-centered.columns
     - if @flyers.present?
       %table.index.responsive
         %thead

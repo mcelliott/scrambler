@@ -1,32 +1,33 @@
+%h2.heading.text-center= "#{@event.name} - #{@event.event_date}"
 .large-12.columns
   .large-12.columns
-    .large-2.columns.text-left
-      = edit_event_link(@event)
-    .large-8.columns.text-center
-      %h2.heading= "#{@event.name} - #{@event.event_date}"
-    .large-2.columns.text-right
-      #expenses= expenses_link(@event)
+    .panel{ style: 'padding-bottom: 0;' }
+      .row.collapse
+        %ul.actions-list
+          %li= edit_event_link(@event)
+          %li#expenses= expenses_link(@event)
+          %li= new_participant_link(@event)
+          %li= generate_teams_link(@event)
+          %li#show-teams= show_teams_link(@event)
 
-  .large-12.columns
-    .large-5.columns
-      .event-participants
-        .pull-right= new_participant_link(@event)
-        %h4 Participants
-        .new-participant
-        .participant-list
-          .panel.radius
-            - if @event_presenter.participants?
-              = render 'participants'
-            - else
-              .empty-list.text-center= fa_icon('frown-o', text: 'No Participants')
 
-    .large-7.columns
-      .event-teams
-        .pull-right= generate_teams_link(@event)
-        .pull-right#show-teams= show_teams_link(@event)
-        %h4 Teams
-        .teams-list
-          = render 'events/teams'
+  .large-5.columns
+    .event-participants
+      -#.pull-right= new_participant_link(@event)
+      %h4 Participants
+      .new-participant
+      .participant-list
+        .panel.radius
+          - if @event_presenter.participants?
+            = render 'participants'
+          - else
+            .empty-list.empty-participants-list.text-center= fa_icon('frown-o', text: 'No Participants')
+
+  .large-7.columns
+    .event-teams
+      %h4 Teams
+      .teams-list
+        = render 'events/teams'
 
 .new-teams.large-12.columns
   %div.generating-teams

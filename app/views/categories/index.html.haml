@@ -1,8 +1,17 @@
-= link_to fa_icon('plus', text: 'New category'), new_category_path, class: 'button-xs pull-right', remote: true
 %h2.text-center Categories
 
 .row
-  .large-10.columns.small-centered
+  .small-12.small-centered.columns
+    .panel{ style: 'padding-bottom: 0;' }
+      .row.collapse
+        .right
+          = link_to fa_icon('plus', text: 'New category'), new_category_path, class: 'button-xs pull-right', remote: true
+        = search_form_for @q, url: events_path, remote: true do |f|
+          = f.search_field :name_cont, placeholder: 'Search Name', class: 'small-3 columns'
+          = f.submit 'Search', class: 'button-xs search-btn'
+
+
+  .large-12.columns.small-centered
     - if @categories.present?
       %table.index.responsive
         %thead

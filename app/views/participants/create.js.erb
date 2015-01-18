@@ -2,4 +2,5 @@
   $('.participant-list .panel').append('<%= j(render partial: 'participants/participant', locals: { p: @participant }) %>');
   flash_row('#participant-<%= @participant.id %>');
   $('.select2-container').select2('val', '');
+  $('.empty-participants-list').hide();
 <% end %>
