@@ -1,3 +1,6 @@
 %td= category.name
-%td.text-center= link_to fa_icon('edit', text: ''), edit_category_path(category), class: 'icon', remote: true
-%td.text-center= link_to fa_icon('trash', text: ''), category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
+%td
+  %button.button-xs.dropdown{ href: '#', data: { dropdown: 'category-drop' }, aria: { controls: 'category-drop', expanded: 'false' } } Actions
+  %ul.f-dropdown#category-drop{ data: { 'dropdown-content' => true }, aria: { hidden: true }, tabindex: '-1' }
+    %li= link_to 'Edit', edit_category_path(category), class: 'icon', remote: true
+    %li= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' }

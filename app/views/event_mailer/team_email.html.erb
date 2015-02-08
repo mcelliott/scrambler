@@ -1,0 +1,53 @@
+<html>
+<head>
+  <title>Skydive Scrambler Event</title>
+  <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700" %>
+
+  <style type="text/css">
+    body, td { color:#000000; font-size:14px; }
+    .divider { background-color:#555555; height:2px; }
+    .details h2 { margin-top:0; margin-bottom:8px; font-size:18px; }
+    .details p { margin:8px 0; }
+    .details img { border:solid 1px #777777; }
+    #footer { font-size:11px; color:#555555; }
+    #footer a { color:#555555;}
+    h2 { text-align: center; }
+  </style>
+</head>
+
+<body>
+  <table width="100%" id="background" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td align="center" valign="top">
+        <table width="650" id="main" border="0" cellpadding="0" cellspacing="20">
+          <tr>
+            <td id="header" colspan="2">
+              <a href="<%= @url %>">
+                <%= image_tag attachments['logo.png'].url, alt: 'Skydive Scrambler' %>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="divider" colspan="2" bgcolor="#555555" height="2"></td>
+          </tr>
+          <tr class="details">
+            <td valign="top">
+              <h2 class="text-center"><%= @event.title %></h2>
+              <p class="text-left">
+                Hi <%= @flyer.name %>,
+              </p>
+              <p class="text-left">
+                Here is a link to the event you attended at <%= @event.location -%>.
+                Click <%= link_to 'here', @event_teams_url %> to see the scoreboard for your event.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td class="divider" colspan="2" bgcolor="#555555" height="2"></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

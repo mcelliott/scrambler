@@ -97,4 +97,6 @@ Rails.application.configure do
     sender_address: %{"skydivescrambler" <notifier@skydivescrambler.com>},
     exception_recipients: %w{mcelliott80@gmail.com}
   }
+
+  config.cache_store = :redis_store, ENV['REDIS_CACHE'], { expires_in: 90.minutes }
 end

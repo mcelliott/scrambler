@@ -23,7 +23,7 @@ module EventsHelper
   end
 
   def send_link(event)
-    link_to fa_icon('send', text: 'Send'), nil, button_class
+    link_to fa_icon('send', text: 'Send'), event_email_path(event_id: event), remote_button_class.merge(method: :put)
   end
 
   def go_to_event_link(event)

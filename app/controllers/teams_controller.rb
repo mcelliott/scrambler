@@ -1,12 +1,12 @@
 class TeamsController < ApplicationController
-  before_action :authenticate_user!, except: :index
-  load_and_authorize_resource
+  before_action :authenticate_user!, except: [:index, :team_view]
+  load_and_authorize_resource except: :team_view
+  skip_authorization_check only: :team_view
 
   # GET /teams
   # GET /teams.json
   def index
-    @event = Event.find params[:event_id]
-    @presenter = TeamParticipantPresenter.new(@event)
+    @presenter = TeamParticipantPresenter.new(event)
   end
 
   # DELETE /teams/1
@@ -20,7 +20,17 @@ class TeamsController < ApplicationController
     end
   end
 
+  def team_view
+    @event = Event.includes(:participants, :rounds).find_by(uuid: params[:uuid])
+    @presenter = TeamParticipantPresenter.new(@event)
+    render :index
+  end
+
   private
+
+  def event
+    @event ||= Event.includes(:participants, :rounds).find params[:event_id]
+  end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def team_params

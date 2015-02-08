@@ -48,6 +48,18 @@ class EventsController < ApplicationController
     @event_presenter = EventPresenter.new(@event.reload)
   end
 
+  def email
+    @event = Event.includes(:rounds, :participants).find params[:event_id]
+    if @event.email_count
+      Rails.logger.info("Already send emails for event #{@event.name}")
+    else
+      SendEventWorker.perform_async(@event.id)
+      Rails.logger.info("Emails sent for event #{@event.name}")
+      @event.update_attributes(email_count: @event.email_count + 1)
+    end
+    flash[:notice] = 'Participants have been emailed.'
+  end
+
   private
 
   # Never trust parameters from the scary internet, only allow the white list through.

@@ -29,10 +29,16 @@ gem 'kaminari'
 gem 'aasm'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+gem 'sidekiq'
+gem 'sidekiq-failures'
+gem 'sinatra', require: false # required by sidekiq/web
+gem 'slim'                    # required by sidekiq/web
+gem 'redis-rails'
+gem 'foreman'
 
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_21]
+  gem 'binding_of_caller'
   gem 'guard-bundler'
   gem 'guard-rails'
   gem 'guard-rspec'

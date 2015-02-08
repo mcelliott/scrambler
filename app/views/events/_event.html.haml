@@ -3,5 +3,8 @@
 %td= event.location
 %td= event.team_size
 %td= event.num_rounds
-%td.text-center= link_to fa_icon('edit', text: ''), edit_event_path(event), class: 'icon', remote: true
-%td.text-center= link_to fa_icon('trash', text: ''), event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
+%td
+  %button.button-xs.dropdown{ href: '#', data: { dropdown: 'event-drop' }, aria: { controls: 'event-drop', expanded: 'false' } } Actions
+  %ul.f-dropdown#event-drop{ data: { 'dropdown-content' => true }, aria: { hidden: true }, tabindex: '-1' }
+    %li= link_to 'Edit', edit_event_path(event), remote: true
+    %li= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }

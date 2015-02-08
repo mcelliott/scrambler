@@ -17,3 +17,10 @@ $ ->
 
   $(document).on "change", "input.event-score", (e) ->
     ($ @).parent().submit()
+
+  $('div#notice').delay(2000).fadeOut('slow');
+
+window.Scrambler =
+  update_messages: (notice) ->
+    $('#notice').html(notice).show()
+    $('div#notice').delay(2000).fadeOut('slow');

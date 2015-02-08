@@ -278,10 +278,6 @@ table.index tr {
 
 .participant-name { padding-left: 0; }
 
-//div, dd a {
-//  outline: none !important;
-//}
-
 .search-btn, .event-date {
   margin-left: 2px !important;
 }
@@ -295,16 +291,12 @@ input.event-score {
 }
 
 input.event-score:hover {
-  border: 1px dashed #ccc;
+  border: 1px dashed #888;
   cursor: pointer;
 }
 
 input.event-score:focus {
   cursor: text;
-}
-
-input.event-score:hover, input.event-score:focus {
-  border-bottom: 1px dashed #ccc;
 }
 
 input.event-score:focus {
@@ -336,4 +328,16 @@ ul.actions-list {
 
 ul.actions-list li {
   display: inline-block;
+}
+
+
+div.message {
+  position: fixed;
+  top: 40px;
+  right: 15px;
+  z-index: 1;
+}
+
+button {
+  margin-bottom: 0 !important;
 }

@@ -7,4 +7,6 @@ class Flyer < ActiveRecord::Base
 
   validates_numericality_of :hours, greater_than_or_equal_to: 0
   validates :email, email: true
+
+  paginates_per 20
 end

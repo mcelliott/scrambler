@@ -1,5 +1,8 @@
 %td= flyer.name
 %td= flyer.email
 %td= flyer.hours
-%td.text-center= link_to fa_icon('edit', text: ''), edit_flyer_path(flyer), class: 'icon', remote: true
-%td.text-center= link_to fa_icon('trash', text: ''), flyer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'icon'
+%td
+  %button.button-xs.dropdown{ href: '#', data: { dropdown: 'flyer-drop' }, aria: { controls: 'flyer-drop', expanded: 'false' } } Actions
+  %ul.f-dropdown#flyer-drop{ data: { 'dropdown-content' => true }, aria: { hidden: true }, tabindex: '-1' }
+    %li= link_to 'Edit', edit_flyer_path(flyer), remote: true
+    %li= link_to 'Delete', flyer, method: :delete, data: { confirm: 'Are you sure?' }

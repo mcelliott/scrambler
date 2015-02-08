@@ -12,4 +12,10 @@ class Event < ActiveRecord::Base
   validates :num_rounds,     presence: true, numericality: true
 
   validates_numericality_of :team_size, greater_than_or_equal_to: 2
+
+  def title
+    "#{name} Teams - #{event_date}"
+  end
+
+  paginates_per 20
 end

@@ -1,11 +1,12 @@
-.large-12.columns
+%h2.heading.text-center= @event.title
+- if can?(:update, @event)
   .large-12.columns
-    .large-2.columns.text-left
-      = send_link(@event) if can?(:update, @event)
-    .large-8.columns.text-center
-      %h2.heading.text-center= "#{@event.name} Teams - #{@event.event_date}"
-    .large-2.columns.text-right
-      = go_to_event_link(@event) if can?(:update, @event)
+    .large-12.columns
+      .panel{ style: 'padding-bottom: 0;' }
+        .row.collapse
+          %ul.actions-list
+            %li= send_link(@event)
+            %li= go_to_event_link(@event)
 
     .small-12.columns
       .panel.radius
