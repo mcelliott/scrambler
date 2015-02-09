@@ -5,6 +5,6 @@
         %a{ href: "#panel#{r.round_number}"}= "Round #{r.round_number}"
 
   .tabs-content
-    - @event.rounds.includes(:teams).each_with_index do |r, index|
+    - @event_presenter.rounds.each_with_index do |r, index|
       = active_content(index, "panel#{r.round_number}") do
         = render partial: 'team', locals: { round: r }

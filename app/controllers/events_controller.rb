@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.includes(:participants, :rounds).find params[:id]
+    @event = Event.find params[:id]
     @event_presenter = EventPresenter.new(@event)
   end
 
@@ -42,21 +42,13 @@ class EventsController < ApplicationController
   end
 
   def generate
-    @event = Event.includes(:rounds, :participants).find params[:event_id]
-    @event.rounds.destroy_all
-    TeamService.new(@event).create_team_participants
-    @event_presenter = EventPresenter.new(@event.reload)
+    ts = TeamService.new(params)
+    ts.create_team_participants
+    @event_presenter = EventPresenter.new(ts.event)
   end
 
   def email
-    @event = Event.includes(:rounds, :participants).find params[:event_id]
-    if @event.email_count
-      Rails.logger.info("Already send emails for event #{@event.name}")
-    else
-      SendEventWorker.perform_async(@event.id)
-      Rails.logger.info("Emails sent for event #{@event.name}")
-      @event.update_attributes(email_count: @event.email_count + 1)
-    end
+    EmailService.new(params).send
     flash[:notice] = 'Participants have been emailed.'
   end
 

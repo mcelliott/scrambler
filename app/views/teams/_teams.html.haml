@@ -1,26 +1,39 @@
+.large-3.columns.team-section
+.large-9.columns.team-section
+  .row.list-item
+    .large-12.columns
+      .small-4.columns.bold Name
+      .small-3.columns.bold Round Score
+      .small-3.columns.bold Total Score
+      - if can?(:update, @event)
+        .small-1.columns.bold Email
+      .small-1.columns.bold Info
+
 - teams.each do |team|
   .large-3.columns.team-section
     %h4.text-center
       = "#{team.name} - #{category_name}"
   .large-9.columns.team-section
-    - team.team_participants.each_with_index do |tp, index|
+    - team.team_participants.includes(:participants).each do |tp|
       .row.list-item
         .large-12.columns
-          .small-3.columns
+          .small-4.columns
             = "#{tp.participant.number}. "
             - if tp.placeholder
               %span{ data: { tooltip: true }, aria: { haspopup: true }, class: 'has-tip', title: placeholder_text }
                 = fa_icon('exclamation-triangle', text: tp.participant.flyer.name)
             - else
               = tp.participant.flyer.name
-          .small-2.columns= "#{tp.participant.flyer.hours.ceil} hrs"
-          .small-3.columns= tp.participant.category.name
-          .small-2.columns
+          .small-3.columns
             = form_for tp.event_score, url: event_score_path(tp), remote: true, class: 'score-form' do |f|
               = f.text_field :score, value: tp.event_score.score, class: "event-score round-score-#{tp.id}"
               = f.hidden_field :event_id, value: team.event.id
               = f.hidden_field :round_id, value: team.round.id
               = f.hidden_field :team_participant_id, value: tp.id
-          .small-2.columns
+          .small-3.columns
             %span{ class: "event-total event-total-#{tp.participant.id}" }
               = tp.event_total
+          - if can?(:update, @event)
+            .small-1.columns= link_to fa_icon('send', text: ''), event_email_path(event_id: tp.event.id, participant_id: tp.participant.id), remote: true, method: :put, class: 'participant-button button-xs', data: { confirm: "Send Email to Participant?" }
+          .small-1.columns= link_to fa_icon('info', text: ''), event_participant_path(tp.participant, event_id: tp.event.id), class: 'participant-button button-xs', remote: true
+

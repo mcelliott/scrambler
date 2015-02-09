@@ -3,7 +3,7 @@ require 'rails_helper'
 describe TeamService do
 
   let(:event)            { create(:event) }
-  let(:team_service)     { TeamService.new(event) }
+  let(:team_service)     { TeamService.new({event_id: event.id}) }
   let(:num_participants) { 6 }
   let(:category)         { create(:category, user: event.user) }
 

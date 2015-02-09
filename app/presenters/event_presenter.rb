@@ -6,7 +6,7 @@ class EventPresenter < BasePresenter
   end
 
   def participants
-    @object.participants
+    @participants ||= @object.participants.includes(:category, :flyer).group_by { |p| p.category }
   end
 
   def participants?
@@ -14,7 +14,10 @@ class EventPresenter < BasePresenter
   end
 
   def rounds
-    @object.rounds
+    @rounds ||= @object.rounds
   end
 
+  def event
+    @object
+  end
 end

@@ -1,21 +1,32 @@
 class TeamService
-  def initialize(event)
+
+  def initialize(params)
     @team  = {}
-    @event = event
+    @params = params
     @unique_participants = {}
+    event
   end
 
   def create_team_participants
-    @event.num_rounds.times do |num_round|
+    destroy_rounds
+    event.num_rounds.times do |num_round|
       @team_participant_list = []
-      round = Round.create!(event: @event, user: @event.user, round_number: num_round + 1)
-      @event.user.categories.each do |category|
+      round = Round.create!(event: event, user: event.user, round_number: num_round + 1)
+      event.user.categories.each do |category|
         create_category_teams(category, round)
       end
     end
   end
 
+  def event
+    @event ||= Event.includes(:rounds, :participants).find(@params[:event_id])
+  end
+
   private
+
+  def destroy_rounds
+    event.rounds.destroy_all if event.rounds.present?
+  end
 
   def create_category_teams(category, round)
     number_of_teams(category).times do
@@ -30,7 +41,7 @@ class TeamService
     end
 
     unless round.teams.size == number_of_teams(category)
-      create_and_populate_team(category, round, new_team_members(category)) if @event.participants.category_type(category).present?
+      create_and_populate_team(category, round, new_team_members(category)) if event.participants.category_type(category).present?
     end
   end
 
@@ -65,17 +76,17 @@ class TeamService
   def create_team(category, round)
     round.teams.create(name: "Team #{team_number(round)}",
                        category: category,
-                       user: @event.user,
+                       user: event.user,
                        round: round,
-                       event: @event)
+                       event: event)
   end
 
   def create_participant(participant_id, round)
-    participant = @event.participants.find participant_id
+    participant = event.participants.find participant_id
     if participant.present?
-      tp = TeamParticipant.create!(user: @event.user,
+      tp = TeamParticipant.create!(user: event.user,
                                    team: round.teams.last,
-                                   event: @event,
+                                   event: event,
                                    participant: participant)
       create_event_score(tp, round)
       tp
@@ -83,10 +94,10 @@ class TeamService
   end
 
   def create_event_score(team_participant, round)
-    EventScore.create!(user: @event.user,
+    EventScore.create!(user: event.user,
                        team_participant: team_participant,
                        round: round,
-                       event: @event,
+                       event: event,
                        participant: team_participant.participant,
                        score: 0)
   end
@@ -96,18 +107,18 @@ class TeamService
   end
 
   def number_of_teams(category)
-    (@event.participants.where(category: category).count / @event.team_size.to_f).ceil
+    (event.participants.where(category: category).count / event.team_size.to_f).ceil
   end
 
   def unique_participants_teams(category)
     @unique_participants[category] ||= product_of_participants(category).delete_if do |pl|
-      pl.uniq.size <  @event.team_size
+      pl.uniq.size <  event.team_size
     end.map { |p| p.sort }.uniq
 
   end
 
   def product_of_participants(category)
-    ids = @event.participants.category_type(category).shuffle.map(&:id)
+    ids = event.participants.category_type(category).shuffle.map(&:id)
     ids.product(ids)
   end
 end

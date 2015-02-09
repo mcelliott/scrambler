@@ -1,23 +1,23 @@
-%h2.heading.text-center= @event.title
-- if can?(:update, @event)
+%h2.heading.text-center= @presenter.event.title
+- if can?(:update, @presenter.event)
   .large-12.columns
     .large-12.columns
       .panel{ style: 'padding-bottom: 0;' }
         .row.collapse
           %ul.actions-list
-            %li= send_link(@event)
-            %li= go_to_event_link(@event)
+            %li= send_link(@presenter.event)
+            %li= go_to_event_link(@presenter.event)
 
     .small-12.columns
       .panel.radius
         %dl.tabs{ data: { tab: true, options: 'deep_linking:true' } }
-          - @event.rounds.each_with_index do |r, index|
+          - @presenter.rounds.each_with_index do |r, index|
             = active_tab(index) do
               %a{ href: "#panel#{r.round_number}"}= "Round #{r.round_number}"
 
         .tabs-content
-          - @event.rounds.each_with_index do |round, i|
+          - @presenter.rounds.each_with_index do |round, i|
             = active_content(i, "panel#{round.round_number}") do
-              - round.teams.group_by{ |p| p.category.name }.each_with_index do |(category_name, teams), index|
+              - @presenter.teams_by_category(round).each_with_index do |(category_name, teams), index|
                 = team_category(index) do
-                  = render partial: 'teams', locals: { teams: teams, category_name: category_name }
+                  = render partial: 'teams/teams', locals: { teams: teams, category_name: category_name }

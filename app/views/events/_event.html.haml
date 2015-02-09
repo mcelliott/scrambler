@@ -4,7 +4,7 @@
 %td= event.team_size
 %td= event.num_rounds
 %td
-  %button.button-xs.dropdown{ href: '#', data: { dropdown: 'event-drop' }, aria: { controls: 'event-drop', expanded: 'false' } } Actions
-  %ul.f-dropdown#event-drop{ data: { 'dropdown-content' => true }, aria: { hidden: true }, tabindex: '-1' }
+  %button.button-xs.dropdown{ href: '#', data: { dropdown: "event-drop-#{event.id}" }, aria: { controls: "event-drop-#{event.id}", expanded: 'false' } } Actions
+  %ul.f-dropdown{ id: "event-drop-#{event.id}", data: { 'dropdown-content' => true }, aria: { hidden: true }, tabindex: '-1' }
     %li= link_to 'Edit', edit_event_path(event), remote: true
     %li= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }

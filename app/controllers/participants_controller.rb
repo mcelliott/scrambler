@@ -26,6 +26,10 @@ class ParticipantsController < ApplicationController
     end
   end
 
+  def show
+    @participant = current_user.participants.find(params[:id])
+  end
+
   private
 
   def current_event

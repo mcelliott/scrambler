@@ -137,7 +137,7 @@ $font-smoothing: antialiased;
 
 // We use these to control text direction settings
 $text-direction: ltr;
-$opposite-direction: right !global;
+//$opposite-direction: right !global;
 $default-float: left;
 //$last-child-float: $opposite-direction;
 
@@ -1302,21 +1302,21 @@ $table-margin-bottom: rem-calc(20);
 // 31. Tabs
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-tabs-classes: $include-html-classes;
+$include-html-tabs-classes: $include-html-classes;
 
-// $tabs-navigation-padding: rem-calc(16);
-// $tabs-navigation-bg-color: $silver  ;
-// $tabs-navigation-active-bg-color: $white;
-// $tabs-navigation-hover-bg-color: scale-color($tabs-navigation-bg-color, $lightness: -6%);
-// $tabs-navigation-font-color: $jet;
-// $tabs-navigation-active-font-color: $tabs-navigation-font-color;
-// $tabs-navigation-font-size: rem-calc(16);
-// $tabs-navigation-font-family: $body-font-family;
+$tabs-navigation-padding: rem-calc(16);
+$tabs-navigation-bg-color: $silver  ;
+$tabs-navigation-active-bg-color: $white;
+$tabs-navigation-hover-bg-color: scale-color($tabs-navigation-bg-color, $lightness: -6%);
+$tabs-navigation-font-color: $jet;
+$tabs-navigation-active-font-color: $tabs-navigation-font-color;
+$tabs-navigation-font-size: rem-calc(16);
+$tabs-navigation-font-family: $body-font-family;
 
-// $tabs-content-margin-bottom: rem-calc(24);
-// $tabs-content-padding: ($column-gutter/2);
+$tabs-content-margin-bottom: rem-calc(24);
+$tabs-content-padding: ($column-gutter/2);
 
-// $tabs-vertical-navigation-margin-bottom: 1.25rem;
+$tabs-vertical-navigation-margin-bottom: 1.25rem;
 
 // 32. Thumbnails
 // - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1512,4 +1512,8 @@ textarea {
 
 div.field_with_errors {
   background-color: #fff !important;
+}
+
+dl.tabs a {
+  font-weight: bold;
 }

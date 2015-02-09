@@ -55,6 +55,7 @@ group :development do
   gem 'sextant'
   gem 'bullet'
 end
+
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
