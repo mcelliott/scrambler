@@ -2,7 +2,7 @@ class EventPresenter < BasePresenter
   include EventsHelper
 
   def initialize(event)
-    super event
+    super event.reload
   end
 
   def participants

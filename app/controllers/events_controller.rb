@@ -3,6 +3,9 @@ class EventsController < ApplicationController
   load_and_authorize_resource except: [:new, :generate]
   respond_to :html, :js
 
+  decorates_assigned :event
+  decorates_assigned :events
+
   def index
     @q = current_user.events.order(event_date: :desc).search(params[:q])
     @events = @q.result.page(params[:page])

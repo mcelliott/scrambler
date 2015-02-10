@@ -35,6 +35,7 @@ gem 'sinatra', require: false # required by sidekiq/web
 gem 'slim'                    # required by sidekiq/web
 gem 'redis-rails'
 gem 'foreman'
+gem 'draper'
 
 group :development do
   gem 'better_errors'

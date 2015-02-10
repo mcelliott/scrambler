@@ -14,7 +14,7 @@
     %h4.text-center
       = "#{team.name} - #{category_name}"
   .large-9.columns.team-section
-    - team.team_participants.includes(:participants).each do |tp|
+    - team.team_participants.each do |tp|
       .row.list-item
         .large-12.columns
           .small-4.columns

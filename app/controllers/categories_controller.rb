@@ -3,6 +3,9 @@ class CategoriesController < ApplicationController
   load_and_authorize_resource
   respond_to :html, :js
 
+  decorates_assigned :category
+  decorates_assigned :categories
+
   # GET /categories
   # GET /categories.json
   def index

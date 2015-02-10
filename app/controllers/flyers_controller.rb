@@ -3,6 +3,9 @@ class FlyersController < ApplicationController
   load_and_authorize_resource
   respond_to :html, :js
 
+  decorates_assigned :flyer
+  decorates_assigned :flyers
+
   def index
     @q = current_user.flyers.order(name: :asc).search(params[:q])
     @flyers = @q.result.page(params[:page])
