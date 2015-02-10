@@ -16,6 +16,7 @@
 //= require select2
 //= require turbolinks
 //= require foundation
+//= require autonumeric
 //= require_tree .
 
 $(function() {

@@ -1,10 +1,10 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource except: [:new, :generate]
+  load_and_authorize_resource except: [:new, :generate, :create, :email, :index]
   respond_to :html, :js
 
   decorates_assigned :event
-  decorates_assigned :events
+  decorates_assigned :events, with: PaginatedCollectionDecorator
 
   def index
     @q = current_user.events.order(event_date: :desc).search(params[:q])
@@ -12,8 +12,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find params[:id]
-    @event_presenter = EventPresenter.new(@event)
   end
 
   def new
@@ -47,7 +45,7 @@ class EventsController < ApplicationController
   def generate
     ts = TeamService.new(params)
     ts.create_team_participants
-    @event_presenter = EventPresenter.new(ts.event)
+    @event = ts.event.reload
   end
 
   def email
@@ -59,6 +57,6 @@ class EventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params.require(:event).permit(:event_date, :location, :name, :team_size, :num_rounds)
+    params.require(:event).permit(:event_date, :location, :name, :team_size, :num_rounds, :participant_cost)
   end
 end

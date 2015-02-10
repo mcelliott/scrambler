@@ -1,4 +1,4 @@
-- @event_presenter.participants.each do |category, participants|
+- event.category_participants.each do |category, participants|
   %h5.light= category.name
   - participants.each_with_index do |p, index|
     = render partial: 'participants/participant', locals: { p: p, index: index }

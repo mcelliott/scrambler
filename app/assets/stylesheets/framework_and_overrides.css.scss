@@ -356,3 +356,15 @@ button {
 .bold {
   font-weight: bold;
 }
+
+.payed {
+  border: 1px solid $scambler-green;
+}
+
+.unpayed {
+  border: 1px solid red;
+}
+
+.italic {
+  font-style: italic;
+}

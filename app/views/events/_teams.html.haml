@@ -1,10 +1,10 @@
 .panel.radius
   %dl.tabs{ data: { tab: true, options: 'deep_linking:true' } }
-    - @event_presenter.rounds.each_with_index do |r, index|
+    - event.rounds.each_with_index do |r, index|
       = active_tab(index) do
         %a{ href: "#panel#{r.round_number}"}= "Round #{r.round_number}"
 
   .tabs-content
-    - @event_presenter.rounds.each_with_index do |r, index|
+    - event.rounds.each_with_index do |r, index|
       = active_content(index, "panel#{r.round_number}") do
         = render partial: 'team', locals: { round: r }

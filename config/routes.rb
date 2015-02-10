@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     put :email
     resources :teams, only: [:index, :destroy]
     resources :participants, only: [:new, :create, :show, :destroy]
+    resources :payments, only: [:index, :show, :edit, :update, :destroy]
   end
 
   get 'events/teams/:uuid', controller: 'teams', action: :team_view, as: 'team_view'

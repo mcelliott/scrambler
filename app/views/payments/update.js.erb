@@ -1,0 +1,4 @@
+$('#modal').foundation('reveal', 'close');
+<% @payment = @payment.reload.decorate %>
+$("#payment-icon-<%= @payment.participant.id %>").html("<%= j(link_to fa_icon('money', text: ''), edit_event_payment_path(@payment, event_id: @payment.event.id), class: "participant-button button-xs #{@payment.participant.payed? ? 'payed' : 'unpayed' }", remote: true) -%> ");
+

@@ -1,0 +1,7 @@
+%h5.text-center Payment status for #{ payment.participant_name } is #{content_tag(:span, payment.payment_status, class: 'italic')}
+
+.text-center
+  - if payment.participant.payed?
+    #{ button_to 'Set Unpaid', event_payment_path(payment, event_id: payment.event.id, value: 'unpaid'), class: 'button-xs radius', remote: true, method: :put }
+  - else
+    #{ button_to 'Set Paid', event_payment_path(payment, event_id: payment.event.id, value: 'paid'), class: 'button-xs radius', remote: true, method: :put }

@@ -1,14 +1,14 @@
-%h2.heading.text-center= "#{@event.name} - #{@event.event_date}"
+%h2.heading.text-center= "#{event.name} - #{event.event_date}"
 .large-12.columns
   .large-12.columns
     .panel{ style: 'padding-bottom: 0;' }
       .row.collapse
         %ul.actions-list
-          %li= edit_event_link(@event)
-          %li#expenses= expenses_link(@event)
-          %li= new_participant_link(@event)
-          %li= generate_teams_link(@event)
-          %li#show-teams= show_teams_link(@event)
+          %li= edit_event_link(event)
+          %li#expenses= expenses_link(event)
+          %li= new_participant_link(event)
+          %li= generate_teams_link(event)
+          %li#show-teams= show_teams_link(event)
 
 
   .large-5.columns
@@ -17,8 +17,8 @@
       .new-participant
       .participant-list
         .panel.radius
-          - if @event_presenter.participants?
-            = render 'participants'
+          - if event.participants?
+            = render 'events/participants'
           - else
             .empty-list.empty-participants-list.text-center= fa_icon('frown-o', text: 'No Participants')
 

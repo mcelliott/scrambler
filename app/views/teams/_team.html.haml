@@ -1,8 +1,8 @@
 .row
-  = link_to fa_icon('trash', text: ""), event_team_path(team, event_id: @event_presenter.event.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'pull-right delete-button button-xs'
+  = link_to fa_icon('trash', text: ""), event_team_path(team, event_id: event.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'pull-right delete-button button-xs'
   .pull-left= "#{team.name} - #{team.category.name}"
 .team-participant-list
   - team.team_participants.includes(:participant).each do |tp|
     = render partial: 'teams/team_participant', locals: { team_participant: tp }
 .row
-  = link_to fa_icon('plus', text: ""), new_teams_participant_path(team_id: team.id, event_id: @event_presenter.event.id), class: "button-xs add-button new-team-participant-#{team.id}", remote: true
+  = link_to fa_icon('plus', text: ""), new_teams_participant_path(team_id: team.id, event_id: event.id), class: "button-xs add-button new-team-participant-#{team.id}", remote: true

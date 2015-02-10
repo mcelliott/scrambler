@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150202213948) do
+ActiveRecord::Schema.define(version: 20150210115557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,15 +37,16 @@ ActiveRecord::Schema.define(version: 20150202213948) do
 
   create_table "events", force: :cascade do |t|
     t.date     "event_date"
-    t.string   "location",    limit: 255
+    t.string   "location",         limit: 255
     t.integer  "user_id"
-    t.string   "name",        limit: 255
+    t.string   "name",             limit: 255
     t.integer  "team_size"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "num_rounds"
-    t.uuid     "uuid",                    default: "uuid_generate_v4()"
-    t.integer  "email_count",             default: 0
+    t.uuid     "uuid",                         default: "uuid_generate_v4()"
+    t.integer  "email_count",                  default: 0
+    t.decimal  "participant_cost"
   end
 
   create_table "flyers", force: :cascade do |t|
@@ -65,6 +66,15 @@ ActiveRecord::Schema.define(version: 20150202213948) do
     t.integer  "number"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.date     "completed_at"
+    t.decimal  "amount"
+    t.integer  "event_id"
+    t.integer  "participant_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "rounds", force: :cascade do |t|

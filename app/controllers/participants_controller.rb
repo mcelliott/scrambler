@@ -13,6 +13,7 @@ class ParticipantsController < ApplicationController
   def create
     @participant = current_user.participants.build(participant_params)
     @participant.number = current_event.participants.count + 1
+    @participant.create_payment(event: current_event, amount: current_event.participant_cost)
     flash[:notice] = 'Participant was successfully created.' if @participant.save
   end
 

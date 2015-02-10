@@ -4,6 +4,8 @@ class Participant < ActiveRecord::Base
   belongs_to :event
   belongs_to :user
 
+  has_one :payment
+
   delegate :name, to: :flyer, prefix: true
 
   validates :flyer_id,    presence: true

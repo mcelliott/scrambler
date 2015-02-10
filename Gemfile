@@ -36,6 +36,8 @@ gem 'slim'                    # required by sidekiq/web
 gem 'redis-rails'
 gem 'foreman'
 gem 'draper'
+gem 'money-rails'
+gem 'autonumeric-rails'
 
 group :development do
   gem 'better_errors'

@@ -20,6 +20,8 @@ $ ->
 
   $('div#notice').delay(2000).fadeOut('slow');
 
+  $('input[data-role=money]').autoNumeric('init');
+
 window.Scrambler =
   update_messages: (notice) ->
     $('#notice').html(notice).show()
