@@ -2,6 +2,9 @@ class ParticipantsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
+  decorates_assigned :participant
+  decorates_assigned :team_participant
+
   # GET /participants/new
   def new
     @participant = Participant.new
@@ -12,7 +15,7 @@ class ParticipantsController < ApplicationController
   # POST /participants.json
   def create
     @participant = current_user.participants.build(participant_params)
-    @participant.number = current_event.participants.count + 1
+    @participant.number = participant_number
     @participant.create_payment(event: current_event, amount: current_event.participant_cost)
     flash[:notice] = 'Participant was successfully created.' if @participant.save
   end
@@ -20,10 +23,12 @@ class ParticipantsController < ApplicationController
   # DELETE /participants/1
   # DELETE /participants/1.json
   def destroy
+    destroy_team_participant
     @participant.destroy
     respond_to do |format|
-      format.html { redirect_to event_path(@participant.event), notice: 'Participant was successfully destroyed.' }
-      format.json { head :no_content }
+      flash[:notice] = 'Participant was successfully deleted.'
+      format.html { redirect_to event_path(@participant.event) }
+      format.js
     end
   end
 
@@ -32,6 +37,22 @@ class ParticipantsController < ApplicationController
   end
 
   private
+
+  def participant_number
+    current_event_participants = current_event.participants
+    existing_number = [*1..current_event_participants.count + 1] - current_event.participants.map(&:number)
+
+    if existing_number.present?
+      existing_number.first
+    else
+      current_event_participants.count + 1
+    end
+  end
+
+  def destroy_team_participant
+    @team_participant = TeamParticipant.find_by(participant_id: @participant.id)
+    @team_participant.destroy! if @team_participant.present?
+  end
 
   def current_event
     @event ||= Event.find params[:event_id]

@@ -23,7 +23,7 @@ class FlyersController < ApplicationController
   def destroy
     @flyer.destroy
     respond_to do |format|
-      format.html { redirect_to flyers_path, notice: 'Flyer was successfully destroyed.' }
+      format.html { redirect_to flyers_path, notice: 'Flyer was successfully deleted.' }
     end
   end
 

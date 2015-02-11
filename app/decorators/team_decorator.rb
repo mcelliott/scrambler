@@ -1,8 +1,7 @@
-class RoundDecorator < Draper::Decorator
+class TeamDecorator < Draper::Decorator
   delegate_all
 
-  decorates_association :teams
-  # decorates_association :event_scores
+  decorates_association :team_participants
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
   #
@@ -11,5 +10,4 @@ class RoundDecorator < Draper::Decorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
-
 end

@@ -53,11 +53,7 @@ RSpec.configure do |config|
   config.order = "random"
 
   config.before(:suite) do
-    begin
-      DatabaseCleaner.start
-      # FactoryGirl.lint
-    ensure
-      DatabaseCleaner.clean
-    end
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with(:truncation)
   end
 end

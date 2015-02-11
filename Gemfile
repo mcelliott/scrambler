@@ -53,7 +53,6 @@ group :development do
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
   gem 'spring'
-  gem 'byebug'
   gem 'letter_opener'
   gem 'sextant'
   gem 'bullet'
@@ -64,6 +63,7 @@ group :development, :test do
   gem 'faker'
   gem 'rspec-rails'
   gem 'simplecov'
+  gem 'byebug'
 end
 group :production do
   gem 'puma'

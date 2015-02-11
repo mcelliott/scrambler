@@ -1,0 +1,5 @@
+$("#participant-<%= participant.id -%>").remove()
+<% if team_participant.present? %>
+  $("#team-participant-<%= team_participant.id -%>").remove()
+<% end %>
+Scrambler.update_messages("<%= j(render 'layouts/messages') %>")

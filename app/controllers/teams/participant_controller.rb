@@ -3,6 +3,8 @@ class Teams::ParticipantController < ApplicationController
   before_action :authenticate_user!
   respond_to :html, :js
 
+  decorates_assigned :team_participant
+
   def new
     current_event
     current_team
@@ -19,10 +21,12 @@ class Teams::ParticipantController < ApplicationController
   end
 
   def destroy
-    team_participant = current_team.team_participants.find params[:id]
-    team_participant.destroy
+    @team_participant = current_team.team_participants.find(params[:id])
+    @team_participant.destroy
     respond_to do |format|
-      format.html { redirect_to event_path(team_participant.event), notice: 'Participant was successfully destroyed.' }
+      flash[:notice] = 'Participant was successfully deleted.'
+      format.html { redirect_to event_path(@team_participant.event) }
+      format.js
     end
   end
 

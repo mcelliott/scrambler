@@ -4,7 +4,8 @@ class Participant < ActiveRecord::Base
   belongs_to :event
   belongs_to :user
 
-  has_one :payment
+  has_many :team_participants, dependent: :destroy
+  has_one :payment, dependent: :destroy
 
   delegate :name, to: :flyer, prefix: true
 

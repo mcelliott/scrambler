@@ -1,11 +1,12 @@
-.row.flyer-list-item
+.row.flyer-list-item{ id: "team-participant-#{team_participant.id}" }
   .large-12.columns
     .small-4.columns
       - if team_participant.placeholder
         %span{ data: { tooltip: true }, aria: { haspopup: true }, class: 'has-tip', title: placeholder_text }
-          = fa_icon('exclamation-triangle', text: team_participant.participant.flyer.name)
+          = fa_icon('exclamation-triangle', text: team_participant.participant_name)
       - else
-        = team_participant.participant.flyer.name
-    .small-4.columns= team_participant.participant.category.name
-    .small-3.columns= "#{team_participant.participant.flyer.hours.ceil} hrs"
-    .small-1.columns.text-right= link_to fa_icon('trash', text: ''), destroy_teams_participant_path(team_id: team_participant.team.id, id: team_participant), method: :delete, data: { confirm: 'Are you sure?' }, class: 'participant-button button-xs'
+        = team_participant.participant_name
+    .small-4.columns= team_participant.category_name
+    .small-3.columns= "#{team_participant.participant_hours} hrs"
+    .small-1.columns.text-right
+      = link_to fa_icon('trash', text: ''), destroy_teams_participant_path(team_id: team_participant.team.id, id: team_participant), method: :delete, data: { confirm: 'Are you sure?' }, class: 'participant-button button-xs', remote: true
