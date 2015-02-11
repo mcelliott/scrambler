@@ -18,6 +18,7 @@ describe ParticipantsController do
   describe '#create' do
     let(:flyer_2) { create(:flyer, user: user) }
     let(:form_params) { { flyer_id: flyer_2, category_id: category.id, event_id: event.id } }
+    let(:participant_number) { Participant.participant_number(event) }
     it 'should create the participant' do
       expect{
         xhr :post, :create, { event_id: event.id, participant: form_params }
@@ -26,7 +27,7 @@ describe ParticipantsController do
 
     it 'should increment the participant number' do
       xhr :post, :create, { event_id: event.id, participant: form_params }
-      expect(Participant.last.number).to eq Participant.count
+      expect(Participant.last.number).to eq 1
     end
 
     it 'should create a payment' do
@@ -51,10 +52,10 @@ describe ParticipantsController do
         TeamService.new({ event_id: event.id }).create_team_participants
       end
 
-      it 'should delete the team_participant' do
+      it 'should delete the team_participant for each round' do
         expect{
           xhr :delete, :destroy, { event_id: event.id, id: participant.id }
-        }.to change(TeamParticipant, :count).by(-1)
+        }.to change(TeamParticipant, :count).by(- event.num_rounds)
       end
     end
   end

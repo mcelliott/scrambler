@@ -15,4 +15,15 @@ class Participant < ActiveRecord::Base
   validates :user_id,     presence: true
 
   scope :category_type, ->(category) { where(category: category) }
+
+  def self.participant_number(event)
+    current_event_participants = event.participants
+    existing_number = [*1..current_event_participants.count + 1] - event.participants.map(&:number)
+
+    if existing_number.present?
+      existing_number.first
+    else
+      current_event_participants.count + 1
+    end
+  end
 end
