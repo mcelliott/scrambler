@@ -1,5 +1,5 @@
 .row.flyer-list-item{ id: "participant-#{p.id}" }
-  .large-12.columns
+  .small-12.columns
     .small-9.columns.participant-name= "#{p.number}. #{p.flyer.name}"
     .small-1.columns.text-center
       = link_to fa_icon('info', text: ''), event_participant_path(p, event_id: p.event.id), class: 'participant-button button-xs', remote: true

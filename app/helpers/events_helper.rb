@@ -15,7 +15,7 @@ module EventsHelper
   end
 
   def expenses_link(event)
-    link_to fa_icon('money', text: 'Expenses'), nil, remote_button_class
+    link_to fa_icon('money', text: 'Expenses'), event_expenses_path(event_id: event.id), button_class
   end
 
   def generate_teams_link(event)
@@ -41,15 +41,15 @@ module EventsHelper
   ###### TABS
 
   def active_tab(index)
-    active =  index == 0 ? 'active' : ''
-    content_tag :dd, class: active do
+    active =  index == 0 ? 'active tab-title' : 'tab-title'
+    content_tag :li, class: active, role: 'presentational' do
       yield
     end
   end
 
   def active_content(index, id)
     active = index == 0 ? ' active' : ''
-    content_tag :div, class: "content#{active}", id: id do
+    content_tag :section, role: 'tabpanel', class: "content#{active}", id: id, aria: { hidden: true } do
       yield
     end
   end
@@ -59,5 +59,9 @@ module EventsHelper
     content_tag(:div, class: "large-12 columns#{tc}") do
       yield
     end
+  end
+
+  def money(amount)
+    humanized_money_with_symbol Money.new(amount)
   end
 end

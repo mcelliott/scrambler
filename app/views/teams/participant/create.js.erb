@@ -1,7 +1,7 @@
-<% unless @team.errors.present? %>
+<% unless team.errors.present? %>
   $('#modal').foundation('reveal', 'close');
-  $('.team_<%= @team.id %> .panel .team-participant-list').append('<%= j(render partial: 'teams/team_participant', locals: { team_participant: @team_participant }) %>');
-  flash_row('.team_<%= @team.id %>');
+  $('#team-<%= team.id %> .team-participant-list').append('<%= j(render partial: 'teams/team_participant', locals: { team_participant: team_participant }) %>');
+  flash_row('#team-<%= team.id %>');
   $('.empty-teams-list').hide();
 <% else %>
   $('.modal-content').html('<%= j(render template: 'teams/participant/new.html.haml') %>');

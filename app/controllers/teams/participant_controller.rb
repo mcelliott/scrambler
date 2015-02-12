@@ -3,6 +3,7 @@ class Teams::ParticipantController < ApplicationController
   before_action :authenticate_user!
   respond_to :html, :js
 
+  decorates_assigned :team
   decorates_assigned :team_participant
 
   def new

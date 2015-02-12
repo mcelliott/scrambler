@@ -1,0 +1,45 @@
+%h2.heading.text-center Event Expenses
+
+.large-12.columns
+  .row
+    .panel{ style: 'padding-bottom: 0;' }
+      .row.collapse
+        %ul.actions-list
+          %li= go_to_event_link(event)
+          %li= edit_event_link(event)
+          %li#show-teams= show_teams_link(event)
+
+  .row
+    .custom-panel
+      .panel-header
+        %h4.text-center= "#{event.name} - #{event.location} - #{event.event_date}"
+      .panel-content
+        %table.index.responsive
+          %tbody
+            %tr
+              %th Number of Participants
+              %td= @expenses_decorator.number_of_participants
+            %tr
+              %th Cost Per Participant
+              %td= money(@expenses_decorator.participant_cost)
+            %tr
+              %th Rate per minute
+              %td= money(@expenses_decorator.rate_per_minute)
+            %tr
+              %th Total Time Flown (minutes)
+              %td= "#{@expenses_decorator.minutes_flown}"
+            %tr
+              %th Gross Sales
+              %td= money(@expenses_decorator.gross_sales)
+            %tr
+              %th Cost of Goods Sold
+              %td= money(@expenses_decorator.cost_of_goods_sold)
+            %tr
+              %th Gross Profit
+              %td= money(@expenses_decorator.gross_profit)
+            %tr
+              %th Gross Profit Percentage
+              %td= "#{number_with_precision(@expenses_decorator.gross_profit_percentage, precision: 2)}%"
+      .panel-footer
+
+.div#page-refresh

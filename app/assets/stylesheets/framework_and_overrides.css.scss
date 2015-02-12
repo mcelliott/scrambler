@@ -270,13 +270,24 @@ table.index tr {
   border-bottom: 1px solid #ddd;
 }
 
-.tabs dd > a {
+.tab-title li > a {
   padding: .5em 1.5em .5em 1.5em;
   font-size: .7525em;
 }
 
+.tab-title.active {
+  border-left: 1px solid $border-color;
+  border-right: 1px solid $border-color;
+  border-top: 1px solid $border-color;
+}
+
+.tab-title.active a {
+  background-color: #fff !important;
+}
+
 .tabs-content {
-  background-color: #fff;
+  border: 1px solid $border-color;
+  background-color: #fff !important;
 }
 
 .bordered {
@@ -316,12 +327,6 @@ input.event-score:focus {
 
 .main-logo {
   margin-top: 50px;
-}
-
-.team-item {
-  padding-top: 10px;
-  border-bottom: 1px solid $border-color;
-  background-color: #fff !important;
 }
 
 .underline {

@@ -19,6 +19,12 @@ class Event < ActiveRecord::Base
       less_than_or_equal_to: 10000
   }
 
+  monetize :rate_per_minute, allow_nil: false,
+    numericality: {
+      greater_than_or_equal_to: 0,
+      less_than_or_equal_to: 10000
+  }
+
   def title
     "#{name} Teams - #{event_date}"
   end

@@ -1,0 +1,9 @@
+%ul.tabs{ data: { tab: true, options: 'deep_linking:true' }, role: 'tablist' }
+  - event.rounds.each_with_index do |r, index|
+    = active_tab(index) do
+      %a{ href: "#panel-#{r.round_number}", role: 'tab', tabindex: '0', aria: { selected: 'true' }, controls: "panel-#{r.round_number}" }= "Round #{r.round_number}"
+
+.tabs-content
+  - event.rounds.each_with_index do |r, index|
+    = active_content(index, "panel-#{r.round_number}") do
+      = render partial: 'events/teams', locals: { round: r }

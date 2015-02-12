@@ -1,9 +1,0 @@
-.small-12.columns
-  - if round.teams.present?
-    %ul
-      - round.teams.each do |team|
-        %li.team-item{ id: "team-#{team.id}" }
-          = render partial: 'teams/team', locals: { team: team }
-  - else
-    .panel
-      .empty-list.empty-team-list.text-center= fa_icon('frown-o', text: "No Teams for Round #{round.round_number}")

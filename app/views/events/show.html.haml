@@ -16,17 +16,16 @@
       %h4 Participants
       .new-participant
       .participant-list
-        .panel.radius
-          - if event.participants?
-            = render 'events/participants'
-          - else
-            .empty-list.empty-participants-list.text-center= fa_icon('frown-o', text: 'No Participants')
+        - if event.participants?
+          = render 'events/participants'
+        - else
+          .empty-list.empty-participants-list.text-center= fa_icon('frown-o', text: 'No Participants')
 
   .large-7.columns
     .event-teams
-      %h4 Teams
+      %h4 Rounds
       .teams-list
-        = render 'events/teams'
+        = render 'events/rounds'
 
 .new-teams.large-12.columns
   %div.generating-teams

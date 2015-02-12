@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :teams, only: [:index, :destroy]
     resources :participants, only: [:new, :create, :show, :destroy]
     resources :payments, only: [:index, :show, :edit, :update, :destroy]
+    resources :expenses, only: :index
   end
 
   get 'events/teams/:uuid', controller: 'teams', action: :team_view, as: 'team_view'

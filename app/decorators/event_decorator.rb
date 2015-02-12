@@ -1,9 +1,7 @@
 class EventDecorator < Draper::Decorator
   delegate_all
 
-  decorates_association :participants
-  decorates_association :rounds
-  decorates_association :payments
+  decorates_associations :participants, :rounds, :payments
 
   def participants?
     participants.present?

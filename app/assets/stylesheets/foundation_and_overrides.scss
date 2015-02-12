@@ -959,7 +959,6 @@ $pagination-link-current-active-bg: lighten(#444, 20%) !important;
 $panel-bg: scale-color($white, $lightness: -5%);
 $panel-border-style: solid;
 $panel-border-size: 1px;
-$panel-border-radius: $global-radius;
 
 // We use this % to control how much we darken things on hover
 $panel-function-factor: -11%;
@@ -1306,7 +1305,7 @@ $include-html-tabs-classes: $include-html-classes;
 
 $tabs-navigation-padding: rem-calc(16);
 $tabs-navigation-bg-color: $silver  ;
-$tabs-navigation-active-bg-color: $white;
+$tabs-navigation-active-bg-color: $white !default;
 $tabs-navigation-hover-bg-color: scale-color($tabs-navigation-bg-color, $lightness: -6%);
 $tabs-navigation-font-color: $jet;
 $tabs-navigation-active-font-color: $tabs-navigation-font-color;
@@ -1514,6 +1513,26 @@ div.field_with_errors {
   background-color: #fff !important;
 }
 
-dl.tabs a {
-  font-weight: bold;
+.custom-panel {
+  @include panel(
+    // Sets the panel background color. Default: $panel-pg
+  $bg: white,
+    // Sets the panel padding amount. Default: $panel-padding
+  $padding:10px,
+    // Sets the font color based on the darkness of the bg & resets header line-heights for panels. Default: $panel-header-adjust
+  $adjust:true
+  );
+  border-radius: $global-radius;
+}
+
+.panel-header {
+  padding: 10px;
+}
+
+.panel-content {
+  padding: 10px;
+}
+
+.panel-footer {
+  padding: 10px;
 }

@@ -8,3 +8,11 @@
 <% end %>
 
 Scrambler.update_messages("<%= j(render 'layouts/messages') %>");
+
+if ($('div#page-refresh')) {
+  $('.custom-panel').blur();
+  setTimeout(function() {
+    location.reload();
+  }, 1000);
+
+}

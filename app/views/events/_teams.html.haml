@@ -1,10 +1,17 @@
-.panel.radius
-  %dl.tabs{ data: { tab: true, options: 'deep_linking:true' } }
-    - event.rounds.each_with_index do |r, index|
-      = active_tab(index) do
-        %a{ href: "#panel#{r.round_number}"}= "Round #{r.round_number}"
+.small-12.columns
+  - if round.teams.present?
+    %ul
+      - round.teams.each do |team|
+        %li.team-item{ id: "team-#{team.id}" }
+          .custom-panel
+            .panel-header
+              = link_to fa_icon('trash', text: ""), event_team_path(team, event_id: event.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'pull-right delete-button button-xs', remote: true
+              = "Round #{round.round_number} - #{team.name} - #{team.category.name}"
+            .panel-content
+              = render partial: 'teams/team', locals: { team: team }
+            .panel-footer
+              = link_to fa_icon('plus', text: ""), new_teams_participant_path(team_id: team.id, event_id: event.id), class: "button-xs add-button new-team-participant-#{team.id}", remote: true
 
-  .tabs-content
-    - event.rounds.each_with_index do |r, index|
-      = active_content(index, "panel#{r.round_number}") do
-        = render partial: 'team', locals: { round: r }
+  - else
+    .panel
+      .empty-list.empty-team-list.text-center= fa_icon('frown-o', text: "No Teams for Round #{round.round_number}")

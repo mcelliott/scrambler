@@ -1,8 +1,7 @@
 class PaymentDecorator < Draper::Decorator
   delegate_all
 
-  decorates_association :participant
-  decorates_association :event
+  decorates_associations :participant, :event
 
   def participant_name
     participant.name

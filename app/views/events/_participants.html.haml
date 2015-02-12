@@ -1,5 +1,9 @@
-- event.category_participants.each do |category, participants|
-  %div.participant-category{ id: "category-#{category.id}" }
-    %h5.light= category.name
-    - participants.each_with_index do |p, index|
-      = render partial: 'participants/participant', locals: { p: p, index: index }
+%ul
+  - event.category_participants.each do |category, participants|
+    %li.participant-category{ id: "category-#{category.id}" }
+      .custom-panel
+        .panel-header
+          = category.name
+        .panel-content
+          - participants.each_with_index do |p, index|
+            = render partial: 'participants/participant', locals: { p: p, index: index }
