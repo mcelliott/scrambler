@@ -270,18 +270,18 @@ table.index tr {
   border-bottom: 1px solid #ddd;
 }
 
-.tab-title li > a {
-  padding: .5em 1.5em .5em 1.5em;
+ul.tabs li.tab-title a {
+  padding: 1em;
   font-size: .7525em;
 }
 
-.tab-title.active {
+ul.tabs li.tab-title.active {
   border-left: 1px solid $border-color;
   border-right: 1px solid $border-color;
   border-top: 1px solid $border-color;
 }
 
-.tab-title.active a {
+ul.tabs li.tab-title.active a {
   background-color: #fff !important;
 }
 
