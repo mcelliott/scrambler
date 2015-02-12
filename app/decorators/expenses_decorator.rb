@@ -1,10 +1,12 @@
 class ExpensesDecorator
   attr_reader :event
 
+  delegate :num_rounds, to: :event
+
   def initialize(event)
     @event = event
   end
-  
+
   def gross_sales
     participant_cost * number_of_participants
   end
@@ -35,7 +37,7 @@ class ExpensesDecorator
   end
 
   def minutes_flown
-    team_participant_count * (@event.time_per_round / 60)
+    team_count * (@event.time_per_round / 60)
   end
 
   def rate_per_minute
@@ -56,7 +58,7 @@ class ExpensesDecorator
 
   private
 
-  def team_participant_count
-    @event.rounds.map { |r| r.team_participants.count }.reduce(:+)
+  def team_count
+    @event.rounds.map { |r| r.teams.count }.reduce(:+)
   end
 end
