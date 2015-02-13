@@ -7,7 +7,7 @@
       .small-3.columns.bold Total Score
       - if can?(:update, event)
         .small-1.columns.bold Email
-      .small-1.columns.bold Info
+        .small-1.columns.bold Info
 
 - teams.each do |team|
   .large-3.columns.team-section
@@ -17,23 +17,26 @@
     - team.team_participants.each do |tp|
       .row.list-item
         .large-12.columns
-          .small-4.columns
+          .small-5.columns
             = "#{tp.participant_number}. "
             - if tp.placeholder
               %span{ data: { tooltip: true }, aria: { haspopup: true }, class: 'has-tip', title: placeholder_text }
                 = fa_icon('exclamation-triangle', text: tp.participant_name)
             - else
               = tp.participant_name
-          .small-3.columns
-            = form_for tp.event_score, url: event_score_path(tp), remote: true, class: 'score-form' do |f|
-              = f.text_field :score, value: tp.event_score.score, class: "event-score round-score-#{tp.id}"
-              = f.hidden_field :event_id, value: team.event.id
-              = f.hidden_field :round_id, value: team.round.id
-              = f.hidden_field :team_participant_id, value: tp.id
-          .small-3.columns
+          .small-2.columns
+            - if can?(:update, event)
+              = form_for tp.event_score, url: event_score_path(tp), remote: true, class: 'score-form' do |f|
+                = f.text_field :score, value: tp.event_score.score, class: "event-score round-score-#{tp.id}"
+                = f.hidden_field :event_id, value: team.event.id
+                = f.hidden_field :round_id, value: team.round.id
+                = f.hidden_field :team_participant_id, value: tp.id
+            - else
+              = tp.event_score.score
+          .small-2.columns
             %span{ class: "event-total event-total-#{tp.participant_id}" }
               = tp.event_total
           - if can?(:update, event)
             .small-1.columns= link_to fa_icon('send', text: ''), event_email_path(event_id: tp.event.id, participant_id: tp.participant_id), remote: true, method: :put, class: 'participant-button button-xs', data: { confirm: 'Send Email to Participant?' }
-          .small-1.columns= link_to fa_icon('info', text: ''), event_participant_path(tp.participant_id, event_id: tp.event.id), class: 'participant-button button-xs', remote: true
+            .small-1.columns= link_to fa_icon('info', text: ''), event_participant_path(tp.participant_id, event_id: tp.event.id), class: 'participant-button button-xs', remote: true
 
