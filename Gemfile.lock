@@ -244,6 +244,8 @@ GEM
     pg (0.18.1)
     polyamorous (1.1.0)
       activerecord (>= 3.0)
+    pretty_backtrace (0.1.2)
+      debug_inspector (~> 0.0.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -470,6 +472,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-twitter
   pg
+  pretty_backtrace
   puma
   quiet_assets
   rails (= 4.2.0)
