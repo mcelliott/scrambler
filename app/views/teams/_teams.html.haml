@@ -2,9 +2,9 @@
 .large-9.columns.team-section
   .row.list-item
     .large-12.columns
-      .small-4.columns.bold Name
-      .small-3.columns.bold Round Score
-      .small-3.columns.bold Total Score
+      .small-6.columns.bold Name
+      .small-2.columns.bold Round Score
+      .small-2.columns.bold Total Score
       - if can?(:update, event)
         .small-1.columns.bold Email
         .small-1.columns.bold Info
@@ -17,7 +17,7 @@
     - team.team_participants.each do |tp|
       .row.list-item
         .large-12.columns
-          .small-5.columns
+          .small-6.columns
             = "#{tp.participant_number}. "
             - if tp.placeholder
               %span{ data: { tooltip: true }, aria: { haspopup: true }, class: 'has-tip', title: placeholder_text }
