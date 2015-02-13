@@ -38,6 +38,7 @@ gem 'foreman'
 gem 'draper'
 gem 'money-rails'
 gem 'autonumeric-rails'
+gem 'pretty_backtrace'
 
 group :development do
   gem 'better_errors'
