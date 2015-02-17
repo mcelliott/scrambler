@@ -7,16 +7,3 @@ $("select#team_participant_id").select2({
   allowClear: true
 });
 
-$('#random-participant').on('click', function(e){
-  e.preventDefault();
-  var participants = $("select#team_participant_id").children();
-  var numParticipants = participants.length;
-  var newSelected = Math.floor((Math.random() * 100) % numParticipants);
-  if (newSelected === 0) {
-    newSelected = newSelected + 1;
-  }
-  participants.removeAttr('selected')
-  $('select#team_participant_id option:eq(' + newSelected + ')').attr('selected', 'selected');
-  $('select#team_participant_id').trigger("change");
-});
-

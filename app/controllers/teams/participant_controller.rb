@@ -18,7 +18,11 @@ class Teams::ParticipantController < ApplicationController
                                                         participant: current_participant,
                                                         placeholder: participant_params[:placeholder])
 
-    flash[:notice] = 'Participant was successfully added.' if @team_participant.save
+
+    if @team_participant.save
+      create_event_score
+      flash[:notice] = 'Participant was successfully added.'
+    end
   end
 
   def destroy
@@ -33,6 +37,17 @@ class Teams::ParticipantController < ApplicationController
 
   private
 
+
+  def create_event_score
+    # TODO
+    EventScore.create!(user: current_event.user,
+                       team_participant: @team_participant,
+                       round: current_team.round,
+                       event: current_event,
+                       participant: current_participant,
+                       score: 0)
+  end
+
   def next_participant
     current_event.participants.count + 1
   end
@@ -46,7 +61,7 @@ class Teams::ParticipantController < ApplicationController
   end
 
   def current_participant
-    current_user.participants.find participant_params[:id]
+    current_event.participants.find participant_params[:id]
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

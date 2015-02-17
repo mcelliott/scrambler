@@ -22,7 +22,19 @@ $ ->
 
   $('input[data-role=money]').autoNumeric('init');
 
+  $(document).on 'click', '#random-participant', (e) ->
+    e.preventDefault()
+    participants = $("select#team_participant_id").children()
+    numParticipants = participants.length
+    newSelected = Math.floor((Math.random() * 100) % numParticipants)
+    if newSelected == 0
+      newSelected = newSelected + 1
+
+    participants.removeAttr('selected')
+    $('select#team_participant_id option:eq(' + newSelected + ')').attr('selected', 'selected')
+    $('select#team_participant_id').trigger("change")
+
 window.Scrambler =
   update_messages: (notice) ->
     $('#notice').html(notice).show()
-    $('div#notice').delay(2000).fadeOut('slow');
+    $('div#notice').delay(2000).fadeOut('slow')

@@ -26,7 +26,7 @@ class Event < ActiveRecord::Base
   }
 
   def title
-    "#{name} Teams - #{event_date}"
+    "#{name} - #{event_date}"
   end
 
   paginates_per 20
