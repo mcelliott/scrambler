@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'notifications@skydivescrambler.com'
+  default from: 'notifications@tunnelscrambler.com'
   # layout 'mailer'
 end

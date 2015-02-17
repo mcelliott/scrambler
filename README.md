@@ -1,10 +1,10 @@
-Skydive Scrambler
+Tunnel Scrambler
 ================
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 [ ![Codeship Status for mcelliott/scrambler](https://www.codeship.io/projects/3d69d300-4004-0132-dbbb-6a4ec2b95bb3/status)](https://www.codeship.io/projects/43726)
-[![Code Climate](https://codeclimate.com/github/mcelliott/skydivescrambler/badges/gpa.svg)](https://codeclimate.com/github/mcelliott/skydivescrambler)
-[![Test Coverage](https://codeclimate.com/github/mcelliott/skydivescrambler/badges/coverage.svg)](https://codeclimate.com/github/mcelliott/skydivescrambler)
+[![Code Climate](https://codeclimate.com/github/mcelliott/tunnelscrambler/badges/gpa.svg)](https://codeclimate.com/github/mcelliott/tunnelscrambler)
+[![Test Coverage](https://codeclimate.com/github/mcelliott/tunnelscrambler/badges/coverage.svg)](https://codeclimate.com/github/mcelliott/tunnelscrambler)
 
 Specifically this app was written for freefly scrambles events at https://downunder.iflyworld.com. The need to add participants to an event and quickly (re)generate teams, add participants to teams manually, display teams in a table.
 

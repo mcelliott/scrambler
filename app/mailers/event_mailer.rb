@@ -7,7 +7,7 @@ class EventMailer < ApplicationMailer
     mail(
       subject: @event.title,
       to:      @flyer.email,
-      from:    'notifications@skydivescrambler.com',
+      from:    'notifications@tunnelscrambler.com',
       date:    Time.zone.now
     )
   end
