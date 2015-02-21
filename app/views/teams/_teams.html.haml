@@ -25,7 +25,9 @@
             - else
               = tp.participant_name
           .small-2.columns
-            - if can?(:update, event)
+            - if tp.placeholder
+              Not Scored
+            - elsif can?(:update, event)
               = form_for tp.event_score, url: event_score_path(tp), remote: true, class: 'score-form' do |f|
                 = f.text_field :score, value: tp.event_score.score, class: "event-score round-score-#{tp.id}"
                 = f.hidden_field :event_id, value: team.event.id
