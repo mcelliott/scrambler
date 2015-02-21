@@ -6,9 +6,9 @@ class Team < ActiveRecord::Base
   belongs_to :category
 
   validates :name,      presence: true, length: { maximum: 50 }
-  validates :category,  presence: true
-  validates :event,     presence: true
-  validates :round,     presence: true
+  validates :category_id,  presence: true
+  validates :event_id,     presence: true
+  validates :round_id,     presence: true
 
   def has_space?
     team_participants.size < event.team_size

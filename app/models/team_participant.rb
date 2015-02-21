@@ -6,10 +6,10 @@ class TeamParticipant < ActiveRecord::Base
 
   has_one :event_score, dependent: :destroy
 
-  validates :participant, presence: true
-  validates :event,       presence: true
-  validates :team,        presence: true
-  validates :user,        presence: true
+  validates :participant_id, presence: true
+  validates :event_id,    presence: true
+  validates :team_id,     presence: true
+  validates :user_id,     presence: true
 
   delegate :category, to: :participant, prefix: true
 

@@ -45,8 +45,7 @@ class EventsController < ApplicationController
   def generate
     event_rounds_creator = EventRoundsCreator.new(params)
     event_rounds_creator.reset
-    event_rounds_creator.perform
-    @event = event_rounds_creator.event.reload
+    @event = event_rounds_creator.perform
   end
 
   def email

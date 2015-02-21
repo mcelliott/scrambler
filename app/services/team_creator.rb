@@ -3,7 +3,6 @@ class TeamCreator
     @event = event
     @category = category
     @round = round
-    # @team_participants = team_participants
   end
 
   def perform

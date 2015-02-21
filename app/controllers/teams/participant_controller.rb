@@ -40,12 +40,7 @@ class Teams::ParticipantController < ApplicationController
 
   def create_event_score
     # TODO
-    EventScore.create!(user: current_event.user,
-                       team_participant: @team_participant,
-                       round: current_team.round,
-                       event: current_event,
-                       participant: current_participant,
-                       score: 0)
+    EventScoreCreator.new(current_event, @team_participant, current_team.round).perform
   end
 
   def next_participant

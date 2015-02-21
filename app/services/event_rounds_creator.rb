@@ -22,7 +22,7 @@ class EventRoundsCreator
             # If they haven't flown in this round,
             # add participants then remove them from the permutations list
             unless has_team_flown_in_round?(round.reload, category, team_participants)
-              puts "adding participants #{team_participants}"
+
               create_team_participants(round, team, team_participants)
               combinations(participants, category.id).delete(team_participants)
               break
@@ -37,7 +37,7 @@ class EventRoundsCreator
         end
       end
     end
-    check_for_dups
+    event.reload
   end
 
 
@@ -46,10 +46,6 @@ class EventRoundsCreator
   end
 
   private
-
-  def check_for_dups
-    event.teams.map { |team| team.team_participants.map(&:participant_id) }.sort
-  end
 
   def output_teams(round)
     puts "Round #{round.round_number}. Teams: "
@@ -69,16 +65,8 @@ class EventRoundsCreator
     end
   end
 
-  def has_flown?(team)
-    team.any? { |p| @team_list.flatten.include? p } if team.present?
-  end
-
   def has_team_flown_in_round?(round, category, team_participants)
     round_team_participants(round, category).any? { |p| team_participants.include? p }
-  end
-
-  def has_participant_flown_in_round?(round, participant, category)
-    round_team_participants(round, category).include? participant
   end
 
   def round_team_participants(round, category)
@@ -87,17 +75,5 @@ class EventRoundsCreator
 
   def number_of_teams(category)
     @number_of_teams = (@event.participants.where(category: category).count / @event.team_size.to_f).ceil
-  end
-
-  def num_permutations
-    -> (n,r) { factorial(n) / factorial(n - r) }
-  end
-
-  def num_combinations
-    -> (n, r) { factorial(n) / (factorial(n - r) * factorial(r)) }
-  end
-
-  def factorial(x)
-    x.downto(1).inject(:*)
   end
 end

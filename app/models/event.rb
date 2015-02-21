@@ -8,7 +8,7 @@ class Event < ActiveRecord::Base
 
   validates :event_date, presence: true
   validates :location,   presence: true, length: { maximum: 50 }
-  validates :user,       presence: true
+  validates :user_id,       presence: true
   validates :name,       presence: true, length: { maximum: 50 }
   validates :team_size,  presence: true, numericality: true
   validates :num_rounds,     presence: true, numericality: true
