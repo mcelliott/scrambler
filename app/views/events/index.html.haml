@@ -14,21 +14,8 @@
           = f.submit 'Search', class: 'button-xs search-btn'
 
   .large-12.small-centered.columns
-    - if events.present?
-      %table.index.responsive
-        %thead
-          %tr
-            %th Name
-            %th Event date
-            %th Location
-            %th Team Size
-            %th Rounds
-            %th
-
-        %tbody#events= render 'events'
-      #pages= paginate events
-    - else
-      .empty-list.text-center= fa_icon('frown-o', text: 'No Events')
+    #event-list
+      = render 'events'
 
 :coffeescript
   $("input.datepicker").datepicker({ dateFormat: "dd/mm/yy", firstDay: "1", changeMonth: true, changeYear: true })

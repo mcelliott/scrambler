@@ -39,6 +39,7 @@ gem 'draper'
 gem 'money-rails'
 gem 'autonumeric-rails'
 gem 'pretty_backtrace'
+gem 'gravatarify', '~> 3.0.0'
 
 group :development do
   gem 'better_errors'

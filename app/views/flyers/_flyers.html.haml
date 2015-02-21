@@ -1,3 +1,17 @@
-- @flyers.each do |flyer|
-  %tr{ id: "flyer-#{flyer.id}" }
-    = render flyer
+%table.index.responsive
+  %thead
+    %tr
+      %th Name
+      %th Email
+      %th Hours
+      %th
+  %tbody#flyers
+    - unless flyers.present?
+      %tr{ id: 'empty-flyers-list' }
+        %td.text-center{ colspan: 4 }
+          .empty-list-panel= fa_icon('frown-o', text: 'No Flyers')
+    - flyers.each do |flyer|
+      %tr{ id: "flyer-#{flyer.id}" }
+        = render flyer
+
+#pages= paginate flyers

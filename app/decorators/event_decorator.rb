@@ -7,6 +7,10 @@ class EventDecorator < Draper::Decorator
     participants.present?
   end
 
+  def rounds?
+    rounds.present?
+  end
+
   def category_participants
     participants.group_by { |p| p.category }
   end

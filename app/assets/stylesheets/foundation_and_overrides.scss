@@ -1525,6 +1525,18 @@ div.field_with_errors {
   border-radius: $global-radius;
 }
 
+.empty-list-panel {
+  @include panel(
+    // Sets the panel background color. Default: $panel-pg
+  $bg: white,
+    // Sets the panel padding amount. Default: $panel-padding
+  $padding:10px,
+    // Sets the font color based on the darkness of the bg & resets header line-heights for panels. Default: $panel-header-adjust
+  $adjust:true
+  );
+  border: 0;
+}
+
 .panel-header {
   padding: 10px;
 }
@@ -1535,4 +1547,8 @@ div.field_with_errors {
 
 .panel-footer {
   padding: 10px;
+}
+
+ul.button-group li a {
+  margin-bottom: 0 !important;
 }

@@ -1,9 +1,19 @@
+
 - if user_signed_in?
-  %li= link_to 'Events', events_path
-  %li= link_to 'Flyers', flyers_path
-  %li= link_to 'Categories', categories_path
-  %li.right= link_to 'Sign out', destroy_user_session_path, :method=>'delete'
-  %li.right= link_to fa_icon('user'), edit_user_registration_path
+  %ul
+    %li.divider
+    %li= link_to 'Events', events_path
+    %li.divider
+    %li= link_to 'Flyers', flyers_path
+    %li.divider
+    %li= link_to 'Categories', categories_path
+    %li.divider
+  %ul.right
+    %li.name= link_to gravatar_tag(current_user.email, size: 30), edit_user_registration_path
+    %li= link_to 'Sign out', destroy_user_session_path, method: 'delete'
 - else
-  %li.right= link_to 'Sign in', new_user_session_path
-  %li.right= link_to 'Sign up', new_user_registration_path
+  %ul.right
+    %li.divider
+    %li= link_to 'Sign in', new_user_session_path
+    %li.divider
+    %li= link_to 'Sign up', new_user_registration_path

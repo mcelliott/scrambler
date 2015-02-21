@@ -4,7 +4,7 @@ class FlyersController < ApplicationController
   respond_to :html, :js
 
   decorates_assigned :flyer
-  decorates_assigned :flyers
+  decorates_assigned :flyers, with: PaginatedCollectionDecorator
 
   def index
     @q = current_user.flyers.order(name: :asc).search(params[:q])

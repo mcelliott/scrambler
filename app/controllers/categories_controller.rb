@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   respond_to :html, :js
 
   decorates_assigned :category
-  decorates_assigned :categories
+  decorates_assigned :categories, with: PaginatedCollectionDecorator
 
   # GET /categories
   # GET /categories.json

@@ -1,0 +1,15 @@
+%table.index.responsive
+  %thead
+    %tr
+      %th Name
+      %th
+  %tbody#categories
+    - unless categories.present?
+      %tr{ id: 'empty-categories-list' }
+        %td.text-center{ colspan: 2 }
+          .empty-list-panel= fa_icon('frown-o', text: 'No Categories')
+    - categories.each do |category|
+      %tr{ id: "category-#{category.id}" }
+        = render category
+
+%div#pages= paginate categories

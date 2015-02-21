@@ -25,7 +25,10 @@
     .event-teams
       %h4 Rounds
       .teams-list
-        = render 'events/rounds'
+        - if event.rounds?
+          = render 'events/rounds'
+        - else
+          .empty-list.empty-rounds-list.text-center= fa_icon('frown-o', text: 'No Rounds')
 
 .new-teams.large-12.columns
   %div.generating-teams

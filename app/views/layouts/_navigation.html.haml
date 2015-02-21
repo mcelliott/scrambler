@@ -1,5 +1,3 @@
--# navigation styled for Zurb Foundation 5
--# the syntax for data-topbar may need to change for Zurb Foundation 5
 %nav.top-bar{"data-topbar" => true}
   %ul.title-area
     %li.name
@@ -7,6 +5,5 @@
     %li.toggle-topbar.menu-icon
       %a{:href => "#"}
         %span
-  .top-bar-section
-    %ul
-      = render 'layouts/navigation_links'
+  %section.top-bar-section
+    = render 'layouts/navigation_links'

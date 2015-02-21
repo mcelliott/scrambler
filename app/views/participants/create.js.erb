@@ -1,5 +1,5 @@
 <% unless participant.errors.present? %>
-  $(".participant-list .panel #category-<%= participant.category.id %>").append('<%= j(render partial: 'participants/participant', locals: { p: participant }) %>');
+  $('.participant-list').html("<%= j(render 'events/participants') %>")
   flash_row('#participant-<%= participant.id %>');
   $('.select2-container').select2('val', '');
   $('.empty-participants-list').hide();

@@ -25,6 +25,6 @@ $(function() {
 
 function flash_row(id) {
   setTimeout(function () {
-    $(id).effect("highlight", {}, 3000);
+    $(id).effect("highlight", { color: '#91c600' }, 3000);
   }, 500);
 }

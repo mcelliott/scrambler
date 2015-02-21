@@ -13,17 +13,5 @@
           = f.submit 'Search', class: 'button-xs search-btn'
 
   .small-12.small-centered.columns
-    - if @flyers.present?
-      %table.index.responsive
-        %thead
-          %tr
-            %th Name
-            %th Email
-            %th Hours
-            %th
-        %tbody#flyers
-          = render 'flyers'
-      #pages= paginate @flyers
-    - else
-      .empty-list.text-center
-        = fa_icon('frown-o', text: 'No flyers')
+    #flyer-list
+      = render 'flyers'

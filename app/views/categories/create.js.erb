@@ -1,8 +1,9 @@
-<% unless @category.errors.present? %>
-$('#modal').foundation('reveal', 'close');
-$('tbody#categories').prepend('<tr id="category-<%= @category.id %>"><%= j(render @category) %></tr>');
-flash_row('tr#category-<%= @category.id %>');
+<% unless category.errors.present? %>
+  $('#modal').foundation('reveal', 'close');
+  $('#empty-categories-list').hide()
+  $('tbody#categories').prepend('<tr id="category-<%= category.id %>"><%= j(render category) %></tr>');
+  flash_row('tr#category-<%= category.id %>');
 <% else %>
-$('.modal-content').html('<%= j(render template: 'categories/new.html.haml') %>');
-$('#modal').foundation('reveal', 'open');
+  $('.modal-content').html('<%= j(render template: 'categories/new.html.haml') %>');
+  $('#modal').foundation('reveal', 'open');
 <% end %>

@@ -11,7 +11,7 @@ module EventsHelper
   end
 
   def edit_event_link(event)
-    link_to fa_icon('edit', text: 'Edit Event'), edit_event_path(event), remote_button_class
+    link_to fa_icon('pencil', text: 'Edit Event'), edit_event_path(event), remote_button_class
   end
 
   def expenses_link(event)
