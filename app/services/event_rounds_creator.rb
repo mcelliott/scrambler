@@ -23,7 +23,7 @@ class EventRoundsCreator
             # add participants then remove them from the permutations list
             unless has_team_flown_in_round?(round.reload, category, team_participants)
 
-              create_team_participants(round, team, team_participants)
+              create_team_participants(team, team_participants)
               combinations(participants, category.id).delete(team_participants)
               break
             end
@@ -32,7 +32,7 @@ class EventRoundsCreator
           # deal with odd teams
           unless team.size == event.team_size
             odd_participants = combinations(participants, category.id).flatten.uniq - round_team_participants(round, category)
-            create_team_participants(round, team, [odd_participants.first])
+            create_team_participants(team, [odd_participants.first])
           end
         end
       end
@@ -59,9 +59,9 @@ class EventRoundsCreator
     @permutations[category_id] ||= participants.map(&:id).combination(event.team_size).to_a.shuffle
   end
 
-  def create_team_participants(round, team, team_participants)
+  def create_team_participants(team, team_participants)
     team_participants.each do |participant_id|
-      TeamParticipantCreator.new(event, round, participant_id, team).perform
+      TeamParticipantCreator.new(event, participant_id, team).perform
     end
   end
 

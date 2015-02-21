@@ -1,15 +1,15 @@
 class TeamParticipantCreator
 
-  def initialize(event, round, participant_id, team)
+  def initialize(event, participant_id, team, placeholder = false)
     @event = event
-    @round = round
     @participant_id = participant_id
     @team = team
+    @placeholder = placeholder
   end
 
   def perform
     if @participant_id.present?
-      EventScoreCreator.new(@event, team_participant, @round).perform
+      EventScoreCreator.new(@event, team_participant, @team.round).perform
       team_participant
     end
   end
@@ -21,6 +21,10 @@ class TeamParticipantCreator
   end
 
   def team_participant
-    @team_participant ||= TeamParticipant.create!(user: user, team: @team, event: @event, participant_id: @participant_id)
+    @team_participant ||= TeamParticipant.create!(user: user,
+                                                  team: @team,
+                                                  event: @event,
+                                                  participant_id: @participant_id,
+                                                  placeholder: @placeholder)
   end
 end
