@@ -2,7 +2,7 @@
   %h2.text-center Events
 
 .row
-  .small-12.small-centered.columns
+  .large-12.small-12.columns.small-centered
     .panel{ style: 'padding-bottom: 0;' }
       .row.collapse
         .right
@@ -13,7 +13,7 @@
           = f.search_field :event_date_eq, placeholder: 'Event Date', class: 'small-3 columns datepicker event-date'
           = f.submit 'Search', class: 'button-xs search-btn'
 
-  .large-12.small-centered.columns
+  .large-12.small-12.columns.small-centered
     #event-list
       = render 'events'
 

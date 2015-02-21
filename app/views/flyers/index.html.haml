@@ -1,7 +1,7 @@
 %h2.text-center Flyers
 
 .row
-  .small-12.small-centered.columns
+  .large-12.small-12.columns.small-centered
     .panel{ style: 'padding-bottom: 0;' }
       .row.collapse
         .right
@@ -12,6 +12,6 @@
           = f.search_field :name_or_email_cont, placeholder: 'Search Name or Location', class: 'small-3 columns'
           = f.submit 'Search', class: 'button-xs search-btn'
 
-  .small-12.small-centered.columns
+  .large-12.small-12.columns.small-centered
     #flyer-list
       = render 'flyers'
