@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20150212115918) do
   enable_extension "uuid-ossp"
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -37,27 +37,27 @@ ActiveRecord::Schema.define(version: 20150212115918) do
 
   create_table "events", force: :cascade do |t|
     t.date     "event_date"
-    t.string   "location",         limit: 255
+    t.string   "location"
     t.integer  "user_id"
-    t.string   "name",             limit: 255
+    t.string   "name"
     t.integer  "team_size"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "num_rounds"
-    t.uuid     "uuid",                         default: "uuid_generate_v4()"
-    t.integer  "email_count",                  default: 0
+    t.uuid     "uuid",             default: "uuid_generate_v4()"
+    t.integer  "email_count",      default: 0
     t.decimal  "participant_cost"
-    t.decimal  "rate_per_minute",              default: 0.0
-    t.decimal  "time_per_round",               default: 1.0
+    t.decimal  "rate_per_minute",  default: 0.0
+    t.decimal  "time_per_round",   default: 1.0
   end
 
   create_table "flyers", force: :cascade do |t|
     t.decimal  "hours"
-    t.string   "name",       limit: 255
+    t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",      limit: 255
+    t.string   "email"
   end
 
   create_table "participants", force: :cascade do |t|
@@ -88,10 +88,10 @@ ActiveRecord::Schema.define(version: 20150212115918) do
   end
 
   create_table "settings", force: :cascade do |t|
-    t.string   "var",         limit: 255, null: false
+    t.string   "var",         null: false
     t.text     "value"
-    t.integer  "target_id",               null: false
-    t.string   "target_type", limit: 255, null: false
+    t.integer  "target_id",   null: false
+    t.string   "target_type", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 20150212115918) do
 
   create_table "teams", force: :cascade do |t|
     t.integer  "event_id"
-    t.string   "name",        limit: 255
+    t.string   "name"
     t.integer  "user_id"
     t.integer  "category_id"
     t.datetime "created_at"
@@ -119,23 +119,23 @@ ActiveRecord::Schema.define(version: 20150212115918) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",                   limit: 255
-    t.string   "confirmation_token",     limit: 255
+    t.string   "name"
+    t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email",      limit: 255
+    t.string   "unconfirmed_email"
     t.integer  "role"
   end
 

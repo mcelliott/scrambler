@@ -43,9 +43,10 @@ class EventsController < ApplicationController
   end
 
   def generate
-    ts = TeamService.new(params)
-    ts.create_team_participants
-    @event = ts.event.reload
+    event_rounds_creator = EventRoundsCreator.new(params)
+    event_rounds_creator.reset
+    event_rounds_creator.perform
+    @event = event_rounds_creator.event.reload
   end
 
   def email

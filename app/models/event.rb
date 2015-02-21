@@ -2,6 +2,7 @@ class Event < ActiveRecord::Base
   has_many :participants, dependent: :destroy
   has_many :rounds, dependent: :destroy
   has_many :payments, dependent: :destroy
+  has_many :teams
 
   belongs_to :user
 
@@ -27,6 +28,10 @@ class Event < ActiveRecord::Base
 
   def title
     "#{name} - #{event_date}"
+  end
+
+  def categories_participants
+    participants.group_by { |p| p.category }
   end
 
   paginates_per 20
