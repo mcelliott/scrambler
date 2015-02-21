@@ -7,7 +7,7 @@
       %th
   %tbody#flyers
     - unless flyers.present?
-      %tr{ id: 'empty-flyers-list' }
+      %tr#empty-flyers-list
         %td.text-center{ colspan: 4 }
           .empty-list-panel= fa_icon('frown-o', text: 'No Flyers')
     - flyers.each do |flyer|

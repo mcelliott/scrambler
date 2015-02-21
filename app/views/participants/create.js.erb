@@ -1,8 +1,8 @@
 <% unless participant.errors.present? %>
-  $('.participant-list').html("<%= j(render 'events/participants') %>")
+  $('#empty-participants-list').hide();
+  $('#participant-list').html("<%= j(render 'events/participants') %>");
   flash_row('#participant-<%= participant.id %>');
   $('.select2-container').select2('val', '');
-  $('.empty-participants-list').hide();
 <% end %>
 
-Scrambler.update_messages("<%= j(render 'layouts/messages') %>")
+Scrambler.update_messages("<%= j(render 'layouts/messages') %>");

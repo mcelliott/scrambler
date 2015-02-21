@@ -2,6 +2,7 @@ class ParticipantsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
+  decorates_assigned :event
   decorates_assigned :participant
   decorates_assigned :team_participant
 
@@ -18,6 +19,7 @@ class ParticipantsController < ApplicationController
     @participant.number = Participant.participant_number(current_event)
     @participant.create_payment(event: current_event, amount: current_event.participant_cost)
     flash[:notice] = 'Participant was successfully created.' if @participant.save
+    event.reload
   end
 
   # DELETE /participants/1

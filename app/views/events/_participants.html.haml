@@ -1,4 +1,8 @@
 %ul
+  - unless event.category_participants.present?
+    %li#empty-participants-list.text-center
+      .empty-list-panel= fa_icon('frown-o', text: 'No Participants')
+
   - event.category_participants.each do |category, participants|
     %li.participant-category{ id: "category-#{category.id}" }
       .custom-panel

@@ -5,7 +5,7 @@
       %th
   %tbody#categories
     - unless categories.present?
-      %tr{ id: 'empty-categories-list' }
+      %tr#empty-categories-list
         %td.text-center{ colspan: 2 }
           .empty-list-panel= fa_icon('frown-o', text: 'No Categories')
     - categories.each do |category|

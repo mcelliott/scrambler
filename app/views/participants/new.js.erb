@@ -1,5 +1,5 @@
-$('.new-participant').html('<%= j(render "participants/form") %>');
-$('.new-participant').show();
+$('#new-participant').html('<%= j(render "participants/form") %>');
+$('#new-participant').show();
 $('.new-participant-button').hide();
 $("select#participant_flyer_id").select2({
   placeholder: "Select Flyer",
@@ -13,6 +13,6 @@ $("select#participant_category_id").select2({
 
 $("#hide-participant").on('click', function(e) {
   e.preventDefault();
-  $('.new-participant').hide();
+  $('#new-participant').hide();
   $('.new-participant-button').show();
 });

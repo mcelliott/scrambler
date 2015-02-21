@@ -14,21 +14,15 @@
   .large-5.columns
     .event-participants
       %h4 Participants
-      .new-participant
-      .participant-list
-        - if event.participants?
-          = render 'events/participants'
-        - else
-          .empty-list.empty-participants-list.text-center= fa_icon('frown-o', text: 'No Participants')
+      #new-participant
+      #participant-list
+        = render 'events/participants'
 
   .large-7.columns
     .event-teams
       %h4 Rounds
-      .teams-list
-        - if event.rounds?
-          = render 'events/rounds'
-        - else
-          .empty-list.empty-rounds-list.text-center= fa_icon('frown-o', text: 'No Rounds')
+      #teams-list
+        = render 'events/rounds'
 
 .new-teams.large-12.columns
   %div.generating-teams

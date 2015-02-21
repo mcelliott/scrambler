@@ -19,6 +19,11 @@
       .tabs-content
         - event.rounds.each_with_index do |round, i|
           = active_content(i, "panel-#{round.round_number}") do
-            - event.teams_by_category(round).each_with_index do |(category_name, teams), index|
+            - teams_by_category = event.teams_by_category(round)
+            - unless teams_by_category.present?
+              #empty-teams-list.text-center
+                .empty-list-panel= fa_icon('frown-o', text: "No Teams for Round #{round.round_number}")
+
+            - teams_by_category.each_with_index do |(category_name, teams), index|
               = team_category(index) do
                 = render partial: 'teams/teams', locals: { teams: teams, category_name: category_name }

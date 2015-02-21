@@ -1,8 +1,8 @@
 <% unless team.errors.present? %>
   $('#modal').foundation('reveal', 'close');
+  $('#empty-teams-list').hide();
   $('#team-<%= team.id %> .team-participant-list').append('<%= j(render partial: 'teams/team_participant', locals: { team_participant: team_participant }) %>');
   flash_row('#team-<%= team.id %>');
-  $('.empty-teams-list').hide();
 <% else %>
   $('.modal-content').html('<%= j(render template: 'teams/participant/new.html.haml') %>');
   $('#modal').foundation('reveal', 'open');

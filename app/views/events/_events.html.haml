@@ -9,7 +9,7 @@
       %th
   %tbody#events
     - unless events.present?
-      %tr{ id: 'empty-events-list' }
+      %tr#empty-events-list
         %td.text-center{ colspan: 6 }
           .empty-list-panel= fa_icon('frown-o', text: 'No Events')
     - events.each do |event|
