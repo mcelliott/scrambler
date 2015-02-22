@@ -1,6 +1,6 @@
 %h3.text-center Resend instructions
 .row
-  .large-4.small-6.columns.small-centered.underline
+  .large-4.medium-8.small-10.columns.small-centered.underline
     = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
       = f.full_error :confirmation_token
       = f.input :email, as: :email, autofocus: true
@@ -10,6 +10,6 @@
 -#  .large-4.small-6.columns.small-centered.text-center
 -#    = link_to 'Sign up', new_registration_path(resource_name)
 .row
-  .large-4.small-6.columns.small-centered.text-center
+  .large-4.medium-8.small-10.columns.small-centered.text-center
     = link_to 'Sign in', new_session_path(resource_name)
 

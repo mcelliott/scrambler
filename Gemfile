@@ -40,6 +40,7 @@ gem 'money-rails'
 gem 'autonumeric-rails'
 gem 'pretty_backtrace'
 gem 'gravatarify', '~> 3.0.0'
+gem 'apartment'
 
 group :development do
   gem 'better_errors'
@@ -66,6 +67,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'byebug'
+  gem 'dotenv-rails'
 end
 group :production do
   gem 'puma'

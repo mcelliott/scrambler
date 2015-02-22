@@ -7,4 +7,9 @@ module ApplicationHelper
   def flyer_filters
     [{ field: :name_or_email_cont, placeholder: 'Search Name or Email', width: 'small-3' }]
   end
+
+  def domain_url(domain)
+    return "http://#{domain}.127.0.0.1.xip.io:5000" if Rails.env.development?
+    "#{domain}.tunnelscrambler.herokuapp.com"
+  end
 end

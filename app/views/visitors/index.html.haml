@@ -1,7 +1,18 @@
-%div.small-8.columns.small-centered
+%div.large-12.small-12.columns.small-centered
 
   %h3.text-center
-    Tunnel Scrambler
+    Welcome to #{Tenant.current.name} Tunnel Scrambler
 
-  %div.main-logo.text-center
-    = image_tag('scrambler-white.png')
+  - if @tenants.present?
+    - @tenants.each do |country, tenants|
+      %div.large-6.small-12.columns
+        .panel
+          %h4= country
+          %ul
+            - tenants.each do |tenant|
+              %li.company-label
+                = link_to tenant.name, domain_url(tenant.domain)
+  - else
+    %div.main-logo.text-center
+      = image_tag('scrambler-white.png')
+

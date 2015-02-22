@@ -1,7 +1,7 @@
 .row.flyer-list-item{ id: "participant-#{p.id}" }
   .large-12.small-12.columns
-    .large-7.small-6.columns.participant-name= "#{p.number}. #{p.flyer.name}"
-    .large-5.small-6.columns.text-right
+    .large-7.small-12.columns.participant-name= "#{p.number}. #{p.flyer.name}"
+    .large-5.small-12.columns.text-right
       = link_to fa_icon('info', text: ''), event_participant_path(p, event_id: p.event.id), class: 'participant-button button-xs', remote: true
       %span{ id: "payment-icon-#{p.id}" }= link_to fa_icon('money', text: ''), edit_event_payment_path(p.payment, event_id: p.event.id), class: "participant-button button-xs #{p.payed? ? 'payed' : 'unpayed' }", remote: true
       = link_to fa_icon('trash-o', text: ''), event_participant_path(p, event_id: p.event.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'participant-button button-xs', remote: true

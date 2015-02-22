@@ -116,6 +116,7 @@ $jet         : #222222;
 $black       : #000000;
 $background-color: #eeeeee;
 $button-background-color: #444444;
+$scambler-green: #91c600;
 
 // We use these as default colors throughout
 $primary-color: #008CBA;
@@ -1520,4 +1521,22 @@ div.field_with_errors {
 
 ul.button-group li a {
   margin-bottom: 0 !important;
+}
+
+.company-label {
+  @include label(
+    $padding:20px,
+    $text-size:16px,
+    $bg: #444,
+    $radius: $global-radius
+  );
+  color: $scambler-green !important;
+  min-width: 150px;
+
+  a {
+    color: $scambler-green !important; }
+
+  &:hover {
+    background-color: lighten(#444, 15%);
+  }
 }

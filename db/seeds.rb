@@ -5,34 +5,30 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-user = CreateAdminService.new.call
-puts 'CREATED ADMIN USER: ' << user.email
-
-flyers = ['Matt', 'Giedre', 'Barb', 'Mark', 'Mike', 'Holly']
-flyers.each do |flyer|
-  user.flyers.create!(name: flyer, hours: 50, user: user, email: "#{flyer.downcase}@example.com")
+if Apartment::Tenant.current == 'public'
+  tenant = TenantCreator.new(name: 'iFly Penrith', domain: 'iflypenrith', database: 'iflypenrith').perform
+  tenant.settings(:current).country = 'Australia'
+  tenant.save
+  tenant.switch!
 end
 
-['Head Down', 'Head Up'].each do |category|
-  user.categories.create!(name: category, user: user)
+
+def tenants
+  [
+      'Australia' => {
+          penrith:     { name: 'iFly Penrith', domain: 'iflypenrith', database: 'iflypenrith' },
+          goldcoast:   { name: 'iFly Gold Coast', domain: 'iflygoldcoast', database: 'iflygoldcoast' }
+      },
+      'U.S.A' => {
+          eloy:        { name: 'Eloy', domain: 'eloy', database: 'eloy' },
+          paracletexp: { name: 'Paraclete XP', domain: 'paracletexp', database: 'paracletexp' },
+      },
+      'Norway' => {
+          voss:        { name: 'Voss Vind', domain: 'vossvind', database: 'vossvind' },
+      },
+      'Germany' => {
+          bottrop:     { name: 'Bottrop', domain: 'bottrop', database: 'bottrop' },
+      }
+  ]
 end
 
-event = Event.create!(name: 'Freefly', location: 'ifly', event_date: 1.month.from_now, team_size: 2, user: user, num_rounds: 3, participant_cost: 100.0 )
-
-Flyer.all.each_with_index do |flyer, index|
-  p = event.participants.build(user: user, flyer: flyer, category: Category.first, number: event.participants.count+1)
-  p.create_payment(event: event, amount: event.participant_cost)
-  p.save!
-end
-
-flyers = ['Tim', 'Yana', 'Rampage', 'Tali', 'Sally', 'Millie', 'Amber']
-flyers.each do |flyer|
-  user.flyers.create!(name: flyer, hours: 10, user: user, email: "#{flyer.downcase}@example.com")
-end
-
-flyers.each_with_index do |flyer, index|
-  f = Flyer.find_by name: flyer
-  p = event.participants.build(user: user, flyer: f, category: Category.last, number: event.participants.count+1)
-  p.create_payment(event: event, amount: event.participant_cost)
-  p.save!
-end
