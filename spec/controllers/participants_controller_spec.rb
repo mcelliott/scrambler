@@ -49,7 +49,7 @@ describe ParticipantsController do
         5.times do
           create(:participant, user: user, event: event, category: category)
         end
-        TeamService.new({ event_id: event.id }).create_team_participants
+        EventRoundsCreator.new({ event_id: event.id }).perform
       end
 
       it 'should delete the team_participant for each round' do

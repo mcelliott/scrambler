@@ -6,10 +6,16 @@ class TeamParticipant < ActiveRecord::Base
 
   has_one :event_score, dependent: :destroy
 
-  validates :participant, presence: true
-  validates :event,       presence: true
-  validates :team,        presence: true
-  validates :user,        presence: true
+  validates :participant_id, presence: true
+  validates :event_id,    presence: true
+  validates :team_id,     presence: true
+  validates :user_id,     presence: true
+
+  delegate :category, to: :participant, prefix: true
+
+  def self.for_category(category_id)
+    joins(:participant).where(participants: { category_id: category_id })
+  end
 
   def event_total
     EventScore.where(participant_id: participant_id).sum(:score)

@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe TeamService do
+describe EventRoundsCreator do
 
-  let(:event)            { create(:event) }
-  let(:team_service)     { TeamService.new({event_id: event.id}) }
-  let(:num_participants) { 6 }
-  let(:category)         { create(:category, user: event.user) }
+  let(:event)                { create(:event) }
+  let(:event_rounds_creator) { described_class.new({event_id: event.id}) }
+  let(:num_participants)     { 6 }
+  let(:category)             { create(:category, user: event.user) }
 
   before do
     num_participants.times do
@@ -16,11 +16,11 @@ describe TeamService do
   context 'create_team_participants' do
     let(:num_team_participants) { event.num_rounds * num_participants }
     it 'should create team participants' do
-      expect{ team_service.create_team_participants }.to change{ TeamParticipant.count }
+      expect{ event_rounds_creator.perform }.to change{ TeamParticipant.count }
     end
 
     context '2 team participants' do
-      before { team_service.create_team_participants }
+      before { event_rounds_creator.perform }
       it 'should create both team participants with correct event_id' do
         expect(TeamParticipant.first.event_id).to eq event.id
         expect(TeamParticipant.last.event_id).to eq event.id

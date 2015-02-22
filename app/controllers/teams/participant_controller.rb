@@ -13,16 +13,16 @@ class Teams::ParticipantController < ApplicationController
   end
 
   def create
-    @team_participant = current_user.team_participants.build(team: current_team,
-                                                        event: current_event,
-                                                        participant: current_participant,
-                                                        placeholder: participant_params[:placeholder])
+    # @team_participant = current_user.team_participants.build(team: current_team,
+    #                                                     event: current_event,
+    #                                                     participant: current_participant,
+    #                                                     placeholder: participant_params[:placeholder])
 
-
-    if @team_participant.save
-      create_event_score
-      flash[:notice] = 'Participant was successfully added.'
-    end
+    @team_participant = TeamParticipantCreator.new(current_event,
+                                                   current_participant.id,
+                                                   current_team,
+                                                   participant_params[:placeholder]).perform
+    flash[:notice] = 'Participant was successfully added.' if @team_participant
   end
 
   def destroy
@@ -36,17 +36,6 @@ class Teams::ParticipantController < ApplicationController
   end
 
   private
-
-
-  def create_event_score
-    # TODO
-    EventScore.create!(user: current_event.user,
-                       team_participant: @team_participant,
-                       round: current_team.round,
-                       event: current_event,
-                       participant: current_participant,
-                       score: 0)
-  end
 
   def next_participant
     current_event.participants.count + 1
