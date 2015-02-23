@@ -1,29 +1,17 @@
 %h2.heading.text-center= "#{event.name} - #{event.event_date}"
 .large-12.medium-12.small-12.columns
-  .large-12.medium-12.small-12.columns
-    .panel{ style: 'padding-bottom: 0;' }
-      .row.collapse
-        %ul.actions-list
-          %li= edit_event_link(event)
-          %li#expenses= expenses_link(event)
-          %li= new_participant_link(event)
-          %li= generate_teams_link(event)
-          %li#show-teams= show_teams_link(event)
 
+  .panel{ style: 'padding-bottom: 0;' }
+    .row.collapse
+      %ul.actions-list
+        %li= edit_event_link(event)
+        %li#expenses= expenses_link(event)
+        %li= new_participant_link(event)
+        %li= generate_teams_link(event)
+        %li#show-teams= show_teams_link(event)
 
-  .large-5.small-12.columns
-    .event-participants
-      %h4 Participants
-      #new-participant
-      #participant-list
-        = render 'events/participants'
-
-  .large-7.small-12.columns
-    .event-teams
-      %h4 Rounds
-      #teams-list
-        = render 'events/rounds'
-
+.large-12.medium-12.small-12.columns.vertical-tab-container#teams-list
+  = render 'events/rounds'
 .new-teams.large-12.medium-12.small-12.columns
   %div.generating-teams
     %i.fa.fa-refresh.fa-spin

@@ -1,6 +1,8 @@
 <% unless participant.errors.present? %>
+  $('#modal').foundation('reveal', 'close');
   $('#empty-participants-list').hide();
   $('#participant-list').html("<%= j(render 'events/participants') %>");
+  $('.tabs').find('a[href$="#participants-tab"]').trigger('click');
   flash_row('#participant-<%= participant.id %>');
   $('.select2-container').select2('val', '');
 <% end %>

@@ -1,6 +1,6 @@
-$('#new-participant').html('<%= j(render "participants/form") %>');
-$('#new-participant').show();
-$('.new-participant-button').hide();
+$('.modal-content').html('<%= j(render template: "participants/new.html.haml") %>')
+$('#modal').foundation('reveal', 'open')
+
 $("select#participant_flyer_id").select2({
   placeholder: "Select Flyer",
   dropdownAutoWidth: true

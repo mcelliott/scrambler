@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
+  before_action :participant, only: [:show]
   load_and_authorize_resource except: [:new, :generate, :create, :email, :index]
   respond_to :html, :js
 
@@ -54,6 +55,11 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def participant
+    @participant = Participant.new
+    @participant.event = @event
+  end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params

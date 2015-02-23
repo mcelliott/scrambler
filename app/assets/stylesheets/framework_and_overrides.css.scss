@@ -88,6 +88,23 @@ form {
     width: 300px;
   }
 
+  .select2-container .select2-choice {
+    display: block;
+    margin: 0 0 1rem 0;
+    padding: 0.2rem 0.5rem;
+    height: 2.2rem;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .select2-container .select2-choice .select2-arrow {
+    width: 40px;
+    color: #fff;
+    padding: 4px 12px;
+  }
+
   input[type="checkbox"] {
     margin-right: 5px;
   }
@@ -139,8 +156,13 @@ ul {
 }
 
 .participant-select2 {
-  width: 50%;
-  margin-bottom: 5px !important;
+  width: 100%;
+  margin-right: 5px !important;
+}
+
+#new-participant-form {
+  padding-left: 0 !important; /* change the values to anything that you want */
+  padding-right: 0px !important;
 }
 
 .underline {
@@ -185,8 +207,19 @@ table.index {
   }
 }
 
+.vertical-tab-container {
+  .event-content {
+    padding-left: 0px !important; /* change the values to anything that you want */
+    padding-right: 0px !important;
+  }
+}
+
 table.index tr {
   border-bottom: 1px solid #ddd;
+}
+
+.left-tabs {
+  padding-bottom: 2px;
 }
 
 ul.tabs li.tab-title a {
@@ -194,14 +227,23 @@ ul.tabs li.tab-title a {
   font-size: .7525em;
 }
 
+ul.tabs li.tab-title {
+  margin-right: 2px;
+}
+
 ul.tabs li.tab-title.active {
-  border-left: 1px solid $border-color;
-  border-right: 1px solid $border-color;
   border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+  border-left: 1px solid $border-color;
 }
 
 ul.tabs li.tab-title.active a {
   background-color: #fff !important;
+}
+
+ul.tabs.vertical {
+  width: 100% !important;
+  max-width: 100%;
 }
 
 .tabs-content {
