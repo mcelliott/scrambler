@@ -1,6 +1,6 @@
 = simple_form_for @flyer, remote: true do |f|
   = f.error_notification
-  = f.input :name, placeholder: 'Name'
-  = f.input :email, placeholder: 'Email'
+  = f.input :name
+  = f.input :email
   = f.input :hours, label: 'Number of Tunnel Hours'
   = f.button :submit, class: 'button-xs radius'
