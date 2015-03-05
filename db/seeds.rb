@@ -5,30 +5,24 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+def create_tenant(continent, country, params)
+    tenant = TenantCreator.new(params).perform
+    tenant.settings(:current).country = country
+    tenant.settings(:current).continent = continent
+    tenant.save
+end
+
+def create_tenants
+  create_tenant('Australia', 'Australia', { name: 'iFly Penrith', domain: 'iflypenrith', database: 'iflypenrith' })
+  create_tenant('Australia', 'Australia', { name: 'iFly Gold Coast', domain: 'iflygoldcoast', database: 'iflygoldcoast' })
+  create_tenant('North America', 'U.S.A', { name: 'Eloy', domain: 'eloy', database: 'eloy' })
+  create_tenant('North America', 'U.S.A', { name: 'Paraclete XP', domain: 'paracletexp', database: 'paracletexp' })
+  create_tenant('Europe', 'Norway',       { name: 'Voss Vind', domain: 'vossvind', database: 'vossvind' })
+  create_tenant('Europe', 'Germany',      { name: 'Bottrop', domain: 'bottrop', database: 'bottrop' })
+  create_tenant('Asia', 'Singapore',      { name: 'Singapore', domain: 'singapore', database: 'singapore' })
+end
+
 if Apartment::Tenant.current == 'public'
-  tenant = TenantCreator.new(name: 'iFly Penrith', domain: 'iflypenrith', database: 'iflypenrith').perform
-  tenant.settings(:current).country = 'Australia'
-  tenant.save
-  tenant.switch!
+  create_tenants
+  Tenant.first.switch!
 end
-
-
-def tenants
-  [
-      'Australia' => {
-          penrith:     { name: 'iFly Penrith', domain: 'iflypenrith', database: 'iflypenrith' },
-          goldcoast:   { name: 'iFly Gold Coast', domain: 'iflygoldcoast', database: 'iflygoldcoast' }
-      },
-      'U.S.A' => {
-          eloy:        { name: 'Eloy', domain: 'eloy', database: 'eloy' },
-          paracletexp: { name: 'Paraclete XP', domain: 'paracletexp', database: 'paracletexp' },
-      },
-      'Norway' => {
-          voss:        { name: 'Voss Vind', domain: 'vossvind', database: 'vossvind' },
-      },
-      'Germany' => {
-          bottrop:     { name: 'Bottrop', domain: 'bottrop', database: 'bottrop' },
-      }
-  ]
-end
-

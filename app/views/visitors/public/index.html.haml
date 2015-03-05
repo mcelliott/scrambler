@@ -1,0 +1,13 @@
+%div.large-12.small-12.columns.small-centered
+
+  %h3.text-center
+    Tunnel Scrambler
+
+  - @tenants.each do |continent, tenants|
+    %div.large-6.small-12.columns
+      .panel
+        %h4= continent
+        %ul
+          - tenants.each do |tenant|
+            %li.company-label
+              = link_to tenant.name, domain_url(tenant.domain)

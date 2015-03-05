@@ -26,5 +26,10 @@ Rails.application.routes.draw do
   root to: 'visitors#index'
   devise_for :users
 
+  namespace :admin do
+    resources :tenants
+    resources :dashboard, only: :index
+  end
+
   mount Sidekiq::Web, at: '/sidekiq' unless Rails.env.production?
 end

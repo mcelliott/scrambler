@@ -1,0 +1,21 @@
+.large-12.small-12.columns
+  .large-6.small-12.columns.small-centered
+    %h4.text-center Tenants
+  .large-6.small-12.columns.small-centered
+    %table.table.index
+      %thead
+        %tr
+          %th Name
+          %th Domain
+          %th Database
+          %th
+      - @tenants.each do |tenant|
+        %tbody
+          %tr
+            %td= tenant.name
+            %td= tenant.domain
+            %td= tenant.database
+            %td.text-right
+              %ul.button-group.radius
+                %li= link_to fa_icon('pencil', text: ''), edit_admin_tenant_path(tenant), remote: true, class: 'button-xs'
+                %li= link_to fa_icon('trash-o', text: ''), admin_tenant_path(tenant), method: :delete, data: { confirm: 'Are you sure?' }, class: 'button-xs'

@@ -10,11 +10,11 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => exception.message
   end
 
-  # rescue_from ActiveRecord::RecordNotFound do
-  #   render_404
-  # end
+  rescue_from ActiveRecord::RecordNotFound do
+    render_404
+  end
 
-  # rescue_from StandardError, with: :render_500 unless Rails.env.development?
+  rescue_from StandardError, with: :render_500 unless Rails.env.development?
 
   def flash_to_headers
     return unless request.xhr?
@@ -48,5 +48,29 @@ class ApplicationController < ActionController::Base
   def nope
     flash[:error] = 'Nope!'
     redirect_to root_url
+  end
+
+  # 500 Internal Server Error
+  def render_500
+    respond_to do |type|
+      type.html { render template: 'shared/500', layout: 'errors', status: :not_found }
+      type.all  { render nothing: true, status: :internal_server_error }
+    end
+  end
+
+  # 404 Not Found
+  def render_404
+    respond_to do |type|
+      type.html { render template: 'shared/404', layout: 'errors', status: :not_found }
+      type.all  { render nothing: true, status: :not_found }
+    end
+  end
+
+  # 401 Unauthorized
+  def render_401
+    respond_to do |type|
+      type.html { render template: 'shared/401', layout: 'errors', status: :unauthorized }
+      type.all  { render nothing: true, status: :unauthorized }
+    end
   end
 end

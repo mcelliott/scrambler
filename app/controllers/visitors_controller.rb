@@ -1,21 +1,27 @@
 class VisitorsController < ApplicationController
-  before_action :public_tenant_data
+  before_action :tenant_data
 
   def index
   end
 
   private
 
-  def public_tenant_data
-    if Apartment::Tenant.current == 'public'
+  def tenant_data
+    if public?
       @tenants = {}
       Tenant.all.each do |tenant|
-        country = tenant.settings(:current).country
-        (@tenants[country] ||= []) << tenant
+        continent = tenant.settings(:current).continent
+        (@tenants[continent] ||= []) << tenant
       end
       @tenants = @tenants.sort { |a, b| a.first <=> b.first }
-    else
 
+      respond_to do |type|
+        type.html { render template: 'visitors/public/index.html.haml', layout: 'public/application' }
+      end
     end
+  end
+
+  def public?
+    Apartment::Tenant.current == 'public'
   end
 end

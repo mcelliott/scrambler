@@ -68,6 +68,7 @@ group :development, :test do
   gem 'simplecov'
   gem 'byebug'
   gem 'dotenv-rails'
+  gem 'faker'
 end
 group :production do
   gem 'puma'

@@ -1,7 +1,7 @@
 = simple_form_for @participant, url: event_participants_path, remote: true do |f|
   = f.error_notification
-  = f.input :flyer_id, as: :select, collection: current_user.flyers, label_method: :name, value_method: :id, label: false, input_html: { class: 'participant-select2' }
-  = f.input :category_id, as: :select, collection: current_user.categories, label_method: :name, value_method: :id, label: false, input_html: { class: 'participant-select2' }
-  = f.hidden_field :event_id, label: false, value: @participant.event.id
+  = f.input :flyer_id, as: :select, collection: current_user.flyers, label_method: :name, value_method: :id, input_html: { class: 'participant-select2' }
+  = f.input :category_id, as: :select, collection: current_user.categories, label_method: :name, value_method: :id, input_html: { class: 'participant-select2' }
+  = f.hidden_field :event_id, value: @participant.event.id
   = f.button :submit, 'Create', class: 'button-xs radius'
   %button#hide-participant.button-xs.radius Cancel
