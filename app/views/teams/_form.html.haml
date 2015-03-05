@@ -1,5 +1,5 @@
 = simple_form_for(@team) do |f|
   = f.error_notification
-  = f.input :name, label: false, placeholder: 'Team Name'
+  = f.input :name, label: 'Team Name'
   = f.hidden_field :event_id
   = f.button :submit, class: 'button-xs radius'
