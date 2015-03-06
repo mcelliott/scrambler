@@ -1,0 +1,10 @@
+<% unless @handicap.errors.present? %>
+$('#modal').foundation('reveal', 'close');
+$('tr#handicap-<%= @handicap.id %>').html('<%= j(render @handicap) %>');
+flash_row('tr#handicap-<%= @handicap.id %>');
+<% else %>
+$('.modal-content').html('<%= j(render template: "handicaps/new.html.haml") %>');
+$('#modal').foundation('reveal', 'open');
+<% end %>
+
+Scrambler.update_messages("<%= j(render 'layouts/messages') %>");

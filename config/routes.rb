@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :handicaps, only: [:index, :edit, :update]
   resources :event_scores, only: [:update]
   resources :flyer_imports, only: [:create, :new]
   resources :settings, only: [:index, :update]

@@ -10,7 +10,7 @@ puts 'CREATED ADMIN USER: ' << user.email
 
 flyers = ['Matt', 'Giedre', 'Barb', 'Mark', 'Mike', 'Holly']
 flyers.each do |flyer|
-  user.flyers.create!(name: flyer, hours: 50, user: user, email: "#{flyer.downcase}@example.com")
+  user.flyers.create!(name: flyer, hours: 0, user: user, email: "#{flyer.downcase}@example.com")
 end
 
 ['Head Down', 'Head Up'].each do |category|
@@ -27,7 +27,7 @@ end
 
 flyers = ['Tim', 'Yana', 'Rampage', 'Tali', 'Sally', 'Millie', 'Amber']
 flyers.each do |flyer|
-  user.flyers.create!(name: flyer, hours: 10, user: user, email: "#{flyer.downcase}@example.com")
+  user.flyers.create!(name: flyer, hours: 0, user: user, email: "#{flyer.downcase}@example.com")
 end
 
 flyers.each_with_index do |flyer, index|

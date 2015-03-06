@@ -1,0 +1,6 @@
+%td= TunnelHours.key_for(handicap.hours).to_s.capitalize
+%td= handicap.hours_humanize
+%td= "#{handicap.amount} points"
+%td.text-right
+  %ul.button-group.radius
+    %li= link_to fa_icon('pencil', text: ''), edit_handicap_path(handicap), remote: true, class: 'button-xs'

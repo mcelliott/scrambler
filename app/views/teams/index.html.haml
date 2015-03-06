@@ -9,13 +9,13 @@
             %li= send_link(event)
             %li= go_to_event_link(event)
 
-  .small-12.columns
-    .panel.radius
-      %ul.tabs{ data: { tab: true, options: 'deep_linking:true' }, role: 'tablist' }
+  .large-12.medium-12.small-12.columns.vertical-tab-container
+    .large-2.medium-2.small-12.columns.event-content
+      %ul.tabs.vertical{ data: { tab: true, options: 'deep_linking:true' }, role: 'tablist' }
         - event.rounds.each_with_index do |r, index|
           = active_tab(index) do
             %a{ href: "#panel-#{r.round_number}", role: 'tab', tabindex: '0', aria: { selected: 'true' }, controls: "panel-#{r.round_number}" }= "Round #{r.round_number}"
-
+    .large-10.medium-10.small-12.columns.event-content
       .tabs-content
         - event.rounds.each_with_index do |round, i|
           = active_content(i, "panel-#{round.round_number}") do

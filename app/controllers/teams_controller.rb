@@ -21,7 +21,12 @@ class TeamsController < ApplicationController
 
   def team_view
     @event = Event.includes(:participants, :rounds).find_by(uuid: params[:uuid])
-    render :index
+    if @event
+      render :index
+    else
+      redirect_to root_path, alert: 'Cannot find event scores'
+    end
+
   end
 
   private

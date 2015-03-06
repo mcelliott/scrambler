@@ -1,0 +1,16 @@
+%h2.text-center Score Handicapping
+
+.row
+  .large-10.medium-10.small-12.columns.small-centered
+    #handicap-list
+      %table.index.responsive
+        %thead
+          %tr
+            %th Title
+            %th Tunnel Hours
+            %th Handicap Amount
+            %th
+        %tbody#handicaps
+          - @handicaps.each do |handicap|
+            %tr{ id: "handicap-#{handicap.id}" }
+              = render handicap

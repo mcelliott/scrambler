@@ -1,5 +1,5 @@
 class ParticipantsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :show
   load_and_authorize_resource
 
   decorates_assigned :event
@@ -35,7 +35,7 @@ class ParticipantsController < ApplicationController
   end
 
   def show
-    @participant = current_user.participants.find(params[:id])
+    @participant = Participant.find(params[:id])
   end
 
   private

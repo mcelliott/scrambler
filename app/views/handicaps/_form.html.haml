@@ -1,0 +1,4 @@
+= simple_form_for @handicap, remote: true do |f|
+  = f.error_notification
+  = f.input :amount
+  = f.button :submit, class: 'button-xs radius'
