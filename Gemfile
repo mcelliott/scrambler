@@ -40,6 +40,7 @@ gem 'money-rails'
 gem 'autonumeric-rails'
 gem 'pretty_backtrace'
 gem 'gravatarify', '~> 3.0.0'
+gem 'enumerate_it'
 
 group :development do
   gem 'better_errors'

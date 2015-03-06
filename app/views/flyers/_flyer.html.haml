@@ -1,6 +1,6 @@
 %td= flyer.name
 %td= flyer.email
-%td= flyer.hours
+%td= flyer.hours_humanize
 %td.text-right
   %ul.button-group.radius
     %li= link_to fa_icon('pencil', text: ''), edit_flyer_path(flyer), remote: true, class: 'button-xs'

@@ -2,5 +2,5 @@
   = f.error_notification
   = f.input :name
   = f.input :email
-  = f.input :hours, label: 'Number of Tunnel Hours'
+  = f.input :hours, collection: TunnelHours.to_a.sort{ |a, b| a.last <=> b.last }, include_blank: 'Please select', label: 'Number of Tunnel Hours'
   = f.button :submit, class: 'button-xs radius'
