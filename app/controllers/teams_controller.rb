@@ -8,6 +8,7 @@ class TeamsController < ApplicationController
   decorates_assigned :event
 
   def index
+    @leader_board = LeaderBoard.new(@event).results
   end
 
   def destroy
@@ -22,6 +23,7 @@ class TeamsController < ApplicationController
   def team_view
     @event = Event.includes(:participants, :rounds).find_by(uuid: params[:uuid])
     if @event
+      @leader_board = LeaderBoard.new(@event).results
       render :index
     else
       redirect_to root_path, alert: 'Cannot find event scores'

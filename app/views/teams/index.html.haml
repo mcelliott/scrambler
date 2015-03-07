@@ -15,6 +15,9 @@
         - event.rounds.each_with_index do |r, index|
           = active_tab(index) do
             %a{ href: "#panel-#{r.round_number}", role: 'tab', tabindex: '0', aria: { selected: 'true' }, controls: "panel-#{r.round_number}" }= "Round #{r.round_number}"
+        %li
+          = active_tab(event.rounds.size + 1) do
+            %a{ href: "#panel-leader-board", role: 'tab', tabindex: '0', aria: { selected: 'true' }, controls: "panel-leader-board" } Leader Board
     .large-10.medium-10.small-12.columns.event-content
       .tabs-content
         - event.rounds.each_with_index do |round, i|
@@ -27,3 +30,22 @@
             - teams_by_category.each_with_index do |(category_name, teams), index|
               = team_category(index) do
                 = render partial: 'teams/teams', locals: { teams: teams, category_name: category_name }
+        = active_content(event.rounds.size + 1, "panel-leader-board") do
+          .large-12.small-12.columns.small-centered
+            %table.index.responsive
+              %thead
+                %tr
+                  %th Name
+                  %th Score
+                  %th Handicap
+                  %th Total
+              %tbody#leader-board
+                - @leader_board.each do |lb_participant|
+                  %tr
+                    %td= lb_participant.name
+                    %td= lb_participant.score
+                    %td= lb_participant.handicap
+                    %td= lb_participant.total_score
+
+
+
