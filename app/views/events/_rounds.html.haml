@@ -17,7 +17,6 @@
         #participant-list
           = render 'events/participants'
 
-
     - event.rounds.each_with_index do |r, index|
       = active_content(index + 1, "panel-#{r.round_number}") do
         = render partial: 'events/teams', locals: { round: r }

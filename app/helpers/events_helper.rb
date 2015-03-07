@@ -6,8 +6,8 @@ module EventsHelper
     link_to fa_icon('plus', text: 'New Participant'), new_event_participant_path(event_id: event.id), remote_button_class('new-participant-button')
   end
 
-  def show_teams_link(event)
-    link_to fa_icon('table', text: 'Show Teams'), event_teams_path(event_id: event.id), button_class
+  def show_teams_link(event, text='Show Teams')
+    link_to fa_icon('table', text: text), event_teams_path(event_id: event.id), button_class
   end
 
   def edit_event_link(event)

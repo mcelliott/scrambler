@@ -35,13 +35,15 @@
             %table.index.responsive
               %thead
                 %tr
+                  %th Place
                   %th Name
                   %th Score
                   %th Handicap
                   %th Total
               %tbody#leader-board
-                - @leader_board.each do |lb_participant|
+                - @leader_board.each_with_index do |lb_participant, index|
                   %tr
+                    %td= "#{index + 1}."
                     %td= lb_participant.name
                     %td= lb_participant.score
                     %td= lb_participant.handicap
