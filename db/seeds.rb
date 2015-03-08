@@ -1,16 +1,9 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
 user = CreateAdminService.new.call
-puts 'CREATED ADMIN USER: ' << user.email
+puts 'CREATED USER: ' << user.email
 
-flyers = ['Matt', 'Giedre', 'Barb', 'Mark', 'Mike', 'Holly']
-flyers.each do |flyer|
-  user.flyers.create!(name: flyer, hours: 0, user: user, email: "#{flyer.downcase}@example.com")
+flyers = []
+50.times do
+  flyers << user.flyers.create!(name: Faker::Name.name, email: Faker::Internet.email, hours: (0..4).to_a.shuffle.first)
 end
 
 ['Head Down', 'Head Up'].each do |category|
@@ -19,20 +12,14 @@ end
 
 event = Event.create!(name: 'Freefly', location: 'ifly', event_date: 1.month.from_now, team_size: 2, user: user, num_rounds: 3, participant_cost: 100.0 )
 
-Flyer.all.each_with_index do |flyer, index|
+flyers[0..25].each do |flyer|
   p = event.participants.build(user: user, flyer: flyer, category: Category.first, number: event.participants.count+1)
   p.create_payment(event: event, amount: event.participant_cost)
   p.save!
 end
 
-flyers = ['Tim', 'Yana', 'Rampage', 'Tali', 'Sally', 'Millie', 'Amber']
-flyers.each do |flyer|
-  user.flyers.create!(name: flyer, hours: 0, user: user, email: "#{flyer.downcase}@example.com")
-end
-
-flyers.each_with_index do |flyer, index|
-  f = Flyer.find_by name: flyer
-  p = event.participants.build(user: user, flyer: f, category: Category.last, number: event.participants.count+1)
+flyers[26..49].each do |flyer|
+  p = event.participants.build(user: user, flyer: flyer, category: Category.last, number: event.participants.count+1)
   p.create_payment(event: event, amount: event.participant_cost)
   p.save!
 end
