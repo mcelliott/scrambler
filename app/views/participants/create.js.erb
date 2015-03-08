@@ -1,10 +1,14 @@
-<% unless participant.errors.present? %>
-  $('#modal').foundation('reveal', 'close');
+<% if  participant.errors.present? %>
+  $(".row#flyer-<%= participant.flyer.id %>").show();
+<% else %>
+  $(".row#flyer-<%= participant.flyer.id %>").remove();
   $('#empty-participants-list').hide();
   $('#participant-list').html("<%= j(render 'events/participants') %>");
-  $('.tabs').find('a[href$="#participants-tab"]').trigger('click');
   flash_row('#participant-<%= participant.id %>');
   $('.select2-container').select2('val', '');
 <% end %>
 
+if ($('#flyers .row').length == 0) {
+  $('#modal').foundation('reveal', 'close');
+}
 Scrambler.update_messages("<%= j(render 'layouts/messages') %>");

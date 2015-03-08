@@ -1,0 +1,2 @@
+class ParticipantsDecorator < PaginatedCollectionDecorator
+end

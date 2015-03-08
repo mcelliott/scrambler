@@ -8,17 +8,21 @@ class ParticipantsController < ApplicationController
 
   # GET /participants/new
   def new
-    @participant = Participant.new
-    @participant.event = current_event
+    @flyers = current_user.flyers.where.not(id: current_event.participants.map(&:flyer_id)).page(params[:page]).per(10)
   end
 
   # POST /participants
   # POST /participants.json
   def create
-    @participant = current_user.participants.build(participant_params)
+    @participant = current_user.participants.build(participant_params.merge(event_id: current_event.id))
     @participant.number = Participant.participant_number(current_event)
     @participant.create_payment(event: current_event, amount: current_event.participant_cost)
-    flash[:notice] = 'Participant was successfully created.' if @participant.save
+    if @participant.save
+      @success = true
+      flash[:notice] = 'Participant was successfully created.'
+    else
+      flash[:alert] = 'Failed to add Participant to event.'
+    end
     event.reload
   end
 
@@ -51,6 +55,6 @@ class ParticipantsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def participant_params
-    params.require(:participant).permit(:flyer_id, :category_id, :event_id)
+    params.require(:participant).permit(:flyer_id, :category_id)
   end
 end

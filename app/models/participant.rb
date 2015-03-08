@@ -9,7 +9,7 @@ class Participant < ActiveRecord::Base
 
   delegate :name, to: :flyer, prefix: true
 
-  validates :flyer_id,    presence: true
+  validates :flyer_id,    presence: true, uniqueness: { scope: :event_id, message: 'already exists' }
   validates :event_id,    presence: true
   validates :category_id, presence: true
   validates :user_id,     presence: true

@@ -1,7 +1,15 @@
-= simple_form_for @participant, url: event_participants_path, remote: true do |f|
-  = f.error_notification
-  = f.input :flyer_id, as: :select, collection: current_user.flyers, label_method: :name, value_method: :id, label: false, input_html: { class: 'participant-select2' }
-  = f.input :category_id, as: :select, collection: current_user.categories, label_method: :name, value_method: :id, label: false, input_html: { class: 'participant-select2' }
-  = f.hidden_field :event_id, label: false, value: @participant.event.id
-  = f.button :submit, 'Create', class: 'button-xs radius'
-  %button#hide-participant.button-xs.radius Cancel
+#flyers
+  - @flyers.each do |flyer|
+    .row{ id: "flyer-#{flyer.id}" }
+      .large-12.medium-12.small-12.columns.small-centered
+        = form_tag event_participants_path(event_id: @event.id), method: :post, remote: true do
+          .large-6.medium-6.small-6.columns
+            = submit_tag "Add #{flyer.name}", class: "button-xs radius add-flyer-button"
+          .large-6.medium-6.small-6.columns
+            = hidden_field_tag "participant[flyer_id]", flyer.id
+            = select_tag "participant[category_id]", options_for_select(current_user.categories.map { |c| [c.name, c.id]}), prompt: 'Please select', class: 'participant-select2'
+%div#pages= paginate @flyers, remote: true
+
+:coffeescript
+  $(document).on 'click', '.add-flyer-button', (e) ->
+    $(this).closest('.row').hide();
