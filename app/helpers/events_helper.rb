@@ -3,7 +3,7 @@ module EventsHelper
   ###### LINKS
 
   def new_participant_link(event)
-    link_to fa_icon('plus', text: 'New Participant'), new_event_participant_path(event_id: event.id), remote_button_class('new-participant-button')
+    link_to fa_icon('plus', text: 'Add Participants'), new_event_participant_path(event_id: event.id), remote_button_class('new-participant-button')
   end
 
   def show_teams_link(event, text='Show Teams')
@@ -20,6 +20,10 @@ module EventsHelper
 
   def generate_teams_link(event)
     button_to 'Generate Teams', { action: 'generate', event_id: event.id }, { class: 'button-xs radius', id: 'generate-teams', remote: true }
+  end
+
+  def generate_mixed_teams_link(event)
+    link_to 'Generate Mixed Teams',  event_generate_mixed_path(event), remote_button_class
   end
 
   def send_link(event)

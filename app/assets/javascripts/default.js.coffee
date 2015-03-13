@@ -9,9 +9,10 @@ $ ->
     placeholder: "Select Flyer"
     dropdownAutoWidth : true
 
-  $(document).on "click", "#generate-teams", (e) ->
+  $(document).on "click", "#generate-teams, #generate-mixed-teams", (e) ->
     e.preventDefault()
     $(@).attr('disabled', true)
+    $('#modal').foundation('reveal', 'close');
     $('div.generating-teams').show()
     $(@).parents('form').submit()
 

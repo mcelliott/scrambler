@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :events do
     post :generate
+    get :generate_mixed
     put :email
     resources :teams, only: [:index, :destroy]
     resources :participants, only: [:new, :create, :show, :destroy]
