@@ -1,16 +1,18 @@
 class TeamParticipantDecorator < Draper::Decorator
   delegate_all
 
+  decorates_association :participant
+
   def participant_name
-    participant.flyer.name if participant.present?
+    participant.flyer_name if participant.present?
   end
 
   def category_name
-    participant.category.name if participant.present?
+    participant.category.display_name if participant.present?
   end
 
   def participant_hours
-    participant.flyer.hours.ceil if participant.present?
+    participant.flyer_hours if participant.present?
   end
 
   def participant_number

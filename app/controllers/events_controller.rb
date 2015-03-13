@@ -49,6 +49,10 @@ class EventsController < ApplicationController
     @event = event_rounds_creator.perform
   end
 
+  def generate_mixed
+    @event = Event.find(params[:event_id])
+  end
+
   def email
     EmailService.new(params).send
     flash[:notice] = 'Participants have been emailed.'

@@ -7,7 +7,15 @@
         %li= edit_event_link(event)
         %li#expenses= expenses_link(event)
         %li= new_participant_link(event)
-        %li= generate_teams_link(event)
+        - if event.freefly?
+          %li
+            = generate_teams_link(event) do
+              Generate Teams
+              %span{"data-dropdown" => "drop"}
+            %ul#drop.f-dropdown{"data-dropdown-content" => ""}
+              %li= generate_mixed_teams_link(event)
+        - else
+          %li= generate_teams_link(event, false) { "Generate Teams" }
         %li#show-teams= show_teams_link(event)
 
 .large-12.medium-12.small-12.columns.vertical-tab-container#teams-list

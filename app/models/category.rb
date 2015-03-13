@@ -4,5 +4,8 @@ class Category < ActiveRecord::Base
   validates :category_type,  presence: true
 
   has_enumeration_for :category_type, with: CategoryType, create_helpers: { prefix: true }
-  paginates_per 20
+
+  def display_name
+    name.humanize
+  end
 end

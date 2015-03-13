@@ -2,14 +2,19 @@
 
 .row
   .large-12.small-12.columns.small-centered
-    .panel{ style: 'padding-bottom: 0;' }
-      .row.collapse
-        - if can?(:manage, Category)
-          .right
-            = link_to fa_icon('plus', text: 'New category'), new_category_path, class: 'button-xs pull-right', remote: true
-        = search_form_for @q, url: categories_path, remote: true do |f|
-          = f.search_field :name_cont, placeholder: 'Search Name', class: 'small-3 columns'
-          = f.submit 'Search', class: 'button-xs search-btn'
+    .search-panel
+      .row
+        .small-12.medium-12.large-12.columns
+          .row
+            = search_form_for @q, url: categories_path, remote: true do |f|
+              .small-12.medium-3.large-4.columns
+                = f.search_field :name_cont, placeholder: 'Search Name', class: 'small-3 columns'
+              .small-12.medium-3.large-4.columns.left
+                = f.submit 'Search', class: 'button-xs search-btn'
+
+            - if can?(:manage, Category)
+              .small-12.medium-3.large-4.columns.text-right
+                = link_to fa_icon('plus', text: 'New category'), new_category_path, class: 'button-xs', remote: true
 
   .large-12.small-12.columns.small-centered
     #category-list

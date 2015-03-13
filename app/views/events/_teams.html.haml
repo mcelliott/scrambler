@@ -8,7 +8,7 @@
         .custom-panel
           .panel-header
             = link_to fa_icon('trash', text: ""), event_team_path(team, event_id: event.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'pull-right delete-button button-xs', remote: true
-            = "Round #{round.round_number} - #{team.name} - #{team.category.name}"
+            = "Round #{round.round_number} - #{team.name} - #{team.category.display_name}"
           .panel-content
             = render partial: 'teams/team', locals: { team: team }
           .panel-footer

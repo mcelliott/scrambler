@@ -2,4 +2,5 @@
   = f.error_notification
   = f.input :name
   = f.input :category_type, collection: CategoryType.to_a, include_blank: 'Please select', input_html: { class: 'participant-select2' }
+  = f.input :enabled
   = f.button :submit, class: 'button-xs radius'

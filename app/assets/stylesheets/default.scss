@@ -3,6 +3,7 @@ $scambler-green: #91c600;
 $background-color: #eee;
 $button-bg-color: #444;
 $link-color: #333333;
+$white-smoke: #F5F5F5;
 
 @mixin tiny-button {
   padding-top: 0.3rem;
@@ -12,28 +13,10 @@ $link-color: #333333;
   font-size: 0.6875rem;
 }
 
-@mixin custom-button {
-  @extend .radius;
-  border: 1px solid #d4d4d4;
-  color: #444 !important;
-  border-radius: 3px !important;
-  background-color: #eee !important;
-}
-
 html,
 body {
   margin:0;
   padding:0;
-  background-color: $background-color !important;
-  font-family: "Merriweather", "Open Sans", "Helvetica Neue", Helvetica, Arial, "Nimbus L", sans-serif !important;
-
-  a {
-    color: $link-color;
-
-    &:hover {
-      color: darken($link-color, 10%);
-    }
-  }
 }
 
 // override for the 'Home' navigation link
@@ -48,9 +31,9 @@ body {
 }
 
 .button-xs {
+  @extend .radius;
   @extend .button;
   @extend .tiny;
-  @include custom-button;
 }
 
 .button-xs:focus {
@@ -69,7 +52,7 @@ body {
 }
 
 .add-button {
-  @include custom-button;
+  @extend .radius;
   @include tiny-button;
   margin-bottom: 0 !important;
 }
@@ -107,12 +90,6 @@ form {
   input[type="checkbox"] {
     margin-right: 5px;
   }
-
-  input[type="text"],
-  input[type="email"],
-  input[type="password"]{
-    border-radius: 3px;
-  }
 }
 
 .main {
@@ -140,13 +117,13 @@ ul {
 .list-item {
   padding: 5px;
   margin-bottom: 5px;
-  background-color: darken(#eee, 10%);
+  background-color: $white-smoke;
 }
 
 .flyer-list-item {
   padding: 5px 0;
   margin-bottom: 5px;
-  background-color: darken(#eee, 10%);
+  background-color: $white-smoke;
 }
 
 .select2 {
@@ -186,14 +163,6 @@ ul {
 .icon {
   padding: 0 5px;
 
-  &:hover {
-    background-color: lighten(#aaa, 10%);
-    color: lighten(#000, 10%);
-  }
-}
-
-#random-participant {
-  background-color: #aaa;
   &:hover {
     background-color: lighten(#aaa, 10%);
     color: lighten(#000, 10%);
@@ -242,9 +211,6 @@ ul.tabs li.tab-title.active {
   border-left: 1px solid $border-color;
 }
 
-ul.tabs li.tab-title.active a {
-  background-color: #fff !important;
-}
 
 ul.tabs.vertical {
   width: 100% !important;
@@ -263,7 +229,7 @@ ul.tabs.vertical {
 
 .participant-name { padding-left: 0; }
 
-.search-btn, .event-date {
+.event-date {
   margin-left: 2px !important;
 }
 
@@ -308,7 +274,6 @@ ul.actions-list {
 ul.actions-list li {
   display: inline-block;
 }
-
 
 div.message {
   position: fixed;
@@ -385,10 +350,6 @@ div.separator {
   border-radius: $global-radius;
 }
 
-input[type="search"] {
-  width: 250px !important;
-}
-
 input[type="text"],
 input[type="password"],
 input[type="date"],
@@ -403,6 +364,7 @@ input[type="tel"],
 input[type="time"],
 input[type="url"],
 input[type="color"],
+input[type="submit"],
 textarea {
   border-radius: $global-radius !important;
 }
@@ -413,24 +375,27 @@ div.field_with_errors {
 
 .custom-panel {
   @include panel(
-    // Sets the panel background color. Default: $panel-pg
-  $bg: white,
-    // Sets the panel padding amount. Default: $panel-padding
-  $padding: 5px,
-    // Sets the font color based on the darkness of the bg & resets header line-heights for panels. Default: $panel-header-adjust
-  $adjust: true
+    $bg: white,
+    $padding: 5px,
+    $adjust: true
+  );
+  border-radius: $global-radius;
+}
+
+.search-panel {
+  @include panel(
+    $bg: white,
+    $padding: 15px 10px 0px 10px,
+    $adjust: false
   );
   border-radius: $global-radius;
 }
 
 .empty-list-panel {
   @include panel(
-    // Sets the panel background color. Default: $panel-pg
-  $bg: white,
-    // Sets the panel padding amount. Default: $panel-padding
-  $padding:10px,
-    // Sets the font color based on the darkness of the bg & resets header line-heights for panels. Default: $panel-header-adjust
-  $adjust:true
+    $bg: white,
+    $padding:10px,
+    $adjust:true
   );
   border: 0;
 }
@@ -456,4 +421,8 @@ ul.button-group li a {
     overflow-x: auto;
     display: block;
   }
+}
+
+#scored-button {
+  margin-bottom: 10px;
 }

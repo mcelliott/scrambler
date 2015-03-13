@@ -58,6 +58,7 @@
 @import "foundation/functions";
 @import "foundation/settings";
 @import "foundation/components/global";
+@import "foundation/components/switches";
 
 // The default font-size is set to 100% of the browser style sheet (usually 16px)
 // for compatibility with browser-based text zoom or user-set defaults.
@@ -72,7 +73,7 @@
 
 // We use this to control whether or not CSS classes come through in the gem files.
 $include-html-classes: true;
-// $include-print-styles: true;
+$include-print-styles: true;
 $include-html-global-classes: $include-html-classes;
 
 // b. Grid
@@ -92,6 +93,7 @@ $include-html-global-classes: $include-html-classes;
 // $font-family-sans-serif: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 // $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
 // $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
+$font-family-sans-serif: "Merriweather", "Open Sans", "Helvetica Neue", Helvetica, Arial, "Nimbus L", sans-serif;
 
 // We use these to define default font weights
 // $font-weight-normal: normal !default;
@@ -118,19 +120,20 @@ $include-html-global-classes: $include-html-classes;
 // $black       : #000000;
 
 // We use these as default colors throughout
-// $primary-color: #008CBA;
+$primary-color: #eee;
 // $secondary-color: #e7e7e7;
 // $alert-color: #f04124;
 // $success-color: #43AC6A;
 // $warning-color: #f08a24;
 // $info-color: #a0d3e8;
+$scrambler-green: #91c600;
 
 // We use these to control various global styles
-// $body-bg: $white;
-// $body-font-color: $jet;
-// $body-font-family: $font-family-sans-serif;
-// $body-font-weight: $font-weight-normal;
-// $body-font-style: normal;
+$body-bg: #eee;
+$body-font-color: $jet;
+$body-font-family: $font-family-sans-serif;
+$body-font-weight: $font-weight-normal;
+$body-font-style: normal;
 
 // We use this to control font-smoothing
 // $font-smoothing: antialiased;
@@ -257,8 +260,8 @@ $include-html-global-classes: $include-html-classes;
 // We use these to style anchors
 // $anchor-text-decoration: none;
 // $anchor-text-decoration-hover: none;
-// $anchor-font-color: $primary-color;
-// $anchor-font-color-hover: scale-color($primary-color, $lightness: -14%);
+$anchor-font-color: $oil;
+$anchor-font-color-hover: scale-color($oil, $lightness: -14%);
 
 // We use these to style the <hr> element
 // $hr-border-width: 1px;
@@ -420,7 +423,7 @@ $include-html-global-classes: $include-html-classes;
 // 05. Buttons
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-button-classes: $include-html-classes;
+$include-html-button-classes: $include-html-classes;
 
 // We use these to build padding for buttons.
 // $button-tny: rem-calc(10);
@@ -444,24 +447,24 @@ $include-html-global-classes: $include-html-classes;
 // $button-font-align: center;
 
 // We use these to control various hover effects.
-// $button-function-factor: -20%;
+$button-function-factor: -20%;
 
 // We use these to control button border and hover styles.
-// $button-border-width: 0px;
-// $button-border-style: solid;
-// $button-bg-color: $primary-color;
-// $button-bg-hover: scale-color($button-bg-color, $lightness: $button-function-factor);
-// $button-border-color: $button-bg-hover;
-// $secondary-button-bg-hover: scale-color($secondary-color, $lightness: $button-function-factor);
-// $secondary-button-border-color: $secondary-button-bg-hover;
-// $success-button-bg-hover: scale-color($success-color, $lightness: $button-function-factor);
-// $success-button-border-color: $success-button-bg-hover;
-// $alert-button-bg-hover: scale-color($alert-color, $lightness: $button-function-factor);
-// $alert-button-border-color: $alert-button-bg-hover;
+$button-border-width: 1px;
+$button-border-style: solid;
+$button-bg-color: $body-bg;
+$button-bg-hover: scale-color($button-bg-color, $lightness: $button-function-factor);
+$button-border-color: #d4d4d4;
+$secondary-button-bg-hover: scale-color($secondary-color, $lightness: $button-function-factor);
+$secondary-button-border-color: $secondary-button-bg-hover;
+$success-button-bg-hover: scale-color($success-color, $lightness: $button-function-factor);
+$success-button-border-color: $success-button-bg-hover;
+$alert-button-bg-hover: scale-color($alert-color, $lightness: $button-function-factor);
+$alert-button-border-color: $alert-button-bg-hover;
 
 // We use this to set the default radius used throughout the core.
-// $button-radius: $global-radius;
-// $button-round: $global-rounded;
+$button-radius: $global-radius;
+$button-round: $global-rounded;
 
 // We use this to set default opacity and cursor for disabled buttons.
 // $button-disabled-opacity: 0.7;
@@ -509,7 +512,7 @@ $include-html-global-classes: $include-html-classes;
 // 08. Dropdown
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-dropdown-classes: $include-html-classes;
+$include-html-dropdown-classes: $include-html-classes;
 
 // We use these to controls height and width styles.
 // $f-dropdown-max-width: 200px;
@@ -543,11 +546,11 @@ $include-html-global-classes: $include-html-classes;
 
 // We use these to control styles for the list elements.
 // $f-dropdown-list-style: none;
-// $f-dropdown-font-color: $charcoal;
-// $f-dropdown-font-size: rem-calc(14);
-// $f-dropdown-list-padding: rem-calc(5, 10);
-// $f-dropdown-line-height: rem-calc(18);
-// $f-dropdown-list-hover-bg: $smoke;
+$f-dropdown-font-color: $charcoal;
+$f-dropdown-font-size: rem-calc(14);
+$f-dropdown-list-padding: rem-calc(5, 10);
+$f-dropdown-line-height: rem-calc(18);
+$f-dropdown-list-hover-bg: $smoke;
 // $dropdown-mobile-default-float: 0;
 
 // We use this to control the styles for when the dropdown has custom content.
@@ -556,15 +559,18 @@ $include-html-global-classes: $include-html-classes;
 // Default radius for dropdown.
 // $f-dropdown-radius: $global-radius;
 
+.f-dropdown li {
+  width: 100%;
+}
 
 // 09. Dropdown Buttons
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-button-classes: $include-html-classes;
+$include-html-button-classes: $include-html-classes;
 
 // We use these to set the color of the pip in dropdown buttons
-// $dropdown-button-pip-color: $white;
-// $dropdown-button-pip-color-alt: $oil;
+$dropdown-button-pip-color: $oil;
+$dropdown-button-pip-color-alt: $oil;
 
 // $button-pip-tny: rem-calc(6);
 // $button-pip-sml: rem-calc(7);
@@ -611,7 +617,7 @@ $include-html-global-classes: $include-html-classes;
 // 11. Forms
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-form-classes: $include-html-classes;
+$include-html-form-classes: $include-html-classes;
 
 // We use this to set the base for lots of form spacing and positioning styles
 // $form-spacing: rem-calc(16);
@@ -633,7 +639,7 @@ $include-html-global-classes: $include-html-classes;
 // $input-focus-border-color: scale-color($white, $lightness: -40%);
 // $input-border-style: solid;
 // $input-border-width: 1px;
-// $input-border-radius: $global-radius;
+$input-border-radius: $global-radius;
 // $input-disabled-bg: $gainsboro;
 // $input-disabled-cursor: $cursor-default-value;
 // $input-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
@@ -953,12 +959,12 @@ $pagination-link-current-active-bg: lighten($oil, 15%);
 // 21. Panels
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-panel-classes: $include-html-classes;
+$include-html-panel-classes: $include-html-classes;
 
 // We use these to control the background and border styles
-// $panel-bg: scale-color($white, $lightness: -5%);
-// $panel-border-style: solid;
-// $panel-border-size: 1px;
+$panel-bg: $white;
+$panel-border-style: solid;
+$panel-border-size: 1px;
 
 // We use this % to control how much we darken things on hover
 // $panel-function-factor: -11%;
@@ -1161,13 +1167,13 @@ $pagination-link-current-active-bg: lighten($oil, 15%);
 // 27. Split Buttons
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-button-classes: $include-html-classes;
+$include-html-button-classes: $include-html-classes;
 
 // We use these to control different shared styles for Split Buttons
-// $split-button-function-factor: 10%;
-// $split-button-pip-color: $white;
-// $split-button-pip-color-alt: $oil;
-// $split-button-active-bg-tint: rgba(0,0,0,0.1);
+$split-button-function-factor: 10%;
+$split-button-pip-color: $oil;
+$split-button-pip-color-alt: $oil;
+$split-button-active-bg-tint: rgba(0,0,0,0.1);
 
 // We use these to control tiny split buttons
 // $split-button-padding-tny: $button-pip-tny * 10;
@@ -1230,50 +1236,50 @@ $pagination-link-current-active-bg: lighten($oil, 15%);
 // 29. Switch
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-form-classes: $include-html-classes;
+$include-html-form-classes: $include-html-classes;
 
 // Controlling border styles and background colors for the switch container
-// $switch-border-color: scale-color($white, $lightness: -20%);
-// $switch-border-style: solid;
-// $switch-border-width: 1px;
-// $switch-bg: $white;
+$switch-border-color: scale-color($oil, $lightness: -20%);
+$switch-border-style: solid;
+$switch-border-width: 1px;
+$switch-bg: $body-bg;
 
 // We use these to control the switch heights for our default classes
-// $switch-height-tny: rem-calc(22);
-// $switch-height-sml: rem-calc(28);
-// $switch-height-med: rem-calc(36);
-// $switch-height-lrg: rem-calc(44);
-// $switch-bottom-margin: rem-calc(20);
+$switch-height-tny: rem-calc(22);
+$switch-height-sml: rem-calc(28);
+$switch-height-med: rem-calc(36);
+$switch-height-lrg: rem-calc(44);
+$switch-bottom-margin: rem-calc(20);
 
 // We use these to control default font sizes for our classes.
-// $switch-font-size-tny: 11px;
-// $switch-font-size-sml: 12px;
-// $switch-font-size-med: 14px;
-// $switch-font-size-lrg: 17px;
-// $switch-label-side-padding: 6px;
+$switch-font-size-tny: 11px;
+$switch-font-size-sml: 12px;
+$switch-font-size-med: 14px;
+$switch-font-size-lrg: 17px;
+$switch-label-side-padding: 6px;
 
 // We use these to style the switch-paddle
-// $switch-paddle-bg: $white;
-// $switch-paddle-fade-to-color: scale-color($switch-paddle-bg, $lightness: -10%);
-// $switch-paddle-border-color: scale-color($switch-paddle-bg, $lightness: -35%);
-// $switch-paddle-border-width: 1px;
-// $switch-paddle-border-style: solid;
-// $switch-paddle-transition-speed: .1s;
-// $switch-paddle-transition-ease: ease-out;
-// $switch-positive-color: scale-color($success-color, $lightness: 94%);
-// $switch-negative-color: $white-smoke;
+$switch-paddle-bg: $oil;
+$switch-paddle-fade-to-color: scale-color($switch-paddle-bg, $lightness: -10%);
+$switch-paddle-border-color: scale-color($switch-paddle-bg, $lightness: -35%);
+$switch-paddle-border-width: 1px;
+$switch-paddle-border-style: solid;
+$switch-paddle-transition-speed: .1s;
+$switch-paddle-transition-ease: ease-out;
+$switch-positive-color: $scrambler-green;
+$switch-negative-color: $body-bg;
 
 // Outline Style for tabbing through switches
-// $switch-label-outline: 1px dotted $jumbo;
+$switch-label-outline: 1px dotted $jumbo;
 
 // 30. Tables
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-table-classes: $include-html-classes;
+$include-html-table-classes: $include-html-classes;
 
 // These control the background color for the table and even rows
-// $table-bg: $white;
-// $table-even-row-bg: $snow;
+$table-bg: $white;
+$table-even-row-bg: $white;
 
 // These control the table cell border style
 // $table-border-style: solid;
@@ -1304,8 +1310,8 @@ $pagination-link-current-active-bg: lighten($oil, 15%);
 // $include-html-tabs-classes: $include-html-classes;
 
 // $tabs-navigation-padding: rem-calc(16);
-// $tabs-navigation-bg-color: $silver  ;
-// $tabs-navigation-active-bg-color: $white;
+$tabs-navigation-bg-color: $white  ;
+$tabs-navigation-active-bg-color: $white-smoke;
 // $tabs-navigation-hover-bg-color: scale-color($tabs-navigation-bg-color, $lightness: -6%);
 // $tabs-navigation-font-color: $jet;
 // $tabs-navigation-active-font-color: $tabs-navigation-font-color;

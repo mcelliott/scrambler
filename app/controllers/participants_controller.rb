@@ -16,10 +16,9 @@ class ParticipantsController < ApplicationController
   # POST /participants
   # POST /participants.json
   def create
-    @participant = current_user.participants.build(participant_params.merge(event_id: current_event.id))
-    @participant.number = Participant.participant_number(current_event)
-    @participant.create_payment(event: current_event, amount: current_event.participant_cost)
-    if @participant.save
+    creator = ParticipantCreator.new(current_event, current_user, participant_params)
+    if creator.perform
+      @participant = creator.participant
       @success = true
       flash[:notice] = 'Participant was successfully created.'
     else

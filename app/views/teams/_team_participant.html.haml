@@ -7,6 +7,6 @@
       - else
         = team_participant.participant_name
     .small-4.columns= team_participant.category_name
-    .small-3.columns= "#{team_participant.participant_hours} hrs"
+    .small-3.columns= team_participant.participant_hours
     .small-1.columns.text-right
       = link_to fa_icon('trash-o', text: ''), destroy_teams_participant_path(team_id: team_participant.team.id, id: team_participant), method: :delete, data: { confirm: 'Are you sure?' }, class: 'participant-button button-xs', remote: true
