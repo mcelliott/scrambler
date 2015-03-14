@@ -66,6 +66,7 @@ class EventsController < ApplicationController
     params.require(:event).permit(:event_date,
                                   :location,
                                   :name,
+                                  :category_type,
                                   :team_size,
                                   :num_rounds,
                                   :participant_cost,

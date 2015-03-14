@@ -6,8 +6,8 @@ flyers = []
   flyers << user.flyers.create!(name: Faker::Name.name, email: Faker::Internet.email, hours: (0..4).to_a.shuffle.first)
 end
 
-['Head Down', 'Head Up'].each do |category|
-  user.categories.create!(name: category, user: user)
+['Head Down', 'Head Up', 'Belly'].each do |category|
+  Category.create!(name: category)
 end
 
 event = Event.create!(name: 'Freefly', location: 'ifly', event_date: 1.month.from_now, team_size: 2, user: user, num_rounds: 3, participant_cost: 100.0 )

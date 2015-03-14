@@ -8,7 +8,9 @@ class ParticipantsController < ApplicationController
 
   # GET /participants/new
   def new
-    @flyers = current_user.flyers.where.not(id: current_event.participants.map(&:flyer_id)).page(params[:page]).per(10)
+    current_event
+    @q = current_user.flyers.order(name: :asc).search(params[:q])
+    @flyers = @q.result.page(params[:page]).per(10)
   end
 
   # POST /participants

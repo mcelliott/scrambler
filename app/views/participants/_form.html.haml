@@ -2,14 +2,20 @@
   - @flyers.each do |flyer|
     .row{ id: "flyer-#{flyer.id}" }
       .large-12.medium-12.small-12.columns.small-centered
-        = form_tag event_participants_path(event_id: @event.id), method: :post, remote: true do
+        = form_tag event_participants_path(event_id: event.id), method: :post, remote: true do
           .large-6.medium-6.small-6.columns
-            = submit_tag "Add #{flyer.name}", class: "button-xs radius add-flyer-button"
+            %button{ type: :submit, class: "button-xs radius participant-add-button", disabled: event.participant_exists?(flyer) }
+              - if event.participant_exists?(flyer)
+                = fa_icon('check', text: flyer.name)
+              - else
+                = fa_icon('plus', text: flyer.name)
           .large-6.medium-6.small-6.columns
             = hidden_field_tag "participant[flyer_id]", flyer.id
-            = select_tag "participant[category_id]", options_for_select(current_user.categories.map { |c| [c.name, c.id]}), prompt: 'Please select', class: 'participant-select2'
+            - if event.show_category?
+              = select_tag "participant[category_id]", event.options_for_freeflyers(flyer), prompt: 'Please select', class: 'participant-select2', disabled: event.participant_exists?(flyer)
+            - else
+              = select_tag "participant[category_id]", event.options_for_belly, class: 'participant-select2', disabled: event.participant_exists?(flyer)
 %div#pages= paginate @flyers, remote: true
 
 :coffeescript
-  $(document).on 'click', '.add-flyer-button', (e) ->
-    $(this).closest('.row').hide();
+  $('.participant-select2').select2()

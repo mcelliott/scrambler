@@ -1,4 +1,5 @@
-= simple_form_for @category, remote: true do |f|
+= simple_form_for category, remote: true do |f|
   = f.error_notification
   = f.input :name
+  = f.input :category_type, collection: CategoryType.to_a, include_blank: 'Please select', input_html: { class: 'participant-select2' }
   = f.button :submit, class: 'button-xs radius'

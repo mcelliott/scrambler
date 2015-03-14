@@ -3,13 +3,13 @@ require 'rails_helper'
 describe ParticipantsController do
   let(:user)        { create(:user)  }
   let(:event)       { create(:event,    user: user) }
-  let(:category)    { create(:category, user: user) }
+  let(:category)    { create(:category) }
   let(:flyer)       { create(:flyer,    user: user) }
   let!(:participant) { create(:participant,
-                             user: user,
-                             event: event,
-                             flyer: flyer,
-                             category: category) }
+                              user: user,
+                              event: event,
+                              flyer: flyer,
+                              category: category) }
 
   before do
     sign_in user

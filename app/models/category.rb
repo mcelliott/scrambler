@@ -1,9 +1,8 @@
 class Category < ActiveRecord::Base
   has_many :teams, dependent: :destroy
-  belongs_to :user
-
   validates :name,  presence: true, length: { maximum: 50 }
-  validates :user,  presence: true
+  validates :category_type,  presence: true
 
+  has_enumeration_for :category_type, with: CategoryType, create_helpers: { prefix: true }
   paginates_per 20
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307093122) do
+ActiveRecord::Schema.define(version: 20150314053309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 20150307093122) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "category_type"
   end
 
   create_table "event_scores", force: :cascade do |t|
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20150307093122) do
     t.decimal  "participant_cost"
     t.decimal  "rate_per_minute",  default: 0.0
     t.decimal  "time_per_round",   default: 60.0
+    t.string   "category_type"
   end
 
   create_table "flyers", force: :cascade do |t|

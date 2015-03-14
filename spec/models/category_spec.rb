@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Category do
   it { should respond_to :name  }
-  it { should respond_to :user  }
+  it { should respond_to :category_type  }
 
   describe 'name field' do
     context 'valid name' do
@@ -27,10 +27,10 @@ describe Category do
     end
   end
 
-  describe 'user field' do
-    let(:invalid_flyer) { build(:flyer, user: nil) }
+  describe 'category_type field' do
+    let(:invalid_category) { build(:category, category_type: nil) }
     it 'should be invalid' do
-      expect(invalid_flyer).to_not be_valid
+      expect(invalid_category).to_not be_valid
     end
   end
 end

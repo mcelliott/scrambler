@@ -3,6 +3,14 @@
 FactoryGirl.define do
   factory :category do
     sequence(:name) { |n| "Category #{n}" }
-    user
+    category_type CategoryType::FREEFLY
+
+    trait :freefly do
+      category_type CategoryType::FREEFLY
+    end
+
+    trait :belly do
+      category_type CategoryType::BELLY
+    end
   end
 end

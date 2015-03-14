@@ -6,6 +6,8 @@ class Event < ActiveRecord::Base
 
   belongs_to :user
 
+  has_enumeration_for :category_type, with: CategoryType, create_helpers: { prefix: true }
+
   validates :event_date, presence: true
   validates :location,   presence: true, length: { maximum: 50 }
   validates :user_id,       presence: true

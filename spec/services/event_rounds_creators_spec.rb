@@ -5,7 +5,7 @@ describe EventRoundsCreator do
   let(:event)                { create(:event) }
   let(:event_rounds_creator) { described_class.new({event_id: event.id}) }
   let(:num_participants)     { 6 }
-  let(:category)             { create(:category, user: event.user) }
+  let(:category)             { create(:category, :freefly) }
 
   before do
     num_participants.times do

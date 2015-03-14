@@ -1,11 +1,11 @@
-<% if  participant.errors.present? %>
-  $(".row#flyer-<%= participant.flyer.id %>").show();
-<% else %>
-  $(".row#flyer-<%= participant.flyer.id %>").remove();
+<% unless participant.errors.present? %>
+  var participant_row = $(".row#flyer-<%= participant.flyer.id %>");
+  participant_row.find('button').prop("disabled", true);
+  participant_row.find('select').prop("disabled", true);
+  participant_row.find('i').removeClass('fa-plus').addClass('fa-check')
   $('#empty-participants-list').hide();
   $('#participant-list').html("<%= j(render 'events/participants') %>");
   flash_row('#participant-<%= participant.id %>');
-  $('.select2-container').select2('val', '');
 <% end %>
 
 if ($('#flyers .row').length == 0) {

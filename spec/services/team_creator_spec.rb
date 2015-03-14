@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe TeamCreator do
   let(:event)    { create(:event)    }
-  let(:category) { create(:category, user: event.user) }
+  let(:category) { create(:category) }
   let(:round)    { create(:round, user: event.user, event: event)    }
   let(:num_participants)     { 6 }
   let(:creator)  { described_class.new(event, category, round) }

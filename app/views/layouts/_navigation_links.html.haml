@@ -5,8 +5,9 @@
     %li.divider
     %li= link_to 'Flyers', flyers_path
     %li.divider
-    %li= link_to 'Categories', categories_path
-    %li.divider
+    - if can?(:manage, Category)
+      %li= link_to 'Categories', categories_path
+      %li.divider
     %li= link_to 'Scoring', handicaps_path
     %li.divider
   %ul.right

@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @q = current_user.categories.order(name: :asc).search(params[:q])
+    @q = Category.all.order(name: :asc).search(params[:q])
     @categories = @q.result.page(params[:page])
   end
 
@@ -21,8 +21,9 @@ class CategoriesController < ApplicationController
   # POST /categories
   # POST /categories.json
   def create
-    @category = current_user.categories.build(category_params)
+    @category = Category.new(category_params)
     flash[:notice] = 'Category was successfully created.' if @category.save
+
   end
 
   def update
@@ -43,6 +44,6 @@ class CategoriesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, :category_type)
   end
 end

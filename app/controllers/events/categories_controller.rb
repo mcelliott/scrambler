@@ -13,7 +13,7 @@ class Events::CategoriesController < ApplicationController
   end
 
   def category
-    @category ||= current_user.categories.find params[:id]
+    @category ||= Category.find params[:id]
   end
 
   def event
