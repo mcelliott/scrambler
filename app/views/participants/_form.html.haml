@@ -2,6 +2,7 @@
   - @flyers.each do |flyer|
     .row{ id: "flyer-#{flyer.id}" }
       .large-12.medium-12.small-12.columns.small-centered
+
         = form_tag event_participants_path(event_id: event.id), method: :post, remote: true do
           .large-6.medium-6.small-6.columns
             %button{ type: :submit, class: "button-xs radius participant-add-button", disabled: event.participant_exists?(flyer) }
@@ -15,6 +16,7 @@
               = select_tag "participant[category_id]", event.options_for_freeflyers(flyer), prompt: 'Please select', class: 'participant-select2', disabled: event.participant_exists?(flyer)
             - else
               = select_tag "participant[category_id]", event.options_for_belly, class: 'participant-select2', disabled: event.participant_exists?(flyer)
+
 %div#pages= paginate @flyers, remote: true
 
 :coffeescript
