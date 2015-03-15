@@ -86,7 +86,8 @@ body {
 
 form {
   textarea, select {
-    width: 300px;
+    width: 100%;
+    border-radius: $global-radius;
   }
 
   .select2-container .select2-choice {
@@ -159,6 +160,7 @@ ul {
 .participant-select2 {
   width: 100%;
   margin-right: 5px !important;
+  border-radius: $global-radius;
 }
 
 .participant-add-button {

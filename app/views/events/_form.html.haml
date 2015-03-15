@@ -3,7 +3,7 @@
   = f.input :name
   = f.input :location
   = f.input :event_date, as: :string, input_html: { class: 'datepicker' }, label: 'Event Date'
-  = f.input :category_type, collection: CategoryType.to_a, input_html: { class: 'participant-select2' }
+  = f.input :category_type, collection: CategoryType.to_a
   = f.input :team_size, label: 'Team Size'
   = f.input :num_rounds, label: 'Number of Rounds'
   = f.input :participant_cost, label: 'Participant Cost', as: :string, data: { role: 'money', a_sep: '.', a_dec: ',' }
