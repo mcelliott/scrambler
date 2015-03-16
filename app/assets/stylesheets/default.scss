@@ -200,7 +200,7 @@ ul {
   }
 }
 
-table.index {
+table {
   width: 100%;
   border-collapse: collapse;
 
@@ -219,7 +219,7 @@ table.index {
   }
 }
 
-table.index tr {
+table tr {
   border-bottom: 1px solid #ddd;
 }
 
@@ -451,3 +451,9 @@ ul.button-group li a {
   margin-bottom: 0 !important;
 }
 
+@media screen and (max-width: 640px) {
+  table {
+    overflow-x: auto;
+    display: block;
+  }
+}
