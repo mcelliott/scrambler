@@ -1,4 +1,4 @@
-= simple_form_for @handicap, remote: true do |f|
+= simple_form_for @handicap, url: scoring_path, remote: true do |f|
   = f.error_notification
   = f.input :amount
   = f.button :submit, class: 'button-xs radius'
