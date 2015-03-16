@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
+//= require jquery-ui/accordion
+//= require jquery-ui/datepicker
 //= require select2
 //= require turbolinks
 //= require foundation
@@ -28,3 +29,5 @@ function flash_row(id) {
     $(id).effect("highlight", { color: '#91c600' }, 3000);
   }, 500);
 }
+
+$(function(){ $(document).foundation(); });

@@ -1,6 +1,3 @@
-//// import the CSS framework
-@import "foundation";
-//
 $border-color: #d4d4d4;
 $scambler-green: #91c600;
 $background-color: #eee;
@@ -348,3 +345,109 @@ button {
 .participant-category {
   padding-bottom: 10px;
 }
+
+div.field_with_errors {
+  padding: 0;
+  background-color: $background-color !important;
+
+  input[type="text"],
+  input[type="password"],
+  input[type="date"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="month"],
+  input[type="week"],
+  input[type="email"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="time"],
+  input[type="url"],
+  input[type="color"],
+  textarea {
+    margin: 0;
+    border: 1px $alert-color solid;
+  }
+}
+
+div.field_with_errors div.separator span.error {
+  color: $alert-color;
+  background-color: $background-color;
+  padding: 0 5px;
+  font-weight: $font-weight-bold;
+}
+
+div.separator {
+  margin-top: 2px;
+}
+
+.panel {
+  border-radius: $global-radius;
+}
+
+input[type="search"] {
+  width: 250px !important;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+input[type="color"],
+textarea {
+  border-radius: $global-radius !important;
+}
+
+div.field_with_errors {
+  background-color: #fff !important;
+}
+
+.custom-panel {
+  @include panel(
+    // Sets the panel background color. Default: $panel-pg
+  $bg: white,
+    // Sets the panel padding amount. Default: $panel-padding
+  $padding: 5px,
+    // Sets the font color based on the darkness of the bg & resets header line-heights for panels. Default: $panel-header-adjust
+  $adjust: true
+  );
+  border-radius: $global-radius;
+}
+
+.empty-list-panel {
+  @include panel(
+    // Sets the panel background color. Default: $panel-pg
+  $bg: white,
+    // Sets the panel padding amount. Default: $panel-padding
+  $padding:10px,
+    // Sets the font color based on the darkness of the bg & resets header line-heights for panels. Default: $panel-header-adjust
+  $adjust:true
+  );
+  border: 0;
+}
+
+.panel-header {
+  padding: 5px;
+}
+
+.panel-content {
+  padding: 5px;
+}
+
+.panel-footer {
+  padding: 5px;
+}
+
+ul.button-group li a {
+  margin-bottom: 0 !important;
+}
+

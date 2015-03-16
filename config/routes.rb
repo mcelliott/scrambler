@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :handicaps, only: [:index, :edit, :update]
+  resources :scoring, controller: :handicaps, only: [:index, :edit, :update], as: :scoring
   resources :event_scores, only: [:update]
   resources :flyer_imports, only: [:create, :new]
   resources :settings, only: [:index, :update]

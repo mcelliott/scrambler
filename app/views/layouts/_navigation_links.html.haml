@@ -1,14 +1,14 @@
 - if user_signed_in?
   %ul
     %li.divider
-    %li= link_to 'Events', events_path
+    %li{ class: active_controller_link('events') }= link_to 'Events', events_path
     %li.divider
-    %li= link_to 'Flyers', flyers_path
+    %li{ class: active_controller_link('flyers') }= link_to 'Flyers', flyers_path
     %li.divider
     - if can?(:manage, Category)
-      %li= link_to 'Categories', categories_path
+      %li{ class: active_controller_link('categories') }= link_to 'Categories', categories_path
       %li.divider
-    %li= link_to 'Scoring', handicaps_path
+    %li{ class: active_controller_link('handicaps') }= link_to 'Scoring', scoring_index_path
     %li.divider
   %ul.right
     %li.name= link_to gravatar_tag(current_user.email, size: 30), edit_user_registration_path

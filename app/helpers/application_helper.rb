@@ -7,4 +7,8 @@ module ApplicationHelper
   def flyer_filters
     [{ field: :name_or_email_cont, placeholder: 'Search Name or Email', width: 'small-3' }]
   end
+
+  def active_controller_link(controller)
+    (params[:controller] == controller) ? 'active' : ''
+  end
 end
