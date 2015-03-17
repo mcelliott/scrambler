@@ -12,5 +12,9 @@ FactoryGirl.define do
     trait :belly do
       category_type CategoryType::BELLY
     end
+
+    trait :mixed do
+      category_type CategoryType::MIXED
+    end
   end
 end
