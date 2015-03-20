@@ -5,7 +5,18 @@ FactoryGirl.define do
     sequence(:name) { |n| "Category #{n}" }
     category_type CategoryType::FREEFLY
 
+    trait :head_up_freefly do
+      name 'head_up'
+      category_type CategoryType::FREEFLY
+    end
+
+    trait :head_down_freefly do
+      name 'head_down'
+      category_type CategoryType::FREEFLY
+    end
+
     trait :freefly do
+      name 'head_down'
       category_type CategoryType::FREEFLY
     end
 

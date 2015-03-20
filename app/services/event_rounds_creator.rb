@@ -2,7 +2,6 @@ class EventRoundsCreator
   def initialize(params)
     ActiveRecord::Base.logger.level = 1
     @params = params
-    @team_list = []
   end
 
   def reset
@@ -10,8 +9,8 @@ class EventRoundsCreator
   end
 
   def perform
-    BasicRoundCreator.new(event, @params, @team_list).perform
-    MixedRoundCreator.new(event, @params, @team_list).perform
+    BasicRoundCreator.new(event, @params).perform
+    MixedRoundCreator.new(event, @params).perform
     event.reload
   end
 

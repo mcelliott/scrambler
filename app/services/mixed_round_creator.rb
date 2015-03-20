@@ -1,9 +1,8 @@
 class MixedRoundCreator
   attr_reader :event
-  def initialize(event, params, team_list)
+  def initialize(event, params)
     @event = event
     @params = params
-    @team_list = team_list
   end
 
   def perform
