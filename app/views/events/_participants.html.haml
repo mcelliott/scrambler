@@ -9,7 +9,7 @@
         .custom-panel
           .panel-header
             = link_to fa_icon('trash', text: ""), event_category_path(event, category), method: :delete, data: { confirm: 'Are you sure?' }, class: 'pull-right delete-button button-xs', remote: true
-            = category.name
+            = category.display_name
           .panel-content
             - participants.each_with_index do |p, index|
               = render partial: 'participants/participant', locals: { p: p, index: index }

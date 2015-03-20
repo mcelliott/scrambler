@@ -8,6 +8,7 @@ class BasicRoundCreator
   end
 
   def perform
+    puts "Starting BasicRoundCreator perform"
     round_numbers.each do |num_round|
       round = RoundCreator.new(event, num_round).perform
       event.categories_participants.each do |category, participants|
@@ -34,6 +35,7 @@ class BasicRoundCreator
         end
       end
     end
+    puts "Finished BasicRoundCreator perform"
   end
 
   private

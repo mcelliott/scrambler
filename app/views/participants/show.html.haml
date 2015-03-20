@@ -4,10 +4,10 @@
   %tbody
     %tr
       %th Name
-      %td= @participant.flyer.name
+      %td= @participant.name
     %tr
       %th Tunnel Hours
-      %td= @participant.flyer.hours_humanize
+      %td= @participant.flyer_hours
     %tr
       %th Category
-      %td= @participant.category.name
+      %td= @participant.category.display_name

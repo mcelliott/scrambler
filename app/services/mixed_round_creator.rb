@@ -7,23 +7,19 @@ class MixedRoundCreator
   end
 
   def perform
-    return unless @params[:mixed_rounds]
-    # create teams that are mixed head up / head down
-    # can't have a team where head up flyers count is greater than (team_size / 2)
-    ## sit cannot do head down moves
-
+    puts "Starting MixedRoundCreator perform"
     round_numbers.each do |num_round|
-      round = RoundCreator.new(event, num_round).perform
+      round = RoundCreator.new(event, num_round - 1).perform
       number_of_teams.times do
         team = TeamCreator.new(event, mixed_freefly_category, round).perform
 
         combinations.each do |team_participants|
-          # If they haven't flown in this round,
-          # add participants then remove them from the permutations list
-          unless has_team_flown_in_round?(round.reload, team_participants)
-            create_team_participants(team, team_participants)
-            combinations.delete(team_participants)
-            break
+          if allowed_to_fly_together?(team_participants) && mixed?(team_participants)
+            unless has_team_flown_in_round?(round.reload, team_participants)
+              create_team_participants(team, team_participants)
+              combinations.delete(team_participants)
+              break
+            end
           end
         end
 
@@ -34,13 +30,14 @@ class MixedRoundCreator
         end
       end
     end
+    puts "Finished MixedRoundCreator perform"
   end
 
   private
 
   def create_team_participants(team, team_participants)
-    team_participants.each do |participant_id|
-      TeamParticipantCreator.new(event, participant_id, team).perform
+    team_participants.each do |participant|
+      TeamParticipantCreator.new(event, participant.id, team).perform
     end
   end
 
@@ -57,18 +54,24 @@ class MixedRoundCreator
   end
 
   def combinations
-    @combinations ||= event.participants.map(&:id).combination(event.team_size).to_a.shuffle
+    (@combinations ||= event.participants.map(&:id).combination(event.team_size).to_a.map { |tp| Participant.find(tp) }).shuffle
   end
 
   def round_numbers
-    @params[:mixed_rounds].keys.map(&:to_i)
+    @params[:mixed_rounds] ? @params[:mixed_rounds].keys.map(&:to_i) : []
   end
 
   def mixed_freefly_category
     @category ||= Category.find_or_create_by(name: 'Mixed', category_type: CategoryType::MIXED)
   end
 
-  def not_
-    
+  def mixed?(team_participants)
+    participant_categories = team_participants.map { |tp| Participant.find_by(id: tp).category.name }
+    participant_categories.count('head_up') == (team_participants.size / 2)
+  end
+
+  def allowed_to_fly_together?(team_participants)
+    participant_categories = team_participants.map { |tp| Participant.find_by(id: tp).category.name }
+    participant_categories.count('head_up') <= (team_participants.size / 2)
   end
 end
