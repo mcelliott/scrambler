@@ -2,15 +2,18 @@
 
 .row
   .large-12.small-12.columns.small-centered
-    .panel{ style: 'padding-bottom: 0;' }
-      .row.collapse
-        .right
-          = link_to fa_icon('plus', text: 'New flyer'), new_flyer_path, class: 'button-xs', remote: true
-          = link_to fa_icon('plus', text: 'Upload flyers'), new_flyer_import_path, class: 'button-xs', remote: true
-
-        = search_form_for @q, url: flyers_path, remote: true do |f|
-          = f.search_field :name_or_email_cont, placeholder: 'Search Name or Email', class: 'small-3 columns'
-          = f.submit 'Search', class: 'button-xs search-btn'
+    .search-panel
+      .row
+        .small-12.medium-12.large-12.columns
+          .row
+            = search_form_for @q, url: flyers_path, remote: true do |f|
+              .small-12.medium-4.large-4.columns
+                = f.search_field :name_or_email_cont, placeholder: 'Search Name or Email', class: 'small-3 columns'
+              .small-12.medium-4.large-3.columns.left
+                = f.submit 'Search', class: 'button-xs search-btn'
+            .small-12.medium-4.large-5.columns.text-right
+              = link_to fa_icon('plus', text: 'New flyer'), new_flyer_path, class: 'button-xs', remote: true
+              = link_to fa_icon('plus', text: 'Upload flyers'), new_flyer_import_path, class: 'button-xs', remote: true
 
   .large-12.small-12.columns.small-centered
     #flyer-list

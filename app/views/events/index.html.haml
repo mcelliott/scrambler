@@ -1,18 +1,24 @@
-.large-12.columns.text-center
-  %h2.text-center Events
+%h2.text-center Events
 
 .row
   .large-12.small-12.columns.small-centered
-    .panel{ style: 'padding-bottom: 0;' }
-      .row.collapse
-        .right
-          = link_to fa_icon('plus', text: 'New Event'), new_event_path, class: 'button-xs pull-right', remote: true
+    .search-panel
+      .row
+        .small-12.medium-10.large-10.columns
+          .row
+            = search_form_for @q, url: events_path, remote: true do |f|
+              .small-12.medium-3.large-4.columns
+                = f.search_field :name_or_location_cont, placeholder: 'Search Name or Location'
+              .small-12.medium-3.large-4.columns
+                = f.search_field :event_date_eq, placeholder: 'Event Date', class: 'datepicker event-date'
+              .small-12.medium-3.large-4.columns.left
+                = f.submit 'Search', class: 'button-xs'
+        .small-12.medium-2.large-2.columns
+          .row
+            .small-12.medium-12.large-12.columns.text-right
+              = link_to fa_icon('plus', text: 'New Event'), new_event_path, class: 'button-xs', remote: true
 
-        = search_form_for @q, url: events_path, remote: true do |f|
-          = f.search_field :name_or_location_cont, placeholder: 'Search Name or Location', class: 'small-3 columns'
-          = f.search_field :event_date_eq, placeholder: 'Event Date', class: 'small-3 columns datepicker event-date'
-          = f.submit 'Search', class: 'button-xs search-btn'
-
+.row
   .large-12.small-12.columns.small-centered
     #event-list
       = render 'events'

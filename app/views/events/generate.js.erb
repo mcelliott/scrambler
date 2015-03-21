@@ -2,6 +2,7 @@ $("#empty-rounds-list").hide();
 $('#teams-list').html('<%= j(render 'events/rounds') -%>');
 $('div.generating-teams').hide();
 $("#generate-teams").attr('disabled', false);
+$("#generate-mixed-teams").attr('disabled', false);
 $("#show-teams").show();
 $('.tabs').find('a[href$="#panel-1"]').trigger('click');
 $('#modal').foundation('reveal', 'close');

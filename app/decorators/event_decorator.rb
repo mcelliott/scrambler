@@ -29,6 +29,10 @@ class EventDecorator < Draper::Decorator
     event.category_type == CategoryType::FREEFLY
   end
 
+  def event_categories
+    Category.where(enabled: true).map { |category| [category.category_type_humanize, category.category_type] }.uniq
+  end
+
   def category_freefly_options
     Category.where(category_type: CategoryType::FREEFLY).map { |c| [c.name, c.id]}
   end
@@ -52,5 +56,9 @@ class EventDecorator < Draper::Decorator
 
   def options_for_belly
     options_for_select(category_belly_options, category_belly_options.first)
+  end
+
+  def freefly?
+    category_type == CategoryType::FREEFLY
   end
 end

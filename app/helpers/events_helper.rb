@@ -6,7 +6,7 @@ module EventsHelper
     link_to fa_icon('plus', text: 'Add Participants'), new_event_participant_path(event_id: event.id), remote_button_class('new-participant-button')
   end
 
-  def show_teams_link(event, text='Show Teams')
+  def show_teams_link(event, text='Score Board')
     link_to fa_icon('table', text: text), event_teams_path(event_id: event.id), button_class
   end
 
@@ -18,12 +18,14 @@ module EventsHelper
     link_to fa_icon('money', text: 'Expenses'), event_expenses_path(event_id: event.id), button_class
   end
 
-  def generate_teams_link(event)
-    button_to 'Generate Teams', { action: 'generate', event_id: event.id }, { class: 'button-xs radius', id: 'generate-teams', remote: true }
+  def generate_teams_link(event, split=true)
+    link_to '', class: "button-xs radius #{split ? 'split' : ''} button", id: 'generate-teams', data: { event: event.id }  do
+      yield
+    end
   end
 
   def generate_mixed_teams_link(event)
-    link_to 'Generate Mixed Teams',  event_generate_mixed_path(event), remote_button_class
+    link_to 'Generate Mixed Teams',  event_generate_mixed_path(event), remote: true
   end
 
   def send_link(event)

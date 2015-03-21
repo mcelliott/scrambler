@@ -14,7 +14,8 @@ $ ->
     $(@).attr('disabled', true)
     $('#modal').foundation('reveal', 'close');
     $('div.generating-teams').show()
-    $(@).parents('form').submit()
+    event = $(@).data('event')
+    $.post("/events/#{event}/generate")
 
   $(document).on "change", "input.event-score", (e) ->
     ($ @).parent().submit()
@@ -34,6 +35,23 @@ $ ->
     participants.removeAttr('selected')
     $('select#team_participant_id option:eq(' + newSelected + ')').attr('selected', 'selected')
     $('select#team_participant_id').trigger("change")
+
+  $(document).on 'click', '#scored-button', (e) ->
+    e.preventDefault()
+
+    input = $('#team_participant_placeholder')
+    icon = input.closest('.row').find('i')
+    if input.val() == '1'
+      input.val(0)
+      icon.removeClass('fa-exclamation-triangle');
+      icon.addClass('fa-check');
+      $(@).html('<i class="fa fa-check"></i> Scored')
+
+    else
+      input.val(1)
+      icon.removeClass('fa-check');
+      icon.addClass('fa-exclamation-triangle');
+      $(@).html('<i class="fa fa-exclamation-triangle"></i> Unscored')
 
 window.Scrambler =
   update_messages: (notice) ->
