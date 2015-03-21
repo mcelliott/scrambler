@@ -9,13 +9,20 @@ $ ->
     placeholder: "Select Flyer"
     dropdownAutoWidth : true
 
-  $(document).on "click", "#generate-teams, #generate-mixed-teams", (e) ->
+  $(document).on "click", "#generate-teams", (e) ->
     e.preventDefault()
     $(@).attr('disabled', true)
     $('#modal').foundation('reveal', 'close');
     $('div.generating-teams').show()
     event = $(@).data('event')
     $.post("/events/#{event}/generate")
+
+  $(document).on "click", "#generate-mixed-teams", (e) ->
+    e.preventDefault()
+    $("#generate-teams").attr('disabled', true)
+    $('#modal').foundation('reveal', 'close');
+    $('div.generating-teams').show()
+    $(@).parent().submit()
 
   $(document).on "change", "input.event-score", (e) ->
     ($ @).parent().submit()
