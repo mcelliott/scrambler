@@ -3,6 +3,7 @@ $scambler-green: #91c600;
 $background-color: #eee;
 $button-bg-color: #444;
 $link-color: #333333;
+$white-smoke: #F5F5F5;
 
 @mixin tiny-button {
   padding-top: 0.3rem;
@@ -116,13 +117,13 @@ ul {
 .list-item {
   padding: 5px;
   margin-bottom: 5px;
-  background-color: darken(#eee, 10%);
+  background-color: $white-smoke;
 }
 
 .flyer-list-item {
   padding: 5px 0;
   margin-bottom: 5px;
-  background-color: darken(#eee, 10%);
+  background-color: $white-smoke;
 }
 
 .select2 {
@@ -210,9 +211,6 @@ ul.tabs li.tab-title.active {
   border-left: 1px solid $border-color;
 }
 
-ul.tabs li.tab-title.active a {
-  background-color: #fff !important;
-}
 
 ul.tabs.vertical {
   width: 100% !important;
