@@ -13,7 +13,6 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'devise'
 gem 'foundation-rails'
 gem 'haml-rails'
-gem 'high_voltage'
 gem 'pg'
 gem 'simple_form'
 gem 'upmin-admin'
@@ -41,6 +40,9 @@ gem 'autonumeric-rails'
 gem 'pretty_backtrace'
 gem 'gravatarify', '~> 3.0.0'
 gem 'enumerate_it'
+gem 'apartment'
+gem 'redcarpet'
+gem 'friendly_id'
 
 group :development do
   gem 'better_errors'
@@ -73,6 +75,7 @@ group :production do
   gem 'rails_12factor'
 end
 group :test do
+  gem 'shoulda'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'launchy'

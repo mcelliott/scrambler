@@ -5,9 +5,8 @@ class CreateEventScores < ActiveRecord::Migration
       t.integer :event_id
       t.integer :score
       t.integer :round_id
-      t.integer :user_id
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

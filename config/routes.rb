@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :pages
+
   resources :scoring, controller: :handicaps, only: [:index, :edit, :update], as: :scoring
   resources :event_scores, only: [:update]
   resources :flyer_imports, only: [:create, :new]
   resources :settings, only: [:index, :update]
+  resources :tenants, only: [:index, :new, :update, :edit, :destroy]
 
   post    '/teams/:team_id/participant',        controller: 'teams/participant', action: :create,  as: 'teams_participant'
   get     '/teams/participant/new',             controller: 'teams/participant', action: :new,     as: 'new_teams_participant'
@@ -25,7 +28,6 @@ Rails.application.routes.draw do
 
   get 'events/teams/:uuid', controller: 'teams', action: :team_view, as: 'team_view'
 
-  # mount Upmin::Engine => '/admin'
   root to: 'visitors#index'
   devise_for :users
 

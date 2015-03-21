@@ -1,0 +1,7 @@
+= simple_form_for @tenant, remote: true do |f|
+  = f.error_notification
+  = f.input :name
+  = f.input :domain
+  = f.input :database
+  = f.input :enabled
+  = f.button :submit, class: 'button-xs radius'

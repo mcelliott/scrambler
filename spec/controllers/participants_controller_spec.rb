@@ -1,22 +1,18 @@
 require 'rails_helper'
 
 describe ParticipantsController do
-  let(:user)        { create(:user)  }
-  let(:event)       { create(:event,    user: user) }
+  let(:user)        { create(:user) }
+  let(:event)       { create(:event) }
   let(:category)    { create(:category) }
-  let(:flyer)       { create(:flyer,    user: user) }
-  let!(:participant) { create(:participant,
-                              user: user,
-                              event: event,
-                              flyer: flyer,
-                              category: category) }
+  let(:flyer)       { create(:flyer) }
+  let!(:participant) { create(:participant, event: event, flyer: flyer, category: category) }
 
   before do
     sign_in user
   end
 
   describe '#create' do
-    let(:flyer_2) { create(:flyer, user: user) }
+    let(:flyer_2) { create(:flyer) }
     let(:form_params) { { flyer_id: flyer_2, category_id: category.id, event_id: event.id } }
     let(:participant_number) { Participant.participant_number(event) }
     it 'should create the participant' do
@@ -47,7 +43,7 @@ describe ParticipantsController do
     context 'with generated teams' do
       before do
         5.times do
-          create(:participant, user: user, event: event, category: category)
+          create(:participant, event: event, category: category)
         end
         EventRoundsCreator.new({ event_id: event.id }).perform
       end

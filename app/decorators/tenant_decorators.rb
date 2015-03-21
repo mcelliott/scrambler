@@ -1,0 +1,2 @@
+class TenantDecorators < PaginatedCollectionDecorator
+end

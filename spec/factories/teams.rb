@@ -4,7 +4,6 @@ FactoryGirl.define do
   factory :team do
     name 'MyString'
     event
-    user
     round
     category
   end

@@ -1,12 +1,10 @@
 require 'rails_helper'
 
 describe TeamParticipantCreator do
-
-  let(:user)  { create(:user)  }
-  let(:event) { create(:event, user: user) }
-  let(:round) { create(:round, user: user) }
-  let(:participant) { create(:participant, user: user) }
-  let(:team)  { create(:team, event: event, round: round, user: user) }
+  let(:event) { create(:event) }
+  let(:round) { create(:round) }
+  let(:participant) { create(:participant) }
+  let(:team)  { create(:team, event: event, round: round) }
 
   context 'when creating an team_participant without placeholder' do
     let(:creator) { described_class.new(event, participant.id, team) }

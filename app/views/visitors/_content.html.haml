@@ -1,0 +1,8 @@
+%h5.bold
+  = page.title
+%p
+  = markdown(page.content)
+
+- if can?(:manage, Page)
+  %p
+    = link_to 'Edit Page', edit_page_path(page), class: 'button-xs', remote: true

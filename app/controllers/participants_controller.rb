@@ -9,14 +9,14 @@ class ParticipantsController < ApplicationController
   # GET /participants/new
   def new
     current_event
-    @q = current_user.flyers.order(name: :asc).search(params[:q])
+    @q = Flyer.order(name: :asc).search(params[:q])
     @flyers = @q.result.page(params[:page]).per(10)
   end
 
   # POST /participants
   # POST /participants.json
   def create
-    creator = ParticipantCreator.new(current_event, current_user, participant_params)
+    creator = ParticipantCreator.new(current_event, participant_params)
     if creator.perform
       @participant = creator.participant
       @success = true

@@ -4,6 +4,5 @@ FactoryGirl.define do
     event
     score 1
     round
-    user
   end
 end

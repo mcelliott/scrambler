@@ -13,11 +13,6 @@ class Teams::ParticipantController < ApplicationController
   end
 
   def create
-    # @team_participant = current_user.team_participants.build(team: current_team,
-    #                                                     event: current_event,
-    #                                                     participant: current_participant,
-    #                                                     placeholder: participant_params[:placeholder])
-
     @team_participant = TeamParticipantCreator.new(current_event,
                                                    current_participant.id,
                                                    current_team,
@@ -46,7 +41,7 @@ class Teams::ParticipantController < ApplicationController
   end
 
   def current_team
-    @team ||= current_user.teams.find params[:team_id]
+    @team ||= Team.find params[:team_id]
   end
 
   def current_participant

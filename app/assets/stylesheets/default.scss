@@ -147,10 +147,10 @@ ul {
   padding-right: 0px !important;
 }
 
-.underline {
-  border-bottom: 1px solid #aaa;
-  margin-bottom: 5px;
-}
+//.underline {
+//  border-bottom: 1px solid #aaa;
+//  margin-bottom: 5px;
+//}
 
 .team-category {
   margin-top: 40px;
@@ -236,7 +236,7 @@ ul.tabs.vertical {
 input.event-score {
   background: transparent;
   display: block;
-  height: 1em;
+  height: 2em;
   width: 100% !important;
   margin-bottom: 0;
 }
@@ -425,4 +425,34 @@ ul.button-group li a {
 
 #scored-button {
   margin-bottom: 10px;
+}
+
+.panel#page-content {
+  background-color: $white-smoke;
+}
+
+.company-label {
+  @include label(
+    $padding:20px,
+    $text-size:16px,
+    $bg: $oil,
+    $radius: $global-radius
+  );
+  width: 100%;
+  color: $scambler-green !important;
+
+  a {
+    color: $scambler-green !important; }
+
+  &:hover {
+    background-color: lighten($oil, 15%);
+  }
+}
+
+.row.continent-row {
+  margin-bottom: 20px;
+}
+
+.row.continent-row:not(:last-child) {
+  border-bottom: 1px solid darken(#fff, 11%); ;
 }

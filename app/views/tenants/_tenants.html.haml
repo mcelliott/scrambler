@@ -1,0 +1,18 @@
+%table
+  %thead
+    %tr
+      %th Name
+      %th Domain
+      %th Database
+      %th Enabled
+      %th
+  %tbody#tenants
+    - unless tenants.present?
+      %tr#empty-tenants-list
+        %td.text-center{ colspan: 6 }
+          .empty-list-panel= fa_icon('frown-o', text: 'No Tenants')
+    - tenants.each do |tenant|
+      %tr{ id: "tenant-#{tenant.id}" }
+        = render tenant
+
+%div#pages= paginate tenants

@@ -8,7 +8,7 @@ class EventsController < ApplicationController
   decorates_assigned :events, with: PaginatedCollectionDecorator
 
   def index
-    @q = current_user.events.order(event_date: :desc).search(params[:q])
+    @q = Event.order(event_date: :desc).search(params[:q])
     @events = @q.result.page(params[:page])
   end
 
@@ -16,14 +16,14 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = current_user.events.build
+    @event = Event.new
   end
 
   def edit
   end
 
   def create
-    @event = current_user.events.build(event_params)
+    @event = Event.new(event_params)
     flash[:notice] = 'Event was successfully created.' if @event.save
   end
 
@@ -68,7 +68,6 @@ class EventsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
     params.require(:event).permit(:event_date,
-                                  :location,
                                   :name,
                                   :category_type,
                                   :team_size,

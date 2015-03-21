@@ -6,13 +6,13 @@ class TeamCreator
   end
 
   def perform
-    teams.create!(name: "Team #{team_number}", category: @category, user: @event.user, round: @round, event: @event)
+    teams.create!(name: "Team #{team_number}", category: @category, round: @round, event: @event)
   end
 
   private
 
   def team_number
-    @event.teams.where(category: @category, round: @round).count + 1
+    teams.count + 1
   end
 
   def teams

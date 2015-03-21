@@ -1,12 +1,15 @@
 = simple_form_for @event, remote: true do |f|
   = f.error_notification
-  = f.input :name
-  = f.input :location
-  = f.input :event_date, as: :string, input_html: { class: 'datepicker' }, label: 'Event Date'
-  = f.input :category_type, collection: event.event_categories
-  = f.input :team_size, label: 'Team Size'
-  = f.input :num_rounds, label: 'Number of Rounds'
-  = f.input :participant_cost, label: 'Participant Cost', as: :string, data: { role: 'money', a_sep: '.', a_dec: ',' }
-  = f.input :rate_per_minute,  label: 'Rate Per Minute', as: :string, data: { role: 'money', a_sep: '.', a_dec: ',' }
-  = f.input :time_per_round, label: 'Time Per Round (seconds)'
+  %fieldset
+    %legend Event Details
+    = f.input :name
+    = f.input :event_date, as: :string, input_html: { class: 'datepicker' }, label: 'Event Date'
+    = f.input :category_type, collection: event.event_categories
+    = f.input :team_size, label: 'Team Size'
+    = f.input :num_rounds, label: 'Number of Rounds'
+  %fieldset
+    %legend Expenses
+    = f.input :participant_cost, label: 'Participant Cost', as: :string, data: { role: 'money', a_sep: '.', a_dec: ',' }
+    = f.input :rate_per_minute,  label: 'Rate Per Minute', as: :string, data: { role: 'money', a_sep: '.', a_dec: ',' }
+    = f.input :time_per_round, label: 'Time Per Round (seconds)'
   = f.button :submit, class: 'button-xs radius'

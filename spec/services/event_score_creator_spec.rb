@@ -25,9 +25,5 @@ describe EventScoreCreator do
     it 'should belong to the event' do
       expect(subject.round).to eq round
     end
-
-    it 'should belong to the event user' do
-      expect(subject.user).to eq event.user
-    end
   end
 end
