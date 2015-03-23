@@ -45,7 +45,7 @@ class MixedRoundCreator
   end
 
   def round_team_participants(round)
-    round.reload.teams.map { |team| team.team_participants.map(&:participant_id) }.flatten.uniq
+    round.reload.teams.map { |team| team.team_participants.map(&:participant) }.flatten.uniq
   end
 
   def number_of_teams
@@ -53,7 +53,7 @@ class MixedRoundCreator
   end
 
   def combinations
-    (@combinations ||= event.participants.map(&:id).combination(event.team_size).to_a.map { |tp| Participant.find(tp) }).shuffle
+    @combinations ||= event.participants.map(&:id).combination(event.team_size).to_a.map { |tp| Participant.find(tp) }
   end
 
   def round_numbers
