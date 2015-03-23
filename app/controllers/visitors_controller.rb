@@ -3,6 +3,9 @@ class VisitorsController < ApplicationController
   decorates_assigned :page
 
   def index
+    respond_to do |type|
+      type.html { render template: 'visitors/public/index.html.haml', layout: 'public/application' }
+    end
   end
 
   private
@@ -16,10 +19,6 @@ class VisitorsController < ApplicationController
         (@tenants[continent] ||= []) << tenant
       end
       @tenants = @tenants.sort { |a, b| a.first <=> b.first }
-
-      respond_to do |type|
-        type.html { render template: 'visitors/public/index.html.haml', layout: 'public/application' }
-      end
     end
   end
 

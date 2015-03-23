@@ -120,13 +120,20 @@ $font-family-sans-serif: "Merriweather", "Open Sans", "Helvetica Neue", Helvetic
 // $black       : #000000;
 
 // We use these as default colors throughout
-$primary-color: #eee;
+$primary-color: #6C939F;
 // $secondary-color: #e7e7e7;
 // $alert-color: #f04124;
 // $success-color: #43AC6A;
 // $warning-color: #f08a24;
 // $info-color: #a0d3e8;
 $scrambler-green: #91c600;
+
+$primary-color-1: #6C939F;
+$primary-color-2: #457585;
+$primary-color-3: #26596A;
+$primary-color-4: #104050;
+$primary-color-5: #022835;
+
 
 // We use these to control various global styles
 $body-bg: #eee;
@@ -260,8 +267,8 @@ $body-font-style: normal;
 // We use these to style anchors
 // $anchor-text-decoration: none;
 // $anchor-text-decoration-hover: none;
-$anchor-font-color: $oil;
-$anchor-font-color-hover: scale-color($oil, $lightness: -14%);
+$anchor-font-color: $primary-color-5;
+$anchor-font-color-hover: scale-color($primary-color-5, $lightness: -14%);
 
 // We use these to style the <hr> element
 // $hr-border-width: 1px;
@@ -569,8 +576,8 @@ $f-dropdown-list-hover-bg: $smoke;
 $include-html-button-classes: $include-html-classes;
 
 // We use these to set the color of the pip in dropdown buttons
-$dropdown-button-pip-color: $oil;
-$dropdown-button-pip-color-alt: $oil;
+$dropdown-button-pip-color: $primary-color-5;
+$dropdown-button-pip-color-alt: $primary-color-5;
 
 // $button-pip-tny: rem-calc(6);
 // $button-pip-sml: rem-calc(7);
@@ -950,11 +957,11 @@ $include-pagination-classes: $include-html-classes;
 // $pagination-link-unavailable-bg-active: transparent;
 
 // We use these for currently selected anchor links
-$pagination-link-current-background: $oil;
+$pagination-link-current-background: $primary-color-5;
 $pagination-link-current-font-color: $white;
 $pagination-link-current-font-weight: $font-weight-bold;
 $pagination-link-current-cursor: default;
-$pagination-link-current-active-bg: lighten($oil, 15%);
+$pagination-link-current-active-bg: lighten($primary-color-5, 15%);
 
 // 21. Panels
 // - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -962,7 +969,7 @@ $pagination-link-current-active-bg: lighten($oil, 15%);
 $include-html-panel-classes: $include-html-classes;
 
 // We use these to control the background and border styles
-$panel-bg: $white;
+$panel-bg: $primary-color-1;
 $panel-border-style: solid;
 $panel-border-size: 1px;
 
@@ -1171,8 +1178,8 @@ $include-html-button-classes: $include-html-classes;
 
 // We use these to control different shared styles for Split Buttons
 $split-button-function-factor: 10%;
-$split-button-pip-color: $oil;
-$split-button-pip-color-alt: $oil;
+$split-button-pip-color: $primary-color-5;
+$split-button-pip-color-alt: $primary-color-5;
 $split-button-active-bg-tint: rgba(0,0,0,0.1);
 
 // We use these to control tiny split buttons
@@ -1284,12 +1291,12 @@ $table-even-row-bg: $white;
 // These control the table cell border style
 // $table-border-style: solid;
 // $table-border-size: 1px;
-// $table-border-color: $gainsboro;
+$table-border-color: $primary-color-2;
 
 // These control the table head styles
-// $table-head-bg: $white-smoke  ;
+$table-head-bg: $primary-color-3;
 // $table-head-font-size: rem-calc(14);
-// $table-head-font-color: $jet;
+$table-head-font-color: $white;
 // $table-head-font-weight: $font-weight-bold;
 // $table-head-padding: rem-calc(8 10 10);
 
@@ -1311,9 +1318,9 @@ $table-even-row-bg: $white;
 
 // $tabs-navigation-padding: rem-calc(16);
 $tabs-navigation-bg-color: $white  ;
-$tabs-navigation-active-bg-color: $white-smoke;
-// $tabs-navigation-hover-bg-color: scale-color($tabs-navigation-bg-color, $lightness: -6%);
-// $tabs-navigation-font-color: $jet;
+$tabs-navigation-active-bg-color: $primary-color-1;
+$tabs-navigation-hover-bg-color: scale-color($tabs-navigation-bg-color, $lightness: -6%);
+$tabs-navigation-font-color: $white;
 // $tabs-navigation-active-font-color: $tabs-navigation-font-color;
 // $tabs-navigation-font-size: rem-calc(16);
 // $tabs-navigation-font-family: $body-font-family;
@@ -1372,7 +1379,7 @@ $tabs-navigation-active-bg-color: $white-smoke;
 $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-$topbar-bg-color: $oil;
+$topbar-bg-color: $primary-color-5;
 $topbar-bg: $topbar-bg-color;
 
 // Height and margin
@@ -1402,10 +1409,10 @@ $topbar-bg: $topbar-bg-color;
 // $topbar-link-font-size: rem-calc(13);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
 $topbar-link-bg: $topbar-bg;
-$topbar-link-bg-color-hover: $charcoal;
-$topbar-link-bg-hover: lighten($oil, 5%);
-$topbar-link-bg-active: lighten($oil, 10%);
-$topbar-link-bg-active-hover: scale-color($oil, $lightness: -14%);
+$topbar-link-bg-color-hover: $primary-color-4;
+$topbar-link-bg-hover: lighten($primary-color-5, 5%);
+$topbar-link-bg-active: lighten($primary-color-5, 10%);
+$topbar-link-bg-active-hover: scale-color($primary-color-5, $lightness: -14%);
 // $topbar-link-font-family: $body-font-family;
 // $topbar-link-text-transform: none;
 // $topbar-link-padding: ($topbar-height / 3);

@@ -23,7 +23,7 @@
 
 function flash_row(id) {
   setTimeout(function () {
-    $(id).effect("highlight", { color: '#91c600' }, 3000);
+    $(id).effect("highlight", { color: '#6C939F' }, 3000);
   }, 500);
 };
 

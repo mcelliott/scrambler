@@ -1,9 +1,17 @@
-$border-color: #d4d4d4;
 $scambler-green: #91c600;
 $background-color: #eee;
 $button-bg-color: #444;
 $link-color: #333333;
 $white-smoke: #F5F5F5;
+$primary-color: #55BBCC;
+$secondary-color: #C4225A;
+$border-color: darken($primary-color, 10%);
+
+$primary-color-1: #6C939F;
+$primary-color-2: #457585;
+$primary-color-3: #26596A;
+$primary-color-4: #104050;
+$primary-color-5: #022835;
 
 @mixin tiny-button {
   padding-top: 0.3rem;
@@ -34,34 +42,34 @@ body {
   @extend .radius;
   @extend .button;
   @extend .tiny;
-}
-
-.button-xs:focus {
-  background-color: $button-bg-color;
-  border-color: #aaa;
-  color: white;
+  background-color: $primary-color-3;
+  border-color: $primary-color-5;
+  color: $white;
 }
 
 .button-xs:hover {
-  border: 1px solid darken($border-color, 10%);
-  background-color: $border-color !important;
+  border: 1px solid $primary-color-5;
+  background-color: lighten($primary-color-3, 10%);
+  color: $white;
 }
 
 .delete-button {
   @include tiny-button;
+  border: 1px solid $primary-color-5;
 }
 
 .add-button {
   @extend .radius;
   @include tiny-button;
   margin-bottom: 0 !important;
+  border: 1px solid $primary-color-5;
 }
 
 .participant-button {
   @include tiny-button;
   margin-bottom: 0;
   width: 30px !important;
-  border: 1px solid darken($border-color, 15%);
+  border: 1px solid $primary-color-5;
 }
 
 form {
@@ -123,7 +131,7 @@ ul {
 .flyer-list-item {
   padding: 5px 0;
   margin-bottom: 5px;
-  background-color: $white-smoke;
+  background-color: $primary-color-3;
 }
 
 .select2 {
@@ -146,11 +154,6 @@ ul {
   padding-left: 0 !important; /* change the values to anything that you want */
   padding-right: 0px !important;
 }
-
-//.underline {
-//  border-bottom: 1px solid #aaa;
-//  margin-bottom: 5px;
-//}
 
 .team-category {
   margin-top: 40px;
@@ -189,7 +192,7 @@ table {
 }
 
 table tr {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid $primary-color-2;
 }
 
 .left-tabs {
@@ -206,9 +209,9 @@ ul.tabs li.tab-title {
 }
 
 ul.tabs li.tab-title.active {
-  border-top: 1px solid $border-color;
-  border-bottom: 1px solid $border-color;
-  border-left: 1px solid $border-color;
+  border-top: 1px solid $primary-color-2;
+  border-bottom: 1px solid $primary-color-2;
+  border-left: 1px solid $primary-color-2;
 }
 
 
@@ -218,7 +221,7 @@ ul.tabs.vertical {
 }
 
 .tabs-content {
-  border: 1px solid $border-color;
+  border: 1px solid $primary-color-2;
   background-color: #fff !important;
   padding-bottom: 15px;
 }
@@ -242,7 +245,7 @@ input.event-score {
 }
 
 input.event-score:hover {
-  border: 1px dashed #888;
+  border: 1px dashed $primary-color-5;
   cursor: pointer;
 }
 
@@ -369,6 +372,21 @@ textarea {
   border-radius: $global-radius !important;
 }
 
+input[type="email"],
+input[type="password"] {
+  padding: .75rem 1.25rem;
+  height: 48px;
+  font-size: 16px;
+}
+
+.devise-button {
+  width: 100%;
+  font-size: 16px;
+  padding: .75rem 1.25rem;
+  height: 48px;
+  font-size: 16px;
+}
+
 div.field_with_errors {
   background-color: #fff !important;
 }
@@ -384,7 +402,7 @@ div.field_with_errors {
 
 .search-panel {
   @include panel(
-    $bg: white,
+    $bg: $primary-color-1,
     $padding: 15px 10px 0px 10px,
     $adjust: false
   );
@@ -428,24 +446,25 @@ ul.button-group li a {
 }
 
 .panel#page-content {
-  background-color: $white-smoke;
+  background-color: $primary-color-1;
+  color: $white;
 }
 
 .company-label {
   @include label(
     $padding:20px,
     $text-size:16px,
-    $bg: $oil,
+    $bg: $primary-color-5,
     $radius: $global-radius
   );
   width: 100%;
-  color: $scambler-green !important;
+  color: $white;
 
   a {
-    color: $scambler-green !important; }
+    color: $primary-color-5 !important; }
 
   &:hover {
-    background-color: lighten($oil, 15%);
+    background-color: lighten($primary-color-5, 15%);
   }
 }
 
@@ -454,5 +473,5 @@ ul.button-group li a {
 }
 
 .row.continent-row:not(:last-child) {
-  border-bottom: 1px solid darken(#fff, 11%); ;
+  border-bottom: 1px solid $primary-color-3;
 }
