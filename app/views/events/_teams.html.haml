@@ -1,6 +1,6 @@
 .large-12.medium-12.small-12.columns
   - unless round.teams.present?
-    .empty-team-list.text-center
+    .empty-list
       .empty-list-panel= fa_icon('frown-o', text: "No Teams for Round #{round.round_number}")
   %ul
     - round.teams.each do |team|

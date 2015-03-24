@@ -1,6 +1,6 @@
 <% unless flyer.errors.present? %>
   $('#modal').foundation('reveal', 'close');
-  $('#empty-flyers-list').hide()
+  $('.empty-list').hide()
   $('tbody#flyers').prepend('<tr id="flyer-<%= flyer.id %>"><%= j(render flyer) %></tr>');
   flash_row('tr#flyer-<%= flyer.id %>');
 <% else %>

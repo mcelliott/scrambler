@@ -1,4 +1,4 @@
-$("#empty-rounds-list").hide();
+$(".empty-list").hide();
 $('#teams-list').html('<%= j(render 'events/rounds') -%>');
 $('div.generating-teams').hide();
 $("#generate-teams").attr('disabled', false);

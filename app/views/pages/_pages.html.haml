@@ -23,8 +23,8 @@
       %th
   %tbody#pages
     - unless pages.present?
-      %tr#empty-pages-list
-        %td.text-center{ colspan: 6 }
+      %tr.empty-list
+        %td.text-center{ colspan: 4 }
           .empty-list-panel= fa_icon('frown-o', text: 'No Pages')
     - pages.each do |page|
       %tr{ id: "page-#{page.id}" }

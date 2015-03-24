@@ -210,7 +210,7 @@ $body-font-style: normal;
 // $header-font-family: $body-font-family;
 // $header-font-weight: $font-weight-normal;
 // $header-font-style: normal;
-// $header-font-color: $jet;
+$header-font-color: $primary-color-5;
 // $header-line-height: 1.4;
 // $header-top-margin: .2rem;
 // $header-bottom-margin: .5rem;
@@ -982,7 +982,7 @@ $panel-border-color: scale-color($panel-bg, $lightness: $panel-function-factor);
 // $panel-padding: rem-calc(20);
 
 // We use these to set default font colors
-// $panel-font-color: $oil;
+$panel-font-color: $white;
 // $panel-font-color-alt: $white;
 
 // $panel-header-adjust: true;
@@ -1320,13 +1320,12 @@ $table-head-font-color: $white;
 $tabs-navigation-bg-color: $white  ;
 $tabs-navigation-active-bg-color: $primary-color-1;
 $tabs-navigation-hover-bg-color: scale-color($tabs-navigation-bg-color, $lightness: -6%);
-$tabs-navigation-font-color: $white;
-// $tabs-navigation-active-font-color: $tabs-navigation-font-color;
-// $tabs-navigation-font-size: rem-calc(16);
-// $tabs-navigation-font-family: $body-font-family;
-
-// $tabs-content-margin-bottom: rem-calc(24);
-// $tabs-content-padding: ($column-gutter/2);
+$tabs-navigation-font-color: $primary-color-3;
+$tabs-navigation-active-font-color: $white;
+$tabs-navigation-font-size: rem-calc(20);
+$tabs-navigation-font-family: $body-font-family;
+$tabs-content-margin-bottom: rem-calc(24);
+$tabs-content-padding: ($column-gutter/2);
 
 // $tabs-vertical-navigation-margin-bottom: 1.25rem;
 

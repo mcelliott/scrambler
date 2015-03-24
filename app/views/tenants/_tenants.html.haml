@@ -8,7 +8,7 @@
       %th
   %tbody#tenants
     - unless tenants.present?
-      %tr#empty-tenants-list
+      %tr.empty-list
         %td.text-center{ colspan: 6 }
           .empty-list-panel= fa_icon('frown-o', text: 'No Tenants')
     - tenants.each do |tenant|

@@ -1,6 +1,6 @@
 <% unless page.errors.present? %>
   $('#modal').foundation('reveal', 'close');
-  $('#empty-pages-list').hide()
+  $('.empty-list').hide()
   $('tbody#pages').prepend('<tr id="page-<%= page.id %>"><%= j(render page) %></tr>');
   flash_row('tr#page-<%= page.id %>');
 <% else %>
