@@ -2,7 +2,7 @@
 #
 # require 'apartment/elevators/generic'
 # require 'apartment/elevators/domain'
-require 'apartment/elevators/subdomain'
+# require 'apartment/elevators/subdomain'
 
 Apartment.configure do |config|
   config.excluded_models = %w{Tenant Page}
@@ -10,6 +10,3 @@ Apartment.configure do |config|
   config.tenant_names = lambda{ Tenant.pluck :database }
   config.persistent_schemas = ['shared_extensions', 'uuid']
 end
-
-Rails.application.config.middleware.use 'Apartment::Elevators::Subdomain'
-Apartment::Elevators::Subdomain.excluded_subdomains = ['www']
