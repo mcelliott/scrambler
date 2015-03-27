@@ -14,7 +14,7 @@ module ApplicationHelper
 
   def domain_url(domain)
     return "http://#{domain}.127.0.0.1.xip.io:5000" if Rails.env.development?
-    "#{domain}.#{ENV['DOMAIN_NAME']}"
+    "http://#{domain}.#{ENV['DOMAIN_NAME']}"
   end
 
   def markdown(text)
