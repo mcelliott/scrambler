@@ -1,6 +1,6 @@
 %td= category.display_name
 %td= category.category_type_humanize
-%td= category.enabled
+%td= boolean_icon(category.enabled)
 %td.text-right
   %ul.button-group.radius
     %li= link_to fa_icon('pencil', text: ''), edit_category_path(category), remote: true, class: 'button-xs'

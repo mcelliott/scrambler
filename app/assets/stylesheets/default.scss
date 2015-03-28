@@ -433,8 +433,14 @@ ul.button-group li a {
 
 @media screen and (max-width: 640px) {
   table {
+    table-layout: fixed;
     overflow-x: auto;
-    display: block;
+//    display: block;
+    font-size: 10px !important;
+
+    td.long {
+      word-wrap: break-word;
+    }
   }
 }
 

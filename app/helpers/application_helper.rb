@@ -17,6 +17,22 @@ module ApplicationHelper
     "http://#{domain}.#{ENV['DOMAIN_NAME']}"
   end
 
+  def enabled_icon
+    fa_icon('check', text: '')
+  end
+
+  def disabled_icon
+    fa_icon('remove', text: '')
+  end
+
+  def boolean_icon(value)
+    if value
+      enabled_icon
+    else
+      disabled_icon
+    end
+  end
+
   def markdown(text)
     render_options = {
         # will remove from the output HTML tags inputted by user

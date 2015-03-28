@@ -1,7 +1,7 @@
 %h2.text-center Events
 
 .row
-  .large-12.small-12.columns.small-centered
+  .large-12.medium-12.small-12.columns.small-centered
     .search-panel
       .row
         .small-12.medium-10.large-10.columns
@@ -19,7 +19,7 @@
               = link_to fa_icon('plus', text: 'New Event'), new_event_path, class: 'button-xs', remote: true
 
 .row
-  .large-12.small-12.columns.small-centered
+  .large-12.medium-12.small-12.columns.small-centered
     #event-list
       = render 'events'
 
