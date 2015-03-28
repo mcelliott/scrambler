@@ -3,7 +3,7 @@
   participant_row.find('button').prop("disabled", true);
   participant_row.find('select').prop("disabled", true);
   participant_row.find('i').removeClass('fa-plus').addClass('fa-check')
-  $('#empty-participants-list').hide();
+  $('.empty-list').hide();
   $('#participant-list').html("<%= j(render 'events/participants') %>");
   flash_row('#participant-<%= participant.id %>');
 <% end %>

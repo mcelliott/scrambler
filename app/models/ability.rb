@@ -8,13 +8,13 @@ class Ability
     if user.role == 'admin'
       can :manage, :all
     else
-      can [:read, :create, :update, :destroy], Flyer,        user_id: user.id
-      can [:read, :create, :update, :destroy], Event,        user_id: user.id
-      can [:read, :update, :destroy], User,         id: user.id
-      can [:read, :create, :update, :destroy], Participant,  user_id: user.id
-      can [:read, :create, :update, :destroy], TeamParticipant, user_id: user.id
-      can [:read, :create, :update, :destroy], Round,        user_id: user.id
-      can [:read, :create, :update, :destroy], Team,         user_id: user.id
+      can [:read, :create, :update, :destroy], Flyer
+      can [:read, :create, :update, :destroy], Event
+      can [:read, :update, :destroy], User, id: user.id
+      can [:read, :create, :update, :destroy], Participant
+      can [:read, :create, :update, :destroy], TeamParticipant
+      can [:read, :create, :update, :destroy], Round
+      can [:read, :create, :update, :destroy], Team
     end
 
     # The first argument to `can` is the action you are giving the user

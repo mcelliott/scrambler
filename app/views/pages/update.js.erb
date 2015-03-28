@@ -1,0 +1,11 @@
+<% unless page.errors.present? %>
+  $('#modal').foundation('reveal', 'close');
+  $('tr#page-<%= page.id %>').html('<%= j(render page) %>');
+  flash_row('tr#page-<%= page.id %>');
+  $('#page-content').html('<%= j(render "visitors/content") %>');
+<% else %>
+  $('.modal-content').html('<%= j(render template: "pages/new.html.haml") %>');
+  $('#modal').foundation('reveal', 'open');
+<% end %>
+
+Scrambler.update_messages("<%= j(render 'layouts/messages') %>");

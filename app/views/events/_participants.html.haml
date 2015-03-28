@@ -1,7 +1,7 @@
 .large-12.medium-12.small-12.columns
   %ul
     - unless event.category_participants.present?
-      %li#empty-participants-list.text-center
+      %li.empty-list
         .empty-list-panel= fa_icon('frown-o', text: 'No Participants')
 
     - event.category_participants.each do |category, participants|

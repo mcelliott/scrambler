@@ -3,7 +3,7 @@ require 'rails_helper'
 describe TeamCreator do
   let(:event)    { create(:event)    }
   let(:category) { create(:category) }
-  let(:round)    { create(:round, user: event.user, event: event)    }
+  let(:round)    { create(:round, event: event)    }
   let(:num_participants)     { 6 }
   let(:creator)  { described_class.new(event, category, round) }
 
@@ -20,10 +20,6 @@ describe TeamCreator do
 
     it 'should belong to the round' do
       expect(subject.round).to eq round
-    end
-
-    it 'should belong to the user' do
-      expect(subject.user).to eq event.user
     end
 
     it 'should belong to the category' do

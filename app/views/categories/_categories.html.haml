@@ -7,11 +7,11 @@
       %th
   %tbody#categories
     - unless categories.present?
-      %tr#empty-categories-list
-        %td.text-center{ colspan: 2 }
+      %tr.empty-list
+        %td.text-center{ colspan: 4 }
           .empty-list-panel= fa_icon('frown-o', text: 'No Categories')
     - categories.each do |category|
       %tr{ id: "category-#{category.id}" }
         = render category
 
-%div#pages= paginate categories
+#pages= paginate categories

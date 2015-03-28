@@ -1,4 +1,7 @@
 class Handicap < ActiveRecord::Base
   has_enumeration_for :hours, with: TunnelHours, create_helpers: { prefix: true }
-  belongs_to :user
+
+  validates :hours, presence: true
+  validates_inclusion_of :hours, in: TunnelHours.list
+  validates :amount, presence: true, numericality: true
 end

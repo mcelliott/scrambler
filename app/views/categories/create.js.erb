@@ -1,6 +1,6 @@
 <% unless category.errors.present? %>
   $('#modal').foundation('reveal', 'close');
-  $('#empty-categories-list').hide()
+  $('.empty-list').hide()
   $('tbody#categories').prepend('<tr id="category-<%= category.id %>"><%= j(render category) %></tr>');
   flash_row('tr#category-<%= category.id %>');
 <% else %>

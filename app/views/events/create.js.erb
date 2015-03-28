@@ -1,6 +1,6 @@
 <% unless event.errors.present? %>
   $('#modal').foundation('reveal', 'close');
-  $('#empty-events-list').hide()
+  $('.empty-list').hide()
   $('tbody#events').prepend('<tr id="event-<%= event.id %>"><%= j(render event) %></tr>');
   flash_row('tr#event-<%= event.id %>');
 <% else %>

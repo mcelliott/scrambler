@@ -16,10 +16,6 @@ describe RoundCreator do
       expect(subject.event).to eq event
     end
 
-    it 'should belong to the user' do
-      expect(subject.user).to eq event.user
-    end
-
     it 'should belong to the category' do
       expect(subject.round_number).to eq round_number + 1
     end

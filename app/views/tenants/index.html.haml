@@ -1,0 +1,20 @@
+%h2.text-center Tenants
+
+.row
+  .large-12.small-12.columns.small-centered
+    .search-panel
+      .row
+        .small-12.medium-12.large-12.columns
+          .row
+            = search_form_for @q, url: tenants_path, remote: true do |f|
+              .small-12.medium-3.large-4.columns
+                = f.search_field :name_or_database_or_domain_cont, placeholder: 'Search', class: 'small-3 columns'
+              .small-12.medium-3.large-4.columns.left
+                = f.submit 'Search', class: 'button-xs search-btn'
+              .small-12.medium-3.large-4.columns.text-right
+                = link_to fa_icon('plus', text: 'New tenant'), new_tenant_path, class: 'button-xs', remote: true
+
+.row
+  .large-12.small-12.columns.small-centered
+    #tenant-list
+      = render 'tenants'

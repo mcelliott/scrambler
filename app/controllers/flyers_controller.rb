@@ -7,7 +7,7 @@ class FlyersController < ApplicationController
   decorates_assigned :flyers, with: PaginatedCollectionDecorator
 
   def index
-    @q = current_user.flyers.order(name: :asc).search(params[:q])
+    @q = Flyer.order(name: :asc).search(params[:q])
     @flyers = @q.result.page(params[:page])
   end
 
@@ -16,7 +16,7 @@ class FlyersController < ApplicationController
   end
 
   def create
-    @flyer = current_user.flyers.build(flyer_params)
+    @flyer = Flyer.new(flyer_params)
     flash[:notice] = 'Flyer was successfully created.' if @flyer.save
   end
 

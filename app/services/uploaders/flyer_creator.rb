@@ -2,14 +2,13 @@ module Uploaders
   class FlyerCreator
     attr_reader :attributes
 
-    def initialize(user, attributes)
-      @user = user
+    def initialize(attributes)
       @attributes = attributes
     end
 
     def flyer
       hash = attributes.reject { |key, value| value.blank? }
-      @user.flyers.create!(hash)
+      Flyer.create!(hash)
     end
   end
 end

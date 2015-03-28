@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150320232118) do
+ActiveRecord::Schema.define(version: 20150322042940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20150320232118) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.string   "category_type"
     t.boolean  "enabled"
   end
@@ -30,20 +30,17 @@ ActiveRecord::Schema.define(version: 20150320232118) do
     t.integer  "event_id"
     t.integer  "score"
     t.integer  "round_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.integer  "participant_id"
   end
 
   create_table "events", force: :cascade do |t|
     t.date     "event_date"
-    t.string   "location"
-    t.integer  "user_id"
     t.string   "name"
     t.integer  "team_size"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.integer  "num_rounds"
     t.uuid     "uuid",             default: "uuid_generate_v4()"
     t.integer  "email_count",      default: 0
@@ -56,28 +53,49 @@ ActiveRecord::Schema.define(version: 20150320232118) do
   create_table "flyers", force: :cascade do |t|
     t.integer  "hours",      default: 0
     t.string   "name"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "email"
   end
 
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
   create_table "handicaps", force: :cascade do |t|
-    t.integer  "user_id",                  null: false
     t.integer  "hours",      default: 0
     t.decimal  "amount",     default: 0.0
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
 
+  create_table "pages", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.string   "slug"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "pages", ["slug"], name: "index_pages_on_slug", unique: true, using: :btree
+
   create_table "participants", force: :cascade do |t|
     t.integer  "flyer_id"
     t.integer  "category_id"
     t.integer  "event_id"
-    t.integer  "user_id"
     t.integer  "number"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "payments", force: :cascade do |t|
@@ -90,11 +108,10 @@ ActiveRecord::Schema.define(version: 20150320232118) do
   end
 
   create_table "rounds", force: :cascade do |t|
-    t.integer  "user_id"
     t.integer  "event_id"
     t.integer  "round_number"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "settings", force: :cascade do |t|
@@ -102,8 +119,8 @@ ActiveRecord::Schema.define(version: 20150320232118) do
     t.text     "value"
     t.integer  "target_id",   null: false
     t.string   "target_type", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "settings", ["target_type", "target_id", "var"], name: "index_settings_on_target_type_and_target_id_and_var", unique: true, using: :btree
@@ -113,19 +130,26 @@ ActiveRecord::Schema.define(version: 20150320232118) do
     t.integer  "participant_id"
     t.boolean  "placeholder",    default: false
     t.integer  "team_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "teams", force: :cascade do |t|
     t.integer  "event_id"
     t.string   "name"
-    t.integer  "user_id"
     t.integer  "category_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "round_id"
+  end
+
+  create_table "tenants", force: :cascade do |t|
+    t.string   "name",                       null: false
+    t.string   "domain",                     null: false
+    t.string   "database",                   null: false
+    t.boolean  "enabled",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -139,8 +163,8 @@ ActiveRecord::Schema.define(version: 20150320232118) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "name"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"

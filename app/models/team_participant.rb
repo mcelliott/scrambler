@@ -2,14 +2,12 @@ class TeamParticipant < ActiveRecord::Base
   belongs_to :event
   belongs_to :team
   belongs_to :participant
-  belongs_to :user
 
   has_one :event_score, dependent: :destroy
 
   validates :participant_id, presence: true
   validates :event_id,    presence: true
   validates :team_id,     presence: true
-  validates :user_id,     presence: true
 
   delegate :category, to: :participant, prefix: true
 

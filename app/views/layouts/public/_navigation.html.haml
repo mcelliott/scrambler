@@ -1,0 +1,13 @@
+%nav.top-bar{"data-topbar" => true}
+  %ul.title-area
+    %li.name
+      = link_to image_tag('scrambler-logo.png', size: '100x100'), root_path
+    %li.toggle-topbar.menu-icon
+      %a{:href => "#"}
+        %span
+  - if user_signed_in?
+    %section.top-bar-section
+      %ul.right
+        %li.divider
+        %li.name= link_to gravatar_tag(current_user.email, size: 30), edit_user_registration_path
+        %li= link_to 'Sign out', destroy_user_session_path, method: 'delete'

@@ -3,14 +3,13 @@
     %tr
       %th Name
       %th Event date
-      %th Location
       %th Type
       %th Team Size
       %th Rounds
       %th
   %tbody#events
     - unless events.present?
-      %tr#empty-events-list
+      %tr.empty-list
         %td.text-center{ colspan: 6 }
           .empty-list-panel= fa_icon('frown-o', text: 'No Events')
     - events.each do |event|

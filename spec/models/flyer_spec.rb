@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe Flyer do
   it { should respond_to :name  }
-  it { should respond_to :user  }
   it { should respond_to :hours }
 
   describe 'name field' do
@@ -41,13 +40,6 @@ describe Flyer do
       it 'should be valid' do
         expect(flyer).to be_valid
       end
-    end
-  end
-
-  describe 'user field' do
-    let(:invalid_flyer) { build(:flyer, user: nil) }
-    it 'should be invalid' do
-      expect(invalid_flyer).to_not be_valid
     end
   end
 end

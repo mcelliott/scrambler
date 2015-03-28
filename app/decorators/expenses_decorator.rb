@@ -59,6 +59,6 @@ class ExpensesDecorator
   private
 
   def team_count
-    @event.rounds.map { |r| r.teams.count }.reduce(:+)
+    @event.rounds.map { |r| r.teams.count }.reduce(:+) || 0
   end
 end

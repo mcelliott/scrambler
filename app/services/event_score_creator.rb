@@ -6,8 +6,7 @@ class EventScoreCreator
   end
 
   def perform
-    EventScore.create!(user: @event.user,
-                       team_participant: @team_participant,
+    EventScore.create!(team_participant: @team_participant,
                        round: @round,
                        event: @event,
                        participant: @team_participant.participant,

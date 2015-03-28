@@ -1,0 +1,33 @@
+%h2.text-center Pages
+
+.row
+  .large-12.small-12.columns.small-centered
+    .search-panel
+      .row
+        .small-12.medium-12.large-12.columns
+          .row
+            = search_form_for @q, url: pages_path, remote: true do |f|
+              .small-12.medium-3.large-4.columns
+                = f.search_field :name_cont, placeholder: 'Search Name', class: 'small-3 columns'
+              .small-12.medium-3.large-4.columns.left
+                = f.submit 'Search', class: 'button-xs search-btn'
+              .small-12.medium-3.large-4.columns.text-right
+                = link_to fa_icon('plus', text: 'New page'), new_page_path, class: 'button-xs', remote: true
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Title
+      %th Slug
+      %th
+  %tbody#pages
+    - unless pages.present?
+      %tr.empty-list
+        %td.text-center{ colspan: 4 }
+          .empty-list-panel= fa_icon('frown-o', text: 'No Pages')
+    - pages.each do |page|
+      %tr{ id: "page-#{page.id}" }
+        = render page
+
+%div#pages= paginate pages

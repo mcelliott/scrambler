@@ -6,6 +6,5 @@ FactoryGirl.define do
     category
     event
     sequence(:number) { |n| n }
-    user
   end
 end

@@ -4,7 +4,6 @@ FactoryGirl.define do
   factory :flyer do
     sequence(:name)  { |n| "Flyer #{n}" }
     sequence(:email) { |n| "flyer_#{n}@foo.com" }
-    hours 1
-    user
+    hours TunnelHours::NOVICE
   end
 end

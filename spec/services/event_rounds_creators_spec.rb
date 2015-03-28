@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe EventRoundsCreator do
-
   let(:event)                { create(:event) }
   let(:event_rounds_creator) { described_class.new({event_id: event.id}) }
   let(:num_participants)     { 6 }
@@ -9,7 +8,7 @@ describe EventRoundsCreator do
 
   before do
     num_participants.times do
-      create(:participant, event: event, category: category, user: event.user)
+      create(:participant, event: event, category: category)
     end
   end
 

@@ -1,0 +1,10 @@
+<% unless @tenant.errors.present? %>
+$('#modal').foundation('reveal', 'close');
+$('tr#tenant-<%= @tenant.id %>').html('<%= j(render @tenant) %>');
+flash_row('tr#tenant-<%= @tenant.id %>');
+<% else %>
+$('.modal-content').html('<%= j(render template: "tenants/new.html.haml") %>');
+$('#modal').foundation('reveal', 'open');
+<% end %>
+
+Scrambler.update_messages("<%= j(render 'layouts/messages') %>");

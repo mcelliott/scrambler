@@ -2,12 +2,12 @@
 .row
   .large-4.medium-6.small-12.columns.small-centered.underline
     = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      = f.input :email, as: :email, autofocus: true, required: true
-      = f.input :password, as: :password, required: true
-      .custom-checkbox
-        = f.check_box :remember_me
+      = f.input :email, as: :email, autofocus: true, required: true, label: false, placeholder: 'Email'
+      = f.input :password, as: :password, required: true, label: false, placeholder: 'Password'
+      .custom-checkbox.hide
+        = f.check_box :remember_me, value: 1
         = f.label :remember_me
-      = f.button :submit, 'Sign in', class: 'button-xs'
+      = f.button :submit, 'Sign in', class: 'button-xs devise-button'
 
 .row
   .large-4.medium-6.small-12.columns.small-centered.text-center

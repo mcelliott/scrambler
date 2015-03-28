@@ -14,20 +14,17 @@
 //= require jquery_ujs
 //= require jquery-ui/accordion
 //= require jquery-ui/datepicker
+//= require jquery-ui/effect-highlight
 //= require select2
 //= require turbolinks
 //= require foundation
 //= require autonumeric
 //= require_tree .
 
-$(function() {
-  $(document).foundation();
-});
-
 function flash_row(id) {
   setTimeout(function () {
-    $(id).effect("highlight", { color: '#91c600' }, 3000);
+    $(id).effect("highlight", { color: '#6C939F' }, 3000);
   }, 500);
-}
+};
 
 $(function(){ $(document).foundation(); });

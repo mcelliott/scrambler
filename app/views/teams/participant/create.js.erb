@@ -1,6 +1,6 @@
 <% unless team.errors.present? %>
   $('#modal').foundation('reveal', 'close');
-  $('#empty-teams-list').hide();
+  $('.empty-list').hide();
   $('#team-<%= team.id %> .team-participant-list').append('<%= j(render partial: 'teams/team_participant', locals: { team_participant: team_participant }) %>');
   flash_row('#team-participant-<%= team_participant.id %>');
 <% else %>

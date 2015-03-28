@@ -8,6 +8,10 @@
     - if can?(:manage, Category)
       %li{ class: active_controller_link('categories') }= link_to 'Categories', categories_path
       %li.divider
+      %li{ class: active_controller_link('tenants') }= link_to 'Tenants', tenants_path
+      %li.divider
+      %li{ class: active_controller_link('pages') }= link_to 'Pages', pages_path
+      %li.divider
     %li{ class: active_controller_link('handicaps') }= link_to 'Scoring', scoring_index_path
     %li.divider
   %ul.right

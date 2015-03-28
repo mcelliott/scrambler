@@ -5,8 +5,7 @@ class CreateTeamParticipants < ActiveRecord::Migration
       t.integer :participant_id
       t.boolean :placeholder, default: false
       t.integer :team_id
-      t.integer :user_id
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

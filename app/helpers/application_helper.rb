@@ -1,6 +1,6 @@
 module ApplicationHelper
   def event_filters
-    [{ field: :name_or_location_cont, placeholder: 'Search Name or Location', width: 'small-3' },
+    [{ field: :name_cont, placeholder: 'Search Name', width: 'small-3' },
      { field: :event_date_eq, placeholder: 'Event Date', class: 'datepicker', width: 'small-3' }]
   end
 
@@ -10,5 +10,71 @@ module ApplicationHelper
 
   def active_controller_link(controller)
     (params[:controller] == controller) ? 'active' : ''
+  end
+
+  def domain_url(domain)
+    return "http://#{domain}.127.0.0.1.xip.io:5000" if Rails.env.development?
+    "http://#{domain}.#{ENV['DOMAIN_NAME']}"
+  end
+
+  def enabled_icon
+    fa_icon('check', text: '')
+  end
+
+  def disabled_icon
+    fa_icon('remove', text: '')
+  end
+
+  def boolean_icon(value)
+    if value
+      enabled_icon
+    else
+      disabled_icon
+    end
+  end
+
+  def markdown(text)
+    render_options = {
+        # will remove from the output HTML tags inputted by user
+        filter_html:     false,
+        # will insert <br /> tags in paragraphs where are newlines
+        # (ignored by default)
+        hard_wrap:       true,
+        # hash for extra link options, for example 'nofollow'
+        link_attributes: { rel: 'nofollow' },
+        # more
+        # will remove <img> tags from output
+        # no_images: true
+        # will remove <a> tags from output
+        no_links: false,
+        # will remove <style> tags from output
+        # no_styles: true
+        # generate links for only safe protocols
+        safe_links_only: true
+        # and more ... (prettify, with_toc_data, xhtml)
+    }
+    renderer = Redcarpet::Render::HTML.new(render_options)
+
+    extensions = {
+        #will parse links without need of enclosing them
+        autolink:           true,
+        # blocks delimited with 3 ` or ~ will be considered as code block.
+        # No need to indent.  You can provide language name too.
+        # ```ruby
+        # block of code
+        # ```
+        fenced_code_blocks: true,
+        # will ignore standard require for empty lines surrounding HTML blocks
+        lax_spacing:        true,
+        # will not generate emphasis inside of words, for example no_emph_no
+        no_intra_emphasis:  true,
+        # will parse strikethrough from ~~, for example: ~~bad~~
+        strikethrough:      true,
+        # will parse superscript after ^, you can wrap superscript in ()
+        superscript:        true
+        # will require a space after # in defining headers
+        # space_after_headers: true
+    }
+    Redcarpet::Markdown.new(renderer, extensions).render(text).html_safe
   end
 end

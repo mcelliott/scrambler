@@ -4,13 +4,9 @@ class Event < ActiveRecord::Base
   has_many :payments, dependent: :destroy
   has_many :teams
 
-  belongs_to :user
-
   has_enumeration_for :category_type, with: CategoryType, create_helpers: { prefix: true }
 
   validates :event_date, presence: true
-  validates :location,   presence: true, length: { maximum: 50 }
-  validates :user_id,       presence: true
   validates :name,       presence: true, length: { maximum: 50 }
   validates :team_size,  presence: true, numericality: true
   validates :num_rounds,     presence: true, numericality: true
@@ -36,5 +32,7 @@ class Event < ActiveRecord::Base
     participants.group_by { |p| p.category }
   end
 
-  paginates_per 20
+  def location
+    Tenant.current_name
+  end
 end

@@ -1,0 +1,8 @@
+%td= page.name
+%td= page.title
+%td= page.slug
+%td.text-right
+  %ul.button-group.radius
+    %li= link_to fa_icon('pencil', text: ''), edit_page_path(page), remote: true, class: 'button-xs'
+    %li= link_to fa_icon('trash-o', text: ''), page, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button-xs'
+

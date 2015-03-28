@@ -1,0 +1,8 @@
+%td= tenant.name
+%td= tenant.domain
+%td= tenant.database
+%td= boolean_icon(tenant.enabled)
+%td.text-right
+  %ul.button-group.radius
+    %li= link_to fa_icon('pencil', text: ''), edit_tenant_path(tenant), remote: true, class: 'button-xs'
+    %li= link_to fa_icon('trash-o', text: ''), tenant, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button-xs'

@@ -11,6 +11,11 @@
             %th Handicap Amount
             %th
         %tbody#handicaps
+          - unless @handicaps.present?
+            %tr.empty-list
+              %td.text-center{ colspan: 4 }
+                .empty-list-panel= fa_icon('frown-o', text: 'No handicaps')
+
           - @handicaps.each do |handicap|
             %tr{ id: "handicap-#{handicap.id}" }
               = render handicap
