@@ -1,0 +1,49 @@
+<html>
+<head>
+  <title>Tunnel Scrambler</title>
+  <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700" %>
+
+  <style type="text/css">
+    body, td { color:#000000; font-size:14px; }
+    .divider { background-color:#555555; height:2px; }
+    .details h2 { margin-top:0; margin-bottom:8px; font-size:18px; }
+    .details p { margin:8px 0; }
+    .details img { border:solid 1px #777777; }
+    #footer { font-size:11px; color:#555555; }
+    #footer a { color:#555555;}
+    h2 { text-align: center; }
+  </style>
+</head>
+
+<body>
+<table width="100%" id="background" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center" valign="top">
+      <table width="650" id="main" border="0" cellpadding="0" cellspacing="20">
+        <tr>
+          <td id="header" colspan="2">
+            <a href="www.tunnelscrambler.com">
+              <%= image_tag attachments['logo.png'].url, alt: 'Tunnel Scrambler' %>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td class="divider" colspan="2" bgcolor="#555555" height="2"></td>
+        </tr>
+        <tr class="details">
+          <td valign="top">
+            <p class="text-left"><%= t("devise.mailer.invitation_instructions.hello", email: @resource.email) %></p>
+            <p><%= t("devise.mailer.invitation_instructions.someone_invited_you", url: domain_url(Apartment::Tenant.current)) %></p>
+            <p><%= link_to t("devise.mailer.invitation_instructions.accept"), accept_invitation_url(@resource, invitation_token: @token) %></p>
+            <p><%= t("devise.mailer.invitation_instructions.ignore").html_safe %></p>
+          </td>
+        </tr>
+        <tr>
+          <td class="divider" colspan="2" bgcolor="#555555" height="2"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

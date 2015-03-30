@@ -1,0 +1,16 @@
+%table
+  %thead
+    %tr
+      %th Name
+      %th Email
+      %th
+  %tbody#users
+    - unless users.present?
+      %tr.empty-list
+        %td.text-center{ colspan: 4 }
+          .empty-list-panel= fa_icon('frown-o', text: 'No Users')
+    - users.each do |user|
+      %tr{ id: "user-#{user.id}" }
+        = render user
+
+#pages= paginate users

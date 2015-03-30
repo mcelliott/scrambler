@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :confirmable,
+  devise :database_authenticatable, :confirmable, :invitable,
          :recoverable, :rememberable, :trackable, :validatable, :registerable
 
   has_many :participants, dependent: :destroy
@@ -19,7 +19,11 @@ class User < ActiveRecord::Base
   has_many :teams, dependent: :destroy
   has_many :event_scores, dependent: :destroy
 
-  validates :name, presence: true
+  # validates :name, presence: true
 
   has_settings :current
+
+  def password_required?
+    !@skip_password && super
+  end
 end

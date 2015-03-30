@@ -1,0 +1,9 @@
+%h3.text-center= t 'devise.invitations.edit.header'
+.row
+  .large-4.medium-6.small-12.columns.small-centered
+    = simple_form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put } do |f|
+      = f.error_notification
+      = f.hidden_field :invitation_token
+      = f.input :password
+      = f.input :password_confirmation
+      = f.button :submit, t("devise.invitations.edit.submit_button"), class: 'button-xs'
