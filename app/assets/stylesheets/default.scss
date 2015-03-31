@@ -21,6 +21,20 @@ $primary-color-5: #022835;
   font-size: 0.6875rem;
 }
 
+@mixin btn {
+  @extend .radius;
+  @extend .button;
+  background-color: $primary-color-3;
+  border-color: $primary-color-5;
+  color: $white;
+
+  &:hover {
+    border: 1px solid $primary-color-5;
+    background-color: lighten($primary-color-3, 10%);
+    color: $white;
+  }
+}
+
 html,
 body {
   margin:0;
@@ -39,18 +53,8 @@ body {
 }
 
 .button-xs {
-  @extend .radius;
-  @extend .button;
+  @include btn;
   @extend .tiny;
-  background-color: $primary-color-3;
-  border-color: $primary-color-5;
-  color: $white;
-}
-
-.button-xs:hover {
-  border: 1px solid $primary-color-5;
-  background-color: lighten($primary-color-3, 10%);
-  color: $white;
 }
 
 .delete-button {
@@ -369,14 +373,17 @@ textarea {
   border-radius: $global-radius !important;
 }
 
+input[type="number"],
+input[type="text"],
 input[type="email"],
-input[type="password"] {
-  padding: .75rem 1.25rem;
-  height: 48px;
-  font-size: 16px;
+input[type="password"], select {
+  padding: .75rem 1.25rem !important;
+  height: 48px !important;
+  font-size: 16px !important;
 }
 
-.devise-button {
+.devise-button, .lrg-btn {
+  @include btn;
   width: 100%;
   font-size: 16px;
   padding: .75rem 1.25rem;

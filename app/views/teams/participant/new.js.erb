@@ -1,4 +1,5 @@
 $('.modal-content').html('<%= j(render template: "teams/participant/new.html.haml") %>')
+$('#modal').addClass('small')
 $('#modal').foundation('reveal', 'open')
 
 $("select#team_participant_id").select2({

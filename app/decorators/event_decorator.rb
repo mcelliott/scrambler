@@ -34,11 +34,11 @@ class EventDecorator < Draper::Decorator
   end
 
   def category_freefly_options
-    Category.where(category_type: CategoryType::FREEFLY).map { |c| [c.name, c.id]}
+    Category.where(category_type: CategoryType::FREEFLY).map { |c| [c.name.humanize, c.id]}
   end
 
   def category_belly_options
-    Category.where(category_type: CategoryType::BELLY).map { |c| [c.name, c.id]}
+    Category.where(category_type: CategoryType::BELLY).map { |c| [c.name.humanize, c.id]}
   end
 
   def participant_exists?(flyer)
