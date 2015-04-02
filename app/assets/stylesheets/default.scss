@@ -1,17 +1,18 @@
-$scambler-green: #91c600;
+$scrambler-blue: #4BCFE5;
 $background-color: #eee;
 $button-bg-color: #444;
 $link-color: #333333;
 $white-smoke: #F5F5F5;
 $primary-color: #55BBCC;
 $secondary-color: #C4225A;
-$border-color: darken($primary-color, 10%);
 
-$primary-color-1: #6C939F;
-$primary-color-2: #457585;
-$primary-color-3: #26596A;
-$primary-color-4: #104050;
-$primary-color-5: #022835;
+$primary-color-1: #DEDEDE;
+$primary-color-2: #B1A6A1;
+$primary-color-3: #B2B2B2;
+$primary-color-4: #555454;
+$primary-color-5: #2C3133;
+
+$border-color: $primary-color-2;
 
 @mixin tiny-button {
   padding-top: 0.3rem;
@@ -25,13 +26,13 @@ $primary-color-5: #022835;
   @extend .radius;
   @extend .button;
   background-color: $primary-color-3;
-  border-color: $primary-color-5;
-  color: $white;
+  border-color: $primary-color-2;
+  color: $primary-color-5;
 
   &:hover {
-    border: 1px solid $primary-color-5;
+    border: 1px solid $primary-color-2;
     background-color: lighten($primary-color-3, 10%);
-    color: $white;
+    color: $primary-color-5;
   }
 }
 
@@ -39,9 +40,9 @@ html,
 body {
   margin:0;
   padding:0;
+  height:100%;
 }
 
-// override for the 'Home' navigation link
 .top-bar .name {
   font-size: rem-calc(13);
   line-height: 45px;
@@ -59,14 +60,14 @@ body {
 
 .delete-button {
   @include tiny-button;
-  border: 1px solid $primary-color-5;
+  border: 1px solid $primary-color-2;
 }
 
 .add-button {
   @extend .radius;
   @include tiny-button;
   margin-bottom: 0 !important;
-  border: 1px solid $primary-color-5;
+  border: 1px solid $primary-color-2;
 }
 
 .participant-button {
@@ -105,8 +106,8 @@ form {
 }
 
 .main {
-  margin-top: 30px;
   height:100%;
+  min-height: 100%;
 }
 
 .heading {
@@ -120,19 +121,6 @@ form {
 ul {
   margin-left: 0;
   list-style-type: none;
-}
-
-.list-item {
-  padding: 5px;
-  margin-bottom: 5px;
-  background-color: $primary-color-1;
-  color: $white;
-}
-
-.flyer-list-item {
-  padding: 5px 0;
-  margin-bottom: 5px;
-  background-color: $primary-color-1;
 }
 
 .select2 {
@@ -223,7 +211,7 @@ ul.tabs.vertical {
 
 .tabs-content {
   border: 1px solid $primary-color-2;
-  background-color: #fff !important;
+  background-color: $primary-color-1 !important;
   padding-bottom: 15px;
 }
 
@@ -235,27 +223,6 @@ ul.tabs.vertical {
 
 .event-date {
   margin-left: 2px !important;
-}
-
-input.event-score {
-  background: transparent;
-  display: block;
-  height: 2em;
-  width: 100% !important;
-  margin-bottom: 0;
-  color: $white;
-  border-color: $primary-color-5;
-}
-
-input.event-score:hover {
-  border: 1px dashed $primary-color-5;
-  cursor: pointer;
-}
-
-input.event-score:focus {
-  cursor: text;
-  color: $primary-color-5;
-  outline: 0;
 }
 
 .event-total {
@@ -292,7 +259,7 @@ button {
 }
 
 .light {
-  color: #444 !important;
+  color: $primary-color-2;
 }
 
 .bold {
@@ -300,7 +267,7 @@ button {
 }
 
 .payed {
-  border: 1px solid $scambler-green;
+  border: 1px solid $primary-color-5;
 }
 
 .unpayed {
@@ -377,9 +344,9 @@ input[type="number"],
 input[type="text"],
 input[type="email"],
 input[type="password"], select {
-  padding: .75rem !important;
-  height: 48px !important;
-  font-size: 16px !important;
+  padding: .75rem;
+  height: 48px;
+  font-size: 16px;
 }
 
 .devise-button, .lrg-btn {
@@ -397,27 +364,27 @@ div.field_with_errors {
 
 .custom-panel {
   @include panel(
-    $bg: white,
-    $padding: 5px,
-    $adjust: true
+  $bg: $primary-color-1,
+  $padding: 5px,
+  $adjust: true
   );
   border-radius: $global-radius;
 }
 
 .search-panel {
   @include panel(
-    $bg: $primary-color-1,
-    $padding: 15px 10px 0px 10px,
-    $adjust: false
+  $bg: $primary-color-1,
+  $padding: 15px 10px 0px 10px,
+  $adjust: false
   );
   border-radius: $global-radius;
 }
 
 .empty-list-panel {
   @include panel(
-    $bg: $primary-color-1,
-    $padding:10px,
-    $adjust:true
+  $bg: $primary-color-1,
+  $padding:10px,
+  $adjust:true
   );
   border: 0;
 }
@@ -442,7 +409,7 @@ ul.button-group li a {
   table {
     table-layout: fixed;
     overflow-x: auto;
-//    display: block;
+
     font-size: 10px !important;
 
     td.long {
@@ -462,28 +429,22 @@ ul.button-group li a {
 
 .company-label {
   @include label(
-    $padding:20px,
-    $text-size:16px,
-    $bg: $primary-color-5,
-    $radius: $global-radius
+  $padding:20px,
+  $text-size:16px,
+  $bg: $primary-color-1,
+  $radius: $global-radius
   );
   width: 100%;
-  color: $white;
+  color: $primary-color-5;
+  border: 1px solid $primary-color-2;
 
   a {
-    color: $primary-color-5 !important; }
+    color: lighten($primary-color-5, 15%);
+  }
 
   &:hover {
-    background-color: lighten($primary-color-5, 15%);
+    background-color: lighten($primary-color-1, 15%);
   }
-}
-
-.row.continent-row {
-  margin-bottom: 20px;
-}
-
-.row.continent-row:not(:last-child) {
-  border-bottom: 1px solid $primary-color-3;
 }
 
 div.loading, div.generating-teams {
@@ -494,8 +455,68 @@ div.loading, div.generating-teams {
   right: 15px;
   padding: 2px 5px;
   box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
-  border: 1px solid $primary-color-5;
+  border: 1px solid $primary-color-2;
   border-radius: 2px;
   display: none;
   z-index: 1;
+}
+
+.row.continent-row {
+  background-color: $primary-color-3;
+  width: 100%;
+  margin: 0;
+  padding-top: 20px;
+  color: $primary-color-5;
+  margin-bottom: 5px;
+
+  h4 {
+    color: $primary-color-5;
+  }
+}
+
+.description {
+  padding-bottom: 50px;
+  text-align: center;
+  color: $primary-color-2;
+}
+
+.list-item {
+  padding: 5px;
+  margin-bottom: 5px;
+  background-color: $primary-color-3;
+}
+
+.flyer-list-item {
+  padding: 5px 0;
+  margin-bottom: 5px;
+  background-color: $primary-color-3;
+}
+
+input.event-score {
+  background: transparent;
+  display: block;
+  height: 2em;
+  width: 100% !important;
+  margin-bottom: 0;
+  color: $white;
+  border-color: $primary-color-2;
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"], select {
+//    padding: .2rem !important;
+    height: 1em !important;
+    font-size: 12px !important;
+  }
+}
+
+input.event-score:hover {
+  border: 1px dashed $primary-color-5;
+  cursor: pointer;
+}
+
+input.event-score:focus {
+  cursor: text;
+  color: $primary-color-5;
+  outline: 0;
 }

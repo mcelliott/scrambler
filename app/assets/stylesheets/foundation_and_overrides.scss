@@ -126,17 +126,16 @@ $primary-color: #6C939F;
 // $success-color: #43AC6A;
 // $warning-color: #f08a24;
 // $info-color: #a0d3e8;
-$scrambler-green: #91c600;
 
-$primary-color-1: #6C939F;
-$primary-color-2: #457585;
-$primary-color-3: #26596A;
-$primary-color-4: #104050;
-$primary-color-5: #022835;
+$primary-color-1: #DEDEDE;
+$primary-color-2: #B1A6A1;
+$primary-color-3: #B2B2B2;
+$primary-color-4: #555454;
+$primary-color-5: #2C3133;
 
 
 // We use these to control various global styles
-$body-bg: #eee;
+$body-bg: #eae7e5;
 $body-font-color: $jet;
 $body-font-family: $font-family-sans-serif;
 $body-font-weight: $font-weight-normal;
@@ -982,8 +981,8 @@ $panel-border-color: scale-color($panel-bg, $lightness: $panel-function-factor);
 // $panel-padding: rem-calc(20);
 
 // We use these to set default font colors
-$panel-font-color: $white;
-// $panel-font-color-alt: $white;
+$panel-font-color: $primary-color-5;
+$panel-font-color-alt: $black;
 
 // $panel-header-adjust: true;
 // $callout-panel-link-color: $primary-color;
@@ -1273,7 +1272,7 @@ $switch-paddle-border-width: 1px;
 $switch-paddle-border-style: solid;
 $switch-paddle-transition-speed: .1s;
 $switch-paddle-transition-ease: ease-out;
-$switch-positive-color: $scrambler-green;
+//$switch-positive-color: $scrambler-green;
 $switch-negative-color: $body-bg;
 
 // Outline Style for tabbing through switches
@@ -1285,8 +1284,8 @@ $switch-label-outline: 1px dotted $jumbo;
 $include-html-table-classes: $include-html-classes;
 
 // These control the background color for the table and even rows
-$table-bg: $white;
-$table-even-row-bg: $white;
+$table-bg: $primary-color-1;
+$table-even-row-bg: $primary-color-1;
 
 // These control the table cell border style
 $table-border-style: solid;
@@ -1294,7 +1293,7 @@ $table-border-size: 1px;
 $table-border-color: $primary-color-2;
 
 // These control the table head styles
-$table-head-bg: $primary-color-3;
+$table-head-bg: $primary-color-5;
 $table-head-font-size: rem-calc(14);
 $table-head-font-color: $white;
 $table-head-font-weight: $font-weight-bold;
@@ -1316,18 +1315,18 @@ $table-margin-bottom: rem-calc(20);
 
 $include-html-tabs-classes: $include-html-classes;
 
-// $tabs-navigation-padding: rem-calc(16);
-$tabs-navigation-bg-color: $white  ;
-$tabs-navigation-active-bg-color: $primary-color-1;
+$tabs-navigation-padding: rem-calc(16);
+$tabs-navigation-bg-color: $primary-color-1;
+$tabs-navigation-active-bg-color: $primary-color-3;
 $tabs-navigation-hover-bg-color: scale-color($tabs-navigation-bg-color, $lightness: -6%);
-$tabs-navigation-font-color: $primary-color-3;
-$tabs-navigation-active-font-color: $white;
+$tabs-navigation-font-color: $primary-color-5;
+$tabs-navigation-active-font-color: $primary-color-5;
 $tabs-navigation-font-size: rem-calc(20);
 $tabs-navigation-font-family: $body-font-family;
 $tabs-content-margin-bottom: rem-calc(24);
 $tabs-content-padding: ($column-gutter/2);
 
-// $tabs-vertical-navigation-margin-bottom: 1.25rem;
+$tabs-vertical-navigation-margin-bottom: 1.25rem;
 
 // 32. Thumbnails
 // - - - - - - - - - - - - - - - - - - - - - - - - -
