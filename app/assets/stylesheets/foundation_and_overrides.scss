@@ -96,8 +96,8 @@ $include-html-global-classes: $include-html-classes;
 $font-family-sans-serif: "Merriweather", "Open Sans", "Helvetica Neue", Helvetica, Arial, "Nimbus L", sans-serif;
 
 // We use these to define default font weights
-// $font-weight-normal: normal !default;
-// $font-weight-bold: bold !default;
+$font-weight-normal: normal !default;
+$font-weight-bold: bold !default;
 
 // $white       : #FFFFFF;
 // $ghost       : #FAFAFA;
@@ -122,8 +122,8 @@ $font-family-sans-serif: "Merriweather", "Open Sans", "Helvetica Neue", Helvetic
 // We use these as default colors throughout
 $primary-color: #6C939F;
 // $secondary-color: #e7e7e7;
-// $alert-color: #f04124;
-// $success-color: #43AC6A;
+$alert-color: #EC793B;
+$success-color: #3FB1C4;
 // $warning-color: #f08a24;
 // $info-color: #a0d3e8;
 
@@ -142,7 +142,7 @@ $body-font-weight: $font-weight-normal;
 $body-font-style: normal;
 
 // We use this to control font-smoothing
-// $font-smoothing: antialiased;
+$font-smoothing: antialiased;
 
 // We use these to control text direction settings
 // $text-direction: ltr;

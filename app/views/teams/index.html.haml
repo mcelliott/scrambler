@@ -6,7 +6,7 @@
       .panel{ style: 'padding-bottom: 0;' }
         .row.collapse
           %ul.actions-list
-            %li= send_link(event)
+            %li= link_to fa_icon('send', text: 'Send'), new_event_email_path(event_id: event.id), remote: true, class: 'button-xs'
             %li= go_to_event_link(event)
 
   .large-12.medium-12.small-12.columns.vertical-tab-container

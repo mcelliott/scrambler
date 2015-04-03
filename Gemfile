@@ -31,6 +31,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'sidekiq'
 gem 'sidekiq-failures'
+gem 'apartment-sidekiq'
 gem 'sinatra', require: false # required by sidekiq/web
 gem 'slim'                    # required by sidekiq/web
 gem 'redis-rails'

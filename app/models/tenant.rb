@@ -19,6 +19,10 @@ class Tenant < ActiveRecord::Base
     current.name if current
   end
 
+  def self.current_domain
+    current.domain if current
+  end
+
   def switch!
     Apartment::Tenant.switch(database)
   end

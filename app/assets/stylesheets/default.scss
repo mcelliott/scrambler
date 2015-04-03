@@ -5,6 +5,7 @@ $link-color: #333333;
 $white-smoke: #F5F5F5;
 $primary-color: #55BBCC;
 $secondary-color: #C4225A;
+$alert-color: #EC793B;
 
 $primary-color-1: #DEDEDE;
 $primary-color-2: #B1A6A1;
@@ -106,6 +107,7 @@ form {
 }
 
 .main {
+  margin: 30px;
   height:100%;
   min-height: 100%;
 }
@@ -349,7 +351,7 @@ input[type="password"], select {
   font-size: 16px;
 }
 
-.devise-button, .lrg-btn {
+.devise-button, .btn-lrg {
   @include btn;
   width: 100%;
   font-size: 16px;
@@ -519,4 +521,12 @@ input.event-score:focus {
   cursor: text;
   color: $primary-color-5;
   outline: 0;
+}
+
+.email-warning {
+  color: $alert-color;
+}
+
+.confirm {
+  font-weight: bold;
 }

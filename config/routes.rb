@@ -18,12 +18,12 @@ Rails.application.routes.draw do
   resources :events do
     post :generate
     get :generate_mixed
-    put :email
     resources :teams, only: [:index, :destroy]
     resources :participants, only: [:new, :create, :show, :destroy]
     resources :payments, only: [:index, :show, :edit, :update, :destroy]
     resources :expenses, only: :index
-    resources  :categories, only: :destroy, controller: 'events/categories'
+    resources :categories, only: :destroy, controller: 'events/categories'
+    resource :email, only: [:new, :create], controller: 'events/emails'
   end
 
   get 'events/teams/:uuid', controller: 'teams', action: :team_view, as: 'team_view'

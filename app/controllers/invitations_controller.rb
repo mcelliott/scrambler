@@ -11,8 +11,7 @@ class InvitationsController < Devise::InvitationsController
     if resource.valid?
       resource.skip_invitation = true
       resource.invite!(current_inviter)
-      resource.deliver_invitation
-      redirect_to users_path
+      InvitationMailer.invitation(resource.id).deliver
     else
       render :new
     end

@@ -23,7 +23,7 @@
         <tr>
           <td id="header" colspan="2">
             <a href="www.tunnelscrambler.com">
-              <%#= image_tag attachments['logo.png'].url, alt: 'Tunnel Scrambler' %>
+              <%= image_tag attachments['logo.png'].url, alt: 'Tunnel Scrambler' %>
             </a>
           </td>
         </tr>
@@ -32,8 +32,10 @@
         </tr>
         <tr class="details">
           <td valign="top">
-            <p class="text-left"><%= t("devise.mailer.invitation_instructions.hello", email: @resource.email) %></p>
-            <p><%= t("devise.mailer.invitation_instructions.someone_invited_you", url: root_url(subdomain: Tenant.current_domain)) %></p>
+            <p class="text-left"><%= t("devise.mailer.invitation_instructions.hello", email: @user.email) %></p>
+            <p>
+              You have been invited to
+              <%= link_to @url, @url %></p>
             <p><%= link_to t("devise.mailer.invitation_instructions.accept"), @accept_invitation_url %></p>
             <p><%= t("devise.mailer.invitation_instructions.ignore").html_safe %></p>
           </td>

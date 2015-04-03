@@ -28,10 +28,6 @@ module EventsHelper
     link_to 'Generate Mixed Teams',  event_generate_mixed_path(event), remote: true
   end
 
-  def send_link(event)
-    link_to fa_icon('send', text: 'Send'), event_email_path(event_id: event), remote_button_class.merge(method: :put)
-  end
-
   def go_to_event_link(event)
     link_to "Go to Event", event, class: 'button-xs'
   end
