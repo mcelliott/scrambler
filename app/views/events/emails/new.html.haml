@@ -1,0 +1,8 @@
+%h3.text-center Confirm
+.custom-panel.text-center
+  .panel-header
+    .email-warning= @email_service_decorator.info
+  .panel-content
+    .confirm= @email_service_decorator.confirm
+= button_to @email_service_decorator.send_path, remote: true, method: :post, class: 'btn-lrg' do
+  = fa_icon('send', text: 'Send')

@@ -1,0 +1,9 @@
+<% unless resource.errors.present? %>
+$('#modal').foundation('reveal', 'close');
+$('.empty-list').hide()
+$('tbody#users').prepend('<tr id="user-<%= resource.id %>"><%= j(render resource) %></tr>');
+flash_row('tr#user-<%= resource.id %>');
+<% else %>
+$('.modal-content').html('<%= j(render template: 'devise/invitations/new.html.haml') %>');
+$('#modal').foundation('reveal', 'open');
+<% end %>

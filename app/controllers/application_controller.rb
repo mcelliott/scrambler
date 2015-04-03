@@ -29,6 +29,9 @@ class ApplicationController < ActionController::Base
       u.permit(:name, :email, :password, :password_confirmation, :current_password)
     end
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation, :remember_me) }
+    devise_parameter_sanitizer.for(:accept_invitation) do |u|
+      u.permit(:password, :password_confirmation, :invitation_token)
+    end
   end
 
   private

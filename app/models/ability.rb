@@ -7,6 +7,7 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.role == 'admin'
       can :manage, :all
+      can :invite, User
     else
       can [:read, :create, :update, :destroy], Flyer
       can [:read, :create, :update, :destroy], Event

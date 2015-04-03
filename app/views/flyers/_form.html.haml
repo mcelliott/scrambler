@@ -3,4 +3,4 @@
   = f.input :name
   = f.input :email
   = f.input :hours, collection: TunnelHours.to_a.sort{ |a, b| a.last <=> b.last }, include_blank: 'Please select', label: 'Number of Tunnel Hours', input_html: { class: 'participant-select2' }
-  = f.button :submit, class: 'button-xs radius'
+  = f.button :submit, class: 'btn-lrg'

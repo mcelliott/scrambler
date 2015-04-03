@@ -53,11 +53,6 @@ class EventsController < ApplicationController
     @event = Event.find(params[:event_id])
   end
 
-  def email
-    EmailService.new(params).send
-    flash[:notice] = 'Participants have been emailed.'
-  end
-
   private
 
   def participant

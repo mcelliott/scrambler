@@ -11,6 +11,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'devise'
+gem 'devise_invitable'
 gem 'foundation-rails'
 gem 'haml-rails'
 gem 'pg'
@@ -30,6 +31,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'sidekiq'
 gem 'sidekiq-failures'
+gem 'apartment-sidekiq'
 gem 'sinatra', require: false # required by sidekiq/web
 gem 'slim'                    # required by sidekiq/web
 gem 'redis-rails'
