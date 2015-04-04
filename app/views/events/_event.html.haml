@@ -5,6 +5,7 @@
 %td= event.num_rounds
 %td.text-right
   %ul.button-group.radius
+    - if event.show_score_board?
+      %li= link_to fa_icon('table', text: ''), event_teams_path(event), class: 'button-xs'
     %li= link_to fa_icon('pencil', text: ''), edit_event_path(event), remote: true, class: 'button-xs'
-    %li= show_teams_link(event, '')
     %li= link_to fa_icon('trash-o', text: ''), event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button-xs'

@@ -61,4 +61,8 @@ class EventDecorator < Draper::Decorator
   def freefly?
     category_type == CategoryType::FREEFLY
   end
+
+  def show_score_board?
+    rounds?
+  end
 end

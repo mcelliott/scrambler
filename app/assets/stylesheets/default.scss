@@ -253,11 +253,7 @@ div.message {
   top: 40px;
   right: 15px;
   z-index: 1;
-  min-width: 200px;
-}
-
-button {
-  margin-bottom: 0 !important;
+  min-width: 300px;
 }
 
 .light {
@@ -351,6 +347,11 @@ input[type="password"], select {
   font-size: 16px;
 }
 
+.btn-wide {
+  @include btn;
+  width: 100%;
+}
+
 .devise-button, .btn-lrg {
   @include btn;
   width: 100%;
@@ -376,7 +377,7 @@ div.field_with_errors {
 .search-panel {
   @include panel(
   $bg: $primary-color-1,
-  $padding: 15px 10px 0px 10px,
+  $padding: 15px 0px 0px 0px,
   $adjust: false
   );
   border-radius: $global-radius;
@@ -451,8 +452,8 @@ ul.button-group li a {
 
 div.loading, div.generating-teams {
   position: fixed;
-  background-color: $primary-color-1;
-  color: $white;
+  background-color: $primary-color-5;
+  color: $scrambler-blue;
   top: 60px;
   right: 15px;
   padding: 2px 5px;
@@ -506,7 +507,6 @@ input.event-score {
   input[type="text"],
   input[type="email"],
   input[type="password"], select {
-//    padding: .2rem !important;
     height: 1em !important;
     font-size: 12px !important;
   }
@@ -529,4 +529,13 @@ input.event-score:focus {
 
 .confirm {
   font-weight: bold;
+}
+
+.add-btn {
+  margin-bottom: 5px;
+}
+
+.search-btn {
+  height: 2.3125rem;
+  font-size: 0.875rem;
 }

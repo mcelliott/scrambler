@@ -5,18 +5,22 @@
     %li.divider
     %li{ class: active_controller_link('flyers') }= link_to 'Flyers', flyers_path
     %li.divider
-    - if can?(:manage, Category)
-      %li{ class: active_controller_link('categories') }= link_to 'Categories', categories_path
-      %li.divider
-      %li{ class: active_controller_link('tenants') }= link_to 'Tenants', tenants_path
-      %li.divider
-      %li{ class: active_controller_link('pages') }= link_to 'Pages', pages_path
-      %li.divider
     - if can?(:manage, User)
       %li{ class: active_controller_link('users') }= link_to 'Users', users_path
       %li.divider
     %li{ class: active_controller_link('handicaps') }= link_to 'Scoring', scoring_index_path
     %li.divider
+    - if can?(:manage, Category)
+      %li{ class: 'has-dropdown' }
+        %a{ href: '' } Admin
+        %ul.dropdown
+          %li{ class: active_controller_link('categories') }= link_to 'Categories', categories_path
+          %li.divider
+          %li{ class: active_controller_link('tenants') }= link_to 'Tenants', tenants_path
+          %li.divider
+          %li{ class: active_controller_link('pages') }= link_to 'Pages', pages_path
+          %li.divider
+      %li.divider
   %ul.right
     %li.name= link_to gravatar_tag(current_user.email, size: 30), edit_user_registration_path
     %li= link_to 'Sign out', destroy_user_session_path, method: 'delete'

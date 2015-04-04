@@ -45,6 +45,7 @@ gem 'enumerate_it'
 gem 'apartment'
 gem 'redcarpet'
 gem 'friendly_id'
+gem 'react-rails', github: 'reactjs/react-rails'
 
 group :development do
   gem 'better_errors'

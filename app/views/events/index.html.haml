@@ -1,27 +1,15 @@
-%h2.text-center Events
+.row.collapse
+  .right= link_to fa_icon('plus', text: 'Add'), new_event_path, class: 'button-xs add-btn', remote: true
+  .large-6.medium-8.small-8.columns
+    %h2 Events
+.row
+  = react_component('FilterBar', resource_url: events_path)
 
 .row
-  .large-12.medium-12.small-12.columns.small-centered
-    .search-panel
-      .row
-        .small-12.medium-10.large-10.columns
-          .row
-            = search_form_for @q, url: events_path, remote: true do |f|
-              .small-12.medium-3.large-4.columns
-                = f.search_field :name_cont, placeholder: 'Search Name'
-              .small-12.medium-3.large-4.columns
-                = f.search_field :event_date_eq, placeholder: 'Event Date', class: 'datepicker event-date'
-              .small-12.medium-3.large-4.columns.left
-                = f.submit 'Search', class: 'button-xs'
-        .small-12.medium-2.large-2.columns
-          .row
-            .small-12.medium-12.large-12.columns.text-right
-              = link_to fa_icon('plus', text: 'New Event'), new_event_path, class: 'button-xs', remote: true
+  #event-list
+    = render 'events'
 
-.row
-  .large-12.medium-12.small-12.columns.small-centered
-    #event-list
-      = render 'events'
-
-:coffeescript
-  $("input.datepicker").datepicker({ dateFormat: "dd/mm/yy", firstDay: "1", changeMonth: true, changeYear: true })
+:javascript
+   window.filters = [
+      { field: "name_cont", uid: "name_cont", type: "search", input: 'text', placeholder: 'Name' }
+    ];

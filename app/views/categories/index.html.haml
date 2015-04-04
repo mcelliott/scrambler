@@ -1,21 +1,15 @@
-%h2.text-center Categories
+.row.collapse
+  .right= link_to fa_icon('plus', text: 'Add'), new_category_path, class: 'button-xs add-btn', remote: true
+  .large-6.medium-8.small-8.columns
+    %h2 Categories
+.row
+  = react_component('FilterBar', resource_url: categories_path)
 
 .row
-  .large-12.medium-12.small-12.columns.small-centered
-    .search-panel
-      .row
-        .small-12.medium-12.large-12.columns
-          .row
-            = search_form_for @q, url: categories_path, remote: true do |f|
-              .small-12.medium-3.large-4.columns
-                = f.search_field :name_cont, placeholder: 'Search Name', class: 'small-3 columns'
-              .small-12.medium-3.large-4.columns.left
-                = f.submit 'Search', class: 'button-xs search-btn'
+  #category-list
+    = render 'categories'
 
-            - if can?(:manage, Category)
-              .small-12.medium-3.large-4.columns.text-right
-                = link_to fa_icon('plus', text: 'New category'), new_category_path, class: 'button-xs', remote: true
-.row
-  .large-12.medium-12.small-12.columns.small-centered
-    #category-list
-      = render 'categories'
+:javascript
+   window.filters = [
+      { field: "name_cont", uid: "name_cont", type: "search", input: 'text', placeholder: 'Name' }
+    ];

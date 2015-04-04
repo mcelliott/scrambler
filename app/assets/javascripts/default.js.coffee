@@ -63,4 +63,4 @@ $ ->
 window.Scrambler =
   update_messages: (notice) ->
     $('#notice').html(notice).show()
-    $('div#notice').delay(2000).fadeOut('slow')
+    $('div#notice').delay(3000).fadeOut('slow')

@@ -15,8 +15,10 @@
 //= require jquery-ui/accordion
 //= require jquery-ui/datepicker
 //= require jquery-ui/effect-highlight
+//= require react
+//= require react_ujs
+//= require components
 //= require select2
-//= require turbolinks
 //= require foundation
 //= require autonumeric
 //= require_tree .
