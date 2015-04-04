@@ -9,8 +9,8 @@ class EventRoundsCreator
   end
 
   def perform
-    BasicRoundCreator.new(event, @params).perform
-    MixedRoundCreator.new(event, @params).perform
+    RoundsGenerator.new(event, @params).perform
+    MixedRoundsGenerator.new(event, @params).perform
     event.reload
   end
 

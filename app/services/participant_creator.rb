@@ -9,6 +9,6 @@ class ParticipantCreator
     participant = Participant.new(@params.merge(event_id: @event.id))
     participant.number = Participant.participant_number(@event)
     participant.create_payment(event: @event, amount: @event.participant_cost)
-    participant.save!
+    participant.save
   end
 end

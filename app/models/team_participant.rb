@@ -9,7 +9,7 @@ class TeamParticipant < ActiveRecord::Base
   validates :event_id,    presence: true
   validates :team_id,     presence: true
 
-  delegate :category, to: :participant, prefix: true
+  delegate :category, to: :participant
 
   def self.for_category(category_id)
     joins(:participant).where(participants: { category_id: category_id })
