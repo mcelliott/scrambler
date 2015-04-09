@@ -11,7 +11,7 @@ class VisitorsController < ApplicationController
     if public?
       @page = Page.friendly.find_by(name: 'home')
       @tenants = {}
-      Tenant.all.each do |tenant|
+      Tenant.where(enabled: true).each do |tenant|
         continent = tenant.settings(:current).continent
         (@tenants[continent] ||= []) << tenant
       end
