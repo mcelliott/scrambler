@@ -2,7 +2,7 @@
   .row.list-item
     .large-4.medium-5.small-3.columns.bold #. Name
     .large-3.medium-2.small-3.columns.bold Score
-    .large-3.medium-2.small-2.columns.bold Total
+    .large-3.medium-2.small-2.columns.bold.text-center Total
     .large-2.medium-3.small-4.columns
 
 - teams.each do |team|
@@ -27,7 +27,7 @@
               = f.hidden_field :team_participant_id, value: tp.id
           - else
             = tp.event_score.score
-        .large-3.medium-2.small-2.columns
+        .large-3.medium-2.small-2.columns.text-center
           %span{ class: "event-total event-total-#{tp.participant_id}" }
             = tp.event_total
         .large-2.medium-3.small-4.columns.text-right

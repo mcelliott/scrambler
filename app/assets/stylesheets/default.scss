@@ -47,6 +47,7 @@ body {
 .top-bar .name {
   font-size: rem-calc(13);
   line-height: 45px;
+  color: $white;
 }
 .top-bar .name a {
   font-weight: normal;
@@ -478,7 +479,7 @@ div.loading, div.generating-teams {
 }
 
 .description {
-  padding-bottom: 50px;
+  padding-bottom: 30px;
   text-align: center;
   color: $primary-color-2;
 }
