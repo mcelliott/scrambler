@@ -5,7 +5,7 @@
     %li.divider
     %li{ class: active_controller_link('flyers') }= link_to 'Flyers', flyers_path
     %li.divider
-    - if can?(:manage, User)
+    - if can?(:invite, User)
       %li{ class: active_controller_link('users') }= link_to 'Users', users_path
       %li.divider
     %li{ class: active_controller_link('handicaps') }= link_to 'Scoring', scoring_index_path

@@ -29,6 +29,8 @@
 
             - teams_by_category.each_with_index do |(category_name, teams), index|
               = team_category(index) do
+                .large-12.medium-12.small-12.columns
+                  %h5.bold= category_name.humanize
                 = render partial: 'teams/teams', locals: { teams: teams, category_name: category_name }
         = active_content(event.rounds.size + 1, "panel-leader-board") do
           .large-12.small-12.columns.small-centered

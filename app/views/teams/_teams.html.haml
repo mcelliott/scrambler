@@ -1,36 +1,36 @@
 .large-12.medium-12.small-12.columns.team-section
   .row.list-item
-    .large-4.medium-5.small-3.columns.bold #. Name
-    .large-3.medium-2.small-3.columns.bold Score
-    .large-3.medium-2.small-2.columns.bold.text-center Total
-    .large-2.medium-3.small-4.columns
+    .large-5.medium-5.small-3.columns.bold #. Name
+    .large-2.medium-2.small-3.columns.bold.text-center Score
+    .large-2.medium-2.small-2.columns.bold.text-center Total
+    .large-3.medium-3.small-4.columns
 
 - teams.each do |team|
   .large-12.medium-12.small-12.columns.team-section
     - team.team_participants.each do |tp|
       .row.list-item
-        .large-4.medium-5.small-3.columns
+        .large-5.medium-5.small-3.columns
           = "#{tp.participant_number}. "
           - if tp.placeholder
             %span{ data: { tooltip: true }, aria: { haspopup: true }, class: 'has-tip', title: placeholder_text }
               = fa_icon('exclamation-triangle', text: tp.participant_name)
           - else
             = tp.participant_name
-        .large-3.medium-2.small-3.columns
+        .large-2.medium-2.small-3.columns.text-center
           - if tp.placeholder
             Not Scored
           - elsif can?(:update, event)
             = form_for tp.event_score, url: event_score_path(tp), remote: true, class: 'score-form' do |f|
-              = f.text_field :score, value: tp.event_score.score, class: "event-score round-score-#{tp.id}"
+              = f.text_field :score, value: tp.event_score.score, class: "event-score round-score-#{tp.id} text-center"
               = f.hidden_field :event_id, value: team.event.id
               = f.hidden_field :round_id, value: team.round.id
               = f.hidden_field :team_participant_id, value: tp.id
           - else
             = tp.event_score.score
-        .large-3.medium-2.small-2.columns.text-center
+        .large-2.medium-2.small-2.columns.text-center
           %span{ class: "event-total event-total-#{tp.participant_id}" }
             = tp.event_total
-        .large-2.medium-3.small-4.columns.text-right
+        .large-3.medium-3.small-4.columns.text-right
           - if can?(:update, event)
             = link_to fa_icon('send', text: ''), new_event_email_path(event_id: tp.event.id, participant_id: tp.participant_id), remote: true, class: 'button-xs participant-button'
           = link_to fa_icon('info', text: ''), event_participant_path(tp.participant_id, event_id: tp.event.id), class: 'button-xs participant-button', remote: true

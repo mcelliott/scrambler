@@ -5,10 +5,10 @@ class Ability
     # Define abilities for the passed in user here. For example:
     #
     user ||= User.new # guest user (not logged in)
-    if user.role == 'admin'
+    if user.role_name == 'admin'
       can :manage, :all
-      can :invite, User
-    else
+    elsif user.role_name == 'manager'
+      can [:invite, :create, :edit], User
       can [:read, :create, :update, :destroy], Flyer
       can [:read, :create, :update, :destroy], Event
       can [:read, :update, :destroy], User, id: user.id

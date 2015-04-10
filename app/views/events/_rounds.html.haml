@@ -4,10 +4,9 @@
       %a{ href: '#participants-tab' }
         Participants
     - unless event.rounds.blank?
-      - event.rounds.each_with_index do |r, index|
+      - event.rounds.each do |r|
         %li.tab-title{ role: 'presentational' }
-          %a{ href: "#panel-#{r.round_number}" }
-            = "Round #{r.round_number}"
+          = link_to "Round #{r.round_number}", "#panel-#{r.round_number}"
 
 .large-9.medium-9.small-12.columns.event-content
   .tabs-content

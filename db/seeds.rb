@@ -1,4 +1,5 @@
 %w(tunnelscrambler:seeds:tenants
+   tunnelscrambler:seeds:roles
    tunnelscrambler:seeds:settings
    tunnelscrambler:seeds:admins
    tunnelscrambler:seeds:pages

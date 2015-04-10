@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get 'events/teams/:uuid', controller: 'teams', action: :team_view, as: 'team_view'
 
   root to: 'visitors#index'
-  devise_for :users, controllers: { invitations: :invitations }
+  devise_for :users, controllers: { invitations: 'users/invitations' }
 
   resources :users
 

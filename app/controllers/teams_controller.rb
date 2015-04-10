@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
-  before_action :authenticate_user!, except: [:team_view]
-  before_action :set_event, except: [:team_view]
+  before_action :authenticate_user!, except: :team_view
+  before_action :set_event, except: :team_view
   load_and_authorize_resource except: :team_view
   skip_authorization_check only: :team_view
 

@@ -1,5 +1,16 @@
 namespace :tunnelscrambler do
   namespace :seeds do
+    desc 'Create the roles'
+    task :roles => :environment do |variable|
+      Tenant.all.each do |tenant|
+        tenant.switch!
+        puts "creating roles for #{tenant.domain}"
+        ['user', 'manager', 'admin'].each do |role|
+          Role.find_or_create_by({name: role})
+        end
+      end
+    end
+
     desc 'Create the tenants'
     task :tenants => :environment do
       [
@@ -99,7 +110,7 @@ END
       end
     end
 
-    desc 'Create admins for tenants'
+    desc 'Create flyers for first tenant'
     task :flyers => :environment do
       unless Rails.env.production?
         Tenant.first.switch!

@@ -1,6 +1,6 @@
 class ParticipantsController < ApplicationController
   before_action :authenticate_user!, except: :show
-  load_and_authorize_resource
+  load_and_authorize_resource except: :show
 
   decorates_assigned :event
   decorates_assigned :participant

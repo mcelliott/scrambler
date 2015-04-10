@@ -1,10 +1,6 @@
 class User < ActiveRecord::Base
-  enum role: [:user, :manager, :admin]
-  after_initialize :set_default_role, :if => :new_record?
-
-  def set_default_role
-    self.role ||= :user
-  end
+  belongs_to :role
+  before_create :set_default_role
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -15,5 +11,15 @@ class User < ActiveRecord::Base
 
   def password_required?
     !@skip_password && super
+  end
+
+  def role_name
+    role.try(:name)
+  end
+
+  private
+
+  def set_default_role
+    self.role ||= Role.find_by_name('user')
   end
 end
