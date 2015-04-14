@@ -24,6 +24,10 @@ module ApplicationHelper
     end
   end
 
+  def current_user_name
+    current_user.name || ''
+  end
+
   def markdown(text)
     render_options = {
         # will remove from the output HTML tags inputted by user

@@ -1,6 +1,13 @@
 class Users::InvitationsController < Devise::InvitationsController
   before_action :authenticate_user!, only: [:new, :create]
   before_action :authenticate_inviter!, only: [:new, :create]
+  before_action :require_no_authentication, only: [:update]
+
+  rescue_from ActiveRecord::RecordInvalid do |exception|
+    flash[:alert] = exception.message
+    respond_with_navigational(resource) { render :new }
+  end
+
   def new
     super
   end
@@ -12,19 +19,10 @@ class Users::InvitationsController < Devise::InvitationsController
     if resource.valid?
       resource.skip_invitation = true
       resource.invite!(current_inviter)
-      InvitationMailer.invitation(resource.id).deliver
-      set_flash_message :notice, :send_instructions, email: resource.email
+      resource.deliver_invitation
+      render 'devise/invitations/create'
     else
-      render :new
-    end
-  end
-
-  protected
-
-  def resource_from_invitation_token
-    unless params[:invitation_token] && self.resource = resource_class.find_by(invitation_token: params[:invitation_token])
-      set_flash_message(:alert, :invitation_token_invalid) if is_flashing_format?
-      redirect_to after_sign_out_path_for(resource_name)
+      respond_with_navigational(resource) { render :new }
     end
   end
 

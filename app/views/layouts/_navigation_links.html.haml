@@ -23,7 +23,7 @@
       %li.divider
   %ul.right
     %li.name
-      = link_to current_user.name, edit_user_registration_path
+      = link_to current_user_name, edit_user_registration_path
     %li.name
       = link_to gravatar_tag(current_user.email, size: 30), edit_user_registration_path
     %li= link_to 'Sign out', destroy_user_session_path, method: 'delete'

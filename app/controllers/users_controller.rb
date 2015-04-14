@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   decorates_assigned :users, with: UsersDecorator
 
   def index
