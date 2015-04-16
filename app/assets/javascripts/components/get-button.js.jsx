@@ -1,5 +1,5 @@
-var AddButton = React.createClass({
-  add: function() {
+var GetButton = React.createClass({
+  edit: function() {
     $.ajax({
       type: 'GET',
       url: this.props.path,
@@ -11,8 +11,8 @@ var AddButton = React.createClass({
   },
   render: function() {
     return (
-      <a className="add-button button-xs" onClick={this.add}>
-        <i className="fa fa-plus"></i>
+      <a href='#' className="get-button button" onClick={this.edit}>
+        <i className={"fa fa-" + this.props.icon}></i>
       </a>
     );
   }

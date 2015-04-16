@@ -479,11 +479,11 @@ $button-round: $global-rounded;
 // 06. Button Groups
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-button-classes: $include-html-classes;
+$include-html-button-classes: $include-html-classes;
 
 // Sets the margin for the right side by default, and the left margin if right-to-left direction is used
-// $button-bar-margin-opposite: rem-calc(10);
-// $button-group-border-width: 1px;
+$button-bar-margin-opposite: rem-calc(10);
+$button-group-border-width: 1px;
 
 // 07. Clearing
 // - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1284,8 +1284,8 @@ $switch-label-outline: 1px dotted $jumbo;
 $include-html-table-classes: $include-html-classes;
 
 // These control the background color for the table and even rows
-$table-bg: $primary-color-1;
-$table-even-row-bg: $primary-color-1;
+$table-bg: $primary-color-3;
+$table-even-row-bg: $primary-color-3;
 
 // These control the table cell border style
 $table-border-style: solid;

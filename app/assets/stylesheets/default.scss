@@ -62,13 +62,11 @@ body {
 
 .participant-button,
 .delete-button,
-.info-button,
-.add-button {
+.get-button {
   @include tiny-button;
-  @extend .radius;
   margin-bottom: 0;
   width: 30px !important;
-  border: 1px solid $primary-color-2;
+  //border: 1px solid $primary-color-2;
   background-color: $background-color;
 }
 
@@ -160,7 +158,6 @@ ul {
 table {
   width: 100%;
   border-collapse: collapse;
-
   tbody {
     td {
       padding-top: 3px;
@@ -399,7 +396,7 @@ div.field_with_errors {
 }
 
 ul.button-group li a {
-  margin-bottom: 0 !important;
+  margin-bottom: 2px !important;
 }
 
 @media screen and (max-width: 640px) {
@@ -492,7 +489,7 @@ div.loading, div.generating-teams {
 input.event-score {
   background: transparent;
   display: block;
-  height: 2em;
+  height: 1em;
   width: 100% !important;
   margin-bottom: 0;
   color: $white;

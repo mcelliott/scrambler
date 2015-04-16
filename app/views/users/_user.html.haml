@@ -2,4 +2,4 @@
 %td.long= user.email
 %td.text-right
   %ul.button-group.radius
-    %li= link_to fa_icon('trash-o', text: ''), user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button-xs'
+    %li= react_component('DeleteButton', path: user_path(user), confirm: "Delete User #{user.email}")

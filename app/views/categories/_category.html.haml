@@ -3,5 +3,5 @@
 %td= boolean_icon(category.enabled)
 %td.text-right
   %ul.button-group.radius
-    %li= link_to fa_icon('pencil', text: ''), edit_category_path(category), remote: true, class: 'button-xs'
-    %li= link_to fa_icon('trash-o', text: ''), category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button-xs'
+    %li= react_component('GetButton', path: edit_category_path(category), icon: 'pencil')
+    %li= react_component('DeleteButton', path: category_path(category), confirm: "Delete Category #{category.name}")

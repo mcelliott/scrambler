@@ -4,5 +4,5 @@
 %td= boolean_icon(tenant.enabled)
 %td.text-right
   %ul.button-group.radius
-    %li= link_to fa_icon('pencil', text: ''), edit_tenant_path(tenant), remote: true, class: 'button-xs'
-    %li= link_to fa_icon('trash-o', text: ''), tenant, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button-xs'
+    %li= react_component('GetButton', path: edit_tenant_path(tenant), icon: 'pencil')
+    %li= react_component('DeleteButton', path: tenant_path(tenant), confirm: "Delete Tenant #{tenant.name}")

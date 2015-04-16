@@ -6,6 +6,6 @@
 %td.text-right
   %ul.button-group.radius
     - if event.show_score_board?
-      %li= link_to fa_icon('table', text: ''), event_teams_path(event), class: 'button-xs'
-    %li= link_to fa_icon('pencil', text: ''), edit_event_path(event), remote: true, class: 'button-xs'
-    %li= link_to fa_icon('trash-o', text: ''), event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button-xs'
+      %li= react_component('GetButton', path: event_teams_path(event), icon: 'table')
+    %li= react_component('GetButton', path: edit_event_path(event), icon: 'pencil')
+    %li= react_component('DeleteButton', path: event_path(event), confirm: "Delete Event #{event.name}?")

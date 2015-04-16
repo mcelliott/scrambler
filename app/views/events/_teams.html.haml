@@ -1,15 +1,19 @@
 .large-12.medium-12.small-12.columns
-  - unless round.teams.present?
+  - if round.teams.empty?
     .empty-list
       .empty-list-panel= fa_icon('frown-o', text: "No Teams for Round #{round.round_number}")
-  %ul
-    - round.teams.each do |team|
-      %li.team-item{ id: "team-#{team.id}" }
-        .custom-panel
-          .panel-header
-            .right= react_component('DeleteButton', path: event_team_path(team, event_id: event.id), confirm: "Delete Team #{team.id}?")
-            = "#{team.name} - #{team.category.display_name}"
-          .panel-content
-            = render partial: 'teams/team', locals: { team: team }
-          .panel-footer
-            = react_component('AddButton', path: new_teams_participant_path(team_id: team.id, event_id: event.id))
+  - else
+    %ul
+      - round.teams.each do |team|
+        %li.team-item{ id: "team-#{team.id}" }
+          .custom-panel
+            .panel-header
+              .right= react_component('DeleteButton', path: event_team_path(team, event_id: event.id), confirm: "Delete Team #{team.id}?")
+              = "#{team.name} - #{team.category.display_name}"
+            .panel-content
+              .team-participant-list
+                - team.team_participants.each do |tp|
+                  = react_component('TeamParticipant', data: tp.data)
+
+            .panel-footer
+              = react_component('GetButton', path: new_teams_participant_path(team_id: team.id, event_id: event.id), icon: 'plus')
