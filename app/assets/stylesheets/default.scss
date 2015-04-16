@@ -60,23 +60,16 @@ body {
   @extend .tiny;
 }
 
-.delete-button {
-  @include tiny-button;
-  border: 1px solid $primary-color-2;
-}
-
+.participant-button,
+.delete-button,
+.info-button,
 .add-button {
+  @include tiny-button;
   @extend .radius;
-  @include tiny-button;
-  margin-bottom: 0 !important;
-  border: 1px solid $primary-color-2;
-}
-
-.participant-button {
-  @include tiny-button;
   margin-bottom: 0;
   width: 30px !important;
-  border: 1px solid $primary-color-5;
+  border: 1px solid $primary-color-2;
+  background-color: $background-color;
 }
 
 form {

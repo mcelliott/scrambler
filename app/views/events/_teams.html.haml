@@ -7,9 +7,9 @@
       %li.team-item{ id: "team-#{team.id}" }
         .custom-panel
           .panel-header
-            = link_to fa_icon('trash', text: ""), event_team_path(team, event_id: event.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'pull-right delete-button button-xs', remote: true
+            .right= react_component('DeleteButton', path: event_team_path(team, event_id: event.id), confirm: 'Delete Team?')
             = "#{team.name} - #{team.category.display_name}"
           .panel-content
             = render partial: 'teams/team', locals: { team: team }
           .panel-footer
-            = link_to fa_icon('plus', text: ""), new_teams_participant_path(team_id: team.id, event_id: event.id), class: "button-xs add-button new-team-participant-#{team.id}", remote: true
+            = react_component('AddButton', path: new_teams_participant_path(team_id: team.id, event_id: event.id))

@@ -34,7 +34,7 @@ module Scrambler
 
     # For Foundation 5
     config.assets.precompile += %w( vendor/modernizr )
-    config.assets.paths << Rails.root.join('bower_components')
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
     config.middleware.use 'TenantModelElevator'
   end
 end

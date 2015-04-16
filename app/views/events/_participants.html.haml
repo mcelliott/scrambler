@@ -8,8 +8,8 @@
       %li.participant-category{ id: "category-#{category.id}" }
         .custom-panel
           .panel-header
-            = link_to fa_icon('trash', text: ""), event_category_path(event, category), method: :delete, data: { confirm: 'Are you sure?' }, class: 'pull-right delete-button button-xs', remote: true
+            .right= react_component('DeleteButton', path: event_category_path(event, category), confirm: "Delete Participant Category?")
             = category.display_name
           .panel-content
-            - participants.each_with_index do |p, index|
-              = render partial: 'participants/participant', locals: { p: p, index: index }
+            - participants.each do |participant|
+              = react_component('Participant', data: participant.data)

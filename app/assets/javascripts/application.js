@@ -18,6 +18,7 @@
 //= require react
 //= require react_ujs
 //= require components
+//= require confirm-with-reveal/confirm_with_reveal
 //= require select2
 //= require foundation
 //= require autonumeric
@@ -30,3 +31,10 @@ function flash_row(id) {
 };
 
 $(function(){ $(document).foundation(); });
+$(document).confirmWithReveal({
+  title: "Confirm",
+  ok: "Submit",
+  ok_class: "button small radius warning",
+  cancel_class: "button small radius",
+  modal_class: 'small'
+});
