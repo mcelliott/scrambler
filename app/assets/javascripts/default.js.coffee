@@ -1,4 +1,9 @@
 $ ->
+  $(document).on('click', '.submit-confirm', ->
+    $('.reveal-modal').hide()
+    $('.reveal-modal-bg').hide()
+  )
+
   $("input.datepicker").datepicker({ dateFormat: "dd/mm/yy", firstDay: "1", changeMonth: true, changeYear: true })
 
   $("select#participant_category_id").select2

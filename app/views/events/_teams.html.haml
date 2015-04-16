@@ -7,7 +7,7 @@
       %li.team-item{ id: "team-#{team.id}" }
         .custom-panel
           .panel-header
-            .right= react_component('DeleteButton', path: event_team_path(team, event_id: event.id), confirm: 'Delete Team?')
+            .right= react_component('DeleteButton', path: event_team_path(team, event_id: event.id), confirm: "Delete Team #{team.id}?")
             = "#{team.name} - #{team.category.display_name}"
           .panel-content
             = render partial: 'teams/team', locals: { team: team }

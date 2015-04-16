@@ -34,7 +34,7 @@ $(function(){ $(document).foundation(); });
 $(document).confirmWithReveal({
   title: "Confirm",
   ok: "Submit",
-  ok_class: "button small radius warning",
+  ok_class: "button small radius warning submit-confirm",
   cancel_class: "button small radius",
   modal_class: 'small'
 });
