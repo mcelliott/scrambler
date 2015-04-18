@@ -19,9 +19,10 @@
         - if event.show_score_board?
           %li#show-score-board= link_to fa_icon('table', text: 'Score Board'), event_teams_path(event), class: 'button-xs'
 
-.large-12.medium-12.small-12.columns.vertical-tab-container#teams-list
-  = render 'events/rounds'
+= react_component('Rounds', path: event_rounds_path(event))
+
 .new-teams.large-12.medium-12.small-12.columns
   %div.generating-teams
     %i.fa.fa-refresh.fa-spin
     Generating Teams
+

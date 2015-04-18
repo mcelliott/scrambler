@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-
   resources :pages
-
   resources :scoring, controller: :handicaps, only: [:index, :edit, :update], as: :scoring
   resources :event_scores, only: [:update]
   resources :flyer_imports, only: [:create, :new]
@@ -18,6 +16,7 @@ Rails.application.routes.draw do
   resources :events do
     post :generate
     get :generate_mixed
+    resources :rounds, only: [:index, :create, :destroy, :show], controller: 'events/rounds'
     resources :teams, only: [:index, :destroy]
     resources :participants, only: [:new, :create, :show, :destroy]
     resources :payments, only: [:index, :show, :edit, :update, :destroy]

@@ -22,6 +22,7 @@
 //= require select2
 //= require foundation
 //= require autonumeric
+//= require underscore
 //= require_tree .
 
 function flash_row(id) {

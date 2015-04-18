@@ -46,6 +46,7 @@ gem 'apartment'
 gem 'redcarpet'
 gem 'friendly_id'
 gem 'react-rails', github: 'reactjs/react-rails'
+gem 'underscore-rails'
 
 group :development do
   gem 'better_errors'
@@ -64,6 +65,7 @@ group :development do
   gem 'letter_opener'
   gem 'sextant'
   gem 'bullet'
+  gem 'yajl-ruby'
 end
 
 group :development, :test do
@@ -73,6 +75,7 @@ group :development, :test do
   gem 'byebug'
   gem 'faker'
 end
+
 group :production do
   gem 'puma'
   gem 'rails_12factor'
