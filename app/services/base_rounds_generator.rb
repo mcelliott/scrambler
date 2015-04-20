@@ -21,6 +21,7 @@ class BaseRoundsGenerator
 
   def create_team_participants(team_participants, team)
     team_participants.each do |participant|
+      byebug unless participant
       TeamParticipantCreator.new(event, participant.id, team).perform
     end
   end

@@ -1,28 +1,6 @@
 %h2.heading.text-center= "#{event.name} - #{event.event_date}"
-.large-12.medium-12.small-12.columns
-
-  .panel{ style: 'padding-bottom: 0;' }
-    .row.collapse
-      %ul.actions-list
-        %li= edit_event_link(event)
-        %li#expenses= expenses_link(event)
-        %li= new_participant_link(event)
-        - if event.freefly?
-          %li
-            = generate_teams_link(event) do
-              Generate Teams
-              %span{"data-dropdown" => "drop"}
-            %ul#drop.f-dropdown{"data-dropdown-content" => ""}
-              %li= generate_mixed_teams_link(event)
-        - else
-          %li= generate_teams_link(event, false) { "Generate Teams" }
-        - if event.show_score_board?
-          %li#show-score-board= link_to fa_icon('table', text: 'Score Board'), event_teams_path(event), class: 'button-xs'
-
-= react_component('Rounds', path: event_rounds_path(event))
-
+= react_component('Event', path: event_path(event), event_id: event.id, rounds: event_rounds_path(event))
 .new-teams.large-12.medium-12.small-12.columns
   %div.generating-teams
     %i.fa.fa-refresh.fa-spin
     Generating Teams
-

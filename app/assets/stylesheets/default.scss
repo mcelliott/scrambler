@@ -530,3 +530,11 @@ input.event-score:focus {
   height: 2.3125rem;
   font-size: 0.875rem;
 }
+
+.event-panel {
+  padding-bottom: 0;
+
+  li {
+    margin-left: 3px;
+  }
+}

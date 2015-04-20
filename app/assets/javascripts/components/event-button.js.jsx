@@ -1,4 +1,4 @@
-var GetButton = React.createClass({
+var EventButton = React.createClass({
   edit: function() {
     $.ajax({
       type: 'GET',
@@ -11,9 +11,9 @@ var GetButton = React.createClass({
   },
   render: function() {
     return (
-      <a href='#' className="get-button button" onClick={this.edit}>
+      <a href='#' className="event-button button-xs" onClick={this.edit}>
         <i className={"fa fa-" + this.props.icon}></i>
-        {this.props.text}
+        &nbsp;{this.props.text}
       </a>
     );
   }

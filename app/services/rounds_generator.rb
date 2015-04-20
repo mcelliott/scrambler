@@ -34,7 +34,7 @@ class RoundsGenerator < BaseRoundsGenerator
   def create_odd_team_participants(participants, category)
     unless @team.size == event.team_size
       odd_participants = combinations(participants, category.id).flatten.uniq - round_team_participants(category)
-      create_team_participants([odd_participants.first], @team)
+      create_team_participants([odd_participants.first].compact, @team)
     end
   end
 
