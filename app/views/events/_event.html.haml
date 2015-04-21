@@ -8,4 +8,4 @@
     - if event.show_score_board?
       %li= react_component('GetButton', path: event_teams_path(event), icon: 'table')
     %li= react_component('GetButton', path: edit_event_path(event), icon: 'pencil')
-    %li= react_component('DeleteButton', path: event_path(event), confirm: "Delete Event #{event.name}?")
+    %li= react_component('DeleteButton', item: "event-#{event.id}", path: event_path(event), confirm: "Delete Event #{event.name}?")

@@ -10,7 +10,7 @@ var Participants = React.createClass({
                 <div className="custom-panel">
                   <div className="panel-header">
                     <div className="right">
-                      <DeleteButton path={cp.links.delete} confirm={"Delete Participant Category " + cp.category_name + "?"} />
+                      <DeleteButton item={"category-" + cp.category_id} path={cp.links.delete} confirm={"Delete Participant Category " + cp.category_name + "?"} />
                     </div>
                     { cp.category_name }
                   </div>

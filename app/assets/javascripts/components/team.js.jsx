@@ -2,11 +2,11 @@ var Team = React.createClass({
   render: function() {
     var team = this.props.team;
     return (
-      <li className="team-item" id="team-#{team.id}">
+      <li className="team-item" id={"team-" + team.id}>
         <div className="custom-panel">
             <div className="panel-header">
               <div className="right">
-                <DeleteButton path={team.links.delete} confirm={"Delete Team " + team.name + "?"} />
+                <DeleteButton item={"team-" + team.id} path={team.links.delete} confirm={"Delete Team " + team.name + "?"} />
               </div>
               {team.name} - {team.category_name}
             </div>

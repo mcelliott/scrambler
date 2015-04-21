@@ -4,7 +4,9 @@ var DeleteButton = React.createClass({
       type: 'DELETE',
       url: this.props.path,
       dataType: 'script',
-      success: function (data) {}
+      success: function (data) {
+        $('#' + this.props.item).slideToggle("slow", function(){});
+      }
     }).fail(function(xhr, status, err) {
       console.error(this.props.path, status, err.toString());
     });
