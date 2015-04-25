@@ -1,6 +1,7 @@
 <% unless event.errors.present? %>
   $('#modal').foundation('reveal', 'close');
   $('tr#event-<%= event.id %>').html('<%= j(render event) %>');
+  ReactRailsUJS.mountComponents();
   flash_row('tr#event-<%= event.id %>');
 <% else %>
   $('.modal-content').html('<%= j(render template: "events/new.html.haml") %>');

@@ -15,6 +15,7 @@
 //= require jquery-ui/accordion
 //= require jquery-ui/datepicker
 //= require jquery-ui/effect-highlight
+//= require confirm-with-reveal/confirm_with_reveal
 //= require react
 //= require react_ujs
 //= require components
@@ -29,4 +30,11 @@ function flash_row(id) {
   }, 500);
 };
 
-$(function(){ $(document).foundation(); });
+$(function(){ $(document).foundation() });
+$(document).confirmWithReveal({
+  title: "Confirm",
+  ok: "Submit",
+  ok_class: "button small radius warning submit-confirm",
+  cancel_class: "button small radius",
+  modal_class: 'small'
+});

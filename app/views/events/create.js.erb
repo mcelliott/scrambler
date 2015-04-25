@@ -2,6 +2,7 @@
   $('#modal').foundation('reveal', 'close');
   $('.empty-list').hide()
   $('tbody#events').prepend('<tr id="event-<%= event.id %>"><%= j(render event) %></tr>');
+  ReactRailsUJS.mountComponents();
   flash_row('tr#event-<%= event.id %>');
 <% else %>
   $('.modal-content').html('<%= j(render template: 'events/new.html.haml') %>');

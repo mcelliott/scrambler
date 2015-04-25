@@ -32,6 +32,5 @@
             = tp.event_total
         .large-3.medium-3.small-4.columns.text-right
           - if can?(:update, event)
-            = link_to fa_icon('send', text: ''), new_event_email_path(event_id: tp.event.id, participant_id: tp.participant_id), remote: true, class: 'button-xs participant-button'
-          = link_to fa_icon('info', text: ''), event_participant_path(tp.participant_id, event_id: tp.event.id), class: 'button-xs participant-button', remote: true
-
+            .right= react_component('GetButton', path: new_event_email_path(event_id: tp.event.id, participant_id: tp.participant_id), icon: "send")
+          .right= react_component('GetButton', path: event_participant_path(tp.participant_id, event_id: tp.event.id), icon: "info")

@@ -5,6 +5,7 @@
   participant_row.find('i').removeClass('fa-plus').addClass('fa-check')
   $('.empty-list').hide();
   $('#participant-list').html("<%= j(render 'events/participants') %>");
+  ReactRailsUJS.mountComponents();
   flash_row('#participant-<%= participant.id %>');
 <% end %>
 

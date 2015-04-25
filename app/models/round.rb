@@ -6,4 +6,6 @@ class Round < ActiveRecord::Base
 
   validates :event_id, presence: true
   validates :round_number, presence: true
+
+  default_scope { order('round_number') }
 end

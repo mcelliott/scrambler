@@ -25,7 +25,7 @@ module EventsHelper
   end
 
   def generate_mixed_teams_link(event)
-    link_to 'Generate Mixed Teams',  event_generate_mixed_path(event), remote: true
+    link_to 'Generate Mixed Teams',  new_event_round_path(event), remote: true
   end
 
   def go_to_event_link(event)

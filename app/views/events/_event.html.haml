@@ -4,8 +4,7 @@
 %td= event.team_size
 %td= event.num_rounds
 %td.text-right
-  %ul.button-group.radius
-    - if event.show_score_board?
-      %li= link_to fa_icon('table', text: ''), event_teams_path(event), class: 'button-xs'
-    %li= link_to fa_icon('pencil', text: ''), edit_event_path(event), remote: true, class: 'button-xs'
-    %li= link_to fa_icon('trash-o', text: ''), event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button-xs'
+  .right= react_component('DeleteButton', item: "event-#{event.id}", path: event_path(event), confirm: "Delete event #{event.name} ?")
+  .right= react_component('GetButton', path: edit_event_path(event), icon: "info")
+  - if event.show_score_board?
+    .right= react_component('LinkButton', path: event_teams_path(event), icon: "table")

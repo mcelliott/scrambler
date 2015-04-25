@@ -2,6 +2,6 @@
 %td.long= flyer.email
 %td= flyer.hours_humanize
 %td.text-right
-  %ul.button-group.radius
-    %li= link_to fa_icon('pencil', text: ''), edit_flyer_path(flyer), remote: true, class: 'button-xs'
-    %li= link_to fa_icon('trash-o', text: ''), flyer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button-xs'
+  .right= react_component('DeleteButton', item: "flyer-#{flyer.id}", path: flyer_path(flyer), confirm: "Delete flyer #{flyer.name} ?")
+  .right= react_component('GetButton', path: edit_flyer_path(flyer), icon: "pencil")
+

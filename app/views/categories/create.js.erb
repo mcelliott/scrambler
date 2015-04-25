@@ -2,6 +2,7 @@
   $('#modal').foundation('reveal', 'close');
   $('.empty-list').hide()
   $('tbody#categories').prepend('<tr id="category-<%= category.id %>"><%= j(render category) %></tr>');
+  ReactRailsUJS.mountComponents();
   flash_row('tr#category-<%= category.id %>');
 <% else %>
   $('.modal-content').html('<%= j(render template: 'categories/new.html.haml') %>');

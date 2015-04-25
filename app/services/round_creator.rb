@@ -5,6 +5,10 @@ class RoundCreator
   end
 
   def perform
-    Round.create!(event: @event, round_number: @round_number + 1)
+    Round.create(
+      event: @event,
+      round_number: @round_number + 1,
+      name: "Round #{@round_number + 1}"
+    )
   end
 end

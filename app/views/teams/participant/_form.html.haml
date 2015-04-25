@@ -1,7 +1,7 @@
-= simple_form_for @team_participant, url: teams_participant_path(team_id: @team.id, event_id: @event.id), remote: true do |f|
+= simple_form_for team_participant, url: teams_participant_path(team_id: @team.id, event_id: event.id), remote: true do |f|
   = f.error_notification
   .row
-    = f.input :id, as: :select, collection: @event.participants.map{ |p| [participant_form_label(p), p.id] }, label: false, input_html: { class: 'participant-select2' }
+    = f.input :id, as: :select, collection: event.team_participant_collection, label: false, input_html: { class: 'participant-select2' }
     = f.input :placeholder, as: :hidden, input_html: { value: 1 }
   .row
     %button#random-participant.button-xs= fa_icon('random', text: 'Randomize')

@@ -60,6 +60,13 @@ body {
   @extend .tiny;
 }
 
+.action-button {
+  @include tiny-button;
+  margin-bottom: 0;
+  width: 30px !important;
+  background-color: $background-color;
+}
+
 .delete-button {
   @include tiny-button;
   border: 1px solid $primary-color-2;
@@ -499,7 +506,7 @@ div.loading, div.generating-teams {
 input.event-score {
   background: transparent;
   display: block;
-  height: 2em;
+  height: 1em;
   width: 100% !important;
   margin-bottom: 0;
   color: $white;

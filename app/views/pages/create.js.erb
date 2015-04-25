@@ -2,6 +2,7 @@
   $('#modal').foundation('reveal', 'close');
   $('.empty-list').hide()
   $('tbody#pages').prepend('<tr id="page-<%= page.id %>"><%= j(render page) %></tr>');
+  ReactRailsUJS.mountComponents();
   flash_row('tr#page-<%= page.id %>');
 <% else %>
   $('.modal-content').html('<%= j(render template: 'pages/new.html.haml') %>');

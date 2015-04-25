@@ -16,8 +16,7 @@ Rails.application.routes.draw do
   resources :flyers, only: [:index, :update, :new, :edit, :create, :destroy]
 
   resources :events do
-    post :generate
-    get :generate_mixed
+    resources :rounds, only: [:index, :new, :create, :destroy, :show], controller: 'events/rounds'
     resources :teams, only: [:index, :destroy]
     resources :participants, only: [:new, :create, :show, :destroy]
     resources :payments, only: [:index, :show, :edit, :update, :destroy]

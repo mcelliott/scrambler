@@ -1,6 +1,6 @@
 %h2.text-center Generate Mixed Teams
 
-= form_tag event_generate_path(event_id: event.id), remote: true do
+= form_tag event_rounds_path(event_id: event.id), remote: true do
   - event.num_rounds.times do |round|
     .large-12.medium-12.small-12.columns
       .large-6.medium-6.small-6.columns.text-right= label_tag "Round #{round + 1}"

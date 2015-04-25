@@ -16,7 +16,7 @@ class TeamParticipantCreator
 
   private
   def team_participant
-    @team_participant ||= TeamParticipant.create!(team: @team,
+    @team_participant ||= TeamParticipant.create(team: @team,
                                                   event: @event,
                                                   participant_id: @participant_id,
                                                   placeholder: @placeholder)

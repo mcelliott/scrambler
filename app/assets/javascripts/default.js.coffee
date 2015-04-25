@@ -1,4 +1,9 @@
 $ ->
+  $(document).on('click', '.submit-confirm', ->
+    $('.reveal-modal').hide()
+    $('.reveal-modal-bg').hide()
+  )
+
   $("input.datepicker").datepicker({ dateFormat: "dd/mm/yy", firstDay: "1", changeMonth: true, changeYear: true })
 
   $("select#participant_category_id").select2
@@ -15,7 +20,7 @@ $ ->
     $('#modal').foundation('reveal', 'close');
     $('div.generating-teams').show()
     event = $(@).data('event')
-    $.post("/events/#{event}/generate")
+    $.post("/events/#{event}/rounds")
 
   $(document).on "click", "#generate-mixed-teams", (e) ->
     e.preventDefault()

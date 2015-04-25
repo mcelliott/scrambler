@@ -9,6 +9,8 @@ class Team < ActiveRecord::Base
   validates :event_id,     presence: true
   validates :round_id,     presence: true
 
+  default_scope { order('created_at') }
+
   def has_space?
     team_participants.size < event.team_size
   end

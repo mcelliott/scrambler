@@ -6,7 +6,8 @@ class Participant < ActiveRecord::Base
   has_many :team_participants, dependent: :destroy
   has_one :payment, dependent: :destroy
 
-  delegate :name, to: :flyer, prefix: true
+  delegate :name, to: :flyer
+  delegate :hours, to: :flyer
 
   validates :flyer_id,    presence: true, uniqueness: { scope: :event_id, message: 'already exists' }
   validates :event_id,    presence: true

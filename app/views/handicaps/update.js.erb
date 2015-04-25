@@ -1,6 +1,7 @@
 <% unless @handicap.errors.present? %>
 $('#modal').foundation('reveal', 'close');
 $('tr#handicap-<%= @handicap.id %>').html('<%= j(render @handicap) %>');
+ReactRailsUJS.mountComponents();
 flash_row('tr#handicap-<%= @handicap.id %>');
 <% else %>
 $('.modal-content').html('<%= j(render template: "handicaps/new.html.haml") %>');

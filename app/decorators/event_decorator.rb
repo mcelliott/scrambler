@@ -65,4 +65,14 @@ class EventDecorator < Draper::Decorator
   def show_score_board?
     rounds?
   end
+
+  def team_participant_collection
+    object.participants.map{ |p| [participant_form_label(p), p.id] }
+  end
+
+  private
+
+  def participant_form_label(p)
+    "#{p.flyer.name} - #{p.category.display_name}"
+  end
 end

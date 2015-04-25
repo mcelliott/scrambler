@@ -10,7 +10,7 @@
         - if event.freefly?
           %li
             = generate_teams_link(event) do
-              Generate Teams
+              = fa_icon('refresh', text: 'Generate Teams')
               %span{"data-dropdown" => "drop"}
             %ul#drop.f-dropdown{"data-dropdown-content" => ""}
               %li= generate_mixed_teams_link(event)

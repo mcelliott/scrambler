@@ -6,7 +6,7 @@ class TeamCreator
   end
 
   def perform
-    teams.create!(name: "Team #{team_number}", category: @category, round: @round, event: @event)
+    teams.create(name: "Team #{team_number}", category: @category, round: @round, event: @event)
   end
 
   private

@@ -8,7 +8,7 @@ module Uploaders
 
     def flyer
       hash = attributes.reject { |key, value| value.blank? }
-      Flyer.create!(hash)
+      Flyer.create(hash)
     end
   end
 end
