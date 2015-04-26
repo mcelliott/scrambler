@@ -55,20 +55,5 @@ describe ParticipantsController do
         xhr :delete, :destroy, { event_id: event.id, id: participant.id }
       }.to change(Participant, :count).by(-1)
     end
-
-    context 'with generated teams' do
-      before do
-        5.times do
-          create(:participant, event: event, category: category)
-        end
-        EventRoundsCreator.new({ event_id: event.id }).perform
-      end
-
-      it 'should delete the team_participant for each round' do
-        expect{
-          xhr :delete, :destroy, { event_id: event.id, id: participant.id }
-        }.to change(TeamParticipant, :count).by(- event.num_rounds)
-      end
-    end
   end
 end

@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :team_participant do
-    event_id 1
-    participant_id 1
+    event
+    participant
     placeholder 1
-    team_id 1
+    team
   end
 end

@@ -17,7 +17,7 @@ class Participant < ActiveRecord::Base
 
   def self.participant_number(event)
     current_event_participants = event.participants
-    existing_number = [*1..current_event_participants.count + 1] - event.participants.map(&:number)
+    existing_number = [*1..current_event_participants.count + 1] - event.participants.pluck(&:number)
 
     if existing_number.present?
       existing_number.first
