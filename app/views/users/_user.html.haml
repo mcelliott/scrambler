@@ -1,4 +1,4 @@
 %td= user.name
 %td.long= user.email
 %td.text-right
-  = react_component('DeleteButton', item: "user-#{user.id}", path: user_path(user), confirm: "Delete user #{user.email}?")
+  = react_component('DeleteButton', item: "user-#{user.id}", path: user_path(user))

@@ -3,7 +3,8 @@ class Events::CategoriesController < ApplicationController
   decorates_assigned :category
 
   def destroy
-    participants.each.each(&:destroy)
+    participants.destroy_all
+    flash[:notice] = "Category participants successfully deleted."
   end
 
   private

@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  include UndoDelete
   before_action :authenticate_user!
   load_and_authorize_resource
   respond_to :html, :js
@@ -23,7 +24,6 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     flash[:notice] = 'Category was successfully created.' if @category.save
-
   end
 
   def update
@@ -33,10 +33,10 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
-    @category.destroy
-    respond_to do |format|
-      format.html { redirect_to categories_url, notice: 'Category was successfully deleted.' }
-      format.json { head :no_content }
+    if @category.destroy
+      flash[:notice] = "Category was successfully deleted. #{undo_link(@category)}"
+    else
+      flash[:alert] = 'Failed to delete category.'
     end
   end
 

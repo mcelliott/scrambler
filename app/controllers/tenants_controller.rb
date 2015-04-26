@@ -1,4 +1,5 @@
 class TenantsController < ApplicationController
+  include UndoDelete
   before_action :authenticate_user!
   before_action :authorize_tenant
   load_and_authorize_resource except: [:index, :new]
@@ -29,7 +30,7 @@ class TenantsController < ApplicationController
 
   def destroy
     if @tenant.destroy
-      flash[:notice] = 'Tenant was successfully deleted.'
+      flash[:notice] = 'Tenant was successfully deleted. #{undo_link(@tenant)}'
     else
       flash[:alert] = 'Failed to delete tenant.'
     end

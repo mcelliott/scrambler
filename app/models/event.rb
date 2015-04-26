@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+  has_paper_trail
   has_many :participants, dependent: :destroy
   has_many :rounds, dependent: :destroy
   has_many :payments, dependent: :destroy

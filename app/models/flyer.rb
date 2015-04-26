@@ -1,4 +1,5 @@
 class Flyer < ActiveRecord::Base
+  has_paper_trail
   has_enumeration_for :hours, with: TunnelHours, create_helpers: { prefix: true }
 
   validates :name,  presence: true, length: { maximum: 50 }

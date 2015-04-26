@@ -3,5 +3,5 @@
 %td.long= tenant.database
 %td= boolean_icon(tenant.enabled)
 %td.text-right
-  .right= react_component('DeleteButton', item: "tenant-#{tenant.id}", path: tenant_path(tenant), confirm: "Delete #{tenant.name}?")
+  .right= react_component('DeleteButton', item: "tenant-#{tenant.id}", path: tenant_path(tenant))
   .right= react_component('GetButton', path: edit_tenant_path(tenant), icon: "pencil")

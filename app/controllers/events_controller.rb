@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  include UndoDelete
   before_action :authenticate_user!
   before_action :participant, only: [:show]
   load_and_authorize_resource except: [:new, :generate, :create, :email, :index]
@@ -33,7 +34,7 @@ class EventsController < ApplicationController
 
   def destroy
     if @event.destroy
-      flash[:notice] = 'Event was successfully deleted.'
+      flash[:notice] = "Event was successfully deleted. #{undo_link(@event)}"
     else
       flash[:alert] = 'Failed to delete event.'
     end

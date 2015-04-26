@@ -50,6 +50,9 @@ describe ParticipantsController do
 
   describe '#destroy' do
     let!(:participant) { create(:participant, event: event, flyer: flyer, category: category) }
+    before do
+      allow_any_instance_of(Participant).to receive(:versions).and_return([participant])
+    end
     it 'should delete the participant' do
       expect{
         xhr :delete, :destroy, { event_id: event.id, id: participant.id }

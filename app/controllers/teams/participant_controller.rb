@@ -1,4 +1,5 @@
 class Teams::ParticipantController < ApplicationController
+  include UndoDelete
   authorize_resource
   before_action :authenticate_user!
   respond_to :html, :js
@@ -22,16 +23,18 @@ class Teams::ParticipantController < ApplicationController
   end
 
   def destroy
-    @team_participant = current_team.team_participants.find(params[:id])
-    @team_participant.destroy
-    respond_to do |format|
-      flash[:notice] = 'Participant was successfully deleted.'
-      format.html { redirect_to event_path(@team_participant.event) }
-      format.js
+    if team_participant.destroy
+      flash[:notice] = "Team Participant was successfully deleted. #{undo_link(team_participant)}"
+    else
+      flash[:alert] = 'Failed to delete team participant.'
     end
   end
 
   private
+
+  def team_participant
+    @team_participant ||= current_team.team_participants.find(params[:id])
+  end
 
   def next_participant
     current_event.participants.count + 1

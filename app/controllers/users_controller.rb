@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include UndoDelete
   before_action :authenticate_user!
   decorates_assigned :users, with: UsersDecorator
 
@@ -8,10 +9,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully deleted.' }
-      format.json { head :no_content }
+    if user.destroy
+      flash[:notice] = "User was successfully deleted. #{undo_link(user)}"
+    else
+      flash[:alert] = 'Failed to delete user.'
     end
   end
 

@@ -12,11 +12,10 @@ class TeamsController < ApplicationController
   end
 
   def destroy
-    @team.destroy!
-    respond_to do |format|
-      flash[:notice] = 'Team was successfully deleted.'
-      format.html { redirect_to event }
-      format.js
+    if @team.destroy
+      flash[:notice] = "Team was successfully deleted."
+    else
+      flash[:alert] = 'Failed to delete team.'
     end
   end
 
@@ -28,7 +27,6 @@ class TeamsController < ApplicationController
     else
       redirect_to root_path, alert: 'Cannot find event scores'
     end
-
   end
 
   private

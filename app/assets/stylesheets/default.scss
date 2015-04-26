@@ -258,10 +258,11 @@ ul.actions-list li {
 
 div.message {
   position: fixed;
-  top: 40px;
-  right: 15px;
+  top: 45px;
+  padding: 25px;
   z-index: 1;
-  min-width: 300px;
+  width: 100%;
+  text-align: center;
 }
 
 .light {

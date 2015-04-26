@@ -1,4 +1,5 @@
 class ParticipantsController < ApplicationController
+  include UndoDelete
   before_action :authenticate_user!, except: :show
   load_and_authorize_resource except: :show
 
@@ -31,11 +32,10 @@ class ParticipantsController < ApplicationController
   # DELETE /participants/1.json
   def destroy
     destroy_team_participant
-    @participant.destroy
-    respond_to do |format|
-      flash[:notice] = 'Participant was successfully deleted.'
-      format.html { redirect_to event_path(@participant.event) }
-      format.js
+    if @participant.destroy
+      flash[:notice] = "Participant was successfully deleted. #{undo_link(@participant)}"
+    else
+      flash[:alert] = 'Failed to delete participant.'
     end
   end
 

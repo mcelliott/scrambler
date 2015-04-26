@@ -31,8 +31,6 @@ namespace :tunnelscrambler do
         unless Tenant.exists?(domain: args[:params][:domain])
           tenant = TenantCreator.new(args[:params]).perform
           tenant.switch!
-          CreateAdminService.new.call
-          puts 'CREATED ADMIN USER FOR TENANT: ' << tenant.database
         end
       end
     end

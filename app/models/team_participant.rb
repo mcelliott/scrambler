@@ -1,4 +1,5 @@
 class TeamParticipant < ActiveRecord::Base
+  has_paper_trail
   belongs_to :event
   belongs_to :team
   belongs_to :participant

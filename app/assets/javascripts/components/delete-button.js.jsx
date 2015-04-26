@@ -13,7 +13,7 @@ var DeleteButton = React.createClass({
     });
   },
   render: function() {
-    var msg = '{"body":"' + this.props.confirm + '"}';
+    var msg = this.props.confirm || '';
     return (
       <a href='#' className="action-button button" onClick={this.destroy} data-confirm={msg}>
         <i className="fa fa-trash"></i>

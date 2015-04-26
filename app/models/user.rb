@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_paper_trail
   belongs_to :role
   before_create :set_default_role
 

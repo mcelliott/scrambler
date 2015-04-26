@@ -1,4 +1,5 @@
 class FlyersController < ApplicationController
+  include UndoDelete
   before_action :authenticate_user!
   load_and_authorize_resource
   respond_to :html, :js
@@ -21,9 +22,10 @@ class FlyersController < ApplicationController
   end
 
   def destroy
-    @flyer.destroy
-    respond_to do |format|
-      format.html { redirect_to flyers_path, notice: 'Flyer was successfully deleted.' }
+    if @flyer.destroy
+      flash[:notice] = "Flyer was successfully deleted. #{undo_link(@flyer)}"
+    else
+      flash[:alert] = 'Failed to delete flyer.'
     end
   end
 

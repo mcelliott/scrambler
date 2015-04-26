@@ -1,9 +1,4 @@
 $ ->
-  $(document).on('click', '.submit-confirm', ->
-    $('.reveal-modal').hide()
-    $('.reveal-modal-bg').hide()
-  )
-
   $("input.datepicker").datepicker({ dateFormat: "dd/mm/yy", firstDay: "1", changeMonth: true, changeYear: true })
 
   $("select#participant_category_id").select2
@@ -31,8 +26,6 @@ $ ->
 
   $(document).on "change", "input.event-score", (e) ->
     ($ @).parent().submit()
-
-  $('div#notice').delay(2000).fadeOut('slow');
 
   $('input[data-role=money]').autoNumeric('init');
 
@@ -68,4 +61,4 @@ $ ->
 window.Scrambler =
   update_messages: (notice) ->
     $('#notice').html(notice).show()
-    $('div#notice').delay(3000).fadeOut('slow')
+    $('div#notice').delay(6000).fadeOut('slow')

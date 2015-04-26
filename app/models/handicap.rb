@@ -1,4 +1,5 @@
 class Handicap < ActiveRecord::Base
+  has_paper_trail
   has_enumeration_for :hours, with: TunnelHours, create_helpers: { prefix: true }
 
   validates :hours, presence: true

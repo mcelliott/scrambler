@@ -1,4 +1,5 @@
 class Participant < ActiveRecord::Base
+  has_paper_trail
   belongs_to :category
   belongs_to :flyer
   belongs_to :event

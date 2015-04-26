@@ -32,5 +32,6 @@ Rails.application.routes.draw do
 
   resources :users
 
+  post "versions/:id/revert" => "versions#revert", as: "revert_version"
   mount Sidekiq::Web, at: '/sidekiq' unless Rails.env.production?
 end
