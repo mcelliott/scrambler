@@ -529,6 +529,7 @@ DEPENDENCIES
   selenium-webdriver
   sextant
   shoulda
+  shoulda-matchers
   sidekiq
   sidekiq-failures
   simple_form

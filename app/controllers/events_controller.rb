@@ -29,28 +29,14 @@ class EventsController < ApplicationController
 
   def update
     flash[:notice] = 'Event was successfully updated.' if @event.update(event_params)
-    respond_to do |format|
-      format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-      format.js
-    end
   end
 
   def destroy
-    @event.destroy
-    respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully deleted.' }
-      format.json { head :no_content }
+    if @event.destroy
+      flash[:notice] = 'Event was successfully deleted.'
+    else
+      flash[:alert] = 'Failed to delete event.'
     end
-  end
-
-  def generate
-    event_rounds_creator = EventRoundsCreator.new(params)
-    event_rounds_creator.reset
-    @event = event_rounds_creator.perform
-  end
-
-  def generate_mixed
-    @event = Event.find(params[:event_id])
   end
 
   private

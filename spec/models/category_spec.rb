@@ -1,8 +1,15 @@
 require 'rails_helper'
 
-describe Category do
+describe Category, type: :model do
   it { should respond_to :name  }
   it { should respond_to :category_type  }
+  it { should respond_to :enabled  }
+  it { should respond_to :display_name  }
+
+  it { should validate_inclusion_of(:category_type).in_array(CategoryType.list)  }
+  it { should validate_presence_of(:name) }
+
+  it { should have_many(:teams) }
 
   describe 'name field' do
     context 'valid name' do

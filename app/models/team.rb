@@ -11,10 +11,6 @@ class Team < ActiveRecord::Base
 
   default_scope { order('created_at') }
 
-  def has_space?
-    team_participants.size < event.team_size
-  end
-
   def size
     team_participants.size
   end

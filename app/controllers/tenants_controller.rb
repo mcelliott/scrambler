@@ -25,17 +25,13 @@ class TenantsController < ApplicationController
 
   def update
     flash[:notice] = 'Tenant was successfully updated.' if @tenant.update(tenant_params)
-    respond_to do |format|
-      format.html { redirect_to @tenant, notice: 'Tenant was successfully updated.' }
-      format.js
-    end
   end
 
   def destroy
-    @tenant.destroy
-    respond_to do |format|
-      format.html { redirect_to tenants_url, notice: 'Tenant was successfully deleted.' }
-      format.json { head :no_content }
+    if @tenant.destroy
+      flash[:notice] = 'Tenant was successfully deleted.'
+    else
+      flash[:alert] = 'Failed to delete tenant.'
     end
   end
 

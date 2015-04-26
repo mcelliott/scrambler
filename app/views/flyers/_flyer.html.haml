@@ -2,6 +2,6 @@
 %td.long= flyer.email
 %td= flyer.hours_humanize
 %td.text-right
-  .right= react_component('DeleteButton', item: "flyer-#{flyer.id}", path: flyer_path(flyer), confirm: "Delete flyer #{flyer.name} ?")
+  .right= react_component('DeleteButton', item: "flyer-#{flyer.id}", path: flyer_path(flyer), confirm: "Delete flyer #{flyer.name}?")
   .right= react_component('GetButton', path: edit_flyer_path(flyer), icon: "pencil")
 

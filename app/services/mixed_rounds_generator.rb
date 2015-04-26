@@ -56,16 +56,16 @@ class MixedRoundsGenerator < BaseRoundsGenerator
   end
 
   def mixed?(team_participants)
-    participant_categories = team_participants.map do |tp|
-      Participant.find_by(id: tp).category.name
-    end
-    participant_categories.count('head_up') == (team_participants.size / 2)
+    head_up_participants(team_participants) == (team_participants.size / 2)
   end
 
   def allowed_to_fly_together?(team_participants)
+    head_up_participants(team_participants) <= (team_participants.size / 2)
+  end
+
+  def head_up_participants(team_participants)
     participant_categories = team_participants.map do |tp|
       Participant.find_by(id: tp).category.name
-    end
-    participant_categories.count('head_up') <= (team_participants.size / 2)
+    end.count('head_up')
   end
 end

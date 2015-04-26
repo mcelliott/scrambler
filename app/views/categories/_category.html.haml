@@ -2,5 +2,5 @@
 %td= category.category_type_humanize
 %td= boolean_icon(category.enabled)
 %td.text-right
-  .right= react_component('DeleteButton', item: "category-#{category.id}", path: category_path(category), confirm: "Delete Category #{category.name} ?")
+  .right= react_component('DeleteButton', item: "category-#{category.id}", path: category_path(category), confirm: "Delete Category #{category.name}?")
   .right= react_component('GetButton', path: edit_category_path(category), icon: "pencil")

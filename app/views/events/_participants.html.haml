@@ -8,7 +8,7 @@
       %li.participant-category{ id: "category-#{category.id}" }
         .custom-panel
           .panel-header
-            .right= react_component('DeleteButton', item: "category-#{category.id}", path: event_category_path(event, category), confirm: "Delete participants category #{category.display_name} ?")
+            .right= react_component('DeleteButton', item: "category-#{category.id}", path: event_category_path(event, category), confirm: "Delete participants category #{category.display_name}?")
             = category.display_name
           .panel-content
             - participants.each_with_index do |p, index|

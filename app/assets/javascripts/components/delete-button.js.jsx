@@ -1,11 +1,12 @@
 var DeleteButton = React.createClass({
   destroy: function() {
+    var item = $('#' + this.props.item);
     $.ajax({
       type: 'DELETE',
       url: this.props.path,
       dataType: 'script',
       success: function (data) {
-        $('#' + this.props.item).slideToggle("slow");
+        item.slideToggle("slow");
       }
     }).fail(function(xhr, status, err) {
       console.error(this.props.path, status, err.toString());

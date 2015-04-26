@@ -2,5 +2,5 @@
   .large-12.small-12.columns
     .large-7.small-6.columns.participant-name= "#{p.number}. #{p.flyer.name}"
     .large-5.small-6.columns.text-right
-      .right= react_component('DeleteButton', item: "participant-#{p.id}", path: event_participant_path(p, event_id: p.event.id), confirm: "Delete participant #{p.name} ?")
+      .right= react_component('DeleteButton', item: "participant-#{p.id}", path: event_participant_path(p, event_id: p.event.id), confirm: "Delete participant #{p.name}?")
       .right= react_component('GetButton', path: event_participant_path(p, event_id: p.event.id), icon: "info")
