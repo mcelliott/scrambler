@@ -20,6 +20,7 @@ class BaseRoundsGenerator
   end
 
   def create_team_participants(team_participants, team)
+    team_participants = team_participants.compact
     team_participants.each do |participant|
       TeamParticipantCreator.new(event, participant.id, team).perform
     end
