@@ -7,7 +7,7 @@ class EventMailer < ApplicationMailer
 
     mail(
       subject: @event.title,
-      to:      @flyer.email,
+      to:      @participant.email,
       from:    'notifications@tunnelscrambler.com',
       date:    Time.zone.now
     )
@@ -21,9 +21,9 @@ class EventMailer < ApplicationMailer
 
   def load_data(participant_id)
     domain = Tenant.current_domain
+    @location = Tenant.current_name
     @participant = Participant.find(participant_id)
     @event = @participant.event
-    @flyer = @participant.flyer
     @url = root_url(subdomain: domain)
     @event_teams_url ||= team_view_url(subdomain: domain, uuid: @event.uuid)
   end

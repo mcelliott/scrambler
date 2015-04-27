@@ -33,15 +33,11 @@ class Event < ActiveRecord::Base
     participants.group_by { |p| p.category }
   end
 
-  def location
-    Tenant.current_name
-  end
-
   def number_of_teams
     (participants.count / team_size.to_f).ceil
   end
 
-  def number_of_teams_by_category(category)
-    (participants.where(category: category).count / team_size.to_f).ceil
+  def number_of_teams_by_category(category_id)
+    (participants.where(category_id: category_id).count / team_size.to_f).ceil
   end
 end

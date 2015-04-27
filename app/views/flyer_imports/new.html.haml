@@ -1,11 +1,11 @@
 %h2 Upload Flyers
-Your CSV file must have the following format, with headers.
+Your CSV file must have the following format:
 .panel
-  name,email,hours
+  name,email
   %br
-  John Doe,jdoe@example.com,10
+  John Doe,jdoe@example.com
   %br
-  Mike Smith,msmith@example.com,20
+  Mike Smith,msmith@example.com
 
 = simple_form_for :flyers_import, url: flyer_imports_path do |f|
   = f.error_notification

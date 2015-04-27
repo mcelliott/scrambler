@@ -2,7 +2,5 @@
 %td= page.title
 %td= page.slug
 %td.text-right
-  %ul.button-group.radius
-    %li= link_to fa_icon('pencil', text: ''), edit_page_path(page), remote: true, class: 'button-xs'
-    %li= link_to fa_icon('trash-o', text: ''), page, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button-xs'
-
+  .right= react_component('DeleteButton', item: "page-#{page.id}", path: page_path(page))
+  .right= react_component('GetButton', path: edit_page_path(page), icon: "pencil")

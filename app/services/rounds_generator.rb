@@ -53,7 +53,7 @@ class RoundsGenerator < BaseRoundsGenerator
   end
 
   def number_of_teams(category)
-    event.number_of_teams_by_category(category)
+    event.number_of_teams_by_category(category.id)
   end
 
   def round_numbers

@@ -7,15 +7,14 @@ class FlyerImportsController < ApplicationController
   end
 
   def create
-    @flyers = []
-    Flyer.transaction do
-      CSV.open(params[:flyers_import][:file].tempfile, headers: true).each do |row|
-        hash = row.to_hash
-        hash.each_pair { |name, value| hash[name] = value.strip if value }
-        @flyers << Uploaders::FlyerCreator.new(hash).flyer
-      end
-    end
-    flash[:notice] = "#{@flyers.length} flyers uploaded successfully."
+    count = Uploaders::FlyerUploader.new(upload_params).perform
+    flash[:notice] = "#{count} flyers uploaded."
     redirect_to flyers_path
+  end
+
+  private
+
+  def upload_params
+    params.require(:flyers_import).permit(:file)
   end
 end

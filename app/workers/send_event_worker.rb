@@ -20,6 +20,7 @@ class SendEventWorker
   end
 
   def deliver_email(participant)
+    return unless participant.email.present?
     Rails.logger.info("Sending email to #{participant.flyer.name} for event #{@event.name}")
     EventMailer.team_email(participant.id).deliver
   end
