@@ -4,7 +4,7 @@ class TenantCreator
   end
 
   def perform
-    Tenant.create!(@attributes).tap do |tenant|
+    Tenant.create(@attributes).tap do |tenant|
       Apartment::Tenant.create(tenant.database)
       tenant.enable!
     end
