@@ -9,21 +9,26 @@ class Teams::ParticipantController < ApplicationController
   decorates_assigned :team_participant
 
   def new
-    current_event
-    current_team
-    @team_participant = TeamParticipant.new
+    team_participant = TeamParticipant.new(event: current_event, team: current_team)
+    @form = TeamParticipantForm.new(team_participant)
   end
 
   def create
-    @team_participant = TeamParticipantCreator.new(current_event,
-                                                   current_participant.id,
-                                                   current_team,
-                                                   participant_params[:placeholder]).perform
-    flash[:notice] = 'Participant was successfully added.' if @team_participant
+    @team_participant = TeamParticipant.new
+    @form = TeamParticipantForm.new(@team_participant)
+    @form.update!(params[:team_participant])
+
+    if TeamParticipantCreator.new(@form).save
+      @success = true
+      flash[:notice] = 'Participant was successfully added.'
+    else
+      flash[:notice] = 'Failed to add Participant.'
+    end
   end
 
   def destroy
-    if team_participant.destroy
+    @team_participant = TeamParticipant.find(params[:id])
+    if @team_participant.destroy
       flash[:notice] = "Team Participant was successfully deleted. #{undo_link(team_participant)}"
     else
       flash[:alert] = 'Failed to delete team participant.'
@@ -31,10 +36,6 @@ class Teams::ParticipantController < ApplicationController
   end
 
   private
-
-  def team_participant
-    @team_participant ||= current_team.team_participants.find(params[:id])
-  end
 
   def next_participant
     current_event.participants.count + 1
@@ -52,7 +53,6 @@ class Teams::ParticipantController < ApplicationController
     current_event.participants.find participant_params[:id]
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def participant_params
     params.require(:team_participant).permit(:id, :category_id, :placeholder)
   end

@@ -1,15 +1,28 @@
 class EventScoreCreator
-  def initialize(event, team_participant, round)
-    @event = event
+  attr_reader :team_participant
+
+  def initialize(team_participant)
     @team_participant = team_participant
-    @round = round
   end
 
-  def perform
-    EventScore.create(team_participant: @team_participant,
-                       round: @round,
-                       event: @event,
-                       participant: @team_participant.participant,
-                       score: 0)
+  def save
+    team_participant.build_event_score(round: round,
+                                       event: event,
+                                       participant: participant,
+                                       score: 0).save
+  end
+
+  private
+
+  def round
+    team_participant.team.round
+  end
+
+  def event
+    team_participant.event
+  end
+
+  def participant
+    team_participant.participant
   end
 end

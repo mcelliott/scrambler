@@ -17,7 +17,7 @@
         - else
           %li= generate_teams_link(event, false) { "Generate Teams" }
         - if event.show_score_board?
-          %li#show-score-board= link_to fa_icon('table', text: 'Score Board'), event_teams_path(event), class: 'button-xs'
+          %li#show-score-board= link_to fa_icon('table', text: 'Score Board'), team_view_path(event.uuid), class: 'button-xs'
 
 .large-12.medium-12.small-12.columns.vertical-tab-container#teams-list
   = render 'events/rounds'

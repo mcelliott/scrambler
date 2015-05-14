@@ -6,29 +6,33 @@ describe TeamParticipantCreator do
   let(:participant) { create(:participant) }
   let(:team)  { create(:team, event: event, round: round) }
 
+  let(:params) do
+    {
+      team_id: team.id,
+      event_id: event.id,
+      participant_id: participant.id,
+      placeholder: placeholder
+    }
+  end
+
+  let(:team_participant) { TeamParticipant.new(params) }
+  let(:form) { TeamParticipantForm.new(team_participant) }
+
+  subject { creator }
+
   context 'when creating an team_participant without placeholder' do
-    let(:creator) { described_class.new(event, participant.id, team) }
-    subject { creator.perform }
-
-    it 'should be valid' do
-      expect(subject).to be
-    end
-
-    it 'should belong to the participant' do
-      expect(subject.participant).to eq participant
-    end
-
-    it 'should not have a placeholder' do
-      expect(subject.placeholder).to be_falsy
+    let(:placeholder) { false }
+    let(:creator) { described_class.new(form) }
+    it 'should save' do
+      expect(subject.save).to be_truthy
     end
   end
 
   context 'when creating an team_participant with placeholder' do
-    let(:creator) { described_class.new(event, participant.id, team, true) }
-    subject { creator.perform }
-
-    it 'should have a placeholder' do
-      expect(subject.placeholder).to be_truthy
+    let(:placeholder) { true }
+    let(:creator) { described_class.new(form) }
+    it 'should save' do
+      expect(subject.save).to be_truthy
     end
   end
 end

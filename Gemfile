@@ -46,8 +46,9 @@ gem 'apartment'
 gem 'redcarpet'
 gem 'friendly_id'
 gem 'react-rails', github: 'reactjs/react-rails'
-gem "paper_trail"
-gem "whenever"
+gem 'paper_trail', '~> 4.0.0.rc'
+gem 'whenever'
+gem 'reform'
 
 group :development do
   gem 'better_errors'

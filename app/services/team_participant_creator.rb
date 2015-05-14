@@ -1,24 +1,23 @@
 class TeamParticipantCreator
+  attr_reader :form, :team, :event
+  delegate :model, to: :form
 
-  def initialize(event, participant_id, team, placeholder = false)
-    @event = event
-    @participant_id = participant_id
-    @team = team
-    @placeholder = placeholder
+  def initialize(form)
+    @form = form
   end
 
-  def perform
-    if @participant_id.present?
-      EventScoreCreator.new(@event, team_participant, @team.round).perform
-      team_participant
+  def save
+    return false unless form.valid?
+    form.sync
+    form.save do |nested|
+      model.update_attributes(nested)
+      EventScoreCreator.new(form.model).save
     end
   end
 
   private
-  def team_participant
-    @team_participant ||= TeamParticipant.create(team: @team,
-                                                  event: @event,
-                                                  participant_id: @participant_id,
-                                                  placeholder: @placeholder)
+
+  def round
+    model.team.round
   end
 end

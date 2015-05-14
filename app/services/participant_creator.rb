@@ -1,17 +1,24 @@
 class ParticipantCreator
-  attr_reader :participant
-  def initialize(event, params)
-    @event = event
-    @params = params
+  attr_reader :form
+  delegate :model, to: :form
+
+  def initialize(form)
+    @form = form
   end
 
-  def perform
-    participant.number = Participant.participant_number(@event)
-    participant.create_payment(event: @event, amount: @event.participant_cost)
-    participant.save
+  def save
+    return false unless form.valid?
+    form.sync
+    model.number = Participant.participant_number(event)
+    form.save do |nested|
+      model.update_attributes(nested)
+      model.create_payment(event: event, amount: event.participant_cost)
+    end
   end
 
-  def participant
-    @participant ||= Participant.new(@params.merge(event_id: @event.id))
+  private
+
+  def event
+    model.event
   end
 end

@@ -1,4 +1,4 @@
-<% unless participant.errors.present? %>
+<% if @success %>
   var participant_row = $(".row#flyer-<%= participant.flyer.id %>");
   participant_row.find('button').prop("disabled", true);
   participant_row.find('select').prop("disabled", true);

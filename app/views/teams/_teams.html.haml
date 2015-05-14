@@ -33,4 +33,4 @@
         .large-3.medium-3.small-4.columns.text-right
           - if can?(:update, event)
             .right= react_component('GetButton', path: new_event_email_path(event_id: tp.event.id, participant_id: tp.participant_id), icon: "send")
-          .right= react_component('GetButton', path: event_participant_path(tp.participant_id, event_id: tp.event.id), icon: "info")
+          .right= react_component('GetButton', path: event_participant_path(event_id: tp.event.id, id: tp.participant_id), icon: "info")

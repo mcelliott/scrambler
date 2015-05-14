@@ -1,5 +1,6 @@
 class BaseRoundsGenerator
   attr_reader :event
+
   def initialize(event, params)
     @event = event
     @params = params
@@ -22,7 +23,7 @@ class BaseRoundsGenerator
   def create_team_participants(team_participants, team)
     team_participants = team_participants.compact
     team_participants.each do |participant|
-      TeamParticipantCreator.new(event, participant.id, team).perform
+      TeamParticipantCreator.new(form(participant, team)).save
     end
   end
 
@@ -30,5 +31,16 @@ class BaseRoundsGenerator
     participants.map(&:id).combination(event.team_size).to_a.map do |tp|
       Participant.find(tp)
     end
+  end
+
+  def form(participant, team)
+    params = {
+      team_id: team.id,
+      event_id: event.id,
+      participant_id: participant.id,
+      placeholder: false
+    }
+    team_participant = TeamParticipant.new(params)
+    TeamParticipantForm.new(team_participant)
   end
 end

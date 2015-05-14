@@ -1,8 +1,7 @@
 %w(tunnelscrambler:seeds:tenants
-   tunnelscrambler:seeds:roles
    tunnelscrambler:seeds:settings
+   tunnelscrambler:seeds:roles
    tunnelscrambler:seeds:admins
-   tunnelscrambler:seeds:pages
    tunnelscrambler:seeds:categories
    tunnelscrambler:seeds:handicaps
    tunnelscrambler:seeds:flyers).each do |name|

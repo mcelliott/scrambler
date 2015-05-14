@@ -31,15 +31,15 @@ $ ->
 
   $(document).on 'click', '#random-participant', (e) ->
     e.preventDefault()
-    participants = $("select#team_participant_id").children()
+    participants = $("select#team_participant_participant_id").children()
     numParticipants = participants.length
     newSelected = Math.floor((Math.random() * 100) % numParticipants)
     if newSelected == 0
       newSelected = newSelected + 1
 
     participants.removeAttr('selected')
-    $('select#team_participant_id option:eq(' + newSelected + ')').attr('selected', 'selected')
-    $('select#team_participant_id').trigger("change")
+    $('select#team_participant_participant_id option:eq(' + newSelected + ')').attr('selected', 'selected')
+    $('select#team_participant_participant_id').trigger("change")
 
   $(document).on 'click', '#scored-button', (e) ->
     e.preventDefault()

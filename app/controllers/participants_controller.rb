@@ -1,35 +1,31 @@
 class ParticipantsController < ApplicationController
   include UndoDelete
   before_action :authenticate_user!, except: :show
-  load_and_authorize_resource except: :show
+  load_and_authorize_resource except: [:create, :show]
 
   decorates_assigned :event
   decorates_assigned :participant
   decorates_assigned :team_participant
 
-  # GET /participants/new
   def new
     current_event
     @q = Flyer.order(name: :asc).search(params[:q])
     @flyers = @q.result.page(params[:page]).per(10)
   end
 
-  # POST /participants
-  # POST /participants.json
   def create
-    creator = ParticipantCreator.new(current_event, participant_params)
-    if creator.perform
-      @participant = creator.participant
+    @participant = Participant.new(event: current_event)
+    @form = ParticipantForm.new(@participant)
+    @form.update!(params[:participant])
+
+    if ParticipantCreator.new(@form).save
       @success = true
       flash[:notice] = 'Participant was successfully created.'
     else
       flash[:alert] = 'Failed to add Participant to event.'
     end
-    event.reload
   end
 
-  # DELETE /participants/1
-  # DELETE /participants/1.json
   def destroy
     destroy_team_participant
     if @participant.destroy
@@ -51,11 +47,6 @@ class ParticipantsController < ApplicationController
   end
 
   def current_event
-    @event ||= Event.find params[:event_id]
-  end
-
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def participant_params
-    params.require(:participant).permit(:flyer_id, :category_id)
+    @event ||= Event.find(params[:event_id])
   end
 end
