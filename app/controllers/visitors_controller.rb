@@ -12,7 +12,7 @@ class VisitorsController < ApplicationController
       @page = Page.friendly.find_by(name: 'home')
       @tenants = {}
       Tenant.where(enabled: true).each do |tenant|
-        continent = tenant.settings(:current).continent
+        continent = tenant.settings(:current).value[:continent]
         (@tenants[continent] ||= []) << tenant
       end
       @tenants = @tenants.sort { |a, b| a.first <=> b.first }
