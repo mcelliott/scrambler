@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
 
   has_settings :current
 
+  scope :general, -> { where.not(role: Role.admin) }
+
   def password_required?
     !@skip_password && super
   end

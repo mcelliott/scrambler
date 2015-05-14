@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   decorates_assigned :users, with: UsersDecorator
 
   def index
-    @q = User.order(name: :asc).search(params[:q])
+    @q = User.general.order(name: :asc).search(params[:q])
     @users = @q.result.page(params[:page])
   end
 

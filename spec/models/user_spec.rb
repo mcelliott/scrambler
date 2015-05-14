@@ -1,13 +1,11 @@
-describe User do
+require 'rails_helper'
 
-  before(:each) { @user = User.new(email: 'user@example.com') }
+describe User, type: :model do
 
-  subject { @user }
+  let!(:admin)   { create(:user, :admin) }
+  let!(:manager) { create(:user) }
 
-  it { should respond_to(:email) }
-
-  it "#email returns a string" do
-    expect(@user.email).to match 'user@example.com'
+  context 'without admin' do
+    it { expect(User.general).to eq([manager]) }
   end
-
 end

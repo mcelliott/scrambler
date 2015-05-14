@@ -6,5 +6,9 @@ FactoryGirl.define do
     password "please123"
     password_confirmation "please123"
     role
+
+    trait :admin do
+      role { create(:role, :admin) }
+    end
   end
 end
