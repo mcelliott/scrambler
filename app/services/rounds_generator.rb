@@ -1,10 +1,11 @@
 class RoundsGenerator < BaseRoundsGenerator
-  def initialize(event, params)
-    super(event, params)
+  def initialize(event, mixed_rounds)
+    super(event, mixed_rounds)
     @combinations = {}
   end
 
   def perform
+    progress_updater = ProgressUpdater.new(event)
     round_numbers.each do |num_round|
       @round = create_round(num_round)
       event.categories_participants.each do |category, participants|
@@ -14,6 +15,7 @@ class RoundsGenerator < BaseRoundsGenerator
           create_odd_team_participants(participants, category)
         end
       end
+      progress_updater.update(percent_complete)
     end
   end
 

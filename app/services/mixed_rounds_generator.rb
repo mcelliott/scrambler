@@ -1,6 +1,7 @@
 class MixedRoundsGenerator < BaseRoundsGenerator
 
   def perform
+    progress_updater = ProgressUpdater.new(event)
     mixed_rounds.each do |num_round|
       @round = create_round(num_round - 1)
       number_of_teams.times do
@@ -8,6 +9,7 @@ class MixedRoundsGenerator < BaseRoundsGenerator
         create_even_team_participants
         create_odd_team_participants
       end
+      progress_updater.update(percent_complete)
     end
   end
 

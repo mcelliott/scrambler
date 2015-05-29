@@ -1,9 +1,9 @@
 class BaseRoundsGenerator
   attr_reader :event
 
-  def initialize(event, params)
+  def initialize(event, mixed_rounds)
     @event = event
-    @params = params
+    @mixed_rounds = mixed_rounds
   end
 
   protected
@@ -17,7 +17,7 @@ class BaseRoundsGenerator
   end
 
   def mixed_rounds
-    @params[:mixed_rounds] ? @params[:mixed_rounds].keys.map(&:to_i) : []
+    @mixed_rounds ? @mixed_rounds.map(&:to_i) : []
   end
 
   def create_team_participants(team_participants, team)
@@ -42,5 +42,9 @@ class BaseRoundsGenerator
     }
     team_participant = TeamParticipant.new(params)
     TeamParticipantForm.new(team_participant)
+  end
+
+  def percent_complete
+    (1.0 * event.reload.rounds.size / event.num_rounds * 100.0).round
   end
 end

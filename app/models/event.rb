@@ -5,6 +5,8 @@ class Event < ActiveRecord::Base
   has_many :payments, dependent: :destroy
   has_many :teams
 
+  has_one :progress
+
   has_enumeration_for :category_type, with: CategoryType, create_helpers: { prefix: true }
 
   validates :event_date, presence: true
