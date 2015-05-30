@@ -1,23 +1,33 @@
 class RoundGenerator
-  attr_reader :event_participants, :event, :rounds
+  attr_reader :event_participants, :event, :rounds, :mixed_rounds
 
-  def initialize(event)
+  def initialize(event, mixed_rounds = [])
     @event = event
+    @mixed_rounds = mixed_rounds
+    reset
   end
 
   def perform
     reset
     build_rounds
+    generate_category_combinations
     populate_rounds
   end
 
   def print
+    str = ""
     rounds.each do |round, teams|
-      puts round
-      teams.each do |team, participants|
-        puts "\t#{team} - #{participants}"
+      str += "Round #{round}\n"
+      teams.each do |team, categories|
+        str += "---- Team #{team} - "
+        categories.each do |category, participants|
+          str += "#{category} - "
+          str += participants.map { |p| "#{p.id} #{p.category.name}" }.to_s
+          str += "\n"
+        end
       end
     end
+    puts str
   end
 
   private
@@ -25,10 +35,12 @@ class RoundGenerator
   def reset
     @rounds = {}
     @event_participants = []
+    @combinations = {}
+    @current_category = nil
   end
 
   def populate_rounds
-    rounds.each do |round, _teams|
+    rounds.each do |round, _|
       @round = round
       populate_round
     end
@@ -44,13 +56,28 @@ class RoundGenerator
 
   def build_rounds
     event.num_rounds.times do |r|
-      round_name = "Round #{r + 1}"
+      round_name = "#{r + 1}"
       rounds[round_name] = {}
-      number_of_teams.times do |t|
-        team_name = "Team #{t + 1}"
-        rounds[round_name][team_name] = []
+      team_number = 1
+      Category.all.each do |category|
+        number_of_teams(category).times do
+          team_name = "#{team_number}"
+          rounds[round_name][team_name] = {}
+          category_name = mixed_round?("#{r + 1}") ? CategoryType::MIXED : category.name
+          rounds[round_name][team_name][category_name] = []
+          team_number += 1
+        end
       end
     end
+    puts rounds
+  end
+
+  def mixed_round?(number)
+    @mixed_rounds.include?(number)
+  end
+
+  def number_of_teams(category)
+    event.number_of_teams_by_category(category.id)
   end
 
   #########################################################
@@ -64,8 +91,9 @@ class RoundGenerator
   #########################################################
 
   def populate_round
-    current_round.each do |team, _participants|
+    current_round.each do |team, _|
       @team = team
+      @current_category = current_round[@team].keys.first
       populate_team
     end
   end
@@ -73,7 +101,7 @@ class RoundGenerator
   def populate_team
     combinations.each do |combination|
       unless flown_in_event?(combination) || flown_in_round?(combination)
-        add_participants(combination)
+        add_participants(combination) if can_fly_together?(combination)
       end
     end
     populate_empty_team
@@ -82,7 +110,7 @@ class RoundGenerator
   def add_participants(combination)
     unless team_is_full?
       current_team.concat(combination)
-      event_participants.push(combination)
+      event_participants.push(combination.map(&:id))
     end
   end
 
@@ -95,9 +123,21 @@ class RoundGenerator
 
   def populate_empty_team
     unless team_is_full?
-      participant = combinations.flatten.uniq - current_round.values.flatten
+      participant = participants_remaining[0, slots_remaining]
       add_participants(participant) unless flown_in_round?(participant)
     end
+  end
+
+  def participants_remaining
+    combinations.flatten.uniq - current_round.values.map(&:values).flatten
+  end
+
+  def combinations
+    @combinations[@current_category]
+  end
+
+  def slots_remaining
+    event.team_size - current_team.size
   end
 
   #########################################################
@@ -106,8 +146,19 @@ class RoundGenerator
   ### shuffled to randomize the participant order
   #########################################################
 
-  def combinations
-    @combinations ||= event.participants.map(&:id).combination(event.team_size).to_a.shuffle
+  def mixed_combinations
+    @mixed_combinations ||= event.participants.
+      combination(event.team_size).
+      to_a.shuffle
+  end
+
+  def generate_category_combinations
+    event.categories_participants.each do |category, participants|
+      @combinations[category.name] = participants.
+        combination(event.team_size).
+          to_a.shuffle
+    end
+    @combinations[CategoryType::MIXED] = mixed_combinations
   end
 
   #########################################################
@@ -116,7 +167,7 @@ class RoundGenerator
   #########################################################
 
   def flown_in_event?(combination)
-    event_participants.include?(combination)
+    event_participants.include?(combination.map(&:id))
   end
 
   #########################################################
@@ -127,8 +178,22 @@ class RoundGenerator
 
   def flown_in_round?(combination)
     return true unless combination
-    round_participants = current_round.values.flatten
+    round_participants = current_round.values.map(&:values).flatten
     combination.any? { |c| round_participants.include?(c) }
+  end
+
+   #########################################################
+  ### Can Fly Together
+  ### Specific to mixed teams. Head up must fly with
+  ### head down. Cannot have all head up flyers
+  #########################################################
+
+  def can_fly_together?(combination)
+    return true unless @current_category == CategoryType::MIXED
+    head_up_participants = combination.map do |p|
+      p if p.category.name == 'head_up'
+    end.compact
+    head_up_participants.size <= (event.team_size / 2)
   end
 
   #########################################################
@@ -140,14 +205,10 @@ class RoundGenerator
   end
 
   def current_team
-    current_round[@team]
+    current_round[@team][@current_category] ||= []
   end
 
   def current_round
     @rounds[@round]
-  end
-
-  def number_of_teams
-    (event.participants.count / event.team_size.to_f).ceil
   end
 end
