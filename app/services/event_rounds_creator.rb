@@ -1,14 +1,17 @@
 class EventRoundsCreator
   include Sidekiq::Worker
-  sidekiq_options queue: 'rounds'
+  sidekiq_options queue: 'rounds', retry: false
 
   def perform(event_id, mixed_rounds)
     event = event(event_id)
     event.rounds.destroy_all if event.rounds.present?
 
     # generate the rounds
-    rg = RoundGenerator.new(event, @params[:mixed_rounds].try(:keys) || [])
+    rg = RoundGenerator.new(event, mixed_rounds)
     rg.perform
+
+    # check for dups
+    rg.check_rounds(rg)
 
     # apply to event
     progress_updater = ProgressUpdater.new(event)
@@ -25,17 +28,17 @@ class EventRoundsCreator
             TeamParticipantCreator.new(form(participant, team)).save
           end
         end
-        progress_updater.update(percent_complete)
       end
+      progress_updater.update(percent_complete)
     end
-    ProgressUpdater.new(event).update(100)
     event.reload
+    ProgressUpdater.new(event).update(100)
   end
 
   def form(participant, team)
     team_participant = TeamParticipant.new(
       team_id: team.id,
-      event_id: event.id,
+      event_id: @event.id,
       participant_id: participant.id,
       placeholder: false)
     TeamParticipantForm.new(team_participant)
@@ -46,6 +49,6 @@ class EventRoundsCreator
   end
 
   def percent_complete
-    (1.0 * event.reload.rounds.size / event.num_rounds * 100.0).round
+    (1.0 * @event.reload.rounds.size / @event.num_rounds * 100.0).round
   end
 end

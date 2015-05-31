@@ -9,7 +9,7 @@ class Events::RoundsController < ApplicationController
   end
 
   def create
-    @job_id = EventRoundsCreator.perform_async(event.id, params[:mixed_rounds])
+    @job_id = EventRoundsCreator.perform_async(event.id, mixed_rounds)
     progress.update(5)
     render json: { job_id: @job_id }
   end
@@ -19,6 +19,10 @@ class Events::RoundsController < ApplicationController
   end
 
   private
+
+  def mixed_rounds
+    params[:mixed_rounds] || []
+  end
 
   def job_data
     { progress: pct_complete, status: job_status }
