@@ -17,7 +17,7 @@ describe RoundCreator do
     end
 
     it 'should belong to the category' do
-      expect(subject.round_number).to eq round_number + 1
+      expect(subject.round_number).to eq(round_number)
     end
   end
 end

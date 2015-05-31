@@ -32,6 +32,8 @@ module Scrambler
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    config.active_record.raise_in_transactional_callbacks = true
+
     # For Foundation 5
     config.assets.precompile += %w( vendor/modernizr )
     config.assets.paths << Rails.root.join('bower_components')
