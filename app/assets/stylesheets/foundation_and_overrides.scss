@@ -1042,11 +1042,11 @@ $panel-font-color-alt: $black;
 // 23. Progress Bar
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-media-classes: $include-html-classes;
+$include-html-media-classes: $include-html-classes;
 
 // We use this to set the progress bar height
-// $progress-bar-height: rem-calc(25);
-// $progress-bar-color: $vapor  ;
+$progress-bar-height: rem-calc(50);
+$progress-bar-color: $vapor  ;
 
 // We use these to control the border styles
 // $progress-bar-border-color: scale-color($white, $lightness: 20%);

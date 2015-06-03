@@ -30,6 +30,22 @@ class RoundGenerator
     puts str
   end
 
+  def check_rounds(rg)
+    team_list = []
+    rounds.each do |round, teams|
+      teams.each do |team, categories|
+        categories.each do |category, participants|
+          team_list << participants.map(&:id)
+        end
+      end
+    end
+    dups = team_list.group_by{ |e| e }.select { |k, v| v.size > 1 }.map(&:first)
+    dups.delete_if { |participants| participants.size == 1 }
+    if dups.size > 0
+      fail "Team List is not uniq: #{dups}"
+    end
+  end
+
   private
 
   def reset
@@ -59,17 +75,24 @@ class RoundGenerator
       round_name = "#{r + 1}"
       rounds[round_name] = {}
       team_number = 1
-      Category.all.each do |category|
-        number_of_teams(category).times do
+      if mixed_round?(round_name)
+        event.number_of_teams.times do
           team_name = "#{team_number}"
           rounds[round_name][team_name] = {}
-          category_name = mixed_round?("#{r + 1}") ? CategoryType::MIXED : category.name
-          rounds[round_name][team_name][category_name] = []
+          rounds[round_name][team_name][CategoryType::MIXED] = []
           team_number += 1
+        end
+      else
+        Category.all.each do |category|
+          number_of_teams(category).times do
+            team_name = "#{team_number}"
+            rounds[round_name][team_name] = {}
+            rounds[round_name][team_name][category.name] = []
+            team_number += 1
+          end
         end
       end
     end
-    puts rounds
   end
 
   def mixed_round?(number)
@@ -101,16 +124,16 @@ class RoundGenerator
   def populate_team
     combinations.each do |combination|
       unless flown_in_event?(combination) || flown_in_round?(combination)
-        add_participants(combination) if can_fly_together?(combination)
+        add_participants(combination)
       end
     end
     populate_empty_team
   end
 
   def add_participants(combination)
-    unless team_is_full?
+    unless team_is_full? || cannot_fly_together?(combination)
       current_team.concat(combination)
-      event_participants.push(combination.map(&:id))
+      event_participants.push(combination.map(&:id)) if (combination.size > 1)
     end
   end
 
@@ -123,8 +146,21 @@ class RoundGenerator
 
   def populate_empty_team
     unless team_is_full?
-      participant = participants_remaining[0, slots_remaining]
-      add_participants(participant) unless flown_in_round?(participant)
+      available_participants = participants_remaining
+      if available_participants.size > 1
+        remaining_combinations = available_participants.combination(event.team_size)
+        remaining_combinations.each do |combination|
+          participants = combination[0, slots_remaining]
+          unless flown_in_event?(participants) || flown_in_round?(participants)
+            add_participants(participants)
+          end
+        end
+      else
+        participants = available_participants[0, slots_remaining]
+        unless flown_in_round?(participants)
+          add_participants(participants)
+        end
+      end
     end
   end
 
@@ -147,9 +183,9 @@ class RoundGenerator
   #########################################################
 
   def mixed_combinations
-    @mixed_combinations ||= event.participants.
-      combination(event.team_size).
-      to_a.shuffle
+    head_down = event.participants_by_category_name('head_down')
+    head_up = event.participants_by_category_name('head_up')
+    @mixed_combinations ||= head_down.product(head_up)
   end
 
   def generate_category_combinations
@@ -190,10 +226,30 @@ class RoundGenerator
 
   def can_fly_together?(combination)
     return true unless @current_category == CategoryType::MIXED
-    head_up_participants = combination.map do |p|
-      p if p.category.name == 'head_up'
+    head_up_participants = combination_category(combination, 'head_up')
+    head_down_participants = combination_category(combination, 'head_down')
+
+    valid_mixed?(head_up_participants) ||
+    team_is_head_down?(head_down_participants) ||
+    (combination.size == 1)
+  end
+
+  def cannot_fly_together?(combination)
+    !can_fly_together?(combination)
+  end
+
+  def team_is_head_down?(participants)
+    participants.size == event.team_size
+  end
+
+  def valid_mixed?(participants)
+    participants.size <= (event.team_size / 2)
+  end
+
+  def combination_category(combination, name)
+    combination.map do |p|
+      p if p.category.name == name
     end.compact
-    head_up_participants.size <= (event.team_size / 2)
   end
 
   #########################################################

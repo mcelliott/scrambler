@@ -2,9 +2,11 @@ require 'rails_helper'
 
 describe EventRoundsCreator do
   let(:event)                { create(:event) }
-  let(:event_rounds_creator) { described_class.new({event_id: event.id}) }
+  let(:event_rounds_creator) { described_class.new }
   let(:num_participants)     { 6 }
-  let(:category)             { create(:category, :freefly) }
+  let!(:category) { create(:category, :head_down_freefly) }
+  let!(:category_1) { create(:category, :head_up_freefly) }
+  let!(:category_3) { create(:category, :mixed) }
 
   before do
     num_participants.times do
@@ -15,11 +17,11 @@ describe EventRoundsCreator do
   context 'create_team_participants' do
     let(:num_team_participants) { event.num_rounds * num_participants }
     it 'should create team participants' do
-      expect{ event_rounds_creator.perform }.to change{ TeamParticipant.count }
+      expect{ event_rounds_creator.perform(event.id, []) }.to change{ TeamParticipant.count }
     end
 
     context '2 team participants' do
-      before { event_rounds_creator.perform }
+      before { event_rounds_creator.perform(event.id, []) }
       it 'should create both team participants with correct event_id' do
         expect(TeamParticipant.first.event_id).to eq event.id
         expect(TeamParticipant.last.event_id).to eq event.id

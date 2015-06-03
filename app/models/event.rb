@@ -5,6 +5,8 @@ class Event < ActiveRecord::Base
   has_many :payments, dependent: :destroy
   has_many :teams
 
+  has_one :progress
+
   has_enumeration_for :category_type, with: CategoryType, create_helpers: { prefix: true }
 
   validates :event_date, presence: true
@@ -39,5 +41,10 @@ class Event < ActiveRecord::Base
 
   def number_of_teams_by_category(category_id)
     (participants.where(category_id: category_id).count / team_size.to_f).ceil
+  end
+
+  def participants_by_category_name(name)
+    category = Category.find_by(name: name)
+    participants.where(category_id: category.id)
   end
 end
