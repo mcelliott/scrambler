@@ -1,2 +1,2 @@
-web: rails s -p 5000 -b 127.0.0.1
+web: bin/rails server -p $PORT -e $RAILS_ENV
 sidekiq: bundle exec sidekiq -C config/sidekiq.yml
