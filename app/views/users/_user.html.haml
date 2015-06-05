@@ -1,4 +1,8 @@
 %td= user.name
 %td.long= user.email
+%td= user.created_at.to_s(:long)
+%td= user.invitation_accepted_at.try(:to_s, :long)
+%td= user.invited_by.name
 %td.text-right
-  = react_component('DeleteButton', item: "user-#{user.id}", path: user_path(user))
+  - if can?(:manage, user)
+    = react_component('DeleteButton', item: "user-#{user.id}", path: user_path(user))

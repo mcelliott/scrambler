@@ -11,7 +11,7 @@ class Ability
       can [:invite, :create, :edit], User
       can [:read, :create, :update, :destroy], Flyer
       can [:read, :create, :update, :destroy], Event
-      can [:read, :update, :destroy], User, id: user.id
+      can [:read, :update], User, id: user.id
       can [:read, :create, :update, :destroy], Participant
       can [:read, :create, :update, :destroy], TeamParticipant
       can [:read, :create, :update, :destroy], Round
