@@ -42,7 +42,7 @@ class RoundGenerator
     dups = team_list.group_by{ |e| e }.select { |k, v| v.size > 1 }.map(&:first)
     dups.delete_if { |participants| participants.size == 1 }
     if dups.size > 0
-      fail "Team List is not uniq: #{dups}"
+      puts "Team List is not uniq: #{dups}"
     end
   end
 
