@@ -47,4 +47,8 @@ class Event < ActiveRecord::Base
     category = Category.find_by(name: name)
     participants.where(category_id: category.id)
   end
+
+  def freefly?
+    category_type == CategoryType::FREEFLY
+  end
 end

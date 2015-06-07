@@ -12,14 +12,15 @@
             = generate_teams_link(event) do
               = fa_icon('refresh', text: 'Generate Teams')
               %span{"data-dropdown" => "drop"}
-            %ul.mixed-rounds#drop.f-dropdown{"data-dropdown-content" => ""}
-              %li{ style: "padding: 10px;" }
-                %h5 Mixed Rounds
-              - event.num_rounds.times do |round|
-                %li
-                  .large-12.medium-12.small-12.columns
-                    .large-6.medium-6.small-6.columns.text-right= label_tag "Round #{round + 1}"
-                    .large-6.medium-6.small-6.columns.text-left= check_box_tag "#{round + 1}"
+            - if event.freefly?
+              %ul.mixed-rounds#drop.f-dropdown{"data-dropdown-content" => ""}
+                %li{ style: "padding: 10px;" }
+                  %h5 Mixed Rounds
+                - event.num_rounds.times do |round|
+                  %li
+                    .large-12.medium-12.small-12.columns
+                      .large-6.medium-6.small-6.columns.text-right= label_tag "Round #{round + 1}"
+                      .large-6.medium-6.small-6.columns.text-left= check_box_tag "#{round + 1}"
 
         - else
           %li= generate_teams_link(event, false) { "Generate Teams" }

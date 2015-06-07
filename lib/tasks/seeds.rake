@@ -78,7 +78,7 @@ namespace :tunnelscrambler do
        ['belly', CategoryType::BELLY, true],
        ['mixed', CategoryType::MIXED, false]].each do |category|
         puts "creating category #{category[0]}"
-        Category.create!(name: category[0], category_type: category[1], enabled: category[2])
+        Category.find_or_create_by(name: category[0], category_type: category[1], enabled: category[2])
       end
     end
 
@@ -97,7 +97,7 @@ namespace :tunnelscrambler do
         Tenant.first.switch!
         flyers = []
         50.times do
-          flyers << Flyer.create!(name: Faker::Name.name, email: Faker::Internet.email, hours: (0..4).to_a.shuffle.first)
+          flyers << Flyer.find_or_create_by(name: Faker::Name.name, email: Faker::Internet.email, hours: (0..4).to_a.shuffle.first)
         end
 
         event = Event.create!(name: 'Freefly',
