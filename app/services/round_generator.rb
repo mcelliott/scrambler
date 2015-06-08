@@ -122,7 +122,7 @@ class RoundGenerator
   end
 
   def populate_team
-    combinations.each do |combination|
+    combinations.shuffle.each do |combination|
       unless flown_in_event?(combination) || flown_in_round?(combination)
         add_participants(combination)
       end
