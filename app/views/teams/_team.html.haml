@@ -1,3 +1,13 @@
-.team-participant-list
-  - team.team_participants.each do |tp|
-    = render partial: 'teams/team_participant', locals: { team_participant: tp }
+%table.team-table
+  %tbody
+    - team.team_participants.each do |team_participant|
+      %tr{ id: "team-participant-#{team_participant.id}" }
+        %td.large-1.medium-1.small-1= "#{team_participant.participant.number}."
+        %td.large-6.medium-6.small-6
+          - if team_participant.placeholder
+            %span{ data: { tooltip: true }, aria: { haspopup: true }, class: 'has-tip', title: placeholder_text }
+              = fa_icon('exclamation-triangle', text: team_participant.participant_name)
+          - else
+            = team_participant.participant_name
+        %td.large-2.medium-2.small-2= team_participant.category_name
+        %td.large-1.medium-1.small-1= react_component('DeleteButton', item: "team-participant-#{team_participant.id}", path: destroy_teams_participant_path(team_id: team_participant.team.id, id: team_participant))

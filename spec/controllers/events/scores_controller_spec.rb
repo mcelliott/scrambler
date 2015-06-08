@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe EventScoresController do
+describe Events::ScoresController do
   let(:user)        { create(:user)  }
   let(:flyer)       { create(:flyer) }
   let(:category)    { create(:category) }
@@ -24,9 +24,9 @@ describe EventScoresController do
     let(:params) do
       {
         id: event_score.id,
+        event_id: event.id,
         event_score: {
-          event_id: event.id,
-          team_participant_id: team_participant.id,
+          team_id: team.id,
           round_id: round.id,
           score: 10
         }

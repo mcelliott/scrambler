@@ -15,6 +15,8 @@ $primary-color-5: #2C3133;
 
 $border-color: $primary-color-2;
 
+$soft-blue: #A9C4CD;
+
 @mixin tiny-button {
   padding-top: 0.3rem;
   padding-right: 0.5rem;
@@ -42,6 +44,7 @@ body {
   margin:0;
   padding:0;
   height:100%;
+  background-color: #f5f5f5;
 }
 
 .top-bar .name {
@@ -174,8 +177,52 @@ ul {
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 0;
+  background-color: #DEDEDE;
+  border: 0;
 
   tbody {
+    tr {
+      border-bottom: 1px solid $white;
+    }
+    tr:last-child {
+      border-bottom: 0;
+    }
+    td {
+      padding-top: 3px;
+      padding-bottom: 3px;
+    }
+  }
+}
+
+table.participant-table {
+  border-collapse: collapse;
+  tr {
+    border-bottom: 1px solid $white;
+  }
+}
+
+table.round-table {
+  border: 0;
+  border-collapse: separate;
+  background-color: $white;
+  tr {
+    background-color: $primary-color-1;
+  }
+}
+
+table.team-table {
+  border: 0;
+  background-color: $primary-color-3 !important;
+}
+
+table.leader-board-table {
+  border: 0;
+   tbody {
+    tr {
+      background-color: $primary-color-1;
+      border-bottom: 1px solid $white;
+    }
     td {
       padding-top: 3px;
       padding-bottom: 3px;
@@ -188,10 +235,6 @@ table {
     padding-left: 0px !important; /* change the values to anything that you want */
     padding-right: 0px !important;
   }
-}
-
-table tr {
-  border-bottom: 1px solid $primary-color-2;
 }
 
 .left-tabs {
@@ -208,9 +251,9 @@ ul.tabs li.tab-title {
 }
 
 ul.tabs li.tab-title.active {
-  border-top: 1px solid $primary-color-2;
-  border-bottom: 1px solid $primary-color-2;
-  border-left: 1px solid $primary-color-2;
+  border-top: 1px solid $primary-color-1;
+  border-bottom: 1px solid $primary-color-1;
+  border-left: 1px solid $primary-color-1;
 }
 
 
@@ -220,9 +263,9 @@ ul.tabs.vertical {
 }
 
 .tabs-content {
-  border: 1px solid $primary-color-2;
-  background-color: $primary-color-1 !important;
-  padding-bottom: 15px;
+  background-color: $white;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .bordered {
@@ -512,7 +555,6 @@ input.event-score {
   height: 1em;
   width: 100% !important;
   margin-bottom: 0;
-  color: $white;
   border-color: $primary-color-2;
 
   input[type="text"],

@@ -1,18 +1,18 @@
 !!!
 %html
   %head
-    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
-    %title= content_for?(:title) ? yield(:title) : 'Scrambler'
-    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Scrambler'}"}
+    %link{ rel: 'image_src', href: '/assets/scrambler-white.png' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
+    %title Tunnel Scrambler
+    %meta{ name: 'description', content: 'Create events, add flyers, generate competition, score participants.' }
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
-    -# Modernizr is required for Zurb Foundation
     = javascript_include_tag 'vendor/modernizr'
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
     %header
       = render 'layouts/navigation'
-    %main{:role => "main"}
+    %main{ role: 'main' }
       #notice= render 'layouts/messages'
       %div.main
         = yield
@@ -28,7 +28,7 @@
         .row
           .large-12.medium-12.small-12.columns
             .progress.radius
-              %span.meter{ style: "width: 0" }
+              %span.meter{ style: 'width: 0' }
 
   :javascript
     $(document).foundation();

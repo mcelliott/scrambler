@@ -1,15 +1,17 @@
-.large-12.medium-12.small-12.columns
-  %ul
-    - unless event.category_participants.present?
-      %li.empty-list
-        .empty-list-panel= fa_icon('frown-o', text: 'No Participants')
-
-    - event.category_participants.each do |category, participants|
-      %li.participant-category{ id: "category-#{category.id}" }
-        .custom-panel
-          .panel-header
-            .right= react_component('DeleteButton', item: "category-#{category.id}", path: event_category_path(event, category), confirm: "Delete participants category #{category.display_name}?")
-            = category.display_name
-          .panel-content
-            - participants.each_with_index do |p, index|
-              = render partial: 'participants/participant', locals: { p: p, index: index }
+- if event.category_participants.empty?
+  .large-12.medium-12.small-12.columns
+    .empty-list
+      .empty-list-panel= fa_icon('frown-o', text: 'No Participants')
+- else
+  - event.category_participants.each do |category, participants|
+    .large-6.medium-6.small-12.columns
+      %table.participants-table
+        %tbody
+          - participants.each do |p|
+            %tr{ id: "participant-#{p.id}" }
+              %td= "#{p.number}."
+              %td= p.flyer.name
+              %td= category.display_name
+              %td
+                .right= react_component('DeleteButton', item: "participant-#{p.id}", path: event_participant_path(p, event_id: p.event.id))
+                .right= react_component('GetButton', path: event_participant_path(p, event_id: p.event.id), icon: 'info')

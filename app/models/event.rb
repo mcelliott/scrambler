@@ -4,7 +4,7 @@ class Event < ActiveRecord::Base
   has_many :rounds, dependent: :destroy
   has_many :payments, dependent: :destroy
   has_many :teams
-
+  has_many :event_scores
   has_one :progress
 
   has_enumeration_for :category_type, with: CategoryType, create_helpers: { prefix: true }
@@ -50,5 +50,9 @@ class Event < ActiveRecord::Base
 
   def freefly?
     category_type == CategoryType::FREEFLY
+  end
+
+  def locked?
+    Date.today < event_date
   end
 end

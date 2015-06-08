@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :pages
 
   resources :scoring, controller: :handicaps, only: [:index, :edit, :update], as: :scoring
-  resources :event_scores, only: [:update]
   resources :flyer_imports, only: [:create, :new]
   resources :settings, only: [:index, :update]
   resources :tenants, only: [:index, :new, :update, :edit, :destroy]
@@ -24,6 +23,7 @@ Rails.application.routes.draw do
     resources :expenses, only: :index
     resources :categories, only: :destroy, controller: 'events/categories'
     resource :email, only: [:new, :create], controller: 'events/emails'
+    resources :scores, only: [:update], controller: 'events/scores'
   end
 
   get 'events/teams/:uuid', controller: 'teams', action: :team_view, as: 'team_view'
