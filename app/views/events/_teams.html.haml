@@ -10,7 +10,7 @@
           %tr{ id: "team-#{team.id}" }
             %td.large-2.medium-2.small-2
               = "#{team.name} - #{team.category.display_name}"
-            %td.large-7.medium-7.small-7
+            %td.large-7.medium-7.small-7.team-participants
               = render partial: 'teams/team', locals: { team: team }
             %td.large-2.medium-2.small-2.text-center
               - if can?(:update, event) && !event.locked?

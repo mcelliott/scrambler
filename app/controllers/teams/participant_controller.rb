@@ -27,7 +27,7 @@ class Teams::ParticipantController < ApplicationController
   end
 
   def destroy
-    @team_participant = TeamParticipant.find(params[:id])
+    @team_participant = current_team.team_participants.find(params[:id])
     if @team_participant.destroy
       flash[:notice] = "Team Participant was successfully deleted. #{undo_link(team_participant)}"
     else

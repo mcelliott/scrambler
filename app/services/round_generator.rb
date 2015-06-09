@@ -30,11 +30,11 @@ class RoundGenerator
     puts str
   end
 
-  def check_rounds(rg)
+  def check_rounds
     team_list = []
-    rounds.each do |round, teams|
-      teams.each do |team, categories|
-        categories.each do |category, participants|
+    rounds.each do |_, teams|
+      teams.each do |_, categories|
+        categories.each do |_, participants|
           team_list << participants.map(&:id)
         end
       end
@@ -42,7 +42,7 @@ class RoundGenerator
     dups = team_list.group_by{ |e| e }.select { |k, v| v.size > 1 }.map(&:first)
     dups.delete_if { |participants| participants.size == 1 }
     if dups.size > 0
-      puts "Team List is not uniq: #{dups}"
+      Rails.logger.error("Team List is not uniq: #{dups}")
     end
   end
 
@@ -133,7 +133,10 @@ class RoundGenerator
   def add_participants(combination)
     unless team_is_full? || cannot_fly_together?(combination)
       current_team.concat(combination)
-      event_participants.push(combination.map(&:id)) if (combination.size > 1)
+      if (combination.size > 1)
+        event_participants.push(combination.map(&:id))
+        combination.delete(combination)
+      end
     end
   end
 

@@ -1,11 +1,12 @@
-%table
+%table.index
   %thead
     %tr
       %th Name
       %th Event date
       %th Type
-      %th Team Size
-      %th Rounds
+      %th.text-center Team Size
+      %th.text-center Rounds
+      %th.text-center Participants
       %th
   %tbody#events
     - unless events.present?

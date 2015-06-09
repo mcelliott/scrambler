@@ -1,8 +1,9 @@
-%td= link_to fa_icon('link', text: event.name, right: true), event
-%td= event.event_date.strftime('%d %b %Y')
+%td= link_to event.name, event, class: 'event-name'
+%td= event.event_date
 %td= event.category_type_humanize
-%td= event.team_size
-%td= event.num_rounds
+%td.text-center= event.team_size
+%td.text-center= event.num_rounds
+%td.text-center= event.participants_count
 %td.text-right
   .right= react_component('DeleteButton', item: "event-#{event.id}", path: event_path(event))
   .right= react_component('GetButton', path: edit_event_path(event), icon: "pencil")

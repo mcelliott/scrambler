@@ -195,6 +195,12 @@ table {
   }
 }
 
+table.index {
+  td {
+    padding: 7px;
+  }
+}
+
 table.participant-table {
   border-collapse: collapse;
   tr {
@@ -591,4 +597,20 @@ input.event-score:focus {
 .search-btn {
   height: 2.3125rem;
   font-size: 0.875rem;
+}
+
+.pagination-centered {
+  padding: 10px;
+}
+
+.event-name {
+  font-weight: bold;
+
+  &:hover {
+    color: $primary-color-3;
+  }
+}
+
+.leader-board-section {
+  padding-bottom: 20px;
 }

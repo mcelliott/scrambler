@@ -1,32 +1,22 @@
 %h2.heading.text-center= event.title
-
-.large-12.columns
-  - if can?(:update, event)
-    .large-12.columns
-      .panel{ style: 'padding-bottom: 0;' }
-        .row.collapse
-          %ul.actions-list
-            %li= link_to fa_icon('send', text: 'Send'), new_event_email_path(event_id: event.id), remote: true, class: 'button-xs'
-            %li= go_to_event_link(event)
-
-  .large-12.small-12.columns.small-centered
-    %table.leader-board-table
-      %thead
+.large-12.small-12.columns.small-centered.leader-board-section
+  %table.leader-board-table
+    %thead
+      %tr
+        %th Place
+        %th Name
+        %th Category
+        - event.rounds.each do |round|
+          %th.text-center= round.round_number
+        %th.text-center Handicap
+        %th.text-center Total
+    %tbody#leader-board
+      - @leader_board.each_with_index do |lb_participant, index|
         %tr
-          %th Place
-          %th Name
-          %th Category
-          - event.rounds.each do |round|
-            %th.text-center= round.round_number
-          %th.text-center Handicap
-          %th.text-center Total
-      %tbody#leader-board
-        - @leader_board.each_with_index do |lb_participant, index|
-          %tr
-            %td= "#{index + 1}."
-            %td= lb_participant.name
-            %td= lb_participant.category
-            - lb_participant.round_scores.each_with_index do |event_score, i|
-              %td.text-center= event_score.score unless event_score.team_participant.placeholder
-            %td.text-center= lb_participant.handicap
-            %td.text-center= lb_participant.total_score
+          %td= "#{index + 1}."
+          %td= lb_participant.name
+          %td= lb_participant.category
+          - lb_participant.round_scores.each do |event_score|
+            %td.text-center= event_score.score unless event_score.team_participant.placeholder
+          %td.text-center= lb_participant.handicap
+          %td.text-center= lb_participant.total_score

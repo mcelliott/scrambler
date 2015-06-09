@@ -11,7 +11,7 @@ class EventRoundsCreator
     rg.perform
 
     # check for dups
-    rg.check_rounds(rg)
+    rg.check_rounds
 
     # apply to event
     progress_updater = ProgressUpdater.new(event)

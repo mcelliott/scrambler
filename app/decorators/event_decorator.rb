@@ -70,6 +70,14 @@ class EventDecorator < Draper::Decorator
     object.participants.map{ |p| [participant_form_label(p), p.id] }
   end
 
+  def event_date
+    object.event_date.strftime('%d %b %Y')
+  end
+
+  def participants_count
+    participants.count
+  end
+
   private
 
   def participant_form_label(p)
