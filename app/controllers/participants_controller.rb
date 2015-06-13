@@ -27,6 +27,7 @@ class ParticipantsController < ApplicationController
   end
 
   def destroy
+    current_event
     destroy_team_participant
     if @participant.destroy
       flash[:notice] = "Participant was successfully deleted. #{undo_link(@participant)}"

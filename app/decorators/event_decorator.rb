@@ -78,6 +78,19 @@ class EventDecorator < Draper::Decorator
     participants.count
   end
 
+  def show_score_board_button?
+    rounds? && participants?
+  end
+
+  def show_email_button?
+    email_count == 0 && participants? && !locked?
+  end
+
+  def show_generate_button?
+    participants? && !locked?
+  end
+
+
   private
 
   def participant_form_label(p)

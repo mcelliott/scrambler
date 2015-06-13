@@ -1,6 +1,6 @@
 <% unless page.errors.present? %>
   $('#modal').foundation('reveal', 'close');
-  $('.empty-list').hide()
+  $('.empty-list').addClass('hidden')
   $('tbody#pages').prepend('<tr id="page-<%= page.id %>"><%= j(render page) %></tr>');
   ReactRailsUJS.mountComponents();
   flash_row('tr#page-<%= page.id %>');

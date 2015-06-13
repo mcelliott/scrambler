@@ -1,34 +1,30 @@
 %h2.heading.text-center= "#{event.name} - #{event.event_date}"
-
 .large-12.medium-12.small-12.columns
   .panel{ style: 'padding-bottom: 0;' }
     .row.collapse
       %ul.actions-list
-        %li= edit_event_link(event)
-        %li#expenses= expenses_link(event)
-        %li= new_participant_link(event)
-        - if event.freefly?
-          %li
+        %li{ id: 'edit-event-button' }= edit_event_link(event)
+        %li{ id: 'expenses-button' }= expenses_link(event)
+        %li{ id: 'new-participant-button', class: "#{ 'hidden' if event.locked? }" }= new_participant_link(event)
+        %li{ id: 'generate-teams-button', class: "#{ 'hidden' unless event.show_generate_button? }" }
+          - if event.freefly?
             = generate_teams_link(event) do
               = fa_icon('refresh', text: 'Generate Teams')
-              %span{"data-dropdown" => "drop"}
-            - if event.freefly?
-              %ul.mixed-rounds#drop.f-dropdown{"data-dropdown-content" => ""}
-                %li{ style: "padding: 10px;" }
-                  %h5 Mixed Rounds
-                - event.num_rounds.times do |round|
-                  %li
-                    .large-12.medium-12.small-12.columns
-                      .large-6.medium-6.small-6.columns.text-right= label_tag "Round #{round + 1}"
-                      .large-6.medium-6.small-6.columns.text-left= check_box_tag "#{round + 1}"
-
-        - else
-          %li= generate_teams_link(event, false) { "Generate Teams" }
-        - if event.show_score_board?
-          %li#show-score-board= link_to fa_icon('table', text: 'Score Board'), team_view_path(event.uuid), class: 'button-xs', target: '_blank'
-        - if can?(:update, event)
-          %li= link_to fa_icon('send', text: 'Send'), new_event_email_path(event_id: event.id), remote: true, class: 'button-xs'
-
+              %span{ data: { dropdown: 'drop' } }
+            %ul.mixed-rounds.f-dropdown#drop{ data: { dropdown: { content: '' } } }
+              %li{ style: 'padding: 10px;' }
+                %h5 Mixed Rounds
+              - event.num_rounds.times do |round|
+                %li
+                  .large-12.medium-12.small-12.columns
+                    .large-6.medium-6.small-6.columns.text-right= label_tag "Round #{round + 1}"
+                    .large-6.medium-6.small-6.columns.text-left= check_box_tag "#{round + 1}"
+          - else
+            = generate_teams_link(event, false) { 'Generate Teams' }
+        %li{ id: 'email-participants-button', class: "#{ 'hidden' unless event.show_email_button? }" }
+          = link_to fa_icon('send', text: 'Email Participants'), new_event_email_path(event_id: event.id), remote: true, class: 'button-xs'
+        %li{ id: 'score-board-button', class: "#{ 'hidden' unless event.rounds? }" }
+          = link_to fa_icon('table', text: 'Score Board'), team_view_path(event.uuid), class: 'button-xs', target: '_blank'
 
 .large-12.medium-12.small-12.columns.vertical-tab-container#teams-list
   = render 'events/rounds'

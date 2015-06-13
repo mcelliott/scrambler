@@ -1,6 +1,6 @@
 <% unless event.errors.present? %>
   $('#modal').foundation('reveal', 'close');
-  $('.empty-list').hide()
+  $('.empty-list').addClass('hidden')
   $('tbody#events').prepend('<tr id="event-<%= event.id %>"><%= j(render event) %></tr>');
   ReactRailsUJS.mountComponents();
   flash_row('tr#event-<%= event.id %>');

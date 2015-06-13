@@ -7,5 +7,4 @@
 %td.text-right
   .right= react_component('DeleteButton', item: "event-#{event.id}", path: event_path(event))
   .right= react_component('GetButton', path: edit_event_path(event), icon: "pencil")
-  - if event.show_score_board?
-    .right= react_component('LinkButton', path: team_view_path(event.uuid), icon: "table")
+  .right{ class: "#{ 'hidden' unless event.rounds? }" }= react_component('LinkButton', path: team_view_path(event.uuid), icon: "table")

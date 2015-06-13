@@ -53,6 +53,6 @@ class Event < ActiveRecord::Base
   end
 
   def locked?
-    Date.today < event_date
+    Date.today > event_date
   end
 end

@@ -1,6 +1,6 @@
 <% unless flyer.errors.present? %>
   $('#modal').foundation('reveal', 'close');
-  $('.empty-list').hide()
+  $('.empty-list').addClass('hidden')
   $('tbody#flyers').prepend('<tr id="flyer-<%= flyer.id %>"><%= j(render flyer) %></tr>');
   ReactRailsUJS.mountComponents();
   flash_row('tr#flyer-<%= flyer.id %>');

@@ -3,8 +3,8 @@
   participant_row.find('button').prop("disabled", true);
   participant_row.find('select').prop("disabled", true);
   participant_row.find('i').removeClass('fa-plus').addClass('fa-check')
-  $('.empty-list').hide();
   $('#participant-list').html("<%= j(render 'events/participants') %>");
+  Scrambler.participantAdded();
   ReactRailsUJS.mountComponents();
   flash_row('#participant-<%= participant.id %>');
 <% end %>

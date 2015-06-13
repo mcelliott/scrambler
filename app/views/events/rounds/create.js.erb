@@ -1,4 +1,3 @@
-$(".empty-list").hide();
 $('#teams-list').html('<%= j(render 'events/rounds') -%>');
 $('div.generating-teams').hide();
 $("#generate-teams").attr('disabled', false);
@@ -8,5 +7,6 @@ $('.tabs').find('a[href$="#panel-1"]').trigger('click');
 $('#modal').foundation('reveal', 'close');
 $('div.generating-teams').hide();
 $('#teams-list').attr('data-job', '<%= @job_id %>');
+Scrambler.roundsGenerated();
 ReactRailsUJS.mountComponents();
 

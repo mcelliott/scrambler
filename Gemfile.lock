@@ -563,3 +563,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   upmin-admin
   whenever
+
+BUNDLED WITH
+   1.10.3

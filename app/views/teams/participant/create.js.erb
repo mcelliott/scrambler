@@ -1,6 +1,6 @@
 <% if @success %>
   $('#modal').foundation('reveal', 'close');
-  $('.empty-list').hide();
+  $('.empty-list').addClass('hidden');
   $('#team-<%= team_participant.team_id %> .team-table tbody').append('<%= j(render partial: "teams/team_participant", locals: { team_participant: team_participant }) %>');
   ReactRailsUJS.mountComponents();
   flash_row('#team-participant-<%= team_participant.id %>');

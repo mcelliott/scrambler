@@ -1,6 +1,6 @@
 <% unless resource.errors.present? %>
 $('#modal').foundation('reveal', 'close');
-$('.empty-list').hide()
+$('.empty-list').addClass('hidden')
 $('tbody#users').prepend('<tr id="user-<%= resource.id %>"><%= j(render partial: "users/user", locals: { user: resource }) %></tr>');
 flash_row('tr#user-<%= resource.id %>');
 <% else %>

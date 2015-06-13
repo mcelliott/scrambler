@@ -1,6 +1,6 @@
 <% unless category.errors.present? %>
   $('#modal').foundation('reveal', 'close');
-  $('.empty-list').hide()
+  $('.empty-list').addClass('hidden')
   $('tbody#categories').prepend('<tr id="category-<%= category.id %>"><%= j(render category) %></tr>');
   ReactRailsUJS.mountComponents();
   flash_row('tr#category-<%= category.id %>');

@@ -56,6 +56,25 @@ $(function() {
 });
 
 window.Scrambler = {
+  participantEmailSent: function() {
+    $('#email-participants-button').addClass('hidden');
+  },
+  roundsGenerated: function() {
+    $('#score-board-button').removeClass('hidden');
+    $('.empty-list').addClass('hidden');
+  },
+  participantAdded: function() {
+    $('.empty-list').addClass('hidden');
+    $('#generate-teams-button').removeClass('hidden');
+    $('#email-participants-button').removeClass('hidden');
+  },
+  participantRemoved: function(count) {
+    if (count === 0) {
+      $('.empty-list').removeClass('hidden');
+      $('#generate-teams-button').addClass('hidden');
+      $('#email-participants-button').addClass('hidden');
+    }
+  },
   update_messages: function(notice) {
     $('#notice').html(notice).show();
     return $('div#notice').delay(6000).fadeOut('slow');

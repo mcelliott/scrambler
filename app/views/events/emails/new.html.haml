@@ -4,5 +4,12 @@
     .email-warning= @email_service_decorator.info
   .panel-content
     .confirm= @email_service_decorator.confirm
-= button_to @email_service_decorator.send_path, remote: true, method: :post, class: 'btn-lrg' do
+= button_to @email_service_decorator.send_path, remote: true, method: :post, class: 'btn-lrg email-participants-confirm' do
   = fa_icon('send', text: 'Send')
+
+:javascript
+  $('.email-participants-confirm').on('click', function(e){
+    e.preventDefault();
+    Scrambler.participantEmailSent();
+    $(this).submit();
+  });
