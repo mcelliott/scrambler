@@ -7,6 +7,8 @@ class Event < ActiveRecord::Base
   has_many :event_scores
   has_one :progress
 
+  after_create :reload, on: :create
+
   has_enumeration_for :category_type, with: CategoryType, create_helpers: { prefix: true }
 
   validates :event_date, presence: true
