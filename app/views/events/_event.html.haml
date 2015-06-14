@@ -5,6 +5,6 @@
 %td.text-center= event.num_rounds
 %td.text-center= event.participants_count
 %td.text-right
-  .right= react_component('DeleteButton', item: "event-#{event.id}", path: event_path(event))
+  .right{ class: "#{ 'hidden' if event.locked? }" }= react_component('DeleteButton', item: "event-#{event.id}", path: event_path(event))
   .right= react_component('GetButton', path: edit_event_path(event), icon: "pencil")
   .right{ class: "#{ 'hidden' unless event.rounds? }" }= react_component('LinkButton', path: team_view_path(event.uuid), icon: "table")
