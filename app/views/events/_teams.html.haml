@@ -1,19 +1,17 @@
-.large-12.medium-12.small-12.columns
-  %table.round-table
-    %tbody
-      - round.teams.each do |team|
-        %tr{ id: "team-#{team.id}" }
-          %td.large-2.medium-2.small-2
-            = "#{team.name} - #{team.category.display_name}"
-          %td.large-7.medium-7.small-7.team-participants
-            = render partial: 'teams/team', locals: { team: team }
-          %td.large-2.medium-2.small-2.text-center
-            - if can?(:update, event) && !event.locked?
-              = form_for team.event_score, url: event_score_path(event_id: event.id), remote: true, class: 'score-form' do |f|
-                = f.text_field :score, value: (team.event_score.score ? team.event_score.score : nil ), class: 'event-score text-center', placeholder: 'Score'
-                = f.hidden_field :round_id, value: team.round.id
-                = f.hidden_field :team_id, value: team.id
-            - else
-              = team.event_score.score
-          %td.large-1.medium-1.small-1.text-center
-            = react_component('GetButton', path: new_teams_participant_path(team_id: team.id, event_id: event.id), icon: 'plus')
+%table.round-table
+  %tbody
+    - round.teams.each do |team|
+      %tr{ id: "team-#{team.id}" }
+        %td.large-2.medium-2.small-4= "#{team.name} - #{team.category.display_name}"
+        %td.team-participants
+          = render partial: 'teams/team', locals: { team: team }
+        %td.large-2.medium-2.text-center.hide-for-small-only
+          - if can?(:update, event) && !event.locked?
+            = form_for team.event_score, url: event_score_path(event_id: event.id), remote: true, class: 'score-form' do |f|
+              = f.text_field :score, value: (team.event_score.score ? team.event_score.score : nil ), class: 'event-score text-center', placeholder: 'Score'
+              = f.hidden_field :round_id, value: team.round.id
+              = f.hidden_field :team_id, value: team.id
+          - else
+            = team.event_score.score
+        %td.text-center.hide-for-small-only
+          = react_component('GetButton', path: new_teams_participant_path(team_id: team.id, event_id: event.id), icon: 'plus')

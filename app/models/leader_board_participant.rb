@@ -20,8 +20,12 @@ class LeaderBoardParticipant
     @handicap ||= Handicap.find_by(hours: flyer.hours).amount.round
   end
 
+  def round_score(round_id)
+    round_scores.find {|s| s.round_id == round_id }
+  end
+
   def round_scores
-    @event.event_scores.includes(:round).
+    @round_scores ||= @event.event_scores.includes(:round).
       where(participant_id: @participant.id).
         order('rounds.round_number')
   end

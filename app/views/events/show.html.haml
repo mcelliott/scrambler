@@ -26,5 +26,5 @@
         %li{ id: 'score-board-button', class: "#{ 'hidden' unless event.rounds? }" }
           = link_to fa_icon('table', text: 'Score Board'), team_view_path(event.uuid), class: 'button-xs', target: '_blank'
 
-.large-12.medium-12.small-12.columns.vertical-tab-container#teams-list
+.large-12.medium-12.small-12.columns.vertical-tab-container
   = render 'events/rounds'

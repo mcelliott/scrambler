@@ -20,7 +20,7 @@ class EventRoundsCreator
       teams.each do |team_number, value|
         value.each do |category_name, participants|
           category = Category.find_by(name: category_name)
-          team = round.teams.create(name: "Team #{team_number}",
+          team = round.teams.create(name: "T#{team_number}",
                                     category: category,
                                     event: event)
 

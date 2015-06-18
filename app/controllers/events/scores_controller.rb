@@ -14,7 +14,7 @@ class Events::ScoresController < ApplicationController
   def update_team_participant_scores
     score = event_score_params[:score]
     team.team_participants.each do |team_participant|
-      team_participant.event_score.update_attributes(score: score)
+      team_participant.event_score.update_attributes(score: score) unless team_participant.placeholder
     end
   end
 

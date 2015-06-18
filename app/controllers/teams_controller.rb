@@ -13,7 +13,7 @@ class TeamsController < ApplicationController
 
   def destroy
     if @team.destroy
-      flash[:notice] = "Team was successfully deleted."
+      flash[:notice] = 'Team was successfully deleted.'
     else
       flash[:alert] = 'Failed to delete team.'
     end

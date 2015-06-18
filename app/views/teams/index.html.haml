@@ -3,20 +3,20 @@
   %table.leader-board-table
     %thead
       %tr
-        %th Place
+        %th.large-1.small-1 Place
         %th Name
-        %th Category
+        %th.hide-for-small-only Category
         - event.rounds.each do |round|
           %th.text-center= round.round_number
-        %th.text-center Handicap
+        %th.text-center.hide-for-small-only Handicap
         %th.text-center Total
     %tbody#leader-board
       - @leader_board.each_with_index do |lb_participant, index|
         %tr
-          %td= "#{index + 1}."
+          %td.large-1.small-1= "#{index + 1}."
           %td= lb_participant.name
-          %td= lb_participant.category
-          - lb_participant.round_scores.each do |event_score|
-            %td.text-center= event_score.score unless event_score.team_participant.placeholder
-          %td.text-center= lb_participant.handicap
+          %td.hide-for-small-only= lb_participant.category
+          - event.rounds.each do |round|
+            %td.text-center= lb_participant.round_score(round.id).try(:score)
+          %td.text-center.hide-for-small-only= lb_participant.handicap
           %td.text-center= lb_participant.total_score

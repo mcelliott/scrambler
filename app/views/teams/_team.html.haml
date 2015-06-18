@@ -2,3 +2,6 @@
   %tbody
     - team.team_participants.each do |team_participant|
       = render partial: 'teams/team_participant', locals: { team_participant: team_participant }
+
+:javascript
+  ReactRailsUJS.mountComponents();

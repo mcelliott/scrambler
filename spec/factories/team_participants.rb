@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :team_participant do
     event
     participant
-    placeholder 1
+    placeholder false
     team
   end
 end

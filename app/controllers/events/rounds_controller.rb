@@ -1,11 +1,17 @@
 class Events::RoundsController < ApplicationController
   before_action :set_event
   decorates_assigned :event
+  decorates_assigned :round
 
   def index
   end
 
   def new
+  end
+
+  def show
+    @round = @event.rounds.includes(:teams).find(params[:id])
+    render partial: 'events/teams'
   end
 
   def create

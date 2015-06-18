@@ -9,10 +9,9 @@ class TeamParticipantCreator
   def save
     return false unless form.valid?
     form.sync
-    form.save do |nested|
-      EventScoreCreator.new(form.model).save unless model.placeholder
-      model.update_attributes(nested)
-    end
+    success = form.save
+    EventScoreCreator.new(form.model).save if success && !model.placeholder
+    success
   end
 
   private

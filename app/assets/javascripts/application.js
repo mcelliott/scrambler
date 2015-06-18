@@ -15,6 +15,7 @@
 //= require jquery-ui/accordion
 //= require jquery-ui/datepicker
 //= require jquery-ui/effect-highlight
+//= require jquery-ui/tabs
 //= require react
 //= require react_ujs
 //= require components
@@ -29,7 +30,7 @@ function flash_row(id) {
   }, 500);
 };
 
-$(function(){
+$(function() {
   $(document).foundation()
   $('div#notice').delay(6000).fadeOut('slow')
 });
