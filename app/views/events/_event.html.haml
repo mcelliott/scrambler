@@ -1,9 +1,9 @@
 %td= link_to event.name, event, class: 'event-name'
 %td= event.event_date
 %td= event.category_type_humanize
-%td.text-center= event.team_size
-%td.text-center= event.num_rounds
-%td.text-center= event.participants_count
+%td.hide-for-small-only.text-center= event.team_size
+%td.hide-for-small-only.text-center= event.num_rounds
+%td.hide-for-small-only.text-center= event.participants_count
 %td.text-right
   .right{ class: "#{ 'hidden' if event.locked? }" }= react_component('DeleteButton', item: "event-#{event.id}", path: event_path(event))
   .right= react_component('GetButton', path: edit_event_path(event), icon: "pencil")
