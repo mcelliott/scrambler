@@ -13,5 +13,6 @@
               = f.hidden_field :team_id, value: team.id
           - else
             = team.event_score.score
-        %td.text-center.hide-for-small-only
-          = react_component('GetButton', path: new_teams_participant_path(team_id: team.id, event_id: event.id), icon: 'plus')
+        - if can?(:update, event) && !event.locked?
+          %td.text-center.hide-for-small-only
+            = react_component('GetButton', path: new_teams_participant_path(team_id: team.id, event_id: event.id), icon: 'plus')
