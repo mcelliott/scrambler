@@ -7,6 +7,7 @@
     - else
       = team_participant.participant.name
   %td.large-3.medium-3.small-2.hide-for-small-only= team_participant.category_name
-  %td.large-2.medium-2.small-1.text-right.hide-for-small-only
-    = react_component('DeleteButton', item: "team-participant-#{team_participant.id}", path: destroy_teams_participant_path(team_id: team_participant.team.id, id: team_participant))
+  - if can?(:update, event) && !event.locked?
+    %td.large-2.medium-2.small-1.text-right.hide-for-small-only
+      = react_component('DeleteButton', item: "team-participant-#{team_participant.id}", path: destroy_teams_participant_path(team_id: team_participant.team.id, id: team_participant))
 
