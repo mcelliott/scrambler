@@ -8,40 +8,50 @@ class EventRoundsCreator
 
     # generate the rounds
     rg = RoundGenerator.new(event, mixed_rounds)
-    rg.perform
+    rg.generate
 
     # check for dups
     rg.check_rounds
 
     # apply to event
-    progress_updater = ProgressUpdater.new(event)
-    rg.rounds.each do |round_number, teams|
-      round = RoundCreator.new(event, round_number).perform
-      teams.each do |team_number, value|
-        value.each do |category_name, participants|
-          category = Category.find_by(name: category_name)
-          team = round.teams.create(name: "T#{team_number}",
-                                    category: category,
-                                    event: event)
-
-          participants.each do |participant|
-            TeamParticipantCreator.new(form(participant, team)).save
-          end
-        end
+    progress_updater(event) do |progress|
+      rg.rounds.each do |round_number, teams|
+        round = RoundCreator.new(event, round_number).perform
+        create_teams(round, teams)
+        progress.update(percent_complete)
       end
-      progress_updater.update(percent_complete)
+      event.reload
     end
-    event.reload
-    ProgressUpdater.new(event).update(100)
+  end
+
+  def create_teams(round, teams)
+    teams.each do |team_number, value|
+      value.each do |category_name, participants|
+        category = find_category_by_name(category_name)
+        team_creator = TeamCreator.new(team_number,
+                                       @event,
+                                       round,
+                                       category)
+        team = team_creator.perform
+        create_participants(team, participants)
+      end
+    end
+  end
+
+  def create_participants(team, participants)
+    participants.each do |participant|
+      TeamParticipantCreator.new(form(participant, team)).save
+    end
   end
 
   def form(participant, team)
-    team_participant = TeamParticipant.new(
+    params = {
       team_id: team.id,
       event_id: @event.id,
       participant_id: participant.id,
-      placeholder: false)
-    TeamParticipantForm.new(team_participant)
+      placeholder: false
+    }
+    TeamParticipantForm.new(TeamParticipant.new(params))
   end
 
   def event(id)
@@ -50,5 +60,17 @@ class EventRoundsCreator
 
   def percent_complete
     (1.0 * @event.reload.rounds.size / @event.num_rounds * 100.0).round
+  end
+
+  private
+
+  def find_category_by_name(name)
+    Category.find_by(name: name)
+  end
+
+  def progress_updater(event)
+    progress_updater = ProgressUpdater.new(event)
+    yield progress_updater
+    progress_updater.update(100)
   end
 end

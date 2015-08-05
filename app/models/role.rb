@@ -1,6 +1,7 @@
 class Role < ActiveRecord::Base
   has_many :users
   has_enumeration_for :name, with: RoleType, create_helpers: { prefix: true }
+  validates :name, presence: true, inclusion: { in: RoleType.list }
 
   def self.admin
     find_by(name: RoleType::ADMIN)

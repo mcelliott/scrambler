@@ -8,7 +8,13 @@ class RoundCreator
     Round.create(
       event: @event,
       round_number: @round_number,
-      name: "Round #{@round_number}"
+      name: round_name
     )
+  end
+
+  private
+
+  def round_name
+    "Round #{@round_number}"
   end
 end

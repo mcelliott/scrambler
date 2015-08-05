@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :flyer do
-    sequence(:name)  { |n| "Flyer #{n}" }
-    sequence(:email) { |n| "flyer_#{n}@foo.com" }
+    sequence(:name)  { Faker::Name.name }
+    sequence(:email) { Faker::Internet.email }
     hours TunnelHours::NOVICE
   end
 end

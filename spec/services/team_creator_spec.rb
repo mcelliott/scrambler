@@ -5,7 +5,7 @@ describe TeamCreator do
   let(:category) { create(:category) }
   let(:round)    { create(:round, event: event)    }
   let(:num_participants)     { 6 }
-  let(:creator)  { described_class.new(event, category, round) }
+  let(:creator)  { described_class.new(1, event, round, category) }
 
   context 'when creating a team for a round' do
     subject { creator.perform }
